@@ -5,7 +5,9 @@ categories: [stable-diffusion]
 tags: [taming-transformers, vqgan, transformers, deep-learning, image-generation]
 ---
 
-# Taming Transformers 구현체 상세 분석 | Detailed Analysis of Taming Transformers Implementation
+Taming Transformers 구현체 상세 분석 | Detailed Analysis of Taming Transformers Implementation
+
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 이 문서에서는 `repositories/taming-transformers` 디렉토리에 있는 Taming Transformers 모델의 구현체에 대해 상세히 분석합니다.
 This document provides a detailed analysis of the Taming Transformers model implementation in the `repositories/taming-transformers` directory.

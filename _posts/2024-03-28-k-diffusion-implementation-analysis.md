@@ -5,7 +5,9 @@ categories: [stable-diffusion]
 tags: [k-diffusion, diffusion-models, deep-learning, image-generation]
 ---
 
-# K-Diffusion 구현체 상세 분석 | Detailed Analysis of K-Diffusion Implementation
+K-Diffusion 구현체 상세 분석 | Detailed Analysis of K-Diffusion Implementation
+
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 이 문서에서는 `repositories/k-diffusion` 디렉토리에 있는 K-Diffusion 모델의 구현체에 대해 상세히 분석합니다.
 This document provides a detailed analysis of the K-Diffusion model implementation located in the `repositories/k-diffusion` directory.

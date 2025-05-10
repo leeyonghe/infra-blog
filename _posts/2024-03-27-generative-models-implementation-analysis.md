@@ -5,7 +5,9 @@ categories: [stable-diffusion]
 tags: [generative-models, deep-learning, image-generation, diffusion]
 ---
 
-# Generative Models 구현체 상세 분석 | Detailed Analysis of Generative Models Implementation
+Generative Models 구현체 상세 분석 | Detailed Analysis of Generative Models Implementation
+
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 이 문서에서는 `repositories/generative-models` 디렉토리에 있는 다양한 생성 모델들의 구현체에 대해 상세히 분석합니다.
 This document provides a detailed analysis of various generative model implementations in the `repositories/generative-models` directory.
