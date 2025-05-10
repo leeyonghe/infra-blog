@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "BLIP (Bootstrapping Language-Image Pre-training) 구현체 분석 / Implementation Analysis"
 date: 2024-03-27 12:30:00 +0900
 categories: [stable-diffusion]

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Generative Models 구현체 상세 분석 | Detailed Analysis of Generative Models Implementation"
 date: 2024-03-27 13:30:00 +0900
 categories: [stable-diffusion]

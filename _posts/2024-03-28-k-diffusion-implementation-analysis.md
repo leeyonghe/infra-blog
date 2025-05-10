@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "K-Diffusion 구현체 상세 분석 | Detailed Analysis of K-Diffusion Implementation"
 date: 2024-03-28 12:30:00 +0900
 categories: [stable-diffusion]

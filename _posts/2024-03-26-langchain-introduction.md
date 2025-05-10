@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "LangChain 소개: LLM 애플리케이션 개발을 위한 프레임워크 | Introduction to LangChain: A Framework for LLM Application Development"
 date: 2024-03-26 12:30:00 +0900
 categories: [LangChain]

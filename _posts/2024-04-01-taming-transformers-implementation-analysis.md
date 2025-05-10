@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Taming Transformers 구현체 상세 분석 | Detailed Analysis of Taming Transformers Implementation"
 date: 2024-04-01 12:30:00 +0900
 categories: [stable-diffusion]

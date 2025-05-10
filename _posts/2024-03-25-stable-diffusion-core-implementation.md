@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Stable Diffusion 핵심 구현체 상세 분석"
 date: 2024-03-25 12:30:00 +0900
 categories: [stable-diffusion]
