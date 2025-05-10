@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Stable Diffusion 하드웨어 가이드 / Hardware Guide"
 date: 2024-03-21 13:00:00 +0900
 categories: [AI, Hardware, Guide]
