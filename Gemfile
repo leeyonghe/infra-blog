@@ -1,11 +1,13 @@
 source "https://rubygems.org"
 
-gem "jekyll"
+gem "github-pages", group: :jekyll_plugins
+gem "jekyll-include-cache", group: :jekyll_plugins
 gem "webrick", "~> 1.9"
-gem "jekyll-feed"
-gem "jekyll-sitemap"
-gem "jekyll-gist"
-gem "jekyll-paginate"
-gem "jemoji"
-gem "jekyll-include-cache"
-gem "minimal-mistakes-jekyll"
+
+group :jekyll_plugins do
+  gem "jekyll-feed"
+  gem "jekyll-sitemap"
+  gem "jekyll-gist"
+  gem "jekyll-paginate"
+  gem "jemoji"
+end
