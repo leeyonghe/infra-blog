@@ -1,13 +1,13 @@
 ---
 title: "Ollama Docker 빌드 오류 해결하기 / Fixing Ollama Docker Build Errors"
 date: 2024-03-22 12:00:00 +0900
-categories: [Blog]
+categories: [Docker, AI, Troubleshooting]
 tags: [ollama, docker, go, build-error, memory-issue]
 ---
 
-Ollama Docker 빌드 오류 해결하기 / Fixing Ollama Docker Build Errors
-
 ![Ollama Logo](https://ollama.ai/public/ollama.png){: width="300" height="300"}
+
+# Ollama Docker 빌드 오류 해결하기 / Fixing Ollama Docker Build Errors
 
 최근 Ollama 프로젝트의 Docker 빌드 과정에서 발생한 오류를 해결한 경험을 공유하고자 합니다. 이 글에서는 Docker 빌드 과정에서 마주친 문제들과 그 해결 방법을 상세히 다루고 있습니다.
 
