@@ -6,7 +6,7 @@ categories: [Docker, AI, Troubleshooting]
 tags: [ollama, docker, go, build-error, memory-issue]
 ---
 
-![Ollama Logo](https://ollama.ai/public/ollama.png){: width="500" height="500"}
+![Ollama Logo](https://ollama.ai/public/ollama.png){: width="300" height="300"}
 
 # Ollama Docker 빌드 오류 해결하기
 

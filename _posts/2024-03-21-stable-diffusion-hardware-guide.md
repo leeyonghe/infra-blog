@@ -6,7 +6,7 @@ categories: [AI, Hardware, Guide]
 tags: [stable-diffusion, nvidia, gpu, hardware-guide]
 ---
 
-![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="500"}
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 # Stable Diffusion 실행을 위한 하드웨어 가이드
 

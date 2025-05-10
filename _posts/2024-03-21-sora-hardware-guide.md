@@ -6,7 +6,7 @@ categories: [AI, Hardware, Guide]
 tags: [sora, openai, hardware-guide]
 ---
 
-![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg){: width="500" height="500"}
+![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg){: width="300" height="300"}
 
 # OpenAI Sora 실행을 위한 하드웨어 가이드
 
