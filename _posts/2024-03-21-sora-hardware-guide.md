@@ -5,10 +5,10 @@ categories: [Blog]
 tags: [sora, openai, hardware-guide]
 ---
 
-![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg){: width="300" height="300"}
-
 # OpenAI Sora 실행을 위한 하드웨어 가이드
 # Hardware Guide for Running OpenAI Sora
+
+![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg){: width="300" height="300"}
 
 OpenAI의 Sora는 텍스트 프롬프트를 기반으로 고품질 비디오를 생성하는 혁신적인 AI 모델입니다. 이 글에서는 Sora를 실행하기 위한 하드웨어 요구사항과 최적화 방안에 대해 알아보겠습니다.
 

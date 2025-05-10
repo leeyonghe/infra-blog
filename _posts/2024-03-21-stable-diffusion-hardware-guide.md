@@ -5,10 +5,10 @@ categories: [Blog]
 tags: [stable-diffusion, nvidia, gpu, hardware-guide]
 ---
 
-![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
-
 # Stable Diffusion 실행을 위한 하드웨어 가이드
 # Hardware Guide for Running Stable Diffusion
+
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 Stable Diffusion은 텍스트로부터 이미지를 생성하는 강력한 AI 모델입니다. 이 모델을 효율적으로 실행하기 위해서는 적절한 하드웨어 구성이 필요합니다. 이 글에서는 Stable Diffusion을 실행하기 위한 최적의 하드웨어 스펙과 권장사항을 알아보겠습니다.
 
