@@ -2,7 +2,7 @@
 layout: post
 title: "Stable Diffusion WebUI Docker 프로젝트 구조 상세 설명"
 date: 2024-03-25 12:00:00 +0900
-categories: [Blog]
+categories: [stable-diffusion]
 tags: [docker, stable-diffusion, webui]
 ---
 
