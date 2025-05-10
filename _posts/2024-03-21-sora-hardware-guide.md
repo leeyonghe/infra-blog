@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sora 하드웨어 가이드"
-date: 2024-03-21
+date: 2024-03-21 12:30:00 +0900
 categories: [AI, Hardware, Guide]
 tags: [sora, openai, hardware-guide]
 ---

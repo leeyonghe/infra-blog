@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Stable Diffusion 하드웨어 가이드"
-date: 2024-03-21
+date: 2024-03-21 13:00:00 +0900
 categories: [AI, Hardware, Guide]
 tags: [stable-diffusion, nvidia, gpu, hardware-guide]
 ---
