@@ -6,7 +6,9 @@ categories: [Blog]
 tags: [docker, stable-diffusion, webui]
 ---
 
-# Stable Diffusion WebUI Docker 프로젝트 구조 상세 설명
+Stable Diffusion WebUI Docker 프로젝트 구조 상세 설명
+
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 이 문서에서는 Stable Diffusion WebUI Docker 프로젝트의 모든 폴더와 파일에 대한 상세한 설명을 제공합니다.
 

@@ -6,7 +6,9 @@ categories: [Blog]
 tags: [stable-diffusion, implementation, deep-learning]
 ---
 
-# Stable Diffusion 핵심 구현체 상세 분석
+Stable Diffusion 핵심 구현체 상세 분석
+
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 
 이 문서에서는 `repositories/stable-diffusion-stability-ai` 디렉토리에 있는 Stable Diffusion의 핵심 구현체에 대해 상세히 분석합니다.
 
