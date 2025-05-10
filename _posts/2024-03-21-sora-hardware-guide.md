@@ -5,8 +5,8 @@ categories: [Blog]
 tags: [sora, openai, hardware-guide]
 ---
 
-# OpenAI Sora 실행을 위한 하드웨어 가이드
-# Hardware Guide for Running OpenAI Sora
+OpenAI Sora 실행을 위한 하드웨어 가이드
+Hardware Guide for Running OpenAI Sora
 
 ![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg){: width="300" height="300"}
 

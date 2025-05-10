@@ -5,8 +5,8 @@ categories: [Blog]
 tags: [stable-diffusion, nvidia, gpu, hardware-guide]
 ---
 
-# Stable Diffusion 실행을 위한 하드웨어 가이드
-# Hardware Guide for Running Stable Diffusion
+Stable Diffusion 실행을 위한 하드웨어 가이드
+Hardware Guide for Running Stable Diffusion
 
 ![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="300"}
 

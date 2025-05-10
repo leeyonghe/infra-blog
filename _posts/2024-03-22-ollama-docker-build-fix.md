@@ -5,7 +5,7 @@ categories: [Blog]
 tags: [ollama, docker, go, build-error, memory-issue]
 ---
 
-# Ollama Docker 빌드 오류 해결하기 / Fixing Ollama Docker Build Errors
+Ollama Docker 빌드 오류 해결하기 / Fixing Ollama Docker Build Errors
 
 ![Ollama Logo](https://ollama.ai/public/ollama.png){: width="300" height="300"}
 
