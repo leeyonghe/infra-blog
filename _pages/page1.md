@@ -1,6 +1,8 @@
 ---
 title: "Page 1"
 permalink: /page1/
+layout: single
+author_profile: true
 ---
 
 # Page 1
