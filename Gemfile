@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+gem "jekyll"
+gem "webrick", "~> 1.9"
+gem "jekyll-feed"
+gem "jekyll-sitemap"
+gem "jekyll-gist"
+gem "jekyll-paginate"
+gem "jemoji"
+gem "jekyll-include-cache"
+gem "minimal-mistakes-jekyll"
