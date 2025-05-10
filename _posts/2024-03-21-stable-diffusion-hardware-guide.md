@@ -1,11 +1,12 @@
 ---
-title: "Stable Diffusion 실행을 위한 하드웨어 가이드"
-date: 2024-03-21 13:00:00 +0900
-categories: [AI, Hardware]
-tags: [stable-diffusion, gpu, hardware, ai-art]
+layout: post
+title: "Stable Diffusion 하드웨어 가이드"
+date: 2024-03-21
+categories: [AI, Hardware, Guide]
+tags: [stable-diffusion, nvidia, gpu, hardware-guide]
 ---
 
-![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png)
+![NVIDIA Logo](https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d@2x.png){: width="500" height="500"}
 
 # Stable Diffusion 실행을 위한 하드웨어 가이드
 

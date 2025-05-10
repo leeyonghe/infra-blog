@@ -1,11 +1,12 @@
 ---
-title: "OpenAI Sora 실행을 위한 하드웨어 가이드"
-date: 2024-03-21 14:00:00 +0900
-categories: [AI, Hardware]
-tags: [sora, openai, video-generation, ai]
+layout: post
+title: "Sora 하드웨어 가이드"
+date: 2024-03-21
+categories: [AI, Hardware, Guide]
+tags: [sora, openai, hardware-guide]
 ---
 
-![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg)
+![OpenAI Logo](https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg){: width="500" height="500"}
 
 # OpenAI Sora 실행을 위한 하드웨어 가이드
 
