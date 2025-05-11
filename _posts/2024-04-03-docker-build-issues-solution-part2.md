@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Docker 빌드 문제 해결하기 - Python 패키지 설치와 모듈 경로"
+title: "Audiocraft Docker 빌드 문제 해결하기 - Python 패키지 설치와 모듈 경로"
 date: 2024-04-03 12:30:00 +0900
 categories: [audiocraft]
 tags: [docker, python, pip, audiocraft, module-not-found]
