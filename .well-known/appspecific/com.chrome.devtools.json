@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "devtools": {
+    "enabled": true,
+    "host": "localhost",
+    "port": 4000
+  }
+}

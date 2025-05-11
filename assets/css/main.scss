@@ -1,9 +1,0 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
-search: false
----
-
-@use "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}" as skin;
-@use "minimal-mistakes" as *;
-
-@charset "utf-8";
