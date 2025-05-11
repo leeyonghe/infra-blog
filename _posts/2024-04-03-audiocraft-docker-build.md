@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Audiocraft Docker 빌드 설치"
 date: 2024-04-03 12:30:00 +0900
 categories: [audiocraft]
