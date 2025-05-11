@@ -6,7 +6,7 @@ categories: [AI, Audio Generation, Adversarial Learning]
 tags: [AudioCraft, Adversarial Learning, GAN, Discriminator, Audio Generation]
 ---
 
-# AudioCraft의 적대적 학습(Adversarial) 모듈 분석
+AudioCraft의 적대적 학습(Adversarial) 모듈 분석
 
 AudioCraft 프레임워크의 `adversarial` 모듈은 오디오 생성 모델의 품질을 향상시키기 위한 적대적 학습(Adversarial Learning) 기능을 제공합니다. 이 글에서는 이 모듈의 구조와 주요 기능에 대해 자세히 살펴보겠습니다.
 

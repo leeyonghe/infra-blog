@@ -6,7 +6,7 @@ categories: [AI, Audio Generation, Adversarial Learning]
 tags: [AudioCraft, Discriminator, GAN, Audio Generation, MultiPeriod, MultiScale, STFT]
 ---
 
-# AudioCraft의 판별자(Discriminators) 상세 분석
+AudioCraft의 판별자(Discriminators) 상세 분석
 
 AudioCraft 프레임워크의 `adversarial/discriminators` 모듈은 오디오 생성의 품질을 평가하고 향상시키기 위한 다양한 판별자(Discriminator) 아키텍처를 제공합니다. 이 글에서는 각 판별자의 구조와 특징에 대해 자세히 살펴보겠습니다.
 
