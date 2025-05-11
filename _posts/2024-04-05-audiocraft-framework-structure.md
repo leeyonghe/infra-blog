@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AudioCraft 프레임워크 구조 분석"
-date: 2024-03-21 15:00:00 +0900
+date: 2024-04-05 15:00:00 +0900
 categories: [AI, Audio Generation]
 tags: [AudioCraft, MusicGen, AudioGen, EnCodec, AI]
 ---

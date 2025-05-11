@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AudioCraft의 적대적 학습(Adversarial) 모듈 분석"
-date: 2024-03-21 16:00:00 +0900
+date: 2024-04-05 12:00:00 +0900
 categories: [AI, Audio Generation, Adversarial Learning]
 tags: [AudioCraft, Adversarial Learning, GAN, Discriminator, Audio Generation]
 ---

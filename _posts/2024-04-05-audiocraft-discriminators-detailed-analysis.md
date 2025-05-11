@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AudioCraft의 판별자(Discriminators) 상세 분석"
-date: 2024-03-21 17:00:00 +0900
+date: 2024-04-05 13:00:00 +0900
 categories: [AI, Audio Generation, Adversarial Learning]
 tags: [AudioCraft, Discriminator, GAN, Audio Generation, MultiPeriod, MultiScale, STFT]
 ---
