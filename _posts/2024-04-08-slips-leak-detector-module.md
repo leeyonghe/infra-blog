@@ -1,12 +1,11 @@
 ---
-layout: post
 title: "Slips 정보 유출 탐지 모듈 상세 분석"
 date: 2024-04-08 12:30:00 +0900
 categories: [network-analysis]
 tags: [data-leakage, security, network-analysis]
 ---
 
-# Slips 정보 유출 탐지 모듈 상세 분석
+Slips 정보 유출 탐지 모듈 상세 분석
 
 정보 유출 탐지 모듈은 Slips의 데이터 유출 탐지와 방지를 담당하는 핵심 컴포넌트입니다. 이 글에서는 정보 유출 탐지 모듈의 구현과 주요 기능을 살펴보겠습니다.
 

@@ -1,12 +1,11 @@
 ---
-layout: post
 title: "Slips 네트워크 탐지 모듈 상세 분석"
 date: 2024-04-08 16:30:00 +0900
 categories: [network-analysis]
 tags: [network-discovery, network-security, system-architecture]
 ---
 
-# Slips 네트워크 탐지 모듈 상세 분석
+Slips 네트워크 탐지 모듈 상세 분석
 
 네트워크 탐지 모듈은 Slips의 네트워크 자산 탐지와 모니터링을 담당하는 핵심 컴포넌트입니다. 이 글에서는 네트워크 탐지 모듈의 구현과 주요 기능을 살펴보겠습니다.
 
