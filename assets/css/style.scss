@@ -2,6 +2,7 @@
 ---
 
 @import "plain";
+@import "post-detail";
 
 {% if site.plainwhite.search %}
   @import "search";

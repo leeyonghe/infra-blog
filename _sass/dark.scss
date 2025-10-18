@@ -115,3 +115,173 @@
 		background-color: #0d0d0d;
 	}
 }
+
+// Dark mode styles for post detail page
+.dark .post-container {
+	article {
+		background: #222;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+	}
+
+	.post-header {
+		border-bottom-color: #333;
+
+		.post-title {
+			color: #f6f6f6;
+		}
+
+		.post-meta {
+			color: #aaa;
+
+			.post-categories-wrapper {
+				.post-categories li {
+					background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+				}
+			}
+		}
+	}
+
+	.post-content {
+		h1, h2, h3, h4, h5, h6 {
+			color: #f0f0f0;
+		}
+
+		h2 {
+			border-bottom-color: #333;
+		}
+
+		blockquote {
+			background: #2a2a2a;
+			border-left-color: #4da3ff;
+			color: #ccc;
+		}
+
+		code {
+			background: #2a2a2a;
+			color: #ff6b9d;
+		}
+
+		pre {
+			background: #1a1a1a;
+			border-color: #333;
+		}
+	}
+
+	.post-footer {
+		border-top-color: #333;
+
+		.post-navigation {
+			.nav-previous, .nav-next {
+				background: #222;
+				border-color: #333;
+
+				&:hover {
+					border-color: #4da3ff;
+				}
+
+				a {
+					color: #aaa;
+
+					&:hover {
+						color: #4da3ff;
+					}
+				}
+			}
+		}
+	}
+
+	/* Dark mode for post detail pages */
+	.post-container article {
+			background: #2c2c2c;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+			.post-header {
+				border-bottom-color: #444;
+
+				.post-title {
+					color: #fff;
+				}
+
+				.post-meta {
+					.post-date {
+						color: #ccc;
+
+						i {
+							color: #aaa;
+						}
+					}
+
+					.post-categories-wrapper {
+						i {
+							color: #aaa;
+						}
+					}
+				}
+			}
+
+			.post-content {
+				color: #e0e0e0;
+
+				h1, h2, h3, h4, h5, h6 {
+					color: #fff;
+				}
+
+				h2 {
+					border-bottom-color: #4da3ff;
+				}
+
+				code {
+					background: #3a3a3a;
+					color: #ff6b6b;
+				}
+
+				pre {
+					background: #1e1e1e;
+					border-color: #444;
+
+					code {
+						background: none;
+						color: #e0e0e0;
+					}
+				}
+
+				blockquote {
+					border-left-color: #4da3ff;
+					background: #3a3a3a;
+					color: #ccc;
+				}
+
+				a {
+					color: #4da3ff;
+
+					&:hover {
+						border-bottom-color: #4da3ff;
+					}
+				}
+			}
+
+			.post-footer {
+				border-top-color: #444;
+
+				.post-navigation {
+					.nav-previous,
+					.nav-next {
+						a {
+							background: #3a3a3a;
+							color: #e0e0e0;
+							border-color: transparent;
+
+							&:hover {
+								background: #4a4a4a;
+								border-color: #4da3ff;
+							}
+
+							i {
+								color: #4da3ff;
+							}
+						}
+					}
+				}
+			}
+		}
+	}

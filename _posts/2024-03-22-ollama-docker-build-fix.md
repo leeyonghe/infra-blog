@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "Ollama Docker 빌드 오류 해결하기 / Fixing Ollama Docker Build Errors"
 date: 2024-03-22 12:00:00 +0900
 categories: [Docker, AI, Troubleshooting]

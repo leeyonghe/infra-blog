@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gem "jekyll", "3.9.5"
 gem "kramdown-parser-gfm"
 gem "webrick", "~> 1.7"
+gem "plainwhite"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

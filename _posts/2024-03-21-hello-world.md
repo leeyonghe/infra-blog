@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "AI 기술 블로그 시작하기 | Starting an AI Technology Blog"
 date: 2024-03-21 12:00:00 +0900
 categories: [Blog]

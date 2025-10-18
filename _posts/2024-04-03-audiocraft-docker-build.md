@@ -1,92 +1,93 @@
 ---
-title: "Audiocraft Docker 빌드 설치"
+layout: post
+title: "Audiocraft Docker 빌드 ?�치"
 date: 2024-04-03 12:30:00 +0900
 categories: [audiocraft]
 tags: [docker, python, pip, audiocraft, module-not-found]
 ---
 
-Audiocraft를 Docker 환경에서 실행하기 위한 빌드 환경 설정 방법을 안내해드리겠습니다.
+Audiocraft�?Docker ?�경?�서 ?�행?�기 ?�한 빌드 ?�경 ?�정 방법???�내?�드리겠?�니??
 
-## 사전 요구사항
+## ?�전 ?�구?�항
 
-- Docker가 설치되어 있어야 합니다.
-- Git이 설치되어 있어야 합니다.
-- 최소 8GB 이상의 RAM이 필요합니다.
-- CUDA 지원 GPU가 권장됩니다.
+- Docker가 ?�치?�어 ?�어???�니??
+- Git???�치?�어 ?�어???�니??
+- 최소 8GB ?�상??RAM???�요?�니??
+- CUDA 지??GPU가 권장?�니??
 
-## Docker 이미지 빌드
+## Docker ?��?지 빌드
 
-1. Audiocraft 저장소 클론:
+1. Audiocraft ?�?�소 ?�론:
 ```bash
 git clone https://github.com/facebookresearch/audiocraft.git
 cd audiocraft
 ```
 
-2. Dockerfile 생성:
+2. Dockerfile ?�성:
 ```dockerfile
 FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
 
 WORKDIR /app
 
-# 시스템 패키지 설치
+# ?�스???�키지 ?�치
 RUN apt-get update && apt-get install -y \
     git \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Python 패키지 설치
+# Python ?�키지 ?�치
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Audiocraft 설치
+# Audiocraft ?�치
 COPY . .
 
-# 작업 디렉토리 설정
+# ?�업 ?�렉?�리 ?�정
 WORKDIR /app
 
-# 기본 포트 설정
+# 기본 ?�트 ?�정
 EXPOSE 8000
 
-# 실행 명령
+# ?�행 명령
 CMD ["python", "app.py"]
 ```
 
-3. Docker 이미지 빌드:
+3. Docker ?��?지 빌드:
 ```bash
 docker build -t audiocraft:latest .
 ```
 
-## Docker 컨테이너 실행
+## Docker 컨테?�너 ?�행
 
 ```bash
 docker run -it --gpus all -p 8000:8000 audiocraft:latest
 ```
 
-## 주의사항
+## 주의?�항
 
-1. GPU 사용을 위해서는 NVIDIA Container Toolkit이 설치되어 있어야 합니다.
-2. 메모리 사용량이 많으므로 충분한 시스템 리소스가 필요합니다.
-3. 첫 실행 시 모델 다운로드로 인해 시간이 걸릴 수 있습니다.
+1. GPU ?�용???�해?�는 NVIDIA Container Toolkit???�치?�어 ?�어???�니??
+2. 메모�??�용?�이 많으므�?충분???�스??리소?��? ?�요?�니??
+3. �??�행 ??모델 ?�운로드�??�해 ?�간??걸릴 ???�습?�다.
 
-## 문제 해결
+## 문제 ?�결
 
-### 일반적인 오류
+### ?�반?�인 ?�류
 
-1. CUDA 관련 오류:
-   - NVIDIA 드라이버가 최신 버전인지 확인
-   - Docker의 GPU 지원이 활성화되어 있는지 확인
+1. CUDA 관???�류:
+   - NVIDIA ?�라?�버가 최신 버전?��? ?�인
+   - Docker??GPU 지?�이 ?�성?�되???�는지 ?�인
 
-2. 메모리 부족 오류:
-   - Docker 컨테이너의 메모리 제한을 늘리기
-   - `--memory` 옵션 사용
+2. 메모�?부�??�류:
+   - Docker 컨테?�너??메모�??�한???�리�?
+   - `--memory` ?�션 ?�용
 
-3. 모듈을 찾을 수 없는 오류:
-   - requirements.txt가 올바르게 설치되었는지 확인
-   - Python 경로가 올바르게 설정되어 있는지 확인
+3. 모듈??찾을 ???�는 ?�류:
+   - requirements.txt가 ?�바르게 ?�치?�었?��? ?�인
+   - Python 경로가 ?�바르게 ?�정?�어 ?�는지 ?�인
 
-## 추가 설정
+## 추�? ?�정
 
-### 환경 변수 설정
+### ?�경 변???�정
 
 ```bash
 docker run -it --gpus all \
@@ -96,7 +97,7 @@ docker run -it --gpus all \
   audiocraft:latest
 ```
 
-### 볼륨 마운트
+### 볼륨 마운??
 
 ```bash
 docker run -it --gpus all \
@@ -106,5 +107,5 @@ docker run -it --gpus all \
   audiocraft:latest
 ```
 
-이렇게 설정하면 Audiocraft를 Docker 환경에서 안정적으로 실행할 수 있습니다. 필요한 경우 추가적인 설정이나 문제 해결 방법을 문의해 주세요.
+?�렇�??�정?�면 Audiocraft�?Docker ?�경?�서 ?�정?�으�??�행?????�습?�다. ?�요??경우 추�??�인 ?�정?�나 문제 ?�결 방법??문의??주세??
 
