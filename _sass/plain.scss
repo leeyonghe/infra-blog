@@ -45,33 +45,33 @@ h2 {
   }
 }
 main {
-  margin: 0 90px;
+  margin: 0;
   display: flex;
   height: 100%;
+  min-height: 100vh;
 
-  @media screen and (min-width: $bigScreenW) {
-    margin: 0 auto;
-    max-width: 1440px;
-  }
-  @media screen and (max-width: 1280px) {
-    margin: 0 75px;
-  }
-  @media screen and (max-width: 1024px) {
-    margin: 0 35px;
+  @media screen and (min-width: 769px) {
+    margin: 0;
+    padding-left: 0;
   }
 
   @media screen and (max-width: $mobileW) {
-    margin: 0 10px;
-    flex-direction: column;
-  }
-  @media screen and (max-width: $smallMobileW) {
     margin: 0;
+    flex-direction: column;
+    padding: 0;
   }
 
   .content {
-    @media screen and (min-width: $mobileW + 1) {
-      max-width: calc(100% - #{$leftWidth});
-      margin-left: $leftWidth;
+    @media screen and (min-width: 769px) {
+      max-width: calc(100% - #{$leftWidth} - 40px);
+      margin-left: calc(#{$leftWidth} + 20px);
+      width: calc(100% - #{$leftWidth} - 40px);
+      padding-left: 0;
+    }
+
+    @media screen and (max-width: $mobileW) {
+      margin-left: 0;
+      max-width: 100%;
       width: 100%;
     }
   }
@@ -79,17 +79,28 @@ main {
     display: flex;
     height: 100vh;
     padding-bottom: 15vh;
+
     @media screen and (max-width: $mobileW) {
       height: auto;
       padding: 5vh 30px;
+      position: relative;
+      width: 100%;
+      min-width: auto;
     }
+
     @media screen and (max-width: $smallMobileW) {
       padding: 5vh 20px;
     }
-    @media screen and (min-width: $mobileW + 1) {
+
+    @media screen and (min-width: 769px) {
       position: fixed;
-      max-width: 280px;
+      left: 0;
+      top: 0;
+      max-width: $leftWidth;
+      width: $leftWidth;
+      z-index: 1000;
     }
+
     min-width: $leftWidth;
     justify-content: center;
     flex-direction: column;
@@ -100,6 +111,8 @@ main {
       margin-bottom: 0;
       color: #222222;
       font-weight: normal;
+      text-align: center;
+      width: 100%;
     }
     .tagline {
       text-align: center;
@@ -187,33 +200,57 @@ main {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
   li {
-    font-size: 14px;
-    float: left;
-    background-color: #e3e3e3;
-    padding: 5px 20px;
-    border-radius: 2px;
+    font-size: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+
     @media screen and (max-width: $mobileW) {
       margin-top: 5px;
+      font-size: 11px;
+      padding: 4px 10px;
     }
-    margin-right: 10px;
   }
 }
 .post-date {
-  margin-right: 10px;
-  color: #555;
-  min-width: 150px;
+  margin-right: 15px;
+  color: #666;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i {
+    color: #888;
+    font-size: 16px;
+  }
 }
+
 .post-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 30px;
+  min-height: 40px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+
   @media screen and (max-width: $mobileW) {
     flex-direction: column;
-    align-items: baseline;
+    align-items: flex-start;
+    gap: 10px;
+
     .post-date {
-      margin: 10px 0;
+      margin: 0;
     }
   }
 }
@@ -222,24 +259,69 @@ main {
 }
 
 .post-title {
-  line-height: 1.2em;
-  font-size: 28px;
-  margin-bottom: 10px;
+  line-height: 1.3em;
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-weight: 600;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $linkColor;
+  }
+
+  @media screen and (max-width: $mobileW) {
+    font-size: 1.4em;
+    margin-bottom: 12px;
+  }
 }
 .posts,
 .post-container {
   list-style-type: none;
-  margin: 60px 30px;
-  @media screen and (max-width: $smallMobileW) {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  @media screen and (max-width: $mobileW) {
-    padding: 0 !important;
-    margin-top: 20px;
+  margin: 30px 0;
+  padding: 0 40px 0 30px;
+
+  @media screen and (min-width: 769px) {
+    margin-left: 0;
+    padding-left: 30px;
+    padding-right: 40px;
   }
 
-  li:not(.posts-labelgroup) {
+  @media screen and (max-width: $mobileW) {
+    padding: 0 20px !important;
+    margin: 20px 0;
+  }
+
+  @media screen and (max-width: $smallMobileW) {
+    margin: 15px 0;
+    padding: 0 15px !important;
+  }  .post-item {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f8f9fa;
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    @media screen and (max-width: $mobileW) {
+      margin-bottom: 1.5rem;
+      padding: 20px;
+      border-radius: 8px;
+    }
+  }
+
+  li:not(.posts-labelgroup):not(.post-item) {
     margin-bottom: 2rem;
     border-bottom: 1px solid #f0f0f0;
 
@@ -252,13 +334,16 @@ main {
   padding-left: 30px;
 }
 .post {
-  font-family: "Merriweather", sans-serif;
-  font-weight: 300;
-  color: #222;
-  line-height: 1.9em;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.7em;
+  font-size: 15px;
+
   p {
     margin-top: 10px;
   }
+
   a {
     color: $linkColor;
     text-decoration: none;
@@ -267,13 +352,15 @@ main {
       border-bottom: 0.5px solid $linkColor;
     }
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+
+  h1, h2, h3, h4, h5, h6 {
     font-family: Raleway, sans-serif;
+  }
+
+  // Post excerpt styling for home page
+  &.post-excerpt {
+    text-align: justify;
+    margin-bottom: 15px;
   }
 }
 .posts-labelgroup {
@@ -306,17 +393,85 @@ table {
 }
 
 .read-more {
+  display: inline-block;
   color: $linkColor;
   font-size: 14px;
-  font-weight: 500;
-  margin-left: 10px;
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: 2px solid $linkColor;
+  border-radius: 25px;
   text-decoration: none;
+  transition: all 0.3s ease;
+
   &:hover {
-    text-decoration: underline;
+    background: $linkColor;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(10, 89, 176, 0.3);
   }
 }
 
-// Post Detail Page Styles
+// Home page content styling
+.content {
+  padding: 30px 40px;
+
+  @media screen and (min-width: 769px) {
+    margin-left: 0;
+    padding-left: 30px;
+    padding-right: 40px;
+  }
+
+  @media screen and (max-width: $mobileW) {
+    padding: 20px;
+    margin-left: 0;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+
+    @media screen and (max-width: $mobileW) {
+      font-size: 2em;
+    }
+  }
+
+  h2 {
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+
+    @media screen and (max-width: $mobileW) {
+      font-size: 1.5em;
+    }
+  }
+
+  h3 {
+    color: #2980b9;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    font-size: 1.4em;
+  }
+
+  p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    text-align: justify;
+  }
+
+  ul {
+    margin-bottom: 20px;
+    padding-left: 25px;
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+  }
+}// Post Detail Page Styles
 .post-container {
   article {
     background: #fff;
@@ -645,229 +800,4 @@ footer {
   }
 }
 
-/* Post Detail Page Styling */
-.post-container article {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  padding: 40px;
-  margin: 30px auto;
-  max-width: 800px;
-
-    @media screen and (max-width: $mobileW) {
-      margin: 20px;
-      padding: 25px;
-      border-radius: 8px;
-    }
-
-    .post-header {
-      border-bottom: 2px solid #f5f5f5;
-      padding-bottom: 25px;
-      margin-bottom: 30px;
-
-      .post-title {
-        font-size: 2.2em;
-        font-weight: 700;
-        color: #2c3e50;
-        line-height: 1.3;
-        margin-bottom: 15px;
-
-        @media screen and (max-width: $mobileW) {
-          font-size: 1.8em;
-        }
-      }
-
-      .post-meta {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
-
-        .post-date {
-          display: flex;
-          align-items: center;
-          color: #666;
-          font-size: 0.9em;
-
-          i {
-            margin-right: 8px;
-            color: #888;
-          }
-        }
-
-        .post-categories-wrapper {
-          display: flex;
-          align-items: center;
-
-          i {
-            margin-right: 8px;
-            color: #888;
-          }
-
-          .post-categories {
-            display: flex;
-            gap: 8px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-
-            li {
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-              color: white;
-              padding: 4px 12px;
-              border-radius: 20px;
-              font-size: 0.8em;
-              font-weight: 500;
-              text-transform: capitalize;
-            }
-          }
-        }
-      }
-    }
-
-    .post-content {
-      font-size: 1.1em;
-      line-height: 1.8;
-      color: #333;
-
-      p {
-        margin-bottom: 1.2em;
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        color: #2c3e50;
-        margin: 1.5em 0 0.8em 0;
-        font-weight: 600;
-      }
-
-      h2 {
-        font-size: 1.8em;
-        border-bottom: 2px solid #3498db;
-        padding-bottom: 10px;
-      }
-
-      h3 {
-        font-size: 1.5em;
-        color: #34495e;
-      }
-
-      code {
-        background: #f8f9fa;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 0.9em;
-        color: #e74c3c;
-      }
-
-      pre {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 6px;
-        padding: 15px;
-        overflow-x: auto;
-        margin: 1.5em 0;
-
-        code {
-          background: none;
-          color: #333;
-          padding: 0;
-        }
-      }
-
-      blockquote {
-        border-left: 4px solid #3498db;
-        background: #f8f9fa;
-        padding: 15px 20px;
-        margin: 1.5em 0;
-        font-style: italic;
-        color: #555;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin: 1.5em 0;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      ul, ol {
-        padding-left: 1.5em;
-        margin-bottom: 1.2em;
-
-        li {
-          margin-bottom: 0.5em;
-        }
-      }
-
-      a {
-        color: #3498db;
-        text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: all 0.3s ease;
-
-        &:hover {
-          border-bottom-color: #3498db;
-        }
-      }
-    }
-
-    .post-footer {
-      border-top: 2px solid #f5f5f5;
-      padding-top: 25px;
-      margin-top: 40px;
-
-      .post-navigation {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-
-        @media screen and (max-width: $mobileW) {
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .nav-previous,
-        .nav-next {
-          flex: 1;
-
-          a {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-
-            &:hover {
-              background: #e9ecef;
-              border-color: #3498db;
-              transform: translateY(-2px);
-            }
-
-            i {
-              color: #3498db;
-              margin: 0 8px;
-            }
-
-            .nav-title {
-              font-weight: 500;
-            }
-          }
-        }
-
-        .nav-previous a {
-          justify-content: flex-start;
-        }
-
-        .nav-next a {
-          justify-content: flex-end;
-          text-align: right;
-        }
-      }
-    }
-  }
+// Clean up - removed duplicate post detail styles to prevent conflicts
