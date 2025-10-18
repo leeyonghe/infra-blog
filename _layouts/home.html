@@ -24,7 +24,7 @@ layout: default
     </li>
 
     {%- for post in site.posts -%}
-      <li>
+      <li class="post-item">
         {%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
         <a class="post-link" href="{{ post.url | relative_url }}">
           <h2 class="post-title">{{ post.title | escape }}</h2>
@@ -53,6 +53,73 @@ layout: default
       </li>
     {%- endfor -%}
   </ul>
+
+  <!-- 페이지네이션 컨트롤 -->
+  <div class="pagination" id="pagination">
+    <button id="first-page" class="nav-btn">처음</button>
+    <button id="prev-page" class="nav-btn">이전</button>
+    <span class="page-info" id="page-info">페이지 1 / 1</span>
+    <button id="next-page" class="nav-btn">다음</button>
+    <button id="last-page" class="nav-btn">마지막</button>
+  </div>
+
+  <!-- 페이지네이션 JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const postsPerPage = 10;
+      const posts = document.querySelectorAll('.post-item');
+      const totalPosts = posts.length;
+      const totalPages = Math.ceil(totalPosts / postsPerPage);
+      let currentPage = 1;
+
+      const firstBtn = document.getElementById('first-page');
+      const prevBtn = document.getElementById('prev-page');
+      const nextBtn = document.getElementById('next-page');
+      const lastBtn = document.getElementById('last-page');
+      const pageInfo = document.getElementById('page-info');
+
+      function showPage(page) {
+        posts.forEach((post, index) => {
+          const startIndex = (page - 1) * postsPerPage;
+          const endIndex = startIndex + postsPerPage;
+
+          if (index >= startIndex && index < endIndex) {
+            post.style.display = 'block';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+
+        pageInfo.textContent = `페이지 ${page} / ${totalPages}`;
+
+        // 버튼 상태 업데이트
+        firstBtn.disabled = page === 1;
+        prevBtn.disabled = page === 1;
+        nextBtn.disabled = page === totalPages;
+        lastBtn.disabled = page === totalPages;
+
+        currentPage = page;
+
+        // URL 업데이트 (선택사항)
+        const url = page === 1 ? '/' : `/page${page}`;
+        history.replaceState(null, '', url);
+      }
+
+      // 이벤트 리스너
+      firstBtn.addEventListener('click', () => showPage(1));
+      prevBtn.addEventListener('click', () => showPage(Math.max(1, currentPage - 1)));
+      nextBtn.addEventListener('click', () => showPage(Math.min(totalPages, currentPage + 1)));
+      lastBtn.addEventListener('click', () => showPage(totalPages));
+
+      // 초기 페이지 로드
+      showPage(1);
+
+      // 페이지네이션이 필요 없으면 숨기기
+      if (totalPages <= 1) {
+        document.getElementById('pagination').style.display = 'none';
+      }
+    });
+  </script>
 
   <!-- <p class="feed-subscribe"><svg class="svg-icon orange">
 		<use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
