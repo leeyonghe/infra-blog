@@ -1,10 +1,13 @@
-title: Your awesome title
-author: GitHub User
-email: your-email@domain.com
+title: Infrastructure Technology Blog
+author: DevOps Engineer
+email: infra-engineer@domain.com
 description: > # this means to ignore newlines until "show_exerpts:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  인프라스트럭처와 관련된 모든 기술을 다루는 블로그입니다. 
+  클라우드, 데브옵스, 네트워킹, 보안, 모니터링 등 
+  인프라 운영과 관리에 필요한 모든 정보를 제공합니다.
+  A comprehensive blog covering all infrastructure technologies including 
+  cloud, DevOps, networking, security, monitoring, and everything needed 
+  for infrastructure operations and management.
 show_excerpts: true # set to true to show excerpts on the homepage
 excerpt_separator: <!--more--> # Custom excerpt separator
 
@@ -13,8 +16,8 @@ excerpt_separator: <!--more--> # Custom excerpt separator
 sass:
   sass_dir: _sass
 plainwhite:
-  name: David Lee
-  tagline: Developer
+  name: Infrastructure Engineer
+  tagline: DevOps & Cloud Infrastructure Specialist
   date_format: "%b %-d, %Y"
   sitemap: true # set to true to generate sitemap.xml content
   search: true # set to true to enable searchbar
