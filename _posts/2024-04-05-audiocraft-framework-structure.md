@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "AudioCraft 프레임워크 구조 분석"
 date: 2024-04-05 15:00:00 +0900
@@ -6,7 +6,7 @@ categories: [AI, Audio Generation]
 tags: [AudioCraft, MusicGen, AudioGen, EnCodec, AI]
 ---
 
-AudioCraft 프레임워크 구조 분석
+# AudioCraft 프레임워크 구조 분석
 
 AudioCraft는 Meta Platforms에서 개발한 오디오 생성 모델을 위한 종합적인 프레임워크입니다. 이 글에서는 AudioCraft의 디렉토리 구조와 주요 컴포넌트에 대해 자세히 살펴보겠습니다.
 
