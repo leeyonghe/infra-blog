@@ -179,8 +179,8 @@ main {
 
 .post-wrapper {
   border-bottom: 1px solid #ececec;
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
 }
 
 .post-categories {
@@ -229,14 +229,23 @@ main {
 .posts,
 .post-container {
   list-style-type: none;
-  margin: 45px 30px;
+  margin: 60px 30px;
   @media screen and (max-width: $smallMobileW) {
     margin-left: 20px;
     margin-right: 20px;
   }
   @media screen and (max-width: $mobileW) {
     padding: 0 !important;
-    margin-top: 0;
+    margin-top: 20px;
+  }
+
+  li:not(.posts-labelgroup) {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
   }
 }
 .post-container {
@@ -293,6 +302,17 @@ table {
   th {
     background-color: #eee;
     font-family: Raleway;
+  }
+}
+
+.read-more {
+  color: $linkColor;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 }
 

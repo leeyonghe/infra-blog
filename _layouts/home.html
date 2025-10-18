@@ -44,7 +44,10 @@ layout: default
         </div>
         <div class="post">
           {%- if site.show_excerpts -%}
-            {{ post.excerpt }}
+            {{ post.content | strip_html | truncatewords: 30 }}
+            {%- if post.content != post.excerpt -%}
+              <a href="{{ post.url | relative_url }}" class="read-more">더 보기...</a>
+            {%- endif -%}
           {%- endif -%}
         </div>
       </li>
