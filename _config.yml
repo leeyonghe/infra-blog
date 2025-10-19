@@ -60,3 +60,13 @@ plainwhite:
 markdown: kramdown
 highlighter: rouge
 permalink: /blog/:year/:month/:day/:title:output_ext
+
+# GitHub Pages settings
+baseurl: "/infra-blog"
+url: "https://leeyonghe.github.io"
+
+# Jekyll plugins for GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
