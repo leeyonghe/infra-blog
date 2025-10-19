@@ -1,12 +1,35 @@
 ---
 layout: post
-title: "AWS 클라우드 아키텍처 설계 패턴 | AWS Cloud Architecture Design Patterns"
+title: "AWS 완전 정복 가이드 1편 - 기초부터 아키텍처 패턴까지 | AWS Complete Guide Part 1 - Fundamentals to Architecture Patterns"
 date: 2024-03-23 14:00:00 +0900
 categories: [AWS, Cloud]
-tags: [aws, cloud, architecture, design-patterns, scalability, high-availability]
+tags: [aws, cloud, architecture, design-patterns, scalability, high-availability, fundamentals]
 ---
 
-AWS에서 확장 가능하고 안정적인 클라우드 아키텍처를 설계하는 핵심 패턴들을 알아보겠습니다.
+AWS 클라우드의 모든 것을 체계적으로 마스터하는 완전 가이드 시리즈가 시작됩니다. 이번 편에서는 AWS 기초 개념부터 고급 아키텍처 설계 패턴까지 핵심 내용을 다룹니다.
+
+## AWS 기초 개념 | AWS Fundamentals
+
+### 🌐 클라우드 컴퓨팅의 이해
+
+#### 클라우드 컴퓨팅 서비스 모델
+- **IaaS (Infrastructure as a Service)**: EC2, VPC, EBS
+- **PaaS (Platform as a Service)**: Elastic Beanstalk, Lambda
+- **SaaS (Software as a Service)**: WorkDocs, WorkMail
+
+#### 클라우드 배포 모델
+- **Public Cloud**: 완전한 클라우드 배포
+- **Hybrid Cloud**: 온프레미스와 클라우드 혼합
+- **Private Cloud**: 온프레미스 클라우드 인프라
+
+#### AWS 글로벌 인프라
+```
+AWS 글로벌 인프라 구조:
+├── 리전 (Regions): 지리적으로 분리된 데이터센터 그룹
+├── 가용 영역 (AZs): 리전 내 물리적으로 분리된 데이터센터
+├── 엣지 로케이션 (Edge Locations): CloudFront CDN 캐시 서버
+└── 로컬 존 (Local Zones): 최종 사용자에 더 가까운 위치
+```
 
 ## Well-Architected Framework | 아키텍처 설계 원칙
 
@@ -168,4 +191,10 @@ aws ec2 authorize-security-group-ingress \
   --cidr 0.0.0.0/0
 ```
 
-다음 포스트에서는 AWS 서버리스 아키텍처 구축 실습을 진행하겠습니다!
+다음 포스트에서는 **AWS 핵심 서비스 실습과 EC2 완전 마스터**를 상세히 다룰 예정입니다:
+- EC2 인스턴스 생성부터 고급 관리까지
+- VPC 네트워킹 심화 학습
+- S3 스토리지 완전 활용
+- RDS 데이터베이스 구축 및 운영
+
+AWS 기초와 아키텍처 패턴을 완벽하게 이해하셨나요? 🚀☁️
