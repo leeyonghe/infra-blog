@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>AWS 완전 정복 가이드 4편 - CloudFormation IaC와 CI/CD 파이프라인 | AWS Complete Guide Part 4 - CloudFormation IaC & CI/CD Pipeline</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">AWS 완전 정복 가이드 4편 - CloudFormation IaC와 CI/CD 파이프라인 | AWS Complete Guide Part 4 - CloudFormation IaC &amp; CI/CD Pipeline</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-03-26T05:00:00+00:00">Mar 26, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>AWS</li><li>Cloud</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>AWS 인프라를 코드로 관리하고 완전 자동화된 CI/CD 파이프라인을 구축해보겠습니다. CloudFormation부터 SAM, CodePipeline까지 DevOps의 모든 것을 마스터합니다.</p>
+
+<h2 id="infrastructure-as-code-iac-개요--iac-overview">Infrastructure as Code (IaC) 개요 | IaC Overview</h2>
+
+<h3 id="️-iac의-이해와-장점">🏗️ IaC의 이해와 장점</h3>
+
+<h4 id="iac의-핵심-원칙">IaC의 핵심 원칙</h4>
+<ul>
+  <li><strong>버전 관리</strong>: 인프라 변경사항 추적</li>
+  <li><strong>재현 가능성</strong>: 동일한 환경 반복 생성</li>
+  <li><strong>문서화</strong>: 코드 자체가 문서</li>
+  <li><strong>자동화</strong>: 수동 작업 최소화</li>
+</ul>
+
+<h4 id="aws-iac-도구-비교">AWS IaC 도구 비교</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CloudFormation: AWS 네이티브, JSON/YAML
+├── 장점: AWS 서비스 완전 지원, 무료
+└── 단점: AWS 전용, 학습 곡선
+
+SAM: 서버리스 특화 CloudFormation 확장
+├── 장점: 서버리스 간편 배포, 로컬 테스트
+└── 단점: 서버리스에 제한
+
+CDK: 프로그래밍 언어로 인프라 정의
+├── 장점: 타입 안전성, IDE 지원, 재사용성
+└── 단점: 복잡성, 학습 비용
+
+Terraform: 멀티 클라우드 지원
+├── 장점: 클라우드 중립적, 강력한 상태 관리
+└── 단점: 추가 도구, AWS 서비스 지원 지연
+</code></pre></div></div>
+
+<h2 id="cloudformation-완전-마스터--complete-cloudformation-mastery">CloudFormation 완전 마스터 | Complete CloudFormation Mastery</h2>
+
+<h3 id="-고급-cloudformation-템플릿">📋 고급 CloudFormation 템플릿</h3>
+
+<h4 id="종합적인-웹-애플리케이션-인프라-템플릿">종합적인 웹 애플리케이션 인프라 템플릿</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># comprehensive-web-app.yaml</span>
+<span class="c1"># 프로덕션 레벨 웹 애플리케이션 인프라</span>
+
+<span class="na">AWSTemplateFormatVersion</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2010-09-09'</span>
+<span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Production-ready</span><span class="nv"> </span><span class="s">web</span><span class="nv"> </span><span class="s">application</span><span class="nv"> </span><span class="s">infrastructure</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">auto-scaling,</span><span class="nv"> </span><span class="s">load</span><span class="nv"> </span><span class="s">balancing,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">monitoring'</span>
+
+<span class="na">Parameters</span><span class="pi">:</span>
+  <span class="na">EnvironmentName</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Environment name prefix</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">Production</span>
+    <span class="na">AllowedValues</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">Development</span><span class="pi">,</span> <span class="nv">Testing</span><span class="pi">,</span> <span class="nv">Production</span><span class="pi">]</span>
+    
+  <span class="na">VpcCIDR</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">CIDR block for VPC</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">10.0.0.0/16</span>
+    <span class="na">AllowedPattern</span><span class="pi">:</span> <span class="s">^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/([0-9]|[1-2][0-9]|3[0-2]))$</span>
+    
+  <span class="na">InstanceType</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">EC2 instance type</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">t3.micro</span>
+    <span class="na">AllowedValues</span><span class="pi">:</span> 
+      <span class="pi">-</span> <span class="s">t3.micro</span>
+      <span class="pi">-</span> <span class="s">t3.small</span>
+      <span class="pi">-</span> <span class="s">t3.medium</span>
+      <span class="pi">-</span> <span class="s">t3.large</span>
+      <span class="pi">-</span> <span class="s">m5.large</span>
+      <span class="pi">-</span> <span class="s">m5.xlarge</span>
+    <span class="na">ConstraintDescription</span><span class="pi">:</span> <span class="s">Must be a valid EC2 instance type</span>
+    
+  <span class="na">KeyName</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">EC2 Key Pair for SSH access</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::KeyPair::KeyName</span>
+    <span class="na">ConstraintDescription</span><span class="pi">:</span> <span class="s">Must be the name of an existing EC2 KeyPair</span>
+    
+  <span class="na">SSLCertificateArn</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">ARN of SSL certificate for HTTPS</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+    
+  <span class="na">DBPassword</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Database password</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">NoEcho</span><span class="pi">:</span> <span class="kc">true</span>
+    <span class="na">MinLength</span><span class="pi">:</span> <span class="m">8</span>
+    <span class="na">MaxLength</span><span class="pi">:</span> <span class="m">41</span>
+    <span class="na">AllowedPattern</span><span class="pi">:</span> <span class="s1">'</span><span class="s">[a-zA-Z0-9]*'</span>
+    <span class="na">ConstraintDescription</span><span class="pi">:</span> <span class="s">Must contain only alphanumeric characters</span>
+    
+  <span class="na">NotificationEmail</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Email for notifications</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">AllowedPattern</span><span class="pi">:</span> <span class="s">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</span>
+
+<span class="na">Conditions</span><span class="pi">:</span>
+  <span class="na">HasSSLCertificate</span><span class="pi">:</span> <span class="kt">!Not</span> <span class="pi">[</span><span class="kt">!Equals</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">SSLCertificateArn</span><span class="pi">,</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]]</span>
+  <span class="na">IsProduction</span><span class="pi">:</span> <span class="kt">!Equals</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">EnvironmentName</span><span class="pi">,</span> <span class="s1">'</span><span class="s">Production'</span><span class="pi">]</span>
+
+<span class="na">Mappings</span><span class="pi">:</span>
+  <span class="na">RegionMap</span><span class="pi">:</span>
+    <span class="na">us-east-1</span><span class="pi">:</span>
+      <span class="na">AMI</span><span class="pi">:</span> <span class="s">ami-0abcdef1234567890</span>
+    <span class="na">us-west-2</span><span class="pi">:</span>
+      <span class="na">AMI</span><span class="pi">:</span> <span class="s">ami-0fedcba0987654321</span>
+    <span class="na">eu-west-1</span><span class="pi">:</span>
+      <span class="na">AMI</span><span class="pi">:</span> <span class="s">ami-0123456789abcdef0</span>
+      
+  <span class="na">EnvironmentMap</span><span class="pi">:</span>
+    <span class="na">Development</span><span class="pi">:</span>
+      <span class="na">InstanceCount</span><span class="pi">:</span> <span class="m">1</span>
+      <span class="na">DBInstanceClass</span><span class="pi">:</span> <span class="s">db.t3.micro</span>
+      <span class="na">DBAllocatedStorage</span><span class="pi">:</span> <span class="m">20</span>
+    <span class="na">Testing</span><span class="pi">:</span>
+      <span class="na">InstanceCount</span><span class="pi">:</span> <span class="m">2</span>
+      <span class="na">DBInstanceClass</span><span class="pi">:</span> <span class="s">db.t3.small</span>
+      <span class="na">DBAllocatedStorage</span><span class="pi">:</span> <span class="m">20</span>
+    <span class="na">Production</span><span class="pi">:</span>
+      <span class="na">InstanceCount</span><span class="pi">:</span> <span class="m">3</span>
+      <span class="na">DBInstanceClass</span><span class="pi">:</span> <span class="s">db.t3.medium</span>
+      <span class="na">DBAllocatedStorage</span><span class="pi">:</span> <span class="m">100</span>
+
+<span class="na">Resources</span><span class="pi">:</span>
+  <span class="c1"># VPC 네트워크 인프라</span>
+  <span class="na">VPC</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::VPC</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VpcCIDR</span>
+      <span class="na">EnableDnsHostnames</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">EnableDnsSupport</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-VPC</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Environment</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">EnvironmentName</span>
+
+  <span class="na">InternetGateway</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::InternetGateway</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-IGW</span>
+
+  <span class="na">InternetGatewayAttachment</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::VPCGatewayAttachment</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">InternetGatewayId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">InternetGateway</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+
+  <span class="c1"># 퍼블릭 서브넷</span>
+  <span class="na">PublicSubnet1</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Subnet</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">AvailabilityZone</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span> <span class="kt">!GetAZs</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span> <span class="kt">!Cidr</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">VpcCIDR</span><span class="pi">,</span> <span class="nv">6</span><span class="pi">,</span> <span class="nv">8</span><span class="pi">]]</span>
+      <span class="na">MapPublicIpOnLaunch</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Public-Subnet-AZ1</span>
+
+  <span class="na">PublicSubnet2</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Subnet</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">AvailabilityZone</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">1</span><span class="pi">,</span> <span class="kt">!GetAZs</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">1</span><span class="pi">,</span> <span class="kt">!Cidr</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">VpcCIDR</span><span class="pi">,</span> <span class="nv">6</span><span class="pi">,</span> <span class="nv">8</span><span class="pi">]]</span>
+      <span class="na">MapPublicIpOnLaunch</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Public-Subnet-AZ2</span>
+
+  <span class="c1"># 프라이빗 서브넷</span>
+  <span class="na">PrivateSubnet1</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Subnet</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">AvailabilityZone</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span> <span class="kt">!GetAZs</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">2</span><span class="pi">,</span> <span class="kt">!Cidr</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">VpcCIDR</span><span class="pi">,</span> <span class="nv">6</span><span class="pi">,</span> <span class="nv">8</span><span class="pi">]]</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Private-Subnet-AZ1</span>
+
+  <span class="na">PrivateSubnet2</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Subnet</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">AvailabilityZone</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">1</span><span class="pi">,</span> <span class="kt">!GetAZs</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">3</span><span class="pi">,</span> <span class="kt">!Cidr</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">VpcCIDR</span><span class="pi">,</span> <span class="nv">6</span><span class="pi">,</span> <span class="nv">8</span><span class="pi">]]</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Private-Subnet-AZ2</span>
+
+  <span class="c1"># 데이터베이스 서브넷</span>
+  <span class="na">DatabaseSubnet1</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Subnet</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">AvailabilityZone</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">0</span><span class="pi">,</span> <span class="kt">!GetAZs</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">4</span><span class="pi">,</span> <span class="kt">!Cidr</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">VpcCIDR</span><span class="pi">,</span> <span class="nv">6</span><span class="pi">,</span> <span class="nv">8</span><span class="pi">]]</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Database-Subnet-AZ1</span>
+
+  <span class="na">DatabaseSubnet2</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Subnet</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">AvailabilityZone</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">1</span><span class="pi">,</span> <span class="kt">!GetAZs</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="kt">!Select</span> <span class="pi">[</span><span class="nv">5</span><span class="pi">,</span> <span class="kt">!Cidr</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">VpcCIDR</span><span class="pi">,</span> <span class="nv">6</span><span class="pi">,</span> <span class="nv">8</span><span class="pi">]]</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Database-Subnet-AZ2</span>
+
+  <span class="c1"># NAT 게이트웨이</span>
+  <span class="na">NatGateway1EIP</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::EIP</span>
+    <span class="na">DependsOn</span><span class="pi">:</span> <span class="s">InternetGatewayAttachment</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Domain</span><span class="pi">:</span> <span class="s">vpc</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-NAT-Gateway-1-EIP</span>
+
+  <span class="na">NatGateway2EIP</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::EIP</span>
+    <span class="na">DependsOn</span><span class="pi">:</span> <span class="s">InternetGatewayAttachment</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Domain</span><span class="pi">:</span> <span class="s">vpc</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-NAT-Gateway-2-EIP</span>
+
+  <span class="na">NatGateway1</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::NatGateway</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AllocationId</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">NatGateway1EIP.AllocationId</span>
+      <span class="na">SubnetId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicSubnet1</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-NAT-Gateway-AZ1</span>
+
+  <span class="na">NatGateway2</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::NatGateway</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AllocationId</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">NatGateway2EIP.AllocationId</span>
+      <span class="na">SubnetId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicSubnet2</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-NAT-Gateway-AZ2</span>
+
+  <span class="c1"># 라우팅 테이블</span>
+  <span class="na">PublicRouteTable</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::RouteTable</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Public-Routes</span>
+
+  <span class="na">DefaultPublicRoute</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Route</span>
+    <span class="na">DependsOn</span><span class="pi">:</span> <span class="s">InternetGatewayAttachment</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicRouteTable</span>
+      <span class="na">DestinationCidrBlock</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+      <span class="na">GatewayId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">InternetGateway</span>
+
+  <span class="na">PublicSubnet1RouteTableAssociation</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SubnetRouteTableAssociation</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicRouteTable</span>
+      <span class="na">SubnetId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicSubnet1</span>
+
+  <span class="na">PublicSubnet2RouteTableAssociation</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SubnetRouteTableAssociation</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicRouteTable</span>
+      <span class="na">SubnetId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PublicSubnet2</span>
+
+  <span class="na">PrivateRouteTable1</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::RouteTable</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Private-Routes-AZ1</span>
+
+  <span class="na">DefaultPrivateRoute1</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Route</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PrivateRouteTable1</span>
+      <span class="na">DestinationCidrBlock</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+      <span class="na">NatGatewayId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">NatGateway1</span>
+
+  <span class="na">PrivateSubnet1RouteTableAssociation</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SubnetRouteTableAssociation</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PrivateRouteTable1</span>
+      <span class="na">SubnetId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PrivateSubnet1</span>
+
+  <span class="na">PrivateRouteTable2</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::RouteTable</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Private-Routes-AZ2</span>
+
+  <span class="na">DefaultPrivateRoute2</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::Route</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PrivateRouteTable2</span>
+      <span class="na">DestinationCidrBlock</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+      <span class="na">NatGatewayId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">NatGateway2</span>
+
+  <span class="na">PrivateSubnet2RouteTableAssociation</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SubnetRouteTableAssociation</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RouteTableId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PrivateRouteTable2</span>
+      <span class="na">SubnetId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">PrivateSubnet2</span>
+
+  <span class="c1"># 보안 그룹</span>
+  <span class="na">LoadBalancerSecurityGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SecurityGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">GroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-LoadBalancer-SG</span>
+      <span class="na">GroupDescription</span><span class="pi">:</span> <span class="s">Security group for Application Load Balancer</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">SecurityGroupIngress</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">tcp</span>
+          <span class="na">FromPort</span><span class="pi">:</span> <span class="m">80</span>
+          <span class="na">ToPort</span><span class="pi">:</span> <span class="m">80</span>
+          <span class="na">CidrIp</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+          <span class="na">Description</span><span class="pi">:</span> <span class="s">HTTP from anywhere</span>
+        <span class="pi">-</span> <span class="kt">!If</span>
+          <span class="pi">-</span> <span class="s">HasSSLCertificate</span>
+          <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">tcp</span>
+            <span class="na">FromPort</span><span class="pi">:</span> <span class="m">443</span>
+            <span class="na">ToPort</span><span class="pi">:</span> <span class="m">443</span>
+            <span class="na">CidrIp</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+            <span class="na">Description</span><span class="pi">:</span> <span class="s">HTTPS from anywhere</span>
+          <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">AWS::NoValue</span>
+      <span class="na">SecurityGroupEgress</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">-1</span>
+          <span class="na">CidrIp</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-LoadBalancer-SG</span>
+
+  <span class="na">WebServerSecurityGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SecurityGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">GroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-WebServer-SG</span>
+      <span class="na">GroupDescription</span><span class="pi">:</span> <span class="s">Security group for web servers</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">SecurityGroupIngress</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">tcp</span>
+          <span class="na">FromPort</span><span class="pi">:</span> <span class="m">80</span>
+          <span class="na">ToPort</span><span class="pi">:</span> <span class="m">80</span>
+          <span class="na">SourceSecurityGroupId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LoadBalancerSecurityGroup</span>
+          <span class="na">Description</span><span class="pi">:</span> <span class="s">HTTP from Load Balancer</span>
+        <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">tcp</span>
+          <span class="na">FromPort</span><span class="pi">:</span> <span class="m">22</span>
+          <span class="na">ToPort</span><span class="pi">:</span> <span class="m">22</span>
+          <span class="na">SourceSecurityGroupId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">BastionSecurityGroup</span>
+          <span class="na">Description</span><span class="pi">:</span> <span class="s">SSH from Bastion</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-WebServer-SG</span>
+
+  <span class="na">BastionSecurityGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SecurityGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">GroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Bastion-SG</span>
+      <span class="na">GroupDescription</span><span class="pi">:</span> <span class="s">Security group for bastion host</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">SecurityGroupIngress</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">tcp</span>
+          <span class="na">FromPort</span><span class="pi">:</span> <span class="m">22</span>
+          <span class="na">ToPort</span><span class="pi">:</span> <span class="m">22</span>
+          <span class="na">CidrIp</span><span class="pi">:</span> <span class="s">0.0.0.0/0</span>
+          <span class="na">Description</span><span class="pi">:</span> <span class="s">SSH from anywhere</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Bastion-SG</span>
+
+  <span class="na">DatabaseSecurityGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::SecurityGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">GroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Database-SG</span>
+      <span class="na">GroupDescription</span><span class="pi">:</span> <span class="s">Security group for database</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">SecurityGroupIngress</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">IpProtocol</span><span class="pi">:</span> <span class="s">tcp</span>
+          <span class="na">FromPort</span><span class="pi">:</span> <span class="m">3306</span>
+          <span class="na">ToPort</span><span class="pi">:</span> <span class="m">3306</span>
+          <span class="na">SourceSecurityGroupId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">WebServerSecurityGroup</span>
+          <span class="na">Description</span><span class="pi">:</span> <span class="s">MySQL from Web Servers</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Database-SG</span>
+
+  <span class="c1"># IAM 역할</span>
+  <span class="na">EC2Role</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Role</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">RoleName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-EC2-Role</span>
+      <span class="na">AssumeRolePolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+            <span class="na">Principal</span><span class="pi">:</span>
+              <span class="na">Service</span><span class="pi">:</span> <span class="s">ec2.amazonaws.com</span>
+            <span class="na">Action</span><span class="pi">:</span> <span class="s">sts:AssumeRole</span>
+      <span class="na">ManagedPolicyArns</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy</span>
+        <span class="pi">-</span> <span class="s">arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore</span>
+      <span class="na">Policies</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">PolicyName</span><span class="pi">:</span> <span class="s">S3Access</span>
+          <span class="na">PolicyDocument</span><span class="pi">:</span>
+            <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+            <span class="na">Statement</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+                <span class="na">Action</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="s">s3:GetObject</span>
+                  <span class="pi">-</span> <span class="s">s3:PutObject</span>
+                <span class="na">Resource</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s1">'</span><span class="s">${S3Bucket}/*'</span>
+              <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+                <span class="na">Action</span><span class="pi">:</span>
+                  <span class="pi">-</span> <span class="s">s3:ListBucket</span>
+                <span class="na">Resource</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">S3Bucket</span>
+
+  <span class="na">EC2InstanceProfile</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::InstanceProfile</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">InstanceProfileName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-EC2-Profile</span>
+      <span class="na">Roles</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">EC2Role</span>
+
+  <span class="c1"># S3 버킷</span>
+  <span class="na">S3Bucket</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::S3::Bucket</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">BucketName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-web-app-bucket-${AWS::AccountId}</span>
+      <span class="na">BucketEncryption</span><span class="pi">:</span>
+        <span class="na">ServerSideEncryptionConfiguration</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">ServerSideEncryptionByDefault</span><span class="pi">:</span>
+              <span class="na">SSEAlgorithm</span><span class="pi">:</span> <span class="s">AES256</span>
+      <span class="na">PublicAccessBlockConfiguration</span><span class="pi">:</span>
+        <span class="na">BlockPublicAcls</span><span class="pi">:</span> <span class="kc">true</span>
+        <span class="na">BlockPublicPolicy</span><span class="pi">:</span> <span class="kc">true</span>
+        <span class="na">IgnorePublicAcls</span><span class="pi">:</span> <span class="kc">true</span>
+        <span class="na">RestrictPublicBuckets</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">LifecycleConfiguration</span><span class="pi">:</span>
+        <span class="na">Rules</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Id</span><span class="pi">:</span> <span class="s">DeleteIncompleteMultipartUploads</span>
+            <span class="na">Status</span><span class="pi">:</span> <span class="s">Enabled</span>
+            <span class="na">AbortIncompleteMultipartUpload</span><span class="pi">:</span>
+              <span class="na">DaysAfterInitiation</span><span class="pi">:</span> <span class="m">7</span>
+      <span class="na">NotificationConfiguration</span><span class="pi">:</span>
+        <span class="na">CloudWatchConfigurations</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Event</span><span class="pi">:</span> <span class="s">s3:ObjectCreated:*</span>
+            <span class="na">CloudWatchConfiguration</span><span class="pi">:</span>
+              <span class="na">LogGroupName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">S3LogGroup</span>
+
+  <span class="c1"># 데이터베이스 서브넷 그룹</span>
+  <span class="na">DatabaseSubnetGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::RDS::DBSubnetGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DBSubnetGroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-database-subnet-group</span>
+      <span class="na">DBSubnetGroupDescription</span><span class="pi">:</span> <span class="s">Subnet group for database</span>
+      <span class="na">SubnetIds</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">DatabaseSubnet1</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">DatabaseSubnet2</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Database-Subnet-Group</span>
+
+  <span class="c1"># RDS 데이터베이스</span>
+  <span class="na">Database</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::RDS::DBInstance</span>
+    <span class="na">DeletionPolicy</span><span class="pi">:</span> <span class="kt">!If</span> <span class="pi">[</span><span class="nv">IsProduction</span><span class="pi">,</span> <span class="nv">Snapshot</span><span class="pi">,</span> <span class="nv">Delete</span><span class="pi">]</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DBInstanceIdentifier</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-database</span>
+      <span class="na">DBName</span><span class="pi">:</span> <span class="s">webapp</span>
+      <span class="na">DBInstanceClass</span><span class="pi">:</span> <span class="kt">!FindInMap</span> <span class="pi">[</span><span class="nv">EnvironmentMap</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="nv">EnvironmentName</span><span class="pi">,</span> <span class="nv">DBInstanceClass</span><span class="pi">]</span>
+      <span class="na">AllocatedStorage</span><span class="pi">:</span> <span class="kt">!FindInMap</span> <span class="pi">[</span><span class="nv">EnvironmentMap</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="nv">EnvironmentName</span><span class="pi">,</span> <span class="nv">DBAllocatedStorage</span><span class="pi">]</span>
+      <span class="na">Engine</span><span class="pi">:</span> <span class="s">MySQL</span>
+      <span class="na">EngineVersion</span><span class="pi">:</span> <span class="s1">'</span><span class="s">8.0'</span>
+      <span class="na">MasterUsername</span><span class="pi">:</span> <span class="s">admin</span>
+      <span class="na">MasterUserPassword</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">DBPassword</span>
+      <span class="na">VPCSecurityGroups</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">DatabaseSecurityGroup</span>
+      <span class="na">DBSubnetGroupName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">DatabaseSubnetGroup</span>
+      <span class="na">BackupRetentionPeriod</span><span class="pi">:</span> <span class="kt">!If</span> <span class="pi">[</span><span class="nv">IsProduction</span><span class="pi">,</span> <span class="nv">14</span><span class="pi">,</span> <span class="nv">7</span><span class="pi">]</span>
+      <span class="na">MultiAZ</span><span class="pi">:</span> <span class="kt">!If</span> <span class="pi">[</span><span class="nv">IsProduction</span><span class="pi">,</span> <span class="nv">true</span><span class="pi">,</span> <span class="nv">false</span><span class="pi">]</span>
+      <span class="na">StorageEncrypted</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">DeletionProtection</span><span class="pi">:</span> <span class="kt">!If</span> <span class="pi">[</span><span class="nv">IsProduction</span><span class="pi">,</span> <span class="nv">true</span><span class="pi">,</span> <span class="nv">false</span><span class="pi">]</span>
+      <span class="na">MonitoringInterval</span><span class="pi">:</span> <span class="m">60</span>
+      <span class="na">MonitoringRoleArn</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">RDSEnhancedMonitoringRole.Arn</span>
+      <span class="na">EnablePerformanceInsights</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">PerformanceInsightsRetentionPeriod</span><span class="pi">:</span> <span class="m">7</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Database</span>
+
+  <span class="na">RDSEnhancedMonitoringRole</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::IAM::Role</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AssumeRolePolicyDocument</span><span class="pi">:</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2012-10-17'</span>
+        <span class="na">Statement</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Effect</span><span class="pi">:</span> <span class="s">Allow</span>
+            <span class="na">Principal</span><span class="pi">:</span>
+              <span class="na">Service</span><span class="pi">:</span> <span class="s">monitoring.rds.amazonaws.com</span>
+            <span class="na">Action</span><span class="pi">:</span> <span class="s">sts:AssumeRole</span>
+      <span class="na">ManagedPolicyArns</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole</span>
+
+  <span class="c1"># Launch Template</span>
+  <span class="na">LaunchTemplate</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::LaunchTemplate</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">LaunchTemplateName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-LaunchTemplate</span>
+      <span class="na">LaunchTemplateData</span><span class="pi">:</span>
+        <span class="na">ImageId</span><span class="pi">:</span> <span class="kt">!FindInMap</span> <span class="pi">[</span><span class="nv">RegionMap</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="s1">'</span><span class="s">AWS::Region'</span><span class="pi">,</span> <span class="nv">AMI</span><span class="pi">]</span>
+        <span class="na">InstanceType</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">InstanceType</span>
+        <span class="na">KeyName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">KeyName</span>
+        <span class="na">IamInstanceProfile</span><span class="pi">:</span>
+          <span class="na">Arn</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">EC2InstanceProfile.Arn</span>
+        <span class="na">SecurityGroupIds</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">WebServerSecurityGroup</span>
+        <span class="na">UserData</span><span class="pi">:</span>
+          <span class="na">Fn::Base64</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="pi">|</span>
+            <span class="s">#!/bin/bash -xe</span>
+            <span class="s">yum update -y</span>
+            <span class="s">yum install -y httpd mysql amazon-cloudwatch-agent</span>
+            
+            <span class="s"># Apache 설정</span>
+            <span class="s">systemctl start httpd</span>
+            <span class="s">systemctl enable httpd</span>
+            
+            <span class="s"># 웹사이트 파일 다운로드</span>
+            <span class="s">aws s3 cp s3://${S3Bucket}/website/ /var/www/html/ --recursive</span>
+            
+            <span class="s"># CloudWatch 에이전트 설정</span>
+            <span class="s">cat &gt; /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json &lt;&lt; EOF</span>
+            <span class="s">{</span>
+              <span class="s">"metrics": {</span>
+                <span class="s">"namespace": "WebApp/EC2",</span>
+                <span class="s">"metrics_collected": {</span>
+                  <span class="s">"cpu": {</span>
+                    <span class="s">"measurement": ["cpu_usage_idle", "cpu_usage_iowait"],</span>
+                    <span class="s">"metrics_collection_interval": 60</span>
+                  <span class="s">},</span>
+                  <span class="s">"disk": {</span>
+                    <span class="s">"measurement": ["used_percent"],</span>
+                    <span class="s">"metrics_collection_interval": 60,</span>
+                    <span class="s">"resources": ["*"]</span>
+                  <span class="s">},</span>
+                  <span class="s">"mem": {</span>
+                    <span class="s">"measurement": ["mem_used_percent"],</span>
+                    <span class="s">"metrics_collection_interval": 60</span>
+                  <span class="s">}</span>
+                <span class="s">}</span>
+              <span class="s">},</span>
+              <span class="s">"logs": {</span>
+                <span class="s">"logs_collected": {</span>
+                  <span class="s">"files": {</span>
+                    <span class="s">"collect_list": [</span>
+                      <span class="s">{</span>
+                        <span class="s">"file_path": "/var/log/httpd/access_log",</span>
+                        <span class="s">"log_group_name": "${CloudWatchLogGroup}",</span>
+                        <span class="s">"log_stream_name": "{instance_id}/apache/access.log"</span>
+                      <span class="s">},</span>
+                      <span class="s">{</span>
+                        <span class="s">"file_path": "/var/log/httpd/error_log",</span>
+                        <span class="s">"log_group_name": "${CloudWatchLogGroup}",</span>
+                        <span class="s">"log_stream_name": "{instance_id}/apache/error.log"</span>
+                      <span class="s">}</span>
+                    <span class="s">]</span>
+                  <span class="s">}</span>
+                <span class="s">}</span>
+              <span class="s">}</span>
+            <span class="s">}</span>
+            <span class="s">EOF</span>
+            
+            <span class="s"># CloudWatch 에이전트 시작</span>
+            <span class="s">/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \</span>
+              <span class="s">-a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s</span>
+            
+            <span class="s"># 인스턴스 정보를 웹페이지에 추가</span>
+            <span class="s">cat &gt;&gt; /var/www/html/index.html &lt;&lt; EOF</span>
+            <span class="s">&lt;p&gt;Instance ID: $(curl -s http://169.254.169.254/latest/meta-data/instance-id)&lt;/p&gt;</span>
+            <span class="s">&lt;p&gt;Availability Zone: $(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)&lt;/p&gt;</span>
+            <span class="s">&lt;p&gt;Instance Type: $(curl -s http://169.254.169.254/latest/meta-data/instance-type)&lt;/p&gt;</span>
+            <span class="s">EOF</span>
+            
+            <span class="s"># Signal success to CloudFormation</span>
+            <span class="s">/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource AutoScalingGroup --region ${AWS::Region}</span>
+        <span class="na">TagSpecifications</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">ResourceType</span><span class="pi">:</span> <span class="s">instance</span>
+            <span class="na">Tags</span><span class="pi">:</span>
+              <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+                <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-WebServer</span>
+              <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Environment</span>
+                <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">EnvironmentName</span>
+
+  <span class="c1"># Auto Scaling Group</span>
+  <span class="na">AutoScalingGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::AutoScaling::AutoScalingGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AutoScalingGroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-ASG</span>
+      <span class="na">VPCZoneIdentifier</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">PrivateSubnet1</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">PrivateSubnet2</span>
+      <span class="na">LaunchTemplate</span><span class="pi">:</span>
+        <span class="na">LaunchTemplateId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LaunchTemplate</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">LaunchTemplate.LatestVersionNumber</span>
+      <span class="na">MinSize</span><span class="pi">:</span> <span class="m">1</span>
+      <span class="na">MaxSize</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">DesiredCapacity</span><span class="pi">:</span> <span class="kt">!FindInMap</span> <span class="pi">[</span><span class="nv">EnvironmentMap</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="nv">EnvironmentName</span><span class="pi">,</span> <span class="nv">InstanceCount</span><span class="pi">]</span>
+      <span class="na">TargetGroupARNs</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">ALBTargetGroup</span>
+      <span class="na">HealthCheckType</span><span class="pi">:</span> <span class="s">ELB</span>
+      <span class="na">HealthCheckGracePeriod</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-ASG-Instance</span>
+          <span class="na">PropagateAtLaunch</span><span class="pi">:</span> <span class="kc">true</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Environment</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">EnvironmentName</span>
+          <span class="na">PropagateAtLaunch</span><span class="pi">:</span> <span class="kc">true</span>
+    <span class="na">CreationPolicy</span><span class="pi">:</span>
+      <span class="na">ResourceSignal</span><span class="pi">:</span>
+        <span class="na">Count</span><span class="pi">:</span> <span class="kt">!FindInMap</span> <span class="pi">[</span><span class="nv">EnvironmentMap</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="nv">EnvironmentName</span><span class="pi">,</span> <span class="nv">InstanceCount</span><span class="pi">]</span>
+        <span class="na">Timeout</span><span class="pi">:</span> <span class="s">PT15M</span>
+    <span class="na">UpdatePolicy</span><span class="pi">:</span>
+      <span class="na">AutoScalingRollingUpdate</span><span class="pi">:</span>
+        <span class="na">MinInstancesInService</span><span class="pi">:</span> <span class="m">1</span>
+        <span class="na">MaxBatchSize</span><span class="pi">:</span> <span class="m">1</span>
+        <span class="na">PauseTime</span><span class="pi">:</span> <span class="s">PT15M</span>
+        <span class="na">WaitOnResourceSignals</span><span class="pi">:</span> <span class="kc">true</span>
+
+  <span class="c1"># Application Load Balancer</span>
+  <span class="na">ApplicationLoadBalancer</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ElasticLoadBalancingV2::LoadBalancer</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-ALB</span>
+      <span class="na">Scheme</span><span class="pi">:</span> <span class="s">internet-facing</span>
+      <span class="na">Type</span><span class="pi">:</span> <span class="s">application</span>
+      <span class="na">Subnets</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">PublicSubnet1</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">PublicSubnet2</span>
+      <span class="na">SecurityGroups</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">LoadBalancerSecurityGroup</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-ALB</span>
+
+  <span class="na">ALBTargetGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ElasticLoadBalancingV2::TargetGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-TG</span>
+      <span class="na">Port</span><span class="pi">:</span> <span class="m">80</span>
+      <span class="na">Protocol</span><span class="pi">:</span> <span class="s">HTTP</span>
+      <span class="na">VpcId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+      <span class="na">HealthCheckPath</span><span class="pi">:</span> <span class="s">/health</span>
+      <span class="na">HealthCheckIntervalSeconds</span><span class="pi">:</span> <span class="m">30</span>
+      <span class="na">HealthCheckTimeoutSeconds</span><span class="pi">:</span> <span class="m">5</span>
+      <span class="na">HealthyThresholdCount</span><span class="pi">:</span> <span class="m">2</span>
+      <span class="na">UnhealthyThresholdCount</span><span class="pi">:</span> <span class="m">5</span>
+      <span class="na">TargetGroupAttributes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">deregistration_delay.timeout_seconds</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="s1">'</span><span class="s">30'</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">stickiness.enabled</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">stickiness.type</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="s">lb_cookie</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">stickiness.lb_cookie.duration_seconds</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="s1">'</span><span class="s">86400'</span>
+
+  <span class="na">ALBListener</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ElasticLoadBalancingV2::Listener</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DefaultActions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Type</span><span class="pi">:</span> <span class="s">forward</span>
+          <span class="na">TargetGroupArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ALBTargetGroup</span>
+      <span class="na">LoadBalancerArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApplicationLoadBalancer</span>
+      <span class="na">Port</span><span class="pi">:</span> <span class="m">80</span>
+      <span class="na">Protocol</span><span class="pi">:</span> <span class="s">HTTP</span>
+
+  <span class="c1"># HTTPS 리스너 (SSL 인증서가 있는 경우)</span>
+  <span class="na">ALBListenerHTTPS</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::ElasticLoadBalancingV2::Listener</span>
+    <span class="na">Condition</span><span class="pi">:</span> <span class="s">HasSSLCertificate</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DefaultActions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Type</span><span class="pi">:</span> <span class="s">forward</span>
+          <span class="na">TargetGroupArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ALBTargetGroup</span>
+      <span class="na">LoadBalancerArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">ApplicationLoadBalancer</span>
+      <span class="na">Port</span><span class="pi">:</span> <span class="m">443</span>
+      <span class="na">Protocol</span><span class="pi">:</span> <span class="s">HTTPS</span>
+      <span class="na">Certificates</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">CertificateArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">SSLCertificateArn</span>
+
+  <span class="c1"># Auto Scaling 정책</span>
+  <span class="na">ScaleUpPolicy</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::AutoScaling::ScalingPolicy</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AdjustmentType</span><span class="pi">:</span> <span class="s">ChangeInCapacity</span>
+      <span class="na">AutoScalingGroupName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">AutoScalingGroup</span>
+      <span class="na">Cooldown</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">ScalingAdjustment</span><span class="pi">:</span> <span class="m">1</span>
+      <span class="na">PolicyType</span><span class="pi">:</span> <span class="s">SimpleScaling</span>
+
+  <span class="na">ScaleDownPolicy</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::AutoScaling::ScalingPolicy</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AdjustmentType</span><span class="pi">:</span> <span class="s">ChangeInCapacity</span>
+      <span class="na">AutoScalingGroupName</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">AutoScalingGroup</span>
+      <span class="na">Cooldown</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">ScalingAdjustment</span><span class="pi">:</span> <span class="s">-1</span>
+      <span class="na">PolicyType</span><span class="pi">:</span> <span class="s">SimpleScaling</span>
+
+  <span class="c1"># CloudWatch 알람</span>
+  <span class="na">CPUAlarmHigh</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::CloudWatch::Alarm</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AlarmName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-CPU-High</span>
+      <span class="na">AlarmDescription</span><span class="pi">:</span> <span class="s">Scale up on high CPU</span>
+      <span class="na">MetricName</span><span class="pi">:</span> <span class="s">CPUUtilization</span>
+      <span class="na">Namespace</span><span class="pi">:</span> <span class="s">AWS/EC2</span>
+      <span class="na">Statistic</span><span class="pi">:</span> <span class="s">Average</span>
+      <span class="na">Period</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">EvaluationPeriods</span><span class="pi">:</span> <span class="m">2</span>
+      <span class="na">Threshold</span><span class="pi">:</span> <span class="m">70</span>
+      <span class="na">ComparisonOperator</span><span class="pi">:</span> <span class="s">GreaterThanThreshold</span>
+      <span class="na">Dimensions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">AutoScalingGroupName</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">AutoScalingGroup</span>
+      <span class="na">AlarmActions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">ScaleUpPolicy</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">SNSTopic</span>
+
+  <span class="na">CPUAlarmLow</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::CloudWatch::Alarm</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">AlarmName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-CPU-Low</span>
+      <span class="na">AlarmDescription</span><span class="pi">:</span> <span class="s">Scale down on low CPU</span>
+      <span class="na">MetricName</span><span class="pi">:</span> <span class="s">CPUUtilization</span>
+      <span class="na">Namespace</span><span class="pi">:</span> <span class="s">AWS/EC2</span>
+      <span class="na">Statistic</span><span class="pi">:</span> <span class="s">Average</span>
+      <span class="na">Period</span><span class="pi">:</span> <span class="m">300</span>
+      <span class="na">EvaluationPeriods</span><span class="pi">:</span> <span class="m">2</span>
+      <span class="na">Threshold</span><span class="pi">:</span> <span class="m">20</span>
+      <span class="na">ComparisonOperator</span><span class="pi">:</span> <span class="s">LessThanThreshold</span>
+      <span class="na">Dimensions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Name</span><span class="pi">:</span> <span class="s">AutoScalingGroupName</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">AutoScalingGroup</span>
+      <span class="na">AlarmActions</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">ScaleDownPolicy</span>
+
+  <span class="c1"># CloudWatch 로그 그룹</span>
+  <span class="na">CloudWatchLogGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::Logs::LogGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">LogGroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">/aws/ec2/${EnvironmentName}</span>
+      <span class="na">RetentionInDays</span><span class="pi">:</span> <span class="kt">!If</span> <span class="pi">[</span><span class="nv">IsProduction</span><span class="pi">,</span> <span class="nv">365</span><span class="pi">,</span> <span class="nv">14</span><span class="pi">]</span>
+
+  <span class="na">S3LogGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::Logs::LogGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">LogGroupName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">/aws/s3/${EnvironmentName}</span>
+      <span class="na">RetentionInDays</span><span class="pi">:</span> <span class="m">30</span>
+
+  <span class="c1"># SNS 토픽</span>
+  <span class="na">SNSTopic</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::SNS::Topic</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">TopicName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Alerts</span>
+      <span class="na">DisplayName</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName} Application Alerts</span>
+
+  <span class="na">SNSSubscription</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::SNS::Subscription</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Protocol</span><span class="pi">:</span> <span class="s">email</span>
+      <span class="na">TopicArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">SNSTopic</span>
+      <span class="na">Endpoint</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">NotificationEmail</span>
+
+  <span class="c1"># CloudFront 배포 (선택사항)</span>
+  <span class="na">CloudFrontDistribution</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::CloudFront::Distribution</span>
+    <span class="na">Condition</span><span class="pi">:</span> <span class="s">IsProduction</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">DistributionConfig</span><span class="pi">:</span>
+        <span class="na">Enabled</span><span class="pi">:</span> <span class="kc">true</span>
+        <span class="na">Comment</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName} CloudFront Distribution</span>
+        <span class="na">DefaultRootObject</span><span class="pi">:</span> <span class="s">index.html</span>
+        <span class="na">Origins</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">Id</span><span class="pi">:</span> <span class="s">ALBOrigin</span>
+            <span class="na">DomainName</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ApplicationLoadBalancer.DNSName</span>
+            <span class="na">CustomOriginConfig</span><span class="pi">:</span>
+              <span class="na">HTTPPort</span><span class="pi">:</span> <span class="m">80</span>
+              <span class="na">HTTPSPort</span><span class="pi">:</span> <span class="m">443</span>
+              <span class="na">OriginProtocolPolicy</span><span class="pi">:</span> <span class="s">http-only</span>
+        <span class="na">DefaultCacheBehavior</span><span class="pi">:</span>
+          <span class="na">TargetOriginId</span><span class="pi">:</span> <span class="s">ALBOrigin</span>
+          <span class="na">ViewerProtocolPolicy</span><span class="pi">:</span> <span class="s">redirect-to-https</span>
+          <span class="na">Compress</span><span class="pi">:</span> <span class="kc">true</span>
+          <span class="na">AllowedMethods</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">GET</span><span class="pi">,</span> <span class="nv">HEAD</span><span class="pi">,</span> <span class="nv">OPTIONS</span><span class="pi">,</span> <span class="nv">PUT</span><span class="pi">,</span> <span class="nv">POST</span><span class="pi">,</span> <span class="nv">PATCH</span><span class="pi">,</span> <span class="nv">DELETE</span><span class="pi">]</span>
+          <span class="na">CachedMethods</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">GET</span><span class="pi">,</span> <span class="nv">HEAD</span><span class="pi">,</span> <span class="nv">OPTIONS</span><span class="pi">]</span>
+          <span class="na">ForwardedValues</span><span class="pi">:</span>
+            <span class="na">QueryString</span><span class="pi">:</span> <span class="kc">true</span>
+            <span class="na">Headers</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">*'</span><span class="pi">]</span>
+        <span class="na">PriceClass</span><span class="pi">:</span> <span class="s">PriceClass_100</span>
+        <span class="na">ViewerCertificate</span><span class="pi">:</span> <span class="kt">!If</span>
+          <span class="pi">-</span> <span class="s">HasSSLCertificate</span>
+          <span class="pi">-</span> <span class="na">AcmCertificateArn</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">SSLCertificateArn</span>
+            <span class="na">SslSupportMethod</span><span class="pi">:</span> <span class="s">sni-only</span>
+            <span class="na">MinimumProtocolVersion</span><span class="pi">:</span> <span class="s">TLSv1.2_2021</span>
+          <span class="pi">-</span> <span class="na">CloudFrontDefaultCertificate</span><span class="pi">:</span> <span class="kc">true</span>
+
+<span class="na">Outputs</span><span class="pi">:</span>
+  <span class="na">VPC</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">VPC ID</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">VPC</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-VPC-ID</span>
+
+  <span class="na">PublicSubnets</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Public subnet IDs</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Join</span> <span class="pi">[</span><span class="s1">'</span><span class="s">,'</span><span class="pi">,</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">PublicSubnet1</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="nv">PublicSubnet2</span><span class="pi">]]</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Public-Subnets</span>
+
+  <span class="na">PrivateSubnets</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Private subnet IDs</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Join</span> <span class="pi">[</span><span class="s1">'</span><span class="s">,'</span><span class="pi">,</span> <span class="pi">[</span><span class="kt">!Ref</span> <span class="nv">PrivateSubnet1</span><span class="pi">,</span> <span class="kt">!Ref</span> <span class="nv">PrivateSubnet2</span><span class="pi">]]</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-Private-Subnets</span>
+
+  <span class="na">LoadBalancerURL</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Application Load Balancer URL</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> 
+      <span class="pi">-</span> <span class="s">http${Protocol}://${DNSName}</span>
+      <span class="pi">-</span> <span class="na">Protocol</span><span class="pi">:</span> <span class="kt">!If</span> <span class="pi">[</span><span class="nv">HasSSLCertificate</span><span class="pi">,</span> <span class="s1">'</span><span class="s">s'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">'</span><span class="pi">]</span>
+        <span class="na">DNSName</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">ApplicationLoadBalancer.DNSName</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-ALB-URL</span>
+
+  <span class="na">CloudFrontURL</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">CloudFront Distribution URL</span>
+    <span class="na">Condition</span><span class="pi">:</span> <span class="s">IsProduction</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">https://${CloudFrontDistribution.DomainName}</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-CloudFront-URL</span>
+
+  <span class="na">DatabaseEndpoint</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">RDS database endpoint</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">Database.Endpoint.Address</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-DB-Endpoint</span>
+
+  <span class="na">S3BucketName</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">S3 bucket name</span>
+    <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">S3Bucket</span>
+    <span class="na">Export</span><span class="pi">:</span>
+      <span class="na">Name</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-S3-Bucket</span>
+</code></pre></div></div>
+
+<h4 id="cloudformation-배포-스크립트">CloudFormation 배포 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># CloudFormation 스택 배포 스크립트</span>
+
+<span class="nv">STACK_NAME</span><span class="o">=</span><span class="s2">"web-app-infrastructure"</span>
+<span class="nv">TEMPLATE_FILE</span><span class="o">=</span><span class="s2">"comprehensive-web-app.yaml"</span>
+<span class="nv">PARAMETERS_FILE</span><span class="o">=</span><span class="s2">"parameters.json"</span>
+<span class="nv">REGION</span><span class="o">=</span><span class="s2">"us-east-1"</span>
+
+<span class="c"># 파라미터 파일 생성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> <span class="nv">$PARAMETERS_FILE</span> <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[
+  {
+    "ParameterKey": "EnvironmentName",
+    "ParameterValue": "Production"
+  },
+  {
+    "ParameterKey": "VpcCIDR",
+    "ParameterValue": "10.0.0.0/16"
+  },
+  {
+    "ParameterKey": "InstanceType",
+    "ParameterValue": "t3.micro"
+  },
+  {
+    "ParameterKey": "KeyName",
+    "ParameterValue": "my-ec2-keypair"
+  },
+  {
+    "ParameterKey": "DBPassword",
+    "ParameterValue": "MySecurePassword123"
+  },
+  {
+    "ParameterKey": "NotificationEmail",
+    "ParameterValue": "admin@example.com"
+  }
+]
+</span><span class="no">EOF
+
+</span><span class="nb">echo</span> <span class="s2">"CloudFormation 스택 배포 시작..."</span>
+
+<span class="c"># 스택 존재 여부 확인</span>
+<span class="k">if </span>aws cloudformation describe-stacks <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="nt">--region</span> <span class="nv">$REGION</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"기존 스택 업데이트 중..."</span>
+    
+    <span class="c"># 변경 세트 생성</span>
+    <span class="nv">CHANGE_SET_NAME</span><span class="o">=</span><span class="s2">"update-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="s2">"</span>
+    
+    aws cloudformation create-change-set <span class="se">\</span>
+      <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+      <span class="nt">--change-set-name</span> <span class="nv">$CHANGE_SET_NAME</span> <span class="se">\</span>
+      <span class="nt">--template-body</span> file://<span class="nv">$TEMPLATE_FILE</span> <span class="se">\</span>
+      <span class="nt">--parameters</span> file://<span class="nv">$PARAMETERS_FILE</span> <span class="se">\</span>
+      <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="se">\</span>
+      <span class="nt">--region</span> <span class="nv">$REGION</span>
+    
+    <span class="nb">echo</span> <span class="s2">"변경 세트 생성 중..."</span>
+    aws cloudformation <span class="nb">wait </span>change-set-create-complete <span class="se">\</span>
+      <span class="nt">--change-set-name</span> <span class="nv">$CHANGE_SET_NAME</span> <span class="se">\</span>
+      <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+      <span class="nt">--region</span> <span class="nv">$REGION</span>
+    
+    <span class="c"># 변경 사항 확인</span>
+    <span class="nb">echo</span> <span class="s2">"변경 사항:"</span>
+    aws cloudformation describe-change-set <span class="se">\</span>
+      <span class="nt">--change-set-name</span> <span class="nv">$CHANGE_SET_NAME</span> <span class="se">\</span>
+      <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+      <span class="nt">--region</span> <span class="nv">$REGION</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'Changes[*].[Action,ResourceChange.ResourceType,ResourceChange.LogicalResourceId]'</span> <span class="se">\</span>
+      <span class="nt">--output</span> table
+    
+    <span class="c"># 사용자 확인</span>
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"변경 사항을 적용하시겠습니까? (y/N): "</span> <span class="nt">-n</span> 1 <span class="nt">-r</span>
+    <span class="nb">echo
+    </span><span class="k">if</span> <span class="o">[[</span> <span class="nv">$REPLY</span> <span class="o">=</span>~ ^[Yy]<span class="nv">$ </span><span class="o">]]</span><span class="p">;</span> <span class="k">then
+        </span>aws cloudformation execute-change-set <span class="se">\</span>
+          <span class="nt">--change-set-name</span> <span class="nv">$CHANGE_SET_NAME</span> <span class="se">\</span>
+          <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+          <span class="nt">--region</span> <span class="nv">$REGION</span>
+        
+        <span class="nb">echo</span> <span class="s2">"스택 업데이트 중..."</span>
+        aws cloudformation <span class="nb">wait </span>stack-update-complete <span class="se">\</span>
+          <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+          <span class="nt">--region</span> <span class="nv">$REGION</span>
+    <span class="k">else
+        </span>aws cloudformation delete-change-set <span class="se">\</span>
+          <span class="nt">--change-set-name</span> <span class="nv">$CHANGE_SET_NAME</span> <span class="se">\</span>
+          <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+          <span class="nt">--region</span> <span class="nv">$REGION</span>
+        <span class="nb">echo</span> <span class="s2">"변경 사항이 취소되었습니다."</span>
+        <span class="nb">exit </span>0
+    <span class="k">fi
+else
+    </span><span class="nb">echo</span> <span class="s2">"새 스택 생성 중..."</span>
+    aws cloudformation create-stack <span class="se">\</span>
+      <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+      <span class="nt">--template-body</span> file://<span class="nv">$TEMPLATE_FILE</span> <span class="se">\</span>
+      <span class="nt">--parameters</span> file://<span class="nv">$PARAMETERS_FILE</span> <span class="se">\</span>
+      <span class="nt">--capabilities</span> CAPABILITY_NAMED_IAM <span class="se">\</span>
+      <span class="nt">--enable-termination-protection</span> <span class="se">\</span>
+      <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Project,Value<span class="o">=</span>WebApp <span class="nv">Key</span><span class="o">=</span>Environment,Value<span class="o">=</span>Production <span class="se">\</span>
+      <span class="nt">--region</span> <span class="nv">$REGION</span>
+    
+    <span class="nb">echo</span> <span class="s2">"스택 생성 중... (10-15분 소요)"</span>
+    aws cloudformation <span class="nb">wait </span>stack-create-complete <span class="se">\</span>
+      <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+      <span class="nt">--region</span> <span class="nv">$REGION</span>
+<span class="k">fi</span>
+
+<span class="c"># 스택 출력 정보 표시</span>
+<span class="nb">echo</span> <span class="s2">"=== 스택 배포 완료 ==="</span>
+aws cloudformation describe-stacks <span class="se">\</span>
+  <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+  <span class="nt">--region</span> <span class="nv">$REGION</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Stacks[0].Outputs[*].[OutputKey,OutputValue,Description]'</span> <span class="se">\</span>
+  <span class="nt">--output</span> table
+
+<span class="c"># 스택 이벤트 확인 (오류가 있는 경우)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-ne</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"스택 배포 중 오류 발생. 이벤트 확인:"</span>
+    aws cloudformation describe-stack-events <span class="se">\</span>
+      <span class="nt">--stack-name</span> <span class="nv">$STACK_NAME</span> <span class="se">\</span>
+      <span class="nt">--region</span> <span class="nv">$REGION</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'StackEvents[?ResourceStatus==`CREATE_FAILED`||ResourceStatus==`UPDATE_FAILED`].[LogicalResourceId,ResourceStatusReason]'</span> <span class="se">\</span>
+      <span class="nt">--output</span> table
+<span class="k">fi</span>
+
+<span class="c"># 정리</span>
+<span class="nb">rm</span> <span class="nt">-f</span> <span class="nv">$PARAMETERS_FILE</span>
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>AWS 보안과 모니터링 완전 마스터</strong>를 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>IAM 고급 정책 및 권한 관리</li>
+  <li>AWS Security Hub와 GuardDuty</li>
+  <li>CloudWatch와 X-Ray 심화 모니터링</li>
+  <li>AWS Config 규정 준수 관리</li>
+</ul>
+
+<p>CloudFormation IaC와 CI/CD 파이프라인을 완전히 마스터하셨나요? 🏗️⚙️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/03/25/aws-serverless-lambda-apigateway.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">AWS 완전 정복 가이드 3편 - 서버리스 아키텍처와 Lambda 마스터 | AWS ...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/05/15/nginx-configuration-guide-part1.html" rel="next">
+          <span class="nav-title">Nginx 기본 설정 가이드 Part 1 - 설치부터 기본 서버 블록까지</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

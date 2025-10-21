@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>네트워킹 완전 가이드 2편 - IP 주소와 서브네팅 마스터하기 | Complete Network Guide Part 2 - IP Addressing & Subnetting Mastery</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">네트워킹 완전 가이드 2편 - IP 주소와 서브네팅 마스터하기 | Complete Network Guide Part 2 - IP Addressing &amp; Subnetting Mastery</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-08-22T01:00:00+00:00">Aug 22, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Networking</li><li>IP-Addressing</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>IP 주소 체계와 서브네팅을 완전히 마스터하여 효율적인 네트워크 설계를 할 수 있도록 상세히 알아보겠습니다.</p>
+
+<h2 id="ip-주소-체계--ip-addressing-system">IP 주소 체계 | IP Addressing System</h2>
+
+<h3 id="-ipv4-주소-구조">📡 IPv4 주소 구조</h3>
+
+<p>IPv4 주소는 32비트로 구성되며, 8비트씩 4개의 옥텟으로 나뉩니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>예시: 192.168.1.100
+이진수: 11000000.10101000.00000001.01100100
+</code></pre></div></div>
+
+<h3 id="️-ipv4-주소-클래스">🏷️ IPv4 주소 클래스</h3>
+
+<h4 id="클래스-a-class-a">클래스 A (Class A)</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>범위: 1.0.0.0 ~ 126.255.255.255
+기본 서브넷 마스크: 255.0.0.0 (/8)
+네트워크 비트: 8비트 (126개 네트워크)
+호스트 비트: 24비트 (16,777,214개 호스트)
+
+사용 예: 대기업, ISP
+10.0.0.0/8 (사설 IP)
+</code></pre></div></div>
+
+<h4 id="클래스-b-class-b">클래스 B (Class B)</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>범위: 128.0.0.0 ~ 191.255.255.255
+기본 서브넷 마스크: 255.255.0.0 (/16)
+네트워크 비트: 16비트 (16,384개 네트워크)
+호스트 비트: 16비트 (65,534개 호스트)
+
+사용 예: 중간 규모 기업
+172.16.0.0/12 (사설 IP)
+</code></pre></div></div>
+
+<h4 id="클래스-c-class-c">클래스 C (Class C)</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>범위: 192.0.0.0 ~ 223.255.255.255
+기본 서브넷 마스크: 255.255.255.0 (/24)
+네트워크 비트: 24비트 (2,097,152개 네트워크)
+호스트 비트: 8비트 (254개 호스트)
+
+사용 예: 소규모 기업, 가정
+192.168.0.0/16 (사설 IP)
+</code></pre></div></div>
+
+<h4 id="클래스-d--e">클래스 D &amp; E</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클래스 D: 224.0.0.0 ~ 239.255.255.255 (멀티캐스트)
+클래스 E: 240.0.0.0 ~ 255.255.255.255 (실험적 용도)
+</code></pre></div></div>
+
+<h3 id="-사설-ip-주소-private-ip">🔒 사설 IP 주소 (Private IP)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># RFC 1918에서 정의된 사설 IP 대역</span>
+클래스 A: 10.0.0.0/8        <span class="o">(</span>10.0.0.0 ~ 10.255.255.255<span class="o">)</span>
+클래스 B: 172.16.0.0/12     <span class="o">(</span>172.16.0.0 ~ 172.31.255.255<span class="o">)</span>  
+클래스 C: 192.168.0.0/16    <span class="o">(</span>192.168.0.0 ~ 192.168.255.255<span class="o">)</span>
+
+<span class="c"># 특수 목적 IP 주소</span>
+루프백: 127.0.0.0/8         <span class="o">(</span>127.0.0.1 - localhost<span class="o">)</span>
+링크로컬: 169.254.0.0/16     <span class="o">(</span>APIPA - 자동 사설 IP<span class="o">)</span>
+브로드캐스트: x.x.x.255      <span class="o">(</span>네트워크 내 모든 호스트<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="서브네팅-subnetting--network-subnetting">서브네팅 (Subnetting) | Network Subnetting</h2>
+
+<h3 id="-서브네팅-기본-개념">🔧 서브네팅 기본 개념</h3>
+
+<p>서브네팅은 하나의 큰 네트워크를 여러 개의 작은 네트워크로 나누는 기법입니다.</p>
+
+<h4 id="서브넷-마스크의-역할">서브넷 마스크의 역할</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IP 주소:        192.168.1.100
+서브넷 마스크:   255.255.255.0
+네트워크 부분:   192.168.1.0
+호스트 부분:     0.0.0.100
+</code></pre></div></div>
+
+<h3 id="-cidr-표기법-classless-inter-domain-routing">📊 CIDR 표기법 (Classless Inter-Domain Routing)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># CIDR 표기법 예시</span>
+192.168.1.0/24 <span class="o">=</span> 255.255.255.0
+192.168.1.0/25 <span class="o">=</span> 255.255.255.128
+192.168.1.0/26 <span class="o">=</span> 255.255.255.192
+192.168.1.0/27 <span class="o">=</span> 255.255.255.224
+192.168.1.0/28 <span class="o">=</span> 255.255.255.240
+192.168.1.0/29 <span class="o">=</span> 255.255.255.248
+192.168.1.0/30 <span class="o">=</span> 255.255.255.252
+
+<span class="c"># 호스트 개수 계산 공식</span>
+호스트 개수 <span class="o">=</span> 2^<span class="o">(</span>32-서브넷비트수<span class="o">)</span> - 2
+예: /24 → 2^<span class="o">(</span>32-24<span class="o">)</span> - 2 <span class="o">=</span> 2^8 - 2 <span class="o">=</span> 254개
+</code></pre></div></div>
+
+<h3 id="-서브네팅-계산-실습">🧮 서브네팅 계산 실습</h3>
+
+<h4 id="실습-1-1921681024를-4개-서브넷으로-나누기">실습 1: 192.168.1.0/24를 4개 서브넷으로 나누기</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 원본 네트워크: 192.168.1.0/24 (254개 호스트)</span>
+<span class="c"># 목표: 4개 서브넷 (2^2 = 4) → 2비트 차용</span>
+<span class="c"># 새로운 서브넷 마스크: /26 (255.255.255.192)</span>
+
+서브넷 1: 192.168.1.0/26    <span class="o">(</span>192.168.1.1 ~ 192.168.1.62<span class="o">)</span>
+서브넷 2: 192.168.1.64/26   <span class="o">(</span>192.168.1.65 ~ 192.168.1.126<span class="o">)</span>
+서브넷 3: 192.168.1.128/26  <span class="o">(</span>192.168.1.129 ~ 192.168.1.190<span class="o">)</span>
+서브넷 4: 192.168.1.192/26  <span class="o">(</span>192.168.1.193 ~ 192.168.1.254<span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="실습-2-100008을-부서별로-나누기">실습 2: 10.0.0.0/8을 부서별로 나누기</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 본사 네트워크 설계</span>
+<span class="c"># IT부서: 100대 필요 → /25 (126개 호스트)</span>
+<span class="c"># 영업부서: 50대 필요 → /26 (62개 호스트)  </span>
+<span class="c"># 총무부서: 30대 필요 → /27 (30개 호스트)</span>
+<span class="c"># 게스트: 10대 필요 → /28 (14개 호스트)</span>
+
+IT부서:     10.0.1.0/25    <span class="o">(</span>10.0.1.1 ~ 10.0.1.126<span class="o">)</span>
+영업부서:   10.0.2.0/26    <span class="o">(</span>10.0.2.1 ~ 10.0.2.62<span class="o">)</span>
+총무부서:   10.0.3.0/27    <span class="o">(</span>10.0.3.1 ~ 10.0.3.30<span class="o">)</span>
+게스트:     10.0.4.0/28    <span class="o">(</span>10.0.4.1 ~ 10.0.4.14<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="-vlsm-variable-length-subnet-masking">🔀 VLSM (Variable Length Subnet Masking)</h3>
+
+<p>효율적인 IP 주소 할당을 위한 가변 길이 서브넷 마스킹</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 네트워크 요구사항</span>
+지점 A: 50대 호스트 필요
+지점 B: 25대 호스트 필요  
+지점 C: 10대 호스트 필요
+WAN 링크: 2대 호스트 필요 <span class="o">(</span>Point-to-Point<span class="o">)</span>
+
+<span class="c"># VLSM 할당 (큰 서브넷부터)</span>
+지점 A: 192.168.1.0/26   <span class="o">(</span>62개 호스트 - 50대 수용 가능<span class="o">)</span>
+지점 B: 192.168.1.64/27  <span class="o">(</span>30개 호스트 - 25대 수용 가능<span class="o">)</span>
+지점 C: 192.168.1.96/28  <span class="o">(</span>14개 호스트 - 10대 수용 가능<span class="o">)</span>
+WAN 1:  192.168.1.112/30 <span class="o">(</span>2개 호스트<span class="o">)</span>
+WAN 2:  192.168.1.116/30 <span class="o">(</span>2개 호스트<span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="ipv6-주소-체계--ipv6-addressing">IPv6 주소 체계 | IPv6 Addressing</h2>
+
+<h3 id="-ipv6-주소-구조">🌐 IPv6 주소 구조</h3>
+
+<p>IPv6는 128비트 주소로 구성되며, 16진수로 표현됩니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># IPv6 주소 형식</span>
+전체 형식: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+압축 형식: 2001:db8:85a3::8a2e:370:7334
+
+<span class="c"># 주소 구조</span>
+├─────────────┬─────────────┐
+│ 네트워크 <span class="o">(</span>64비트<span class="o">)</span> │ 인터페이스 ID <span class="o">(</span>64비트<span class="o">)</span> │
+└─────────────┴─────────────┘
+
+<span class="c"># 서브넷 구조  </span>
+├───────────┬─────┬─────────────┐
+│ 글로벌<span class="o">(</span>48<span class="o">)</span> │서브넷<span class="o">(</span>16<span class="o">)</span>│ 인터페이스<span class="o">(</span>64<span class="o">)</span> │
+└───────────┴─────┴─────────────┘
+</code></pre></div></div>
+
+<h3 id="-ipv6-주소-유형">🏠 IPv6 주소 유형</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 유니캐스트 (Unicast)</span>
+글로벌: 2001::/3                <span class="c"># 인터넷 라우팅 가능</span>
+링크로컬: fe80::/10             <span class="c"># 같은 링크 내에서만</span>
+고유로컬: fc00::/7              <span class="c"># 사설 네트워크 (IPv4의 사설 IP와 유사)</span>
+
+<span class="c"># 멀티캐스트 (Multicast)  </span>
+멀티캐스트: ff00::/8            <span class="c"># 그룹 통신</span>
+
+<span class="c"># 애니캐스트 (Anycast)</span>
+글로벌 유니캐스트 범위에서 할당  <span class="c"># 가장 가까운 노드로 전송</span>
+
+<span class="c"># 특수 주소</span>
+루프백: ::1                     <span class="c"># IPv4의 127.0.0.1</span>
+언스펙: ::                      <span class="c"># IPv4의 0.0.0.0</span>
+IPv4 매핑: ::ffff:192.168.1.1   <span class="c"># IPv4-in-IPv6</span>
+</code></pre></div></div>
+
+<h3 id="️-ipv6-설정-및-관리">⚙️ IPv6 설정 및 관리</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Linux IPv6 설정</span>
+<span class="c"># 임시 설정</span>
+ip <span class="nt">-6</span> addr add 2001:db8::1/64 dev eth0
+ip <span class="nt">-6</span> route add default via 2001:db8::1
+
+<span class="c"># 영구 설정 (/etc/netplan/01-netcfg.yaml)</span>
+network:
+  version: 2
+  ethernets:
+    eth0:
+      addresses:
+        - 192.168.1.100/24
+        - 2001:db8::100/64
+      gateway4: 192.168.1.1
+      gateway6: 2001:db8::1
+      nameservers:
+        addresses: <span class="o">[</span>8.8.8.8, 2001:4860:4860::8888]
+
+<span class="c"># IPv6 연결 확인</span>
+ping6 google.com
+ping6 2001:4860:4860::8888
+traceroute6 google.com
+
+<span class="c"># IPv6 주소 확인</span>
+ip <span class="nt">-6</span> addr show
+ip <span class="nt">-6</span> route show
+</code></pre></div></div>
+
+<h2 id="nat-network-address-translation--네트워크-주소-변환">NAT (Network Address Translation) | 네트워크 주소 변환</h2>
+
+<h3 id="-nat의-종류">🔄 NAT의 종류</h3>
+
+<h4 id="static-nat-정적-nat">Static NAT (정적 NAT)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1:1 매핑</span>
+사설 IP 192.168.1.10 ↔ 공인 IP 203.0.113.10
+
+<span class="c"># Cisco 라우터 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip nat inside source static 192.168.1.10 203.0.113.10</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/0</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip nat inside</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># interface serial 0/0  </span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip nat outside</span>
+</code></pre></div></div>
+
+<h4 id="dynamic-nat-동적-nat">Dynamic NAT (동적 NAT)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 풀에서 동적 할당</span>
+사설 IP Pool: 192.168.1.0/24
+공인 IP Pool: 203.0.113.10 ~ 203.0.113.20
+
+<span class="c"># Cisco 라우터 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># access-list 1 permit 192.168.1.0 0.0.0.255</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip nat pool OUTSIDE 203.0.113.10 203.0.113.20 netmask 255.255.255.0</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip nat inside source list 1 pool OUTSIDE</span>
+</code></pre></div></div>
+
+<h4 id="patnat-overload-포트-주소-변환">PAT/NAT Overload (포트 주소 변환)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 다대일 매핑 (포트 번호 이용)</span>
+192.168.1.10:1234 → 203.0.113.1:5000
+192.168.1.20:1234 → 203.0.113.1:5001
+
+<span class="c"># Cisco 라우터 설정  </span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># access-list 1 permit 192.168.1.0 0.0.0.255</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip nat inside source list 1 interface serial 0/0 overload</span>
+</code></pre></div></div>
+
+<h3 id="-linux-nat-설정">🐧 Linux NAT 설정</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># iptables를 이용한 NAT 설정</span>
+<span class="c"># IP 포워딩 활성화</span>
+<span class="nb">echo </span>1 <span class="o">&gt;</span> /proc/sys/net/ipv4/ip_forward
+<span class="nb">echo</span> <span class="s1">'net.ipv4.ip_forward = 1'</span> <span class="o">&gt;&gt;</span> /etc/sysctl.conf
+
+<span class="c"># MASQUERADE (동적 IP용)</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-o</span> eth0 <span class="nt">-j</span> MASQUERADE
+iptables <span class="nt">-A</span> FORWARD <span class="nt">-i</span> eth1 <span class="nt">-o</span> eth0 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> FORWARD <span class="nt">-i</span> eth0 <span class="nt">-o</span> eth1 <span class="nt">-m</span> state <span class="nt">--state</span> RELATED,ESTABLISHED <span class="nt">-j</span> ACCEPT
+
+<span class="c"># SNAT (정적 IP용)</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-o</span> eth0 <span class="nt">-j</span> SNAT <span class="nt">--to-source</span> 203.0.113.1
+
+<span class="c"># 포트 포워딩 (DNAT)</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> PREROUTING <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-j</span> DNAT <span class="nt">--to-destination</span> 192.168.1.10:80
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> PREROUTING <span class="nt">-p</span> tcp <span class="nt">--dport</span> 443 <span class="nt">-j</span> DNAT <span class="nt">--to-destination</span> 192.168.1.10:443
+
+<span class="c"># 설정 저장</span>
+iptables-save <span class="o">&gt;</span> /etc/iptables/rules.v4
+</code></pre></div></div>
+
+<h2 id="dhcp-dynamic-host-configuration-protocol--동적-주소-할당">DHCP (Dynamic Host Configuration Protocol) | 동적 주소 할당</h2>
+
+<h3 id="-dhcp-동작-과정">📋 DHCP 동작 과정</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># DHCP 4-Way Handshake</span>
+1. DHCP Discover  <span class="o">(</span>Client → Server, Broadcast<span class="o">)</span>
+2. DHCP Offer     <span class="o">(</span>Server → Client, Unicast<span class="o">)</span>  
+3. DHCP Request   <span class="o">(</span>Client → Server, Broadcast<span class="o">)</span>
+4. DHCP ACK       <span class="o">(</span>Server → Client, Unicast<span class="o">)</span>
+
+<span class="c"># 패킷 캡처로 확인</span>
+tcpdump <span class="nt">-i</span> eth0 port 67 or port 68 <span class="nt">-v</span>
+</code></pre></div></div>
+
+<h3 id="️-dhcp-서버-설정">🖥️ DHCP 서버 설정</h3>
+
+<h4 id="linux-dhcp-서버-isc-dhcp">Linux DHCP 서버 (ISC DHCP)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설치</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>isc-dhcp-server
+
+<span class="c"># 설정 파일 (/etc/dhcp/dhcpd.conf)</span>
+option domain-name <span class="s2">"company.local"</span><span class="p">;</span>
+option domain-name-servers 8.8.8.8, 8.8.4.4<span class="p">;</span>
+
+default-lease-time 600<span class="p">;</span>
+max-lease-time 7200<span class="p">;</span>
+
+subnet 192.168.1.0 netmask 255.255.255.0 <span class="o">{</span>
+  range 192.168.1.100 192.168.1.200<span class="p">;</span>
+  option routers 192.168.1.1<span class="p">;</span>
+  option broadcast-address 192.168.1.255<span class="p">;</span>
+  
+  <span class="c"># 정적 할당 (MAC 기반)</span>
+  host server1 <span class="o">{</span>
+    hardware ethernet 00:11:22:33:44:55<span class="p">;</span>
+    fixed-address 192.168.1.10<span class="p">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c"># 서비스 시작</span>
+<span class="nb">sudo </span>systemctl start isc-dhcp-server
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>isc-dhcp-server
+
+<span class="c"># 임대 현황 확인</span>
+<span class="nb">cat</span> /var/lib/dhcp/dhcpd.leases
+</code></pre></div></div>
+
+<h4 id="windows-dhcp-서버">Windows DHCP 서버</h4>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># DHCP 서버 역할 설치</span><span class="w">
+</span><span class="n">Install-WindowsFeature</span><span class="w"> </span><span class="nt">-Name</span><span class="w"> </span><span class="nx">DHCP</span><span class="w"> </span><span class="nt">-IncludeManagementTools</span><span class="w">
+
+</span><span class="c"># DHCP 스코프 생성</span><span class="w">
+</span><span class="n">Add-DhcpServerv4Scope</span><span class="w"> </span><span class="nt">-Name</span><span class="w"> </span><span class="s2">"LAN Scope"</span><span class="w"> </span><span class="nt">-StartRange</span><span class="w"> </span><span class="nx">192.168.1.100</span><span class="w"> </span><span class="nt">-EndRange</span><span class="w"> </span><span class="nx">192.168.1.200</span><span class="w"> </span><span class="nt">-SubnetMask</span><span class="w"> </span><span class="nx">255.255.255.0</span><span class="w">
+
+</span><span class="c"># 옵션 설정</span><span class="w">
+</span><span class="n">Set-DhcpServerv4OptionValue</span><span class="w"> </span><span class="nt">-ScopeId</span><span class="w"> </span><span class="nx">192.168.1.0</span><span class="w"> </span><span class="nt">-OptionId</span><span class="w"> </span><span class="nx">3</span><span class="w"> </span><span class="nt">-Value</span><span class="w"> </span><span class="nx">192.168.1.1</span><span class="w">  </span><span class="c"># 게이트웨이</span><span class="w">
+</span><span class="n">Set-DhcpServerv4OptionValue</span><span class="w"> </span><span class="nt">-ScopeId</span><span class="w"> </span><span class="nx">192.168.1.0</span><span class="w"> </span><span class="nt">-OptionId</span><span class="w"> </span><span class="nx">6</span><span class="w"> </span><span class="nt">-Value</span><span class="w"> </span><span class="nx">8.8.8.8</span><span class="p">,</span><span class="w"> </span><span class="nx">8.8.4.4</span><span class="w">  </span><span class="c"># DNS</span><span class="w">
+
+</span><span class="c"># 예약 주소 설정</span><span class="w">
+</span><span class="n">Add-DhcpServerv4Reservation</span><span class="w"> </span><span class="nt">-ScopeId</span><span class="w"> </span><span class="nx">192.168.1.0</span><span class="w"> </span><span class="nt">-IPAddress</span><span class="w"> </span><span class="nx">192.168.1.10</span><span class="w"> </span><span class="nt">-ClientId</span><span class="w"> </span><span class="s2">"00-11-22-33-44-55"</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="dns-domain-name-system--도메인-네임-시스템">DNS (Domain Name System) | 도메인 네임 시스템</h2>
+
+<h3 id="-dns-계층-구조">🌐 DNS 계층 구조</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    Root (.)
+                       │
+          ┌─────────────┼─────────────┐
+        .com          .org         .net
+          │             │            │
+      google.com    wikipedia.org  example.net
+          │
+    www.google.com
+</code></pre></div></div>
+
+<h3 id="-dns-쿼리-과정">🔍 DNS 쿼리 과정</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 반복적 쿼리 (Iterative Query)</span>
+1. 클라이언트 → 로컬 DNS: www.google.com?
+2. 로컬 DNS → 루트 DNS: www.google.com?
+3. 루트 DNS → 로컬 DNS: .com 네임서버 주소
+4. 로컬 DNS → .com DNS: www.google.com?
+5. .com DNS → 로컬 DNS: google.com 네임서버 주소
+6. 로컬 DNS → google.com DNS: www.google.com?
+7. google.com DNS → 로컬 DNS: 142.250.191.4
+8. 로컬 DNS → 클라이언트: 142.250.191.4
+</code></pre></div></div>
+
+<h3 id="️-dns-서버-설정">⚙️ DNS 서버 설정</h3>
+
+<h4 id="bind9-dns-서버-linux">BIND9 DNS 서버 (Linux)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설치</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>bind9 bind9utils bind9-doc
+
+<span class="c"># 주 설정 파일 (/etc/bind/named.conf.local)</span>
+zone <span class="s2">"company.local"</span> <span class="o">{</span>
+    <span class="nb">type </span>master<span class="p">;</span>
+    file <span class="s2">"/etc/bind/db.company.local"</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+zone <span class="s2">"1.168.192.in-addr.arpa"</span> <span class="o">{</span>
+    <span class="nb">type </span>master<span class="p">;</span>  
+    file <span class="s2">"/etc/bind/db.192.168.1"</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+<span class="c"># 정방향 조회 존 파일 (/etc/bind/db.company.local)</span>
+<span class="nv">$TTL</span>    604800
+@       IN      SOA     ns1.company.local. admin.company.local. <span class="o">(</span>
+                              2         <span class="p">;</span> Serial
+                         604800         <span class="p">;</span> Refresh
+                          86400         <span class="p">;</span> Retry
+                        2419200         <span class="p">;</span> Expire
+                         604800 <span class="o">)</span>       <span class="p">;</span> Negative Cache TTL
+
+        IN      NS      ns1.company.local.
+        IN      A       192.168.1.1
+
+ns1     IN      A       192.168.1.1
+www     IN      A       192.168.1.10
+mail    IN      A       192.168.1.20
+ftp     IN      A       192.168.1.30
+
+<span class="c"># 역방향 조회 존 파일 (/etc/bind/db.192.168.1)</span>
+<span class="nv">$TTL</span>    604800
+@       IN      SOA     ns1.company.local. admin.company.local. <span class="o">(</span>
+                              1         <span class="p">;</span> Serial
+                         604800         <span class="p">;</span> Refresh
+                          86400         <span class="p">;</span> Retry
+                        2419200         <span class="p">;</span> Expire
+                         604800 <span class="o">)</span>       <span class="p">;</span> Negative Cache TTL
+
+        IN      NS      ns1.company.local.
+1       IN      PTR     company.local.
+10      IN      PTR     www.company.local.
+20      IN      PTR     mail.company.local.
+
+<span class="c"># 서비스 재시작</span>
+<span class="nb">sudo </span>systemctl restart bind9
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>bind9
+
+<span class="c"># DNS 테스트</span>
+nslookup www.company.local localhost
+dig @localhost www.company.local
+dig @localhost <span class="nt">-x</span> 192.168.1.10
+</code></pre></div></div>
+
+<h2 id="네트워크-보안--network-security">네트워크 보안 | Network Security</h2>
+
+<h3 id="️-방화벽-구성">🛡️ 방화벽 구성</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># iptables 기본 정책</span>
+iptables <span class="nt">-P</span> INPUT DROP
+iptables <span class="nt">-P</span> FORWARD DROP  
+iptables <span class="nt">-P</span> OUTPUT ACCEPT
+
+<span class="c"># 기본 허용 규칙</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> lo <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> state <span class="nt">--state</span> ESTABLISHED,RELATED <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 서비스별 허용</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-s</span> 192.168.1.0/24 <span class="nt">-j</span> ACCEPT    <span class="c"># SSH</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-j</span> ACCEPT                      <span class="c"># HTTP</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 443 <span class="nt">-j</span> ACCEPT                     <span class="c"># HTTPS</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 53 <span class="nt">-j</span> ACCEPT                      <span class="c"># DNS</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> udp <span class="nt">--dport</span> 53 <span class="nt">-j</span> ACCEPT                      <span class="c"># DNS</span>
+
+<span class="c"># DDoS 방어</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-m</span> limit <span class="nt">--limit</span> 25/minute <span class="nt">--limit-burst</span> 100 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 설정 저장 및 복원</span>
+iptables-save <span class="o">&gt;</span> /etc/iptables.rules
+iptables-restore &lt; /etc/iptables.rules
+</code></pre></div></div>
+
+<h3 id="-vpn-설정">🔐 VPN 설정</h3>
+
+<h4 id="openvpn-서버-설정">OpenVPN 서버 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 설치 및 설정</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>openvpn easy-rsa
+
+<span class="c"># CA 인증서 생성</span>
+make-cadir ~/openvpn-ca
+<span class="nb">cd</span> ~/openvpn-ca
+./easyrsa init-pki
+./easyrsa build-ca
+./easyrsa gen-req server nopass
+./easyrsa sign-req server server
+./easyrsa gen-dh
+
+<span class="c"># 서버 설정 파일 (/etc/openvpn/server.conf)</span>
+port 1194
+proto udp
+dev tun
+ca ca.crt
+cert server.crt
+key server.key
+dh dh.pem
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+push <span class="s2">"redirect-gateway def1 bypass-dhcp"</span>
+push <span class="s2">"dhcp-option DNS 8.8.8.8"</span>
+keepalive 10 120
+comp-lzo
+user nobody
+group nogroup
+persist-key
+persist-tun
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>네트워크 라우팅과 스위칭</strong>에 대해 다룰 예정입니다:</p>
+<ul>
+  <li>정적/동적 라우팅 프로토콜</li>
+  <li>VLAN과 트렁킹</li>
+  <li>STP와 이중화</li>
+  <li>로드 밸런싱</li>
+</ul>
+
+<p>네트워크 주소 체계를 완전히 마스터하셨나요? 🌐</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/07/15/networking-guide-part1.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">네트워킹 완전 가이드 1편 - OSI 7계층과 TCP/IP 모델 | Complete ...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/09/14/linux-security-guide.html" rel="next">
+          <span class="nav-title">리눅스 보안 완전 가이드 | Complete Linux Security Guide -...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

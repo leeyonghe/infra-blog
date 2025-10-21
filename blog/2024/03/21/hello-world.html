@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>인프라스트럭처 기술 블로그 시작하기 | Starting an Infrastructure Technology Blog</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">인프라스트럭처 기술 블로그 시작하기 | Starting an Infrastructure Technology Blog</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-03-21T03:00:00+00:00">Mar 21, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Infrastructure</li><li>DevOps</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>안녕하세요! 이 블로그는 인프라스트럭처와 관련된 모든 기술과 노하우를 공유하는 전문 공간입니다.
+Hello! This blog is a specialized space for sharing all infrastructure technologies and expertise.</p>
+
+<h2 id="블로그의-주요-주제--main-topics">블로그의 주요 주제 | Main Topics</h2>
+
+<p>이 블로그에서는 다음과 같은 인프라 관련 모든 주제들을 포괄적으로 다룰 예정입니다:
+This blog will comprehensively cover all infrastructure-related topics:</p>
+
+<h3 id="️-클라우드-인프라--cloud-infrastructure">🌥️ 클라우드 인프라 | Cloud Infrastructure</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>AWS, Azure, GCP</strong> 완벽 가이드</td>
+          <td>Complete Cloud Platform Guides</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>멀티클라우드 &amp; 하이브리드</strong> 전략</td>
+          <td>Multi-cloud &amp; Hybrid Strategies</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>클라우드 네이티브</strong> 아키텍처 설계</td>
+          <td>Cloud Native Architecture Design</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>서버리스</strong> 구축 및 운영</td>
+          <td>Serverless Implementation &amp; Operations</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>컨테이너 오케스트레이션</strong> (Kubernetes, Docker)</td>
+          <td>Container Orchestration</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="-devops--cicd">🚀 DevOps &amp; CI/CD</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Jenkins, GitLab CI, GitHub Actions</strong> 구축</td>
+          <td>CI/CD Pipeline Implementation</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Infrastructure as Code</strong> (Terraform, CloudFormation, Ansible)</td>
+          <td>IaC Best Practices</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>GitOps</strong> 워크플로우</td>
+          <td>GitOps Workflows</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>컨테이너 배포 전략</strong></td>
+          <td>Container Deployment Strategies</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>블루-그린, 카나리</strong> 배포</td>
+          <td>Blue-Green &amp; Canary Deployments</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="-시스템-관리--자동화--system-administration--automation">🔧 시스템 관리 &amp; 자동화 | System Administration &amp; Automation</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Linux/Windows 서버</strong> 관리</td>
+          <td>Server Administration</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Shell 스크립팅</strong> 및 자동화</td>
+          <td>Shell Scripting &amp; Automation</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>구성 관리</strong> (Puppet, Chef, Salt)</td>
+          <td>Configuration Management</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>패키지 관리</strong> 및 업데이트</td>
+          <td>Package Management &amp; Updates</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>백업 및 복구</strong> 전략</td>
+          <td>Backup &amp; Recovery Strategies</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="-네트워킹--보안--networking--security">🌐 네트워킹 &amp; 보안 | Networking &amp; Security</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>네트워크 아키텍처</strong> 설계</td>
+          <td>Network Architecture Design</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>로드 밸런싱</strong> 및 고가용성</td>
+          <td>Load Balancing &amp; High Availability</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>VPN, Firewall</strong> 구성</td>
+          <td>VPN &amp; Firewall Configuration</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>보안 모니터링</strong> 및 위협 탐지</td>
+          <td>Security Monitoring &amp; Threat Detection</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>인증 및 권한 관리</strong></td>
+          <td>Authentication &amp; Authorization</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="-모니터링--관찰성--monitoring--observability">📊 모니터링 &amp; 관찰성 | Monitoring &amp; Observability</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Prometheus, Grafana</strong> 모니터링 스택</td>
+          <td>Monitoring Stack Implementation</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>ELK/EFK Stack</strong> 로그 관리</td>
+          <td>Log Management with ELK/EFK</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>APM</strong> (Application Performance Monitoring)</td>
+          <td>APM Solutions</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>알림 및 대응</strong> 체계</td>
+          <td>Alerting &amp; Response Systems</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>메트릭, 로그, 트레이스</strong> 통합</td>
+          <td>Metrics, Logs, Traces Integration</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="️-데이터베이스--스토리지--database--storage">🗄️ 데이터베이스 &amp; 스토리지 | Database &amp; Storage</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>RDBMS</strong> 운영 및 튜닝</td>
+          <td>RDBMS Operations &amp; Tuning</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>NoSQL</strong> 데이터베이스 관리</td>
+          <td>NoSQL Database Management</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>데이터 백업</strong> 및 재해복구</td>
+          <td>Data Backup &amp; Disaster Recovery</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>분산 스토리지</strong> 시스템</td>
+          <td>Distributed Storage Systems</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>데이터베이스 고가용성</strong> 구성</td>
+          <td>Database High Availability</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="-보안--컴플라이언스--security--compliance">🔒 보안 &amp; 컴플라이언스 | Security &amp; Compliance</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>제로 트러스트</strong> 보안 모델</td>
+          <td>Zero Trust Security Model</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>컨테이너 보안</strong></td>
+          <td>Container Security</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>클라우드 보안</strong> 모범 사례</td>
+          <td>Cloud Security Best Practices</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>보안 감사</strong> 및 컴플라이언스</td>
+          <td>Security Auditing &amp; Compliance</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>취약점 관리</strong></td>
+          <td>Vulnerability Management</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="️-아키텍처--설계-패턴--architecture--design-patterns">🏗️ 아키텍처 &amp; 설계 패턴 | Architecture &amp; Design Patterns</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>마이크로서비스</strong> 아키텍처</td>
+          <td>Microservices Architecture</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>이벤트 기반</strong> 아키텍처</td>
+          <td>Event-Driven Architecture</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>API 게이트웨이</strong> 설계</td>
+          <td>API Gateway Design</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>캐싱</strong> 전략</td>
+          <td>Caching Strategies</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>확장성</strong> 및 성능 최적화</td>
+          <td>Scalability &amp; Performance Optimization</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="-비용-최적화--관리--cost-optimization--management">💰 비용 최적화 &amp; 관리 | Cost Optimization &amp; Management</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>클라우드 비용</strong> 관리</td>
+          <td>Cloud Cost Management</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>리소스 최적화</strong> 전략</td>
+          <td>Resource Optimization Strategies</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>FinOps</strong> 모범 사례</td>
+          <td>FinOps Best Practices</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>예산 관리</strong> 및 알림</td>
+          <td>Budget Management &amp; Alerts</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h3 id="️-도구--기술-리뷰--tools--technology-reviews">🛠️ 도구 &amp; 기술 리뷰 | Tools &amp; Technology Reviews</h3>
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>최신 인프라 도구</strong> 리뷰</td>
+          <td>Latest Infrastructure Tools Reviews</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>오픈소스</strong> vs <strong>상용 솔루션</strong> 비교</td>
+          <td>Open Source vs Commercial Solutions</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>성능 벤치마킹</strong></td>
+          <td>Performance Benchmarking</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>트러블슈팅</strong> 가이드</td>
+          <td>Troubleshooting Guides</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="실무-중심-접근법--practical-approach">실무 중심 접근법 | Practical Approach</h2>
+
+<p>모든 포스팅은 실제 운영 환경에서의 경험을 바탕으로 작성되며, 다음을 포함합니다:
+All posts are based on real operational experience and include:</p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>📋 <strong>단계별 가이드</strong></td>
+          <td>Step-by-step Guides</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>💡 <strong>모범 사례</strong></td>
+          <td>Best Practices</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>⚠️ <strong>주의사항 및 함정</strong></td>
+          <td>Pitfalls &amp; Considerations</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>🔧 <strong>실제 구성 예제</strong></td>
+          <td>Real Configuration Examples</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>📈 <strong>성능 최적화</strong> 팁</td>
+          <td>Performance Optimization Tips</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="대상-독자--target-audience">대상 독자 | Target Audience</h2>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>시스템 관리자</strong></td>
+          <td>System Administrators</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>DevOps 엔지니어</strong></td>
+          <td>DevOps Engineers</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>클라우드 아키텍트</strong></td>
+          <td>Cloud Architects</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>사이트 신뢰성 엔지니어 (SRE)</strong></td>
+          <td>Site Reliability Engineers</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>인프라 엔지니어</strong></td>
+          <td>Infrastructure Engineers</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>개발자</strong> (인프라 이해 필요)</td>
+          <td>Developers (Infrastructure-aware)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>앞으로 인프라스트럭처의 모든 영역을 다루며, 실무에 바로 적용할 수 있는 유용한 정보를 제공하겠습니다.
+We will cover all areas of infrastructure and provide practical information that can be immediately applied in real-world scenarios.</p>
+
+<p>많은 관심과 피드백 부탁드립니다! 함께 인프라 기술의 최전선에서 성장해 나가요! 🚀
+Your interest and feedback are greatly appreciated! Let’s grow together at the forefront of infrastructure technology! 🚀</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-next">
+        <a href="/infra-blog/blog/2024/03/22/kubernetes-basics.html" rel="next">
+          <span class="nav-title">Kubernetes 기초부터 실전까지 | Kubernetes from Basics t...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

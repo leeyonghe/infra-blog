@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>네트워킹 완전 가이드 3편 - 라우팅과 스위칭 심화 | Complete Network Guide Part 3 - Advanced Routing & Switching</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">네트워킹 완전 가이드 3편 - 라우팅과 스위칭 심화 | Complete Network Guide Part 3 - Advanced Routing &amp; Switching</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-11-03T02:00:00+00:00">Nov 3, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Networking</li><li>Routing-Switching</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>네트워크의 핵심인 라우팅과 스위칭 기술을 심화 학습하여 대규모 네트워크 운영 능력을 갖춰보겠습니다.</p>
+
+<h2 id="라우팅-프로토콜--routing-protocols">라우팅 프로토콜 | Routing Protocols</h2>
+
+<h3 id="️-라우팅-기본-개념">🗺️ 라우팅 기본 개념</h3>
+
+<p>라우팅은 패킷이 목적지까지 가는 최적의 경로를 찾는 과정입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 라우팅 테이블 구성 요소</span>
+목적지 네트워크 | 서브넷 마스크 | 게이트웨이 | 인터페이스 | 메트릭
+192.168.1.0    | /24          | 직접연결    | eth0      | 0
+10.0.0.0       | /8           | 192.168.1.1| eth0      | 1
+0.0.0.0        | /0           | 192.168.1.1| eth0      | 1 <span class="o">(</span>기본경로<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="-라우팅-프로토콜-분류">📊 라우팅 프로토콜 분류</h3>
+
+<h4 id="distance-vector-vs-link-state">Distance Vector vs Link State</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Distance Vector (거리 벡터):
+- RIP (Routing Information Protocol)
+- 벨만-포드 알고리즘 사용
+- 홉 카운트 기반 메트릭
+- 단순하지만 수렴 속도 느림
+
+Link State (링크 상태):  
+- OSPF (Open Shortest Path First)
+- 다익스트라 알고리즘 사용
+- 대역폭 기반 메트릭
+- 빠른 수렴, 확장성 좋음
+</code></pre></div></div>
+
+<h4 id="igp-vs-egp">IGP vs EGP</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>IGP (Interior Gateway Protocol):
+- 같은 자율 시스템(AS) 내부
+- RIP, OSPF, EIGRP
+
+EGP (Exterior Gateway Protocol):
+- 서로 다른 AS 간
+- BGP (Border Gateway Protocol)
+</code></pre></div></div>
+
+<h3 id="-rip-routing-information-protocol">🔄 RIP (Routing Information Protocol)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cisco 라우터 RIP 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># router rip</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># version 2</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># network 192.168.1.0</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># network 10.0.0.0</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># no auto-summary</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># passive-interface fastethernet 0/0</span>
+
+<span class="c"># Linux Quagga/FRR RIP 설정</span>
+router rip
+ version 2
+ network 192.168.1.0/24
+ network 10.0.0.0/8
+ redistribute connected
+ redistribute static
+
+<span class="c"># RIP 정보 확인</span>
+show ip route rip
+show ip rip database
+debug ip rip
+</code></pre></div></div>
+
+<h4 id="rip의-특징과-한계">RIP의 특징과 한계</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>장점:
+- 구성이 간단함
+- 소규모 네트워크에 적합
+- 표준 프로토콜
+
+단점:
+- 홉 카운트 제한 (15홉)
+- 느린 수렴 속도
+- 대역폭 고려하지 않음
+- 루프 방지 메커니즘 제한적
+</code></pre></div></div>
+
+<h3 id="-ospf-open-shortest-path-first">🌐 OSPF (Open Shortest Path First)</h3>
+
+<p>OSPF는 대규모 네트워크에서 가장 널리 사용되는 링크 상태 라우팅 프로토콜입니다.</p>
+
+<h4 id="ospf-기본-개념">OSPF 기본 개념</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># OSPF 용어</span>
+Area: 라우터들의 논리적 그룹
+ABR <span class="o">(</span>Area Border Router<span class="o">)</span>: Area 경계 라우터
+ASBR <span class="o">(</span>Autonomous System Boundary Router<span class="o">)</span>: AS 경계 라우터  
+DR <span class="o">(</span>Designated Router<span class="o">)</span>: 대표 라우터
+BDR <span class="o">(</span>Backup Designated Router<span class="o">)</span>: 백업 대표 라우터
+
+<span class="c"># LSA (Link State Advertisement) 유형</span>
+LSA Type 1: Router LSA <span class="o">(</span>라우터 정보<span class="o">)</span>
+LSA Type 2: Network LSA <span class="o">(</span>네트워크 정보<span class="o">)</span>
+LSA Type 3: Summary LSA <span class="o">(</span>Area 간 요약<span class="o">)</span>
+LSA Type 4: ASBR Summary LSA
+LSA Type 5: External LSA <span class="o">(</span>외부 라우트<span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="ospf-설정-실습">OSPF 설정 실습</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cisco 라우터 OSPF 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># router ospf 1</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># router-id 1.1.1.1</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># network 192.168.1.0 0.0.0.255 area 0</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># network 10.0.0.0 0.255.255.255 area 1</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># area 1 stub</span>
+
+<span class="c"># 인터페이스별 OSPF 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/0</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip ospf cost 100</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip ospf priority 255</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip ospf hello-interval 5</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip ospf dead-interval 20</span>
+
+<span class="c"># Linux FRR OSPF 설정</span>
+router ospf
+ ospf router-id 1.1.1.1
+ network 192.168.1.0/24 area 0.0.0.0
+ network 10.0.0.0/8 area 0.0.0.1
+ area 0.0.0.1 stub
+
+<span class="c"># OSPF 정보 확인</span>
+show ip ospf neighbor
+show ip ospf database  
+show ip ospf interface
+show ip route ospf
+</code></pre></div></div>
+
+<h4 id="ospf-area-설계">OSPF Area 설계</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Multi-Area OSPF 설계 예시</span>
+Area 0 <span class="o">(</span>Backbone<span class="o">)</span>: 10.0.0.0/24
+├── Area 1 <span class="o">(</span>Sales<span class="o">)</span>: 10.1.0.0/16
+├── Area 2 <span class="o">(</span>Engineering<span class="o">)</span>: 10.2.0.0/16  
+└── Area 3 <span class="o">(</span>Guest<span class="o">)</span>: 10.3.0.0/16
+
+<span class="c"># Area 유형</span>
+Standard Area: 모든 LSA 허용
+Stub Area: Type 5 LSA 차단, 기본 경로 주입
+Totally Stub: Type 3,4,5 LSA 차단
+NSSA: Type 5 LSA를 Type 7로 변환
+</code></pre></div></div>
+
+<h3 id="-bgp-border-gateway-protocol">🌍 BGP (Border Gateway Protocol)</h3>
+
+<p>BGP는 인터넷의 라우팅을 담당하는 경로 벡터 프로토콜입니다.</p>
+
+<h4 id="bgp-기본-개념">BGP 기본 개념</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># BGP 속성</span>
+AS-Path: AS 번호 경로
+Next-Hop: 다음 홉 주소  
+Local Preference: 로컬 우선순위 <span class="o">(</span>높을수록 선호<span class="o">)</span>
+MED: Multi-Exit Discriminator <span class="o">(</span>낮을수록 선호<span class="o">)</span>
+Origin: 경로 발생지 <span class="o">(</span>IGP <span class="o">&gt;</span> EGP <span class="o">&gt;</span> Incomplete<span class="o">)</span>
+Community: 라우팅 정책 태그
+</code></pre></div></div>
+
+<h4 id="bgp-설정-예시">BGP 설정 예시</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Cisco 라우터 BGP 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># router bgp 65001</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># bgp router-id 1.1.1.1</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># neighbor 203.0.113.1 remote-as 65002</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># neighbor 203.0.113.1 description "ISP-A Connection"</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># network 192.168.0.0 mask 255.255.0.0</span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># aggregate-address 192.168.0.0 255.255.0.0 summary-only</span>
+
+<span class="c"># BGP 경로 정책 설정</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip prefix-list ALLOW-CUSTOMERS seq 10 permit 192.168.0.0/16 le 24</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># route-map CUSTOMER-IN permit 10</span>
+Router<span class="o">(</span>config-route-map<span class="o">)</span><span class="c"># match ip address prefix-list ALLOW-CUSTOMERS</span>
+Router<span class="o">(</span>config-route-map<span class="o">)</span><span class="c"># set local-preference 200</span>
+
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># router bgp 65001  </span>
+Router<span class="o">(</span>config-router<span class="o">)</span><span class="c"># neighbor 203.0.113.1 route-map CUSTOMER-IN in</span>
+
+<span class="c"># Linux FRR BGP 설정</span>
+router bgp 65001
+ bgp router-id 1.1.1.1
+ neighbor 203.0.113.1 remote-as 65002
+ neighbor 203.0.113.1 description ISP-A
+ address-family ipv4 unicast
+  network 192.168.0.0/16
+  neighbor 203.0.113.1 activate
+</code></pre></div></div>
+
+<h2 id="스위칭-기술--switching-technology">스위칭 기술 | Switching Technology</h2>
+
+<h3 id="-이더넷-스위칭-기본">🔌 이더넷 스위칭 기본</h3>
+
+<h4 id="mac-주소-학습-과정">MAC 주소 학습 과정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1단계: MAC 주소 테이블이 비어있음</span>
+Switch# show mac address-table
+          Mac Address Table
+<span class="nt">-------------------------------------------</span>
+Vlan    Mac Address       Type        Ports
+<span class="nt">----</span>    <span class="nt">-----------</span>       <span class="nt">--------</span>    <span class="nt">-----</span>
+
+<span class="c"># 2단계: PC-A(00:11:22:33:44:AA)에서 PC-B로 프레임 전송</span>
+<span class="c"># 스위치가 포트 1에서 수신, MAC 주소 학습</span>
+
+<span class="c"># 3단계: MAC 주소 테이블 업데이트  </span>
+Switch# show mac address-table
+          Mac Address Table
+<span class="nt">-------------------------------------------</span>
+Vlan    Mac Address       Type        Ports
+<span class="nt">----</span>    <span class="nt">-----------</span>       <span class="nt">--------</span>    <span class="nt">-----</span>
+   1    0011.2233.44aa    DYNAMIC     Fa0/1
+
+<span class="c"># 4단계: 목적지 MAC 주소를 모르므로 플러딩</span>
+<span class="c"># 5단계: PC-B가 응답하면 포트 2에서 학습</span>
+</code></pre></div></div>
+
+<h4 id="스위치-포트-설정">스위치 포트 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 액세스 포트 설정 (단일 VLAN)</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/1</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport mode access</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport access vlan 10</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security maximum 2</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security violation shutdown</span>
+
+<span class="c"># 트렁크 포트 설정 (다중 VLAN)</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/24</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport mode trunk</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport trunk encapsulation dot1q</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport trunk allowed vlan 10,20,30</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport trunk native vlan 1</span>
+</code></pre></div></div>
+
+<h3 id="️-vlan-virtual-local-area-network">🏷️ VLAN (Virtual Local Area Network)</h3>
+
+<p>VLAN은 물리적 위치와 관계없이 논리적으로 네트워크를 분할하는 기술입니다.</p>
+
+<h4 id="vlan-설정-및-관리">VLAN 설정 및 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># VLAN 생성</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># vlan 10</span>
+Switch<span class="o">(</span>config-vlan<span class="o">)</span><span class="c"># name SALES</span>
+Switch<span class="o">(</span>config-vlan<span class="o">)</span><span class="c"># vlan 20  </span>
+Switch<span class="o">(</span>config-vlan<span class="o">)</span><span class="c"># name ENGINEERING</span>
+Switch<span class="o">(</span>config-vlan<span class="o">)</span><span class="c"># vlan 30</span>
+Switch<span class="o">(</span>config-vlan<span class="o">)</span><span class="c"># name GUEST</span>
+
+<span class="c"># VLAN 정보 확인</span>
+Switch# show vlan brief
+VLAN Name                             Status    Ports
+<span class="nt">----</span> <span class="nt">--------------------------------</span> <span class="nt">---------</span> <span class="nt">-------------------------------</span>
+1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+10   SALES                           active    Fa0/1, Fa0/2
+20   ENGINEERING                     active    Fa0/3, Fa0/4  
+30   GUEST                           active    
+999  UNUSED                          active    
+
+<span class="c"># 동적 VLAN 할당 (VMPS)</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># vmps server 192.168.1.100</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface range fastethernet 0/1-20</span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># switchport mode dynamic desirable</span>
+</code></pre></div></div>
+
+<h4 id="inter-vlan-라우팅">Inter-VLAN 라우팅</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 라우터의 서브인터페이스 설정 (Router-on-a-Stick)</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/0</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># no shutdown</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># interface fastethernet 0/0.10</span>
+Router<span class="o">(</span>config-subif<span class="o">)</span><span class="c"># encapsulation dot1Q 10</span>
+Router<span class="o">(</span>config-subif<span class="o">)</span><span class="c"># ip address 192.168.10.1 255.255.255.0</span>
+Router<span class="o">(</span>config-subif<span class="o">)</span><span class="c"># interface fastethernet 0/0.20</span>
+Router<span class="o">(</span>config-subif<span class="o">)</span><span class="c"># encapsulation dot1Q 20  </span>
+Router<span class="o">(</span>config-subif<span class="o">)</span><span class="c"># ip address 192.168.20.1 255.255.255.0</span>
+
+<span class="c"># SVI (Switched Virtual Interface) 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># ip routing</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface vlan 10</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip address 192.168.10.1 255.255.255.0</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># no shutdown</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># interface vlan 20</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip address 192.168.20.1 255.255.255.0</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># no shutdown</span>
+</code></pre></div></div>
+
+<h3 id="-stp-spanning-tree-protocol">🌳 STP (Spanning Tree Protocol)</h3>
+
+<p>STP는 스위치 네트워크에서 루프를 방지하고 이중화를 제공하는 프로토콜입니다.</p>
+
+<h4 id="stp-기본-개념">STP 기본 개념</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># STP 포트 상태</span>
+Disabled: 포트 비활성화
+Blocking: 데이터 전송 차단, BPDU 수신만
+Listening: BPDU 송수신, MAC 주소 학습하지 않음
+Learning: MAC 주소 학습, 데이터 전송하지 않음  
+Forwarding: 정상 데이터 전송
+
+<span class="c"># STP 포트 역할</span>
+Root Port: 루트 브리지로 가는 최단 경로
+Designated Port: 세그먼트의 대표 포트
+Alternate Port: 루트 포트의 백업
+Backup Port: 같은 스위치의 다른 포트 백업
+</code></pre></div></div>
+
+<h4 id="stp-설정-및-최적화">STP 설정 및 최적화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 루트 브리지 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree vlan 1 root primary</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree vlan 1 priority 4096</span>
+
+<span class="c"># 포트 우선순위 및 비용 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/1  </span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># spanning-tree vlan 1 port-priority 128</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># spanning-tree vlan 1 cost 19</span>
+
+<span class="c"># RSTP (Rapid Spanning Tree) 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree mode rapid-pvst</span>
+
+<span class="c"># 포트 최적화</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface range fastethernet 0/1-20</span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># spanning-tree portfast</span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># spanning-tree bpduguard enable</span>
+
+<span class="c"># STP 정보 확인</span>
+Switch# show spanning-tree
+Switch# show spanning-tree vlan 1
+Switch# show spanning-tree interface fastethernet 0/1
+</code></pre></div></div>
+
+<h4 id="mst-multiple-spanning-tree">MST (Multiple Spanning Tree)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># MST 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree mode mst</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree mst configuration</span>
+Switch<span class="o">(</span>config-mst<span class="o">)</span><span class="c"># name COMPANY  </span>
+Switch<span class="o">(</span>config-mst<span class="o">)</span><span class="c"># revision 1</span>
+Switch<span class="o">(</span>config-mst<span class="o">)</span><span class="c"># instance 1 vlan 10,20</span>
+Switch<span class="o">(</span>config-mst<span class="o">)</span><span class="c"># instance 2 vlan 30,40</span>
+Switch<span class="o">(</span>config-mst<span class="o">)</span><span class="c"># exit</span>
+
+<span class="c"># MST 루트 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree mst 1 root primary</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># spanning-tree mst 2 root secondary</span>
+</code></pre></div></div>
+
+<h2 id="고급-네트워킹-기술--advanced-networking">고급 네트워킹 기술 | Advanced Networking</h2>
+
+<h3 id="-link-aggregation-etherchannel">🔗 Link Aggregation (EtherChannel)</h3>
+
+<p>여러 물리적 링크를 논리적으로 묶어 대역폭을 증가시키고 이중화를 제공합니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># LACP (Link Aggregation Control Protocol) 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface range fastethernet 0/1-2</span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># channel-group 1 mode active</span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># exit</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface port-channel 1</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport mode trunk</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport trunk allowed vlan 10,20,30</span>
+
+<span class="c"># PAgP (Port Aggregation Protocol) 설정  </span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface range fastethernet 0/3-4</span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># channel-group 2 mode desirable</span>
+
+<span class="c"># 정적 EtherChannel 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface range fastethernet 0/5-6  </span>
+Switch<span class="o">(</span>config-if-range<span class="o">)</span><span class="c"># channel-group 3 mode on</span>
+
+<span class="c"># EtherChannel 확인</span>
+Switch# show etherchannel summary
+Switch# show etherchannel port-channel
+</code></pre></div></div>
+
+<h3 id="-vxlan-virtual-extensible-lan">🌐 VXLAN (Virtual Extensible LAN)</h3>
+
+<p>클라우드 환경에서 L2 오버레이 네트워크를 구현하는 기술입니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Linux에서 VXLAN 설정</span>
+<span class="c"># VXLAN 인터페이스 생성</span>
+ip <span class="nb">link </span>add vxlan10 <span class="nb">type </span>vxlan <span class="nb">id </span>10 remote 192.168.1.2 <span class="nb">local </span>192.168.1.1 dev eth0 dstport 4789
+
+<span class="c"># VXLAN을 브리지에 연결</span>
+ip <span class="nb">link </span>add br0 <span class="nb">type </span>bridge
+ip <span class="nb">link set </span>vxlan10 master br0
+ip <span class="nb">link set </span>eth1 master br0
+
+<span class="c"># 인터페이스 활성화</span>
+ip <span class="nb">link set </span>vxlan10 up
+ip <span class="nb">link set </span>br0 up
+
+<span class="c"># 멀티캐스트 VXLAN</span>
+ip <span class="nb">link </span>add vxlan20 <span class="nb">type </span>vxlan <span class="nb">id </span>20 group 239.1.1.1 dev eth0 dstport 4789
+
+<span class="c"># VXLAN 정보 확인</span>
+bridge fdb show dev vxlan10
+ip <span class="nt">-d</span> <span class="nb">link </span>show vxlan10
+</code></pre></div></div>
+
+<h3 id="️-로드-밸런싱">⚖️ 로드 밸런싱</h3>
+
+<h4 id="haproxy-설정">HAProxy 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># HAProxy 설정 파일 (/etc/haproxy/haproxy.cfg)</span>
+global
+    daemon
+    maxconn 4096
+    log 127.0.0.1:514 local0
+
+defaults
+    mode http
+    <span class="nb">timeout </span>connect 5000ms
+    <span class="nb">timeout </span>client 50000ms
+    <span class="nb">timeout </span>server 50000ms
+    option httplog
+
+frontend web_frontend
+    <span class="nb">bind</span> <span class="k">*</span>:80
+    <span class="nb">bind</span> <span class="k">*</span>:443 ssl crt /etc/ssl/certs/website.pem
+    redirect scheme https <span class="k">if</span> <span class="o">!{</span> ssl_fc <span class="o">}</span>
+    default_backend web_servers
+
+backend web_servers
+    balance roundrobin
+    option httpchk GET /health
+    server web1 192.168.1.10:80 check
+    server web2 192.168.1.11:80 check
+    server web3 192.168.1.12:80 check backup
+
+<span class="c"># 통계 페이지</span>
+listen stats
+    <span class="nb">bind</span> <span class="k">*</span>:8080
+    stats <span class="nb">enable
+    </span>stats uri /stats
+    stats refresh 30s
+</code></pre></div></div>
+
+<h4 id="nginx-로드-밸런싱">NGINX 로드 밸런싱</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /etc/nginx/nginx.conf</span>
+<span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">least_conn</span><span class="p">;</span>  <span class="c1"># 로드 밸런싱 방법</span>
+    <span class="kn">server</span> <span class="nf">192.168.1.10</span><span class="p">:</span><span class="mi">80</span> <span class="s">max_fails=3</span> <span class="s">fail_timeout=30s</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">192.168.1.11</span><span class="p">:</span><span class="mi">80</span> <span class="s">max_fails=3</span> <span class="s">fail_timeout=30s</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">192.168.1.12</span><span class="p">:</span><span class="mi">80</span> <span class="s">backup</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://backend</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        
+        <span class="c1"># 헬스 체크</span>
+        <span class="kn">proxy_connect_timeout</span> <span class="s">1s</span><span class="p">;</span>
+        <span class="kn">proxy_send_timeout</span> <span class="s">1s</span><span class="p">;</span>
+        <span class="kn">proxy_read_timeout</span> <span class="s">1s</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="-네트워크-보안-심화">🔐 네트워크 보안 심화</h3>
+
+<h4 id="포트-보안-port-security">포트 보안 (Port Security)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># MAC 주소 기반 포트 보안</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/1</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security maximum 2</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security mac-address sticky</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># switchport port-security violation restrict</span>
+
+<span class="c"># 802.1X 인증 설정</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># aaa new-model</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># aaa authentication dot1x default group radius</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># dot1x system-auth-control</span>
+Switch<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/1</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># authentication port-control auto</span>
+Switch<span class="o">(</span>config-if<span class="o">)</span><span class="c"># dot1x pae authenticator</span>
+</code></pre></div></div>
+
+<h4 id="acl-access-control-list-심화">ACL (Access Control List) 심화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 확장 ACL</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip access-list extended BLOCK_SOCIAL</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># deny tcp any host 23.35.67.140 eq 80</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># deny tcp any host 23.35.67.141 eq 443  </span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># permit ip any any</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># exit</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># interface fastethernet 0/1</span>
+Router<span class="o">(</span>config-if<span class="o">)</span><span class="c"># ip access-group BLOCK_SOCIAL out</span>
+
+<span class="c"># 시간 기반 ACL</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># time-range WORK_HOURS</span>
+Router<span class="o">(</span>config-time-range<span class="o">)</span><span class="c"># periodic weekdays 09:00 to 18:00</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip access-list extended TIME_BASED</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># permit tcp 192.168.1.0 0.0.0.255 any eq 80 time-range WORK_HOURS</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># deny tcp 192.168.1.0 0.0.0.255 any eq 80</span>
+
+<span class="c"># 반사형 ACL (Reflexive ACL)</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip access-list extended OUTBOUND</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># permit tcp 192.168.1.0 0.0.0.255 any reflect TCP_TRAFFIC</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># permit icmp 192.168.1.0 0.0.0.255 any reflect ICMP_TRAFFIC</span>
+
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># ip access-list extended INBOUND  </span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># evaluate TCP_TRAFFIC</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># evaluate ICMP_TRAFFIC</span>
+Router<span class="o">(</span>config-ext-nacl<span class="o">)</span><span class="c"># deny ip any any</span>
+</code></pre></div></div>
+
+<h2 id="네트워크-모니터링-및-문제-해결--network-monitoring--troubleshooting">네트워크 모니터링 및 문제 해결 | Network Monitoring &amp; Troubleshooting</h2>
+
+<h3 id="-snmp-simple-network-management-protocol">📊 SNMP (Simple Network Management Protocol)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SNMP v3 설정 (Cisco)</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># snmp-server view READONLY iso included</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># snmp-server group ADMIN v3 auth read READONLY  </span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># snmp-server user admin ADMIN v3 auth sha password123 priv aes 128 password456</span>
+Router<span class="o">(</span>config<span class="o">)</span><span class="c"># snmp-server host 192.168.1.100 version 3 auth admin</span>
+
+<span class="c"># Linux SNMP 클라이언트</span>
+<span class="c"># OID를 이용한 정보 조회</span>
+snmpwalk <span class="nt">-v3</span> <span class="nt">-u</span> admin <span class="nt">-a</span> SHA <span class="nt">-A</span> password123 <span class="nt">-x</span> AES <span class="nt">-X</span> password456 <span class="nt">-l</span> authPriv 192.168.1.1 1.3.6.1.2.1.1
+
+<span class="c"># 인터페이스 통계 조회</span>
+snmpwalk <span class="nt">-v3</span> <span class="nt">-u</span> admin <span class="nt">-a</span> SHA <span class="nt">-A</span> password123 <span class="nt">-x</span> AES <span class="nt">-X</span> password456 <span class="nt">-l</span> authPriv 192.168.1.1 1.3.6.1.2.1.2.2.1.10
+</code></pre></div></div>
+
+<h3 id="-네트워크-분석-도구">🔍 네트워크 분석 도구</h3>
+
+<h4 id="wireshark-고급-필터">Wireshark 고급 필터</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 프로토콜별 필터</span>
+tcp.port <span class="o">==</span> 80                    <span class="c"># HTTP 트래픽</span>
+tcp.flags.syn <span class="o">==</span> 1 and tcp.flags.ack <span class="o">==</span> 0  <span class="c"># TCP SYN 패킷</span>
+icmp.type <span class="o">==</span> 8                    <span class="c"># ICMP Echo Request</span>
+dns.qry.name contains <span class="s2">"google"</span>    <span class="c"># DNS 쿼리</span>
+
+<span class="c"># 네트워크별 필터</span>
+ip.src <span class="o">==</span> 192.168.1.0/24          <span class="c"># 소스 네트워크</span>
+ip.dst <span class="o">==</span> 10.0.0.0/8             <span class="c"># 목적지 네트워크</span>
+eth.addr <span class="o">==</span> 00:11:22:33:44:55     <span class="c"># MAC 주소</span>
+
+<span class="c"># 성능 분석</span>
+tcp.analysis.retransmission       <span class="c"># TCP 재전송</span>
+tcp.analysis.duplicate_ack        <span class="c"># 중복 ACK</span>
+tcp.analysis.zero_window          <span class="c"># 제로 윈도우</span>
+</code></pre></div></div>
+
+<h4 id="네트워크-성능-측정">네트워크 성능 측정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 대역폭 측정 (iperf3)</span>
+<span class="c"># 서버 모드</span>
+iperf3 <span class="nt">-s</span> <span class="nt">-p</span> 5201
+
+<span class="c"># 클라이언트 모드  </span>
+iperf3 <span class="nt">-c</span> 192.168.1.100 <span class="nt">-p</span> 5201 <span class="nt">-t</span> 60 <span class="nt">-P</span> 4
+
+<span class="c"># UDP 측정</span>
+iperf3 <span class="nt">-c</span> 192.168.1.100 <span class="nt">-u</span> <span class="nt">-b</span> 100M
+
+<span class="c"># 지연 시간 측정 (hping3)</span>
+hping3 <span class="nt">-S</span> <span class="nt">-p</span> 80 <span class="nt">-c</span> 10 google.com
+hping3 <span class="nt">-1</span> <span class="nt">-c</span> 100 <span class="nt">-i</span> u1000 192.168.1.1  <span class="c"># 마이크로초 간격</span>
+
+<span class="c"># MTU 경로 발견</span>
+tracepath google.com
+ping <span class="nt">-M</span> <span class="k">do</span> <span class="nt">-s</span> 1472 google.com
+</code></pre></div></div>
+
+<h2 id="2-3-iac-infrastructure-as-code--코드형-인프라">2-3 IaC (Infrastructure as Code) | 코드형 인프라</h2>
+
+<h3 id="2-3-1-iac-종류--types-of-iac">2-3-1 IaC 종류 | Types of IaC</h3>
+
+<p>IaC는 인프라를 코드로 정의하고 관리하는 방법론으로, 네트워크 인프라 구축과 관리를 자동화합니다.</p>
+
+<h4 id="️-주요-iac-도구-분류">🛠️ 주요 IaC 도구 분류</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 선언적 vs 명령적</span>
+선언적 <span class="o">(</span>Declarative<span class="o">)</span>:
+- Terraform, CloudFormation, Ansible <span class="o">(</span>일부<span class="o">)</span>
+- 최종 상태를 정의
+- 더 안정적이고 예측 가능
+
+명령적 <span class="o">(</span>Imperative<span class="o">)</span>:  
+- Shell Scripts, Python Scripts
+- 실행 단계를 정의
+- 더 유연하지만 복잡함
+
+<span class="c"># 에이전트 기반 vs 에이전트리스</span>
+에이전트 기반:
+- Puppet, Chef
+- 대상 시스템에 에이전트 설치 필요
+- 지속적인 상태 관리
+
+에이전트리스:
+- Ansible, Terraform
+- SSH/WinRM 등을 통한 원격 실행
+- 설치 부담 없음
+</code></pre></div></div>
+
+<h4 id="terraform">Terraform</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Provider 설정</span>
+<span class="nx">terraform</span> <span class="p">{</span>
+  <span class="nx">required_version</span> <span class="o">=</span> <span class="s2">"&gt;= 1.0"</span>
+  <span class="nx">required_providers</span> <span class="p">{</span>
+    <span class="nx">aws</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">source</span>  <span class="o">=</span> <span class="s2">"hashicorp/aws"</span>
+      <span class="nx">version</span> <span class="o">=</span> <span class="s2">"~&gt; 5.0"</span>
+    <span class="p">}</span>
+    <span class="nx">cisco</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">source</span>  <span class="o">=</span> <span class="s2">"CiscoDevNet/aci"</span>
+      <span class="nx">version</span> <span class="o">=</span> <span class="s2">"~&gt; 2.0"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 변수 정의</span>
+<span class="nx">variable</span> <span class="s2">"vpc_cidr"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR block for VPC"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="s2">"10.0.0.0/16"</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"environment"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Environment name"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="s2">"production"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="ansible">Ansible</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 네트워크 장비 인벤토리 (/etc/ansible/hosts)</span>
+<span class="pi">[</span><span class="nv">switches</span><span class="pi">]</span>
+<span class="s">switch1 ansible_host=192.168.1.10 ansible_network_os=ios</span>
+<span class="s">switch2 ansible_host=192.168.1.11 ansible_network_os=ios</span>
+
+<span class="pi">[</span><span class="nv">routers</span><span class="pi">]</span>  
+<span class="s">router1 ansible_host=192.168.1.1 ansible_network_os=ios</span>
+<span class="s">router2 ansible_host=192.168.1.2 ansible_network_os=ios</span>
+
+<span class="pi">[</span><span class="nv">network</span><span class="pi">:</span><span class="nv">children</span><span class="pi">]</span>
+<span class="s">switches</span>
+<span class="s">routers</span>
+
+<span class="pi">[</span><span class="nv">network</span><span class="pi">:</span><span class="nv">vars</span><span class="pi">]</span>
+<span class="s">ansible_user=admin</span>
+<span class="s">ansible_password=password</span>
+<span class="s">ansible_connection=network_cli</span>
+<span class="s">ansible_become=yes</span>
+<span class="s">ansible_become_method=enable</span>
+</code></pre></div></div>
+
+<h4 id="cloudformation-aws">CloudFormation (AWS)</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># AWS 네트워크 인프라 템플릿</span>
+<span class="na">AWSTemplateFormatVersion</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2010-09-09'</span>
+<span class="na">Description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Network</span><span class="nv"> </span><span class="s">Infrastructure</span><span class="nv"> </span><span class="s">Template'</span>
+
+<span class="na">Parameters</span><span class="pi">:</span>
+  <span class="na">EnvironmentName</span><span class="pi">:</span>
+    <span class="na">Description</span><span class="pi">:</span> <span class="s">Environment name prefix</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">String</span>
+    <span class="na">Default</span><span class="pi">:</span> <span class="s">Production</span>
+
+<span class="na">Resources</span><span class="pi">:</span>
+  <span class="na">VPC</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::EC2::VPC</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">CidrBlock</span><span class="pi">:</span> <span class="s">10.0.0.0/16</span>
+      <span class="na">EnableDnsHostnames</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">EnableDnsSupport</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">Tags</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">Key</span><span class="pi">:</span> <span class="s">Name</span>
+          <span class="na">Value</span><span class="pi">:</span> <span class="kt">!Sub</span> <span class="s">${EnvironmentName}-VPC</span>
+</code></pre></div></div>
+
+<h4 id="pulumi">Pulumi</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Python을 이용한 IaC
+</span><span class="kn">import</span> <span class="n">pulumi</span>
+<span class="kn">import</span> <span class="n">pulumi_aws</span> <span class="k">as</span> <span class="n">aws</span>
+
+<span class="c1"># VPC 생성
+</span><span class="n">vpc</span> <span class="o">=</span> <span class="n">aws</span><span class="p">.</span><span class="n">ec2</span><span class="p">.</span><span class="nc">Vpc</span><span class="p">(</span><span class="sh">"</span><span class="s">main-vpc</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">cidr_block</span><span class="o">=</span><span class="sh">"</span><span class="s">10.0.0.0/16</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">enable_dns_hostnames</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">enable_dns_support</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">{</span>
+        <span class="sh">"</span><span class="s">Name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">main-vpc</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Environment</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">production</span><span class="sh">"</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># 서브넷 생성
+</span><span class="n">public_subnet</span> <span class="o">=</span> <span class="n">aws</span><span class="p">.</span><span class="n">ec2</span><span class="p">.</span><span class="nc">Subnet</span><span class="p">(</span><span class="sh">"</span><span class="s">public-subnet</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">vpc_id</span><span class="o">=</span><span class="n">vpc</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span>
+    <span class="n">cidr_block</span><span class="o">=</span><span class="sh">"</span><span class="s">10.0.1.0/24</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">availability_zone</span><span class="o">=</span><span class="sh">"</span><span class="s">us-west-2a</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">map_public_ip_on_launch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">{</span>
+        <span class="sh">"</span><span class="s">Name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">public-subnet</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Public</span><span class="sh">"</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="cdk-cloud-development-kit">CDK (Cloud Development Kit)</h4>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// TypeScript를 이용한 AWS CDK</span>
+<span class="k">import</span> <span class="o">*</span> <span class="kd">as </span><span class="nx">cdk</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">aws-cdk-lib</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="o">*</span> <span class="kd">as </span><span class="nx">ec2</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">aws-cdk-lib/aws-ec2</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nc">NetworkStack</span> <span class="kd">extends</span> <span class="nc">cdk</span><span class="p">.</span><span class="nx">Stack</span> <span class="p">{</span>
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">scope</span><span class="p">:</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">App</span><span class="p">,</span> <span class="nx">id</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">props</span><span class="p">?:</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">StackProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">props</span><span class="p">);</span>
+
+    <span class="c1">// VPC 생성</span>
+    <span class="kd">const</span> <span class="nx">vpc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ec2</span><span class="p">.</span><span class="nc">Vpc</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="dl">'</span><span class="s1">MainVpc</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">maxAzs</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="na">cidr</span><span class="p">:</span> <span class="dl">'</span><span class="s1">10.0.0.0/16</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">subnetConfiguration</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="na">cidrMask</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+          <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Public</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">subnetType</span><span class="p">:</span> <span class="nx">ec2</span><span class="p">.</span><span class="nx">SubnetType</span><span class="p">.</span><span class="nx">PUBLIC</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="na">cidrMask</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>
+          <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Private</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">subnetType</span><span class="p">:</span> <span class="nx">ec2</span><span class="p">.</span><span class="nx">SubnetType</span><span class="p">.</span><span class="nx">PRIVATE_WITH_EGRESS</span><span class="p">,</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-3-2-테라폼으로-환경-구성--environment-setup-with-terraform">2-3-2 테라폼으로 환경 구성 | Environment Setup with Terraform</h3>
+
+<p>Terraform을 사용하여 완전한 네트워크 환경을 구성해보겠습니다.</p>
+
+<h4 id="️-프로젝트-구조-설계">🏗️ 프로젝트 구조 설계</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 디렉토리 구조</span>
+terraform-network/
+├── environments/
+│   ├── dev/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── terraform.tfvars
+│   ├── staging/
+│   └── production/
+├── modules/
+│   ├── vpc/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── security-groups/
+│   └── load-balancer/
+├── global/
+│   └── iam/
+└── shared/
+    └── data.tf
+</code></pre></div></div>
+
+<h4 id="vpc-모듈-구현">VPC 모듈 구현</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># modules/vpc/main.tf</span>
+<span class="nx">resource</span> <span class="s2">"aws_vpc"</span> <span class="s2">"main"</span> <span class="p">{</span>
+  <span class="nx">cidr_block</span>           <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">cidr_block</span>
+  <span class="nx">enable_dns_hostnames</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_dns_hostnames</span>
+  <span class="nx">enable_dns_support</span>   <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_dns_support</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-vpc"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># 인터넷 게이트웨이</span>
+<span class="nx">resource</span> <span class="s2">"aws_internet_gateway"</span> <span class="s2">"main"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-igw"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># 가용 영역별 퍼블릭 서브넷</span>
+<span class="nx">resource</span> <span class="s2">"aws_subnet"</span> <span class="s2">"public"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">public_subnets</span><span class="p">)</span>
+
+  <span class="nx">vpc_id</span>                  <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">cidr_block</span>              <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">public_subnets</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">]</span>
+  <span class="nx">availability_zone</span>       <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">availability_zones</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">]</span>
+  <span class="nx">map_public_ip_on_launch</span> <span class="o">=</span> <span class="kc">true</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-public-${count.index + 1}"</span>
+    <span class="nx">Type</span> <span class="o">=</span> <span class="s2">"Public"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># 프라이빗 서브넷</span>
+<span class="nx">resource</span> <span class="s2">"aws_subnet"</span> <span class="s2">"private"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">private_subnets</span><span class="p">)</span>
+
+  <span class="nx">vpc_id</span>            <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">cidr_block</span>        <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">private_subnets</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">]</span>
+  <span class="nx">availability_zone</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">availability_zones</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">]</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-private-${count.index + 1}"</span>
+    <span class="nx">Type</span> <span class="o">=</span> <span class="s2">"Private"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># NAT 게이트웨이를 위한 EIP</span>
+<span class="nx">resource</span> <span class="s2">"aws_eip"</span> <span class="s2">"nat"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_nat_gateway</span> <span class="o">?</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">public_subnets</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span>
+
+  <span class="nx">domain</span> <span class="o">=</span> <span class="s2">"vpc"</span>
+  <span class="nx">depends_on</span> <span class="o">=</span> <span class="p">[</span><span class="nx">aws_internet_gateway</span><span class="p">.</span><span class="nx">main</span><span class="p">]</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-nat-eip-${count.index + 1}"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># NAT 게이트웨이</span>
+<span class="nx">resource</span> <span class="s2">"aws_nat_gateway"</span> <span class="s2">"main"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_nat_gateway</span> <span class="o">?</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">public_subnets</span><span class="p">)</span> <span class="o">:</span> <span class="mi">0</span>
+
+  <span class="nx">allocation_id</span> <span class="o">=</span> <span class="nx">aws_eip</span><span class="p">.</span><span class="nx">nat</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+  <span class="nx">subnet_id</span>     <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">public</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-nat-gw-${count.index + 1}"</span>
+  <span class="p">})</span>
+
+  <span class="nx">depends_on</span> <span class="o">=</span> <span class="p">[</span><span class="nx">aws_internet_gateway</span><span class="p">.</span><span class="nx">main</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># 퍼블릭 라우트 테이블</span>
+<span class="nx">resource</span> <span class="s2">"aws_route_table"</span> <span class="s2">"public"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+
+  <span class="nx">route</span> <span class="p">{</span>
+    <span class="nx">cidr_block</span> <span class="o">=</span> <span class="s2">"0.0.0.0/0"</span>
+    <span class="nx">gateway_id</span> <span class="o">=</span> <span class="nx">aws_internet_gateway</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-public-rt"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># 프라이빗 라우트 테이블</span>
+<span class="nx">resource</span> <span class="s2">"aws_route_table"</span> <span class="s2">"private"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_nat_gateway</span> <span class="o">?</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">private_subnets</span><span class="p">)</span> <span class="o">:</span> <span class="mi">1</span>
+
+  <span class="nx">vpc_id</span> <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+
+  <span class="nx">dynamic</span> <span class="s2">"route"</span> <span class="p">{</span>
+    <span class="nx">for_each</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_nat_gateway</span> <span class="o">?</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="p">[]</span>
+    <span class="nx">content</span> <span class="p">{</span>
+      <span class="nx">cidr_block</span>     <span class="o">=</span> <span class="s2">"0.0.0.0/0"</span>
+      <span class="nx">nat_gateway_id</span> <span class="o">=</span> <span class="nx">aws_nat_gateway</span><span class="p">.</span><span class="nx">main</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-private-rt-${count.index + 1}"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># 라우트 테이블 연결</span>
+<span class="nx">resource</span> <span class="s2">"aws_route_table_association"</span> <span class="s2">"public"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">public_subnets</span><span class="p">)</span>
+
+  <span class="nx">subnet_id</span>      <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">public</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+  <span class="nx">route_table_id</span> <span class="o">=</span> <span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">public</span><span class="p">.</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="nx">resource</span> <span class="s2">"aws_route_table_association"</span> <span class="s2">"private"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">length</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">private_subnets</span><span class="p">)</span>
+
+  <span class="nx">subnet_id</span>      <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">private</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span>
+  <span class="nx">route_table_id</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_nat_gateway</span> <span class="o">?</span> <span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">private</span><span class="p">[</span><span class="nx">count</span><span class="p">.</span><span class="nx">index</span><span class="p">].</span><span class="nx">id</span> <span class="o">:</span> <span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">private</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">id</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="vpc-모듈-변수">VPC 모듈 변수</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># modules/vpc/variables.tf</span>
+<span class="nx">variable</span> <span class="s2">"name_prefix"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Name prefix for all resources"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"cidr_block"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR block for the VPC"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"public_subnets"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"List of public subnet CIDR blocks"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"private_subnets"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"List of private subnet CIDR blocks"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"availability_zones"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"List of availability zones"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"enable_nat_gateway"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Enable NAT Gateway for private subnets"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">bool</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"enable_dns_hostnames"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Enable DNS hostnames in the VPC"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">bool</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"enable_dns_support"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Enable DNS support in the VPC"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">bool</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"tags"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Tags to apply to all resources"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">map</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="vpc-모듈-출력">VPC 모듈 출력</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># modules/vpc/outputs.tf</span>
+<span class="nx">output</span> <span class="s2">"vpc_id"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"ID of the VPC"</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"vpc_cidr_block"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR block of the VPC"</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">cidr_block</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"public_subnet_ids"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"IDs of the public subnets"</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">public</span><span class="p">[*].</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"private_subnet_ids"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"IDs of the private subnets"</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">private</span><span class="p">[*].</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"internet_gateway_id"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"ID of the Internet Gateway"</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_internet_gateway</span><span class="p">.</span><span class="nx">main</span><span class="p">.</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="nx">output</span> <span class="s2">"nat_gateway_ids"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"IDs of the NAT Gateways"</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_nat_gateway</span><span class="p">.</span><span class="nx">main</span><span class="p">[*].</span><span class="nx">id</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="보안-그룹-모듈">보안 그룹 모듈</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># modules/security-groups/main.tf</span>
+<span class="c1"># 웹 서버 보안 그룹</span>
+<span class="nx">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"web"</span> <span class="p">{</span>
+  <span class="nx">name_prefix</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-web-"</span>
+  <span class="nx">vpc_id</span>      <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">vpc_id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Security group for web servers"</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span> <span class="o">=</span> <span class="s2">"HTTP"</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">80</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">80</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span> <span class="o">=</span> <span class="s2">"HTTPS"</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">443</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">443</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span>     <span class="o">=</span> <span class="s2">"SSH from management"</span>
+    <span class="nx">from_port</span>       <span class="o">=</span> <span class="mi">22</span>
+    <span class="nx">to_port</span>         <span class="o">=</span> <span class="mi">22</span>
+    <span class="nx">protocol</span>        <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">security_groups</span> <span class="o">=</span> <span class="p">[</span><span class="nx">aws_security_group</span><span class="p">.</span><span class="nx">management</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">egress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"-1"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-web-sg"</span>
+  <span class="p">})</span>
+
+  <span class="nx">lifecycle</span> <span class="p">{</span>
+    <span class="nx">create_before_destroy</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 데이터베이스 보안 그룹</span>
+<span class="nx">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"database"</span> <span class="p">{</span>
+  <span class="nx">name_prefix</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-db-"</span>
+  <span class="nx">vpc_id</span>      <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">vpc_id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Security group for database servers"</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span>     <span class="o">=</span> <span class="s2">"MySQL/MariaDB"</span>
+    <span class="nx">from_port</span>       <span class="o">=</span> <span class="mi">3306</span>
+    <span class="nx">to_port</span>         <span class="o">=</span> <span class="mi">3306</span>
+    <span class="nx">protocol</span>        <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">security_groups</span> <span class="o">=</span> <span class="p">[</span><span class="nx">aws_security_group</span><span class="p">.</span><span class="nx">web</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span>     <span class="o">=</span> <span class="s2">"PostgreSQL"</span>
+    <span class="nx">from_port</span>       <span class="o">=</span> <span class="mi">5432</span>
+    <span class="nx">to_port</span>         <span class="o">=</span> <span class="mi">5432</span>
+    <span class="nx">protocol</span>        <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">security_groups</span> <span class="o">=</span> <span class="p">[</span><span class="nx">aws_security_group</span><span class="p">.</span><span class="nx">web</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-db-sg"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="c1"># 관리 보안 그룹</span>
+<span class="nx">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"management"</span> <span class="p">{</span>
+  <span class="nx">name_prefix</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-mgmt-"</span>
+  <span class="nx">vpc_id</span>      <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">vpc_id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Security group for management access"</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span> <span class="o">=</span> <span class="s2">"SSH"</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">22</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">22</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="nx">var</span><span class="err">.</span><span class="nx">management_cidr_blocks</span>
+  <span class="p">}</span>
+
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">description</span> <span class="o">=</span> <span class="s2">"RDP"</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">3389</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">3389</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="nx">var</span><span class="err">.</span><span class="nx">management_cidr_blocks</span>
+  <span class="p">}</span>
+
+  <span class="nx">egress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"-1"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">var</span><span class="p">.</span><span class="nx">tags</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-mgmt-sg"</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="메인-환경-설정">메인 환경 설정</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># environments/production/main.tf</span>
+<span class="nx">terraform</span> <span class="p">{</span>
+  <span class="nx">required_version</span> <span class="o">=</span> <span class="s2">"&gt;= 1.0"</span>
+  
+  <span class="nx">backend</span> <span class="s2">"s3"</span> <span class="p">{</span>
+    <span class="nx">bucket</span>         <span class="o">=</span> <span class="s2">"company-terraform-state"</span>
+    <span class="nx">key</span>            <span class="o">=</span> <span class="s2">"network/production/terraform.tfstate"</span>
+    <span class="nx">region</span>         <span class="o">=</span> <span class="s2">"us-west-2"</span>
+    <span class="nx">encrypt</span>        <span class="o">=</span> <span class="kc">true</span>
+    <span class="nx">dynamodb_table</span> <span class="o">=</span> <span class="s2">"terraform-locks"</span>
+  <span class="p">}</span>
+
+  <span class="nx">required_providers</span> <span class="p">{</span>
+    <span class="nx">aws</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">source</span>  <span class="o">=</span> <span class="s2">"hashicorp/aws"</span>
+      <span class="nx">version</span> <span class="o">=</span> <span class="s2">"~&gt; 5.0"</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="nx">region</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">aws_region</span>
+  
+  <span class="nx">default_tags</span> <span class="p">{</span>
+    <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">Environment</span>   <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">environment</span>
+      <span class="nx">Project</span>       <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">project_name</span>
+      <span class="nx">ManagedBy</span>     <span class="o">=</span> <span class="s2">"Terraform"</span>
+      <span class="nx">CreatedBy</span>     <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">created_by</span>
+      <span class="nx">CostCenter</span>    <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">cost_center</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 데이터 소스</span>
+<span class="nx">data</span> <span class="s2">"aws_availability_zones"</span> <span class="s2">"available"</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="s2">"available"</span>
+<span class="p">}</span>
+
+<span class="c1"># VPC 모듈 호출</span>
+<span class="nx">module</span> <span class="s2">"vpc"</span> <span class="p">{</span>
+  <span class="nx">source</span> <span class="o">=</span> <span class="s2">"../../modules/vpc"</span>
+
+  <span class="nx">name_prefix</span>        <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">name_prefix</span>
+  <span class="nx">cidr_block</span>         <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">vpc_cidr</span>
+  <span class="nx">public_subnets</span>     <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">public_subnet_cidrs</span>
+  <span class="nx">private_subnets</span>    <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">private_subnet_cidrs</span>
+  <span class="nx">availability_zones</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">aws_availability_zones</span><span class="p">.</span><span class="nx">available</span><span class="p">.</span><span class="nx">names</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="nx">enable_nat_gateway</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">enable_nat_gateway</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">local</span><span class="p">.</span><span class="nx">common_tags</span>
+<span class="p">}</span>
+
+<span class="c1"># 보안 그룹 모듈 호출</span>
+<span class="nx">module</span> <span class="s2">"security_groups"</span> <span class="p">{</span>
+  <span class="nx">source</span> <span class="o">=</span> <span class="s2">"../../modules/security-groups"</span>
+
+  <span class="nx">name_prefix</span>             <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">name_prefix</span>
+  <span class="nx">vpc_id</span>                  <span class="o">=</span> <span class="nx">module</span><span class="p">.</span><span class="nx">vpc</span><span class="p">.</span><span class="nx">vpc_id</span>
+  <span class="nx">management_cidr_blocks</span>  <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">management_cidr_blocks</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="nx">local</span><span class="p">.</span><span class="nx">common_tags</span>
+<span class="p">}</span>
+
+<span class="c1"># 로컬 값</span>
+<span class="nx">locals</span> <span class="p">{</span>
+  <span class="nx">common_tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Environment</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">environment</span>
+    <span class="nx">Project</span>     <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">project_name</span>
+    <span class="nx">ManagedBy</span>   <span class="o">=</span> <span class="s2">"Terraform"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="환경별-변수-파일">환경별 변수 파일</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># environments/production/variables.tf</span>
+<span class="nx">variable</span> <span class="s2">"aws_region"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"AWS region"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="s2">"us-west-2"</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"environment"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Environment name"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="s2">"production"</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"project_name"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Project name"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"name_prefix"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Name prefix for resources"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"vpc_cidr"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR block for VPC"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"public_subnet_cidrs"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR blocks for public subnets"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"private_subnet_cidrs"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR blocks for private subnets"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"enable_nat_gateway"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Enable NAT Gateway"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">bool</span>
+  <span class="nx">default</span>     <span class="o">=</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"management_cidr_blocks"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"CIDR blocks allowed for management access"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">list</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"created_by"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Creator of the infrastructure"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+
+<span class="nx">variable</span> <span class="s2">"cost_center"</span> <span class="p">{</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Cost center for billing"</span>
+  <span class="nx">type</span>        <span class="o">=</span> <span class="nx">string</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="terraform-실행-값">Terraform 실행 값</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># environments/production/terraform.tfvars</span>
+<span class="nx">project_name</span> <span class="o">=</span> <span class="s2">"company-web-app"</span>
+<span class="nx">name_prefix</span>  <span class="o">=</span> <span class="s2">"prod-webapp"</span>
+
+<span class="nx">vpc_cidr</span> <span class="o">=</span> <span class="s2">"10.0.0.0/16"</span>
+
+<span class="nx">public_subnet_cidrs</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"10.0.1.0/24"</span><span class="p">,</span>
+  <span class="s2">"10.0.2.0/24"</span><span class="p">,</span> 
+  <span class="s2">"10.0.3.0/24"</span>
+<span class="p">]</span>
+
+<span class="nx">private_subnet_cidrs</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"10.0.11.0/24"</span><span class="p">,</span>
+  <span class="s2">"10.0.12.0/24"</span><span class="p">,</span>
+  <span class="s2">"10.0.13.0/24"</span>
+<span class="p">]</span>
+
+<span class="nx">enable_nat_gateway</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="nx">management_cidr_blocks</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">"203.0.113.0/24"</span><span class="p">,</span>  <span class="c1"># 회사 사무실</span>
+  <span class="s2">"198.51.100.0/24"</span>  <span class="c1"># VPN 네트워크</span>
+<span class="p">]</span>
+
+<span class="nx">created_by</span>   <span class="o">=</span> <span class="s2">"devops-team"</span>
+<span class="nx">cost_center</span>  <span class="o">=</span> <span class="s2">"engineering"</span>
+</code></pre></div></div>
+
+<h4 id="terraform-실행-및-관리">Terraform 실행 및 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 초기화</span>
+terraform init
+
+<span class="c"># 계획 확인  </span>
+terraform plan <span class="nt">-var-file</span><span class="o">=</span><span class="s2">"terraform.tfvars"</span>
+
+<span class="c"># 적용</span>
+terraform apply <span class="nt">-var-file</span><span class="o">=</span><span class="s2">"terraform.tfvars"</span>
+
+<span class="c"># 상태 확인</span>
+terraform show
+terraform state list
+
+<span class="c"># 리소스 확인</span>
+terraform state show module.vpc.aws_vpc.main
+
+<span class="c"># 출력 값 확인</span>
+terraform output
+
+<span class="c"># 리소스 삭제</span>
+terraform destroy <span class="nt">-var-file</span><span class="o">=</span><span class="s2">"terraform.tfvars"</span>
+
+<span class="c"># 워크스페이스 관리</span>
+terraform workspace new staging
+terraform workspace <span class="k">select </span>production
+terraform workspace list
+</code></pre></div></div>
+
+<h4 id="고급-terraform-기능">고급 Terraform 기능</h4>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 조건부 리소스 생성</span>
+<span class="nx">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"web"</span> <span class="p">{</span>
+  <span class="nx">count</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">environment</span> <span class="o">==</span> <span class="s2">"production"</span> <span class="o">?</span> <span class="mi">3</span> <span class="o">:</span> <span class="mi">1</span>
+  
+  <span class="nx">ami</span>           <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">aws_ami</span><span class="p">.</span><span class="nx">amazon_linux</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">instance_type</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">environment</span> <span class="o">==</span> <span class="s2">"production"</span> <span class="o">?</span> <span class="s2">"t3.medium"</span> <span class="o">:</span> <span class="s2">"t3.micro"</span>
+  
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-web-${count.index + 1}"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 동적 블록</span>
+<span class="nx">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"web"</span> <span class="p">{</span>
+  <span class="nx">name_prefix</span> <span class="o">=</span> <span class="s2">"${var.name_prefix}-web-"</span>
+  <span class="nx">vpc_id</span>      <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">vpc_id</span>
+
+  <span class="nx">dynamic</span> <span class="s2">"ingress"</span> <span class="p">{</span>
+    <span class="nx">for_each</span> <span class="o">=</span> <span class="nx">var</span><span class="p">.</span><span class="nx">ingress_rules</span>
+    <span class="nx">content</span> <span class="p">{</span>
+      <span class="nx">from_port</span>   <span class="o">=</span> <span class="nx">ingress</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">from_port</span>
+      <span class="nx">to_port</span>     <span class="o">=</span> <span class="nx">ingress</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">to_port</span>
+      <span class="nx">protocol</span>    <span class="o">=</span> <span class="nx">ingress</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">protocol</span>
+      <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="nx">ingress</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">cidr_blocks</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 데이터 소스 활용</span>
+<span class="nx">data</span> <span class="s2">"aws_ami"</span> <span class="s2">"amazon_linux"</span> <span class="p">{</span>
+  <span class="nx">most_recent</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">owners</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">"amazon"</span><span class="p">]</span>
+
+  <span class="nx">filter</span> <span class="p">{</span>
+    <span class="nx">name</span>   <span class="o">=</span> <span class="s2">"name"</span>
+    <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"amzn2-ami-hvm-*-x86_64-gp2"</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># 원격 상태 참조</span>
+<span class="nx">data</span> <span class="s2">"terraform_remote_state"</span> <span class="s2">"vpc"</span> <span class="p">{</span>
+  <span class="nx">backend</span> <span class="o">=</span> <span class="s2">"s3"</span>
+  <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">bucket</span> <span class="o">=</span> <span class="s2">"company-terraform-state"</span>
+    <span class="nx">key</span>    <span class="o">=</span> <span class="s2">"network/production/terraform.tfstate"</span>
+    <span class="nx">region</span> <span class="o">=</span> <span class="s2">"us-west-2"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-4-단일-장애-지점-제거--eliminating-single-points-of-failure">2-4 단일 장애 지점 제거 | Eliminating Single Points of Failure</h2>
+
+<h3 id="2-4-1-spof-찾기--identifying-spof">2-4-1 SPOF 찾기 | Identifying SPOF</h3>
+
+<p>단일 장애 지점(SPOF)은 시스템의 한 구성 요소가 실패할 때 전체 시스템이 작동을 멈추게 되는 지점을 말합니다. 네트워크 인프라에서 SPOF를 식별하고 제거하는 것은 고가용성 확보의 핵심입니다.</p>
+
+<h4 id="-spof-식별-방법론">🔍 SPOF 식별 방법론</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SPOF 분석 체크리스트</span>
+1. 네트워크 토폴로지 분석
+   - 단일 연결점 확인
+   - 백업 경로 존재 여부
+   - 대역폭 병목 지점
+
+2. 하드웨어 구성 요소 점검
+   - 단일 스위치/라우터 의존성
+   - 전원 공급 장치
+   - 케이블링 경로
+
+3. 서비스 의존성 분석
+   - DNS 서버
+   - DHCP 서버  
+   - 인증 서버 <span class="o">(</span>RADIUS/LDAP<span class="o">)</span>
+
+4. 외부 연결 검토
+   - ISP 연결
+   - WAN 회선
+   - 클라우드 연결
+</code></pre></div></div>
+
+<h4 id="네트워크-토폴로지-spof-분석">네트워크 토폴로지 SPOF 분석</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 현재 네트워크 상태 확인</span>
+<span class="c"># Linux 환경에서 네트워크 경로 분석</span>
+ip route show table main
+traceroute <span class="nt">-n</span> 8.8.8.8
+mtr <span class="nt">--report</span> <span class="nt">--report-cycles</span><span class="o">=</span>100 google.com
+
+<span class="c"># 라우팅 테이블 분석</span>
+netstat <span class="nt">-rn</span>
+route <span class="nt">-n</span>
+
+<span class="c"># 인터페이스 상태 확인</span>
+ip <span class="nb">link </span>show
+ip addr show
+ethtool eth0  <span class="c"># 링크 상태, 속도 확인</span>
+
+<span class="c"># Cisco 장비에서 SPOF 분석</span>
+show ip route
+show interface summary  
+show spanning-tree root
+show etherchannel summary
+show redundancy
+
+<span class="c"># 대역폭 사용률 모니터링</span>
+show interface fastethernet 0/1 | include rate
+show processes cpu sorted
+show memory summary
+</code></pre></div></div>
+
+<h4 id="일반적인-네트워크-spof-패턴">일반적인 네트워크 SPOF 패턴</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. 단일 업링크 (Single Uplink)</span>
+문제: 하나의 업스트림 연결만 존재
+영향: 해당 연결 실패 시 전체 네트워크 단절
+해결: 이중 업링크 + 로드밸런싱
+
+<span class="c"># 2. 단일 코어 스위치 (Single Core Switch)  </span>
+문제: 모든 액세스 스위치가 하나의 코어에 연결
+영향: 코어 스위치 실패 시 전체 네트워크 마비
+해결: 이중 코어 스위치 + HSRP/VRRP
+
+<span class="c"># 3. 단일 VLAN (Single VLAN)</span>
+문제: 브로드캐스트 도메인 과부하
+영향: 네트워크 성능 저하, 장애 전파
+해결: VLAN 분할 + Inter-VLAN 라우팅
+
+<span class="c"># 4. 단일 ISP (Single ISP)</span>
+문제: 하나의 인터넷 서비스 제공업체
+영향: ISP 장애 시 인터넷 연결 불가
+해결: 멀티 ISP + BGP 라우팅
+</code></pre></div></div>
+
+<h4 id="spof-탐지-도구와-스크립트">SPOF 탐지 도구와 스크립트</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3
+# spof_detector.py - 네트워크 SPOF 탐지 도구
+</span>
+<span class="kn">import</span> <span class="n">subprocess</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="n">networkx</span> <span class="k">as</span> <span class="n">nx</span>
+
+<span class="k">class</span> <span class="nc">SPOFDetector</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">network_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nc">Graph</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">devices</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">links</span> <span class="o">=</span> <span class="p">{}</span>
+        
+    <span class="k">def</span> <span class="nf">scan_network_topology</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">network_range</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">네트워크 토폴로지 스캔</span><span class="sh">"""</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Scanning network range: </span><span class="si">{</span><span class="n">network_range</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="c1"># SNMP을 통한 네트워크 디스커버리
+</span>        <span class="n">devices</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">discover_devices</span><span class="p">(</span><span class="n">network_range</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">analyze_device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">identify_spof</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">discover_devices</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">network_range</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">SNMP를 통한 네트워크 장비 발견</span><span class="sh">"""</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">nmap -sn </span><span class="si">{</span><span class="n">network_range</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">.</span><span class="nf">split</span><span class="p">(),</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        
+        <span class="n">devices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">):</span>
+            <span class="k">if</span> <span class="sh">'</span><span class="s">Nmap scan report</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">ip</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">devices</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">devices</span>
+    
+    <span class="k">def</span> <span class="nf">analyze_device</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">device_ip</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">개별 장비 분석</span><span class="sh">"""</span>
+        <span class="n">device_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">device_ip</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">detect_device_type</span><span class="p">(</span><span class="n">device_ip</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">interfaces</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">get_interfaces</span><span class="p">(</span><span class="n">device_ip</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">neighbors</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">get_neighbors</span><span class="p">(</span><span class="n">device_ip</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">redundancy</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">check_redundancy</span><span class="p">(</span><span class="n">device_ip</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="n">self</span><span class="p">.</span><span class="n">devices</span><span class="p">[</span><span class="n">device_ip</span><span class="p">]</span> <span class="o">=</span> <span class="n">device_info</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">network_graph</span><span class="p">.</span><span class="nf">add_node</span><span class="p">(</span><span class="n">device_ip</span><span class="p">,</span> <span class="o">**</span><span class="n">device_info</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">detect_device_type</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">device_ip</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">장비 유형 감지 (라우터/스위치/방화벽)</span><span class="sh">"""</span>
+        <span class="c1"># SNMP OID를 통한 장비 유형 확인
+</span>        <span class="n">snmp_cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">snmpget -v2c -c public </span><span class="si">{</span><span class="n">device_ip</span><span class="si">}</span><span class="s"> 1.3.6.1.2.1.1.1.0</span><span class="sh">"</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">snmp_cmd</span><span class="p">.</span><span class="nf">split</span><span class="p">(),</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="sh">'</span><span class="s">cisco</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="nf">lower</span><span class="p">():</span>
+            <span class="k">if</span> <span class="sh">'</span><span class="s">router</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="nf">lower</span><span class="p">():</span>
+                <span class="k">return</span> <span class="sh">'</span><span class="s">router</span><span class="sh">'</span>
+            <span class="k">elif</span> <span class="sh">'</span><span class="s">switch</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="nf">lower</span><span class="p">():</span>
+                <span class="k">return</span> <span class="sh">'</span><span class="s">switch</span><span class="sh">'</span>
+        
+        <span class="k">return</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+    
+    <span class="k">def</span> <span class="nf">get_interfaces</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">device_ip</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">인터페이스 정보 수집</span><span class="sh">"""</span>
+        <span class="c1"># SNMP를 통한 인터페이스 상태 확인
+</span>        <span class="n">interfaces</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># 인터페이스 이름 (1.3.6.1.2.1.2.2.1.2)
+</span>        <span class="c1"># 인터페이스 상태 (1.3.6.1.2.1.2.2.1.8)
+</span>        <span class="c1"># 인터페이스 속도 (1.3.6.1.2.1.2.2.1.5)
+</span>        
+        <span class="k">return</span> <span class="n">interfaces</span>
+    
+    <span class="k">def</span> <span class="nf">get_neighbors</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">device_ip</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">인접 장비 정보 수집 (CDP/LLDP)</span><span class="sh">"""</span>
+        <span class="n">neighbors</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># CDP 정보 수집 (1.3.6.1.4.1.9.9.23.1.2.1.1.6)
+</span>        <span class="c1"># LLDP 정보 수집 (1.0.8802.1.1.2.1.4.1.1.9)
+</span>        
+        <span class="k">return</span> <span class="n">neighbors</span>
+    
+    <span class="k">def</span> <span class="nf">check_redundancy</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">device_ip</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">이중화 구성 확인</span><span class="sh">"""</span>
+        <span class="n">redundancy_info</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">power_supplies</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">check_power_supplies</span><span class="p">(</span><span class="n">device_ip</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">uplinks</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">check_uplinks</span><span class="p">(</span><span class="n">device_ip</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">protocols</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">check_redundancy_protocols</span><span class="p">(</span><span class="n">device_ip</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">redundancy_info</span>
+    
+    <span class="k">def</span> <span class="nf">identify_spof</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">SPOF 식별</span><span class="sh">"""</span>
+        <span class="n">spof_list</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># 1. 연결성 분석 - 단일 연결점 찾기
+</span>        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">network_graph</span><span class="p">.</span><span class="nf">nodes</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">network_graph</span><span class="p">.</span><span class="nf">degree</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">spof_list</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">single_connection</span><span class="sh">'</span><span class="p">,</span>
+                    <span class="sh">'</span><span class="s">device</span><span class="sh">'</span><span class="p">:</span> <span class="n">node</span><span class="p">,</span>
+                    <span class="sh">'</span><span class="s">risk</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">high</span><span class="sh">'</span><span class="p">,</span>
+                    <span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">:</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Device </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s"> has only one connection</span><span class="sh">'</span>
+                <span class="p">})</span>
+        
+        <span class="c1"># 2. 브리지 포인트 분석
+</span>        <span class="n">bridges</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="nf">bridges</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">network_graph</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">bridge</span> <span class="ow">in</span> <span class="n">bridges</span><span class="p">:</span>
+            <span class="n">spof_list</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                <span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">bridge_link</span><span class="sh">'</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">link</span><span class="sh">'</span><span class="p">:</span> <span class="n">bridge</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">risk</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">critical</span><span class="sh">'</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">:</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Link between </span><span class="si">{</span><span class="n">bridge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> and </span><span class="si">{</span><span class="n">bridge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s"> is critical</span><span class="sh">'</span>
+            <span class="p">})</span>
+        
+        <span class="c1"># 3. 절단점 분석 (Articulation Points)
+</span>        <span class="n">articulation_points</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">nx</span><span class="p">.</span><span class="nf">articulation_points</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">network_graph</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">articulation_points</span><span class="p">:</span>
+            <span class="n">spof_list</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                <span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">articulation_point</span><span class="sh">'</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">device</span><span class="sh">'</span><span class="p">:</span> <span class="n">point</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">risk</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">critical</span><span class="sh">'</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">:</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Device </span><span class="si">{</span><span class="n">point</span><span class="si">}</span><span class="s"> is a critical junction point</span><span class="sh">'</span>
+            <span class="p">})</span>
+        
+        <span class="k">return</span> <span class="n">spof_list</span>
+    
+    <span class="k">def</span> <span class="nf">generate_report</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">spof_list</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">SPOF 분석 보고서 생성</span><span class="sh">"""</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">'</span><span class="s">date</span><span class="sh">'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">stdout</span><span class="p">.</span><span class="nf">strip</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">total_devices</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">devices</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">total_spof_issues</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">spof_list</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">critical_issues</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spof_list</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="sh">'</span><span class="s">risk</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">critical</span><span class="sh">'</span><span class="p">]),</span>
+            <span class="sh">'</span><span class="s">high_issues</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spof_list</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="sh">'</span><span class="s">risk</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">high</span><span class="sh">'</span><span class="p">]),</span>
+            <span class="sh">'</span><span class="s">spof_details</span><span class="sh">'</span><span class="p">:</span> <span class="n">spof_list</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">recommendations</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">generate_recommendations</span><span class="p">(</span><span class="n">spof_list</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="n">report</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Usage: python3 spof_detector.py &lt;network_range&gt;</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Example: python3 spof_detector.py 192.168.1.0/24</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">network_range</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">detector</span> <span class="o">=</span> <span class="nc">SPOFDetector</span><span class="p">()</span>
+    
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Starting SPOF detection...</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">spof_list</span> <span class="o">=</span> <span class="n">detector</span><span class="p">.</span><span class="nf">scan_network_topology</span><span class="p">(</span><span class="n">network_range</span><span class="p">)</span>
+    
+    <span class="n">report</span> <span class="o">=</span> <span class="n">detector</span><span class="p">.</span><span class="nf">generate_report</span><span class="p">(</span><span class="n">spof_list</span><span class="p">)</span>
+    
+    <span class="c1"># JSON 형태로 결과 출력
+</span>    <span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="c1"># 요약 출력
+</span>    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">=== SPOF Detection Summary ===</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Total devices scanned: </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">total_devices</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">SPOF issues found: </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">total_spof_issues</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Critical issues: </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">critical_issues</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">High risk issues: </span><span class="si">{</span><span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">high_issues</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="ansible을-이용한-spof-점검-자동화">Ansible을 이용한 SPOF 점검 자동화</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="c1"># spof_check.yml - SPOF 점검 플레이북</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Network SPOF Assessment</span>
+  <span class="na">hosts</span><span class="pi">:</span> <span class="s">network_devices</span>
+  <span class="na">gather_facts</span><span class="pi">:</span> <span class="s">no</span>
+  <span class="na">vars</span><span class="pi">:</span>
+    <span class="na">spof_report</span><span class="pi">:</span> <span class="pi">[]</span>
+    
+  <span class="na">tasks</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check device redundancy status</span>
+      <span class="na">ios_command</span><span class="pi">:</span>
+        <span class="na">commands</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">show redundancy</span>
+          <span class="pi">-</span> <span class="s">show environment power</span>
+          <span class="pi">-</span> <span class="s">show interface summary</span>
+          <span class="pi">-</span> <span class="s">show spanning-tree root</span>
+          <span class="pi">-</span> <span class="s">show etherchannel summary</span>
+      <span class="na">register</span><span class="pi">:</span> <span class="s">device_status</span>
+      
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Analyze redundancy configuration</span>
+      <span class="na">set_fact</span><span class="pi">:</span>
+        <span class="na">redundancy_analysis</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check for single uplinks</span>
+      <span class="na">ios_command</span><span class="pi">:</span>
+        <span class="na">commands</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">show cdp neighbors</span>
+          <span class="pi">-</span> <span class="s">show interface trunk</span>
+      <span class="na">register</span><span class="pi">:</span> <span class="s">uplink_status</span>
+      
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Identify SPOF risks</span>
+      <span class="na">set_fact</span><span class="pi">:</span>
+        <span class="na">spof_risks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">loop</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">Single</span><span class="nv"> </span><span class="s">uplink</span><span class="nv"> </span><span class="s">detected"</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">No</span><span class="nv"> </span><span class="s">redundant</span><span class="nv"> </span><span class="s">power"</span>
+        <span class="pi">-</span> <span class="s2">"</span><span class="s">No</span><span class="nv"> </span><span class="s">EtherChannel"</span>
+      <span class="na">vars</span><span class="pi">:</span>
+        <span class="na">uplink_count</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        <span class="na">power_supplies</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        <span class="na">etherchannel_count</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Generate SPOF report</span>
+      <span class="na">template</span><span class="pi">:</span>
+        <span class="na">src</span><span class="pi">:</span> <span class="s">spof_report.j2</span>
+        <span class="na">dest</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/tmp/spof_report_.html"</span>
+      <span class="na">vars</span><span class="pi">:</span>
+        <span class="na">device_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        <span class="na">check_date</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Send SPOF alert if critical issues found</span>
+      <span class="na">mail</span><span class="pi">:</span>
+        <span class="na">to</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+        <span class="na">subject</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CRITICAL:</span><span class="nv"> </span><span class="s">SPOF</span><span class="nv"> </span><span class="s">detected</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">"</span>
+        <span class="na">body</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Critical</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">points</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">failure</span><span class="nv"> </span><span class="s">detected.</span><span class="nv"> </span><span class="s">See</span><span class="nv"> </span><span class="s">attached</span><span class="nv"> </span><span class="s">report."</span>
+        <span class="na">attach</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/tmp/spof_report_.html"</span>
+      <span class="na">when</span><span class="pi">:</span> <span class="s2">"</span><span class="s">'Single</span><span class="nv"> </span><span class="s">uplink</span><span class="nv"> </span><span class="s">detected'</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">spof_risks</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">'No</span><span class="nv"> </span><span class="s">redundant</span><span class="nv"> </span><span class="s">power'</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">spof_risks"</span>
+</code></pre></div></div>
+
+<h4 id="네트워크-토폴로지-시각화">네트워크 토폴로지 시각화</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Graphviz를 이용한 네트워크 토폴로지 생성</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># generate_network_topology.sh</span>
+
+<span class="c"># SNMP를 통한 네트워크 맵 생성</span>
+generate_dot_file<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"digraph network {"</span> <span class="o">&gt;</span> network.dot
+    <span class="nb">echo</span> <span class="s2">"  rankdir=TB;"</span> <span class="o">&gt;&gt;</span> network.dot
+    <span class="nb">echo</span> <span class="s2">"  node [shape=box];"</span> <span class="o">&gt;&gt;</span> network.dot
+    
+    <span class="c"># 각 장비 정보 수집</span>
+    <span class="k">for </span>ip <span class="k">in</span> <span class="si">$(</span>nmap <span class="nt">-sn</span> 192.168.1.0/24 | <span class="nb">grep</span> <span class="s2">"Nmap scan report"</span> | <span class="nb">awk</span> <span class="s1">'{print $5}'</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+        </span><span class="nv">device_name</span><span class="o">=</span><span class="si">$(</span>snmpget <span class="nt">-v2c</span> <span class="nt">-c</span> public <span class="nv">$ip</span> 1.3.6.1.2.1.1.5.0 2&gt;/dev/null | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">'"'</span> <span class="nt">-f2</span><span class="si">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$device_name</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="nv">$device_name</span><span class="se">\"</span><span class="s2"> [label=</span><span class="se">\"</span><span class="nv">$device_name</span><span class="se">\\</span><span class="s2">n</span><span class="nv">$ip</span><span class="se">\"</span><span class="s2">];"</span> <span class="o">&gt;&gt;</span> network.dot
+            
+            <span class="c"># CDP 정보로 연결 관계 확인</span>
+            <span class="nv">cdp_neighbors</span><span class="o">=</span><span class="si">$(</span>snmpwalk <span class="nt">-v2c</span> <span class="nt">-c</span> public <span class="nv">$ip</span> 1.3.6.1.4.1.9.9.23.1.2.1.1.6 2&gt;/dev/null<span class="si">)</span>
+            <span class="k">while </span><span class="nb">read</span> <span class="nt">-r</span> neighbor<span class="p">;</span> <span class="k">do
+                </span><span class="nv">neighbor_name</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$neighbor</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">'"'</span> <span class="nt">-f2</span><span class="si">)</span>
+                <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$neighbor_name</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+                    </span><span class="nb">echo</span> <span class="s2">"  </span><span class="se">\"</span><span class="nv">$device_name</span><span class="se">\"</span><span class="s2"> -&gt; </span><span class="se">\"</span><span class="nv">$neighbor_name</span><span class="se">\"</span><span class="s2">;"</span> <span class="o">&gt;&gt;</span> network.dot
+                <span class="k">fi
+            done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">"</span><span class="nv">$cdp_neighbors</span><span class="s2">"</span>
+        <span class="k">fi
+    done
+    
+    </span><span class="nb">echo</span> <span class="s2">"}"</span> <span class="o">&gt;&gt;</span> network.dot
+<span class="o">}</span>
+
+<span class="c"># DOT 파일을 이미지로 변환</span>
+generate_dot_file
+dot <span class="nt">-Tpng</span> network.dot <span class="nt">-o</span> network_topology.png
+dot <span class="nt">-Tsvg</span> network.dot <span class="nt">-o</span> network_topology.svg
+
+<span class="nb">echo</span> <span class="s2">"Network topology generated: network_topology.png"</span>
+
+<span class="c"># SPOF 하이라이트 버전 생성</span>
+<span class="nb">sed</span> <span class="s1">'s/node \[shape=box\];/node [shape=box]; edge [color=red, penwidth=3];/'</span> network.dot <span class="o">&gt;</span> network_spof.dot
+dot <span class="nt">-Tpng</span> network_spof.dot <span class="nt">-o</span> network_spof.png
+
+<span class="nb">echo</span> <span class="s2">"SPOF highlighted topology: network_spof.png"</span>
+</code></pre></div></div>
+
+<h4 id="실시간-spof-모니터링">실시간 SPOF 모니터링</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># spof_monitor.py - 실시간 SPOF 모니터링
+</span><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">threading</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">start_http_server</span><span class="p">,</span> <span class="n">Gauge</span><span class="p">,</span> <span class="n">Counter</span>
+
+<span class="k">class</span> <span class="nc">SPOFMonitor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">spof_gauge</span> <span class="o">=</span> <span class="nc">Gauge</span><span class="p">(</span><span class="sh">'</span><span class="s">network_spof_count</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Number of detected SPOFs</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">link_status_gauge</span> <span class="o">=</span> <span class="nc">Gauge</span><span class="p">(</span><span class="sh">'</span><span class="s">network_link_status</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Link status</span><span class="sh">'</span><span class="p">,</span> <span class="p">[</span><span class="sh">'</span><span class="s">device</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">interface</span><span class="sh">'</span><span class="p">])</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">spof_alert_counter</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">(</span><span class="sh">'</span><span class="s">network_spof_alerts_total</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Total SPOF alerts</span><span class="sh">'</span><span class="p">)</span>
+        
+        <span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">monitor_links</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">링크 상태 모니터링</span><span class="sh">"""</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">devices</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">get_monitored_devices</span><span class="p">()</span>
+                
+                <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+                    <span class="n">interfaces</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">get_device_interfaces</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                    
+                    <span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="n">interfaces</span><span class="p">:</span>
+                        <span class="n">status</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">check_interface_status</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">interface</span><span class="p">)</span>
+                        <span class="n">self</span><span class="p">.</span><span class="n">link_status_gauge</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span>
+                            <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">],</span> 
+                            <span class="n">interface</span><span class="o">=</span><span class="n">interface</span>
+                        <span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="sh">'</span><span class="s">up</span><span class="sh">'</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+                        
+                        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="sh">'</span><span class="s">down</span><span class="sh">'</span><span class="p">:</span>
+                            <span class="n">self</span><span class="p">.</span><span class="nf">check_spof_impact</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">interface</span><span class="p">)</span>
+                
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># 30초마다 체크
+</span>                
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Monitoring error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">check_spof_impact</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">failed_interface</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">장애 발생 시 SPOF 영향 분석</span><span class="sh">"""</span>
+        <span class="n">remaining_paths</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">calculate_remaining_paths</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">failed_interface</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">remaining_paths</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">SPOF ALERT: </span><span class="si">{</span><span class="n">device</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">failed_interface</span><span class="si">}</span><span class="s"> failure causes network partition</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">spof_alert_counter</span><span class="p">.</span><span class="nf">inc</span><span class="p">()</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">send_alert</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">failed_interface</span><span class="p">,</span> <span class="sh">'</span><span class="s">SPOF_CRITICAL</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">remaining_paths</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">SPOF WARNING: </span><span class="si">{</span><span class="n">device</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">failed_interface</span><span class="si">}</span><span class="s"> creates single path</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">send_alert</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">failed_interface</span><span class="p">,</span> <span class="sh">'</span><span class="s">SPOF_WARNING</span><span class="sh">'</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">start_monitoring</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">모니터링 시작</span><span class="sh">"""</span>
+        <span class="c1"># Prometheus 메트릭 서버 시작
+</span>        <span class="nf">start_http_server</span><span class="p">(</span><span class="mi">8000</span><span class="p">)</span>
+        
+        <span class="c1"># 링크 모니터링 쓰레드 시작
+</span>        <span class="n">monitor_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">monitor_links</span><span class="p">)</span>
+        <span class="n">monitor_thread</span><span class="p">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">monitor_thread</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+        
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">SPOF monitoring started on port 8000</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="c1"># 메인 루프
+</span>        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Monitoring stopped</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">monitor</span> <span class="o">=</span> <span class="nc">SPOFMonitor</span><span class="p">()</span>
+    <span class="n">monitor</span><span class="p">.</span><span class="nf">start_monitoring</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="spof-제거-우선순위-매트릭스">SPOF 제거 우선순위 매트릭스</h4>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SPOF 위험도 평가 매트릭스</span>
+위험도 <span class="o">=</span> <span class="o">(</span>영향도 × 발생가능성<span class="o">)</span> / 대응시간
+
+영향도 점수:
+- 전체 네트워크 단절: 10
+- 부분 네트워크 단절: 7  
+- 성능 저하: 4
+- 일부 서비스 영향: 2
+
+발생가능성 점수:
+- 매우 높음 <span class="o">(</span>월 1회 이상<span class="o">)</span>: 10
+- 높음 <span class="o">(</span>분기 1회<span class="o">)</span>: 7
+- 보통 <span class="o">(</span>연 2-3회<span class="o">)</span>: 4  
+- 낮음 <span class="o">(</span>연 1회 이하<span class="o">)</span>: 2
+
+대응시간 점수:
+- 4시간 이상: 1
+- 2-4시간: 2
+- 1-2시간: 4
+- 1시간 이하: 7
+
+<span class="c"># 우선순위 결정</span>
+우선순위 1 <span class="o">(</span>즉시<span class="o">)</span>: 위험도 <span class="o">&gt;</span> 35
+우선순위 2 <span class="o">(</span>1개월<span class="o">)</span>: 위험도 20-35
+우선순위 3 <span class="o">(</span>3개월<span class="o">)</span>: 위험도 10-20  
+우선순위 4 <span class="o">(</span>1년<span class="o">)</span>: 위험도 &lt; 10
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/10/26/linux-security-guide-part1.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">리눅스 보안 완전 가이드 1편 - 기초 보안 설정 | Linux Security Gu...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/11/04/deployment-strategies-guide.html" rel="next">
+          <span class="nav-title">배포 전략 완전 가이드 | Complete Deployment Strategies G...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

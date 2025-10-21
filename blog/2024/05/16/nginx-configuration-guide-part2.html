@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>Nginx 설정 가이드 Part 2 - Virtual Host, 로드 밸런싱, SSL/TLS</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">Nginx 설정 가이드 Part 2 - Virtual Host, 로드 밸런싱, SSL/TLS</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-05-16T00:00:00+00:00">May 16, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Infrastructure</li><li>Nginx</li><li>Configuration</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <h1 id="nginx-설정-가이드-part-2---virtual-host-로드-밸런싱-ssltls">Nginx 설정 가이드 Part 2 - Virtual Host, 로드 밸런싱, SSL/TLS</h1>
+
+<p>이번 포스트에서는 Nginx의 고급 설정 기능들을 다루겠습니다. Virtual Host 설정부터 로드 밸런싱, SSL/TLS 보안 설정까지 실무에서 필요한 핵심 기능들을 학습합니다.</p>
+
+<!--more-->
+
+<h2 id="목차">목차</h2>
+<ol>
+  <li><a href="#virtual-host-설정">Virtual Host 설정</a></li>
+  <li><a href="#로드-밸런싱">로드 밸런싱</a></li>
+  <li><a href="#업스트림-서버-설정">업스트림 서버 설정</a></li>
+  <li><a href="#ssltls-설정">SSL/TLS 설정</a></li>
+  <li><a href="#http2-설정">HTTP/2 설정</a></li>
+  <li><a href="#실습-예제">실습 예제</a></li>
+</ol>
+
+<h2 id="virtual-host-설정">Virtual Host 설정</h2>
+
+<p>Virtual Host는 하나의 서버에서 여러 웹사이트를 호스팅할 수 있게 해주는 기능입니다.</p>
+
+<h3 id="이름-기반-virtual-host">이름 기반 Virtual Host</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /etc/nginx/sites-available/site1.com</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">site1.com</span> <span class="s">www.site1.com</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/site1</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.php</span><span class="p">;</span>
+    
+    <span class="kn">access_log</span> <span class="n">/var/log/nginx/site1.access.log</span><span class="p">;</span>
+    <span class="kn">error_log</span> <span class="n">/var/log/nginx/site1.error.log</span><span class="p">;</span>
+    
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="n">/index.php?</span><span class="nv">$query_string</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># /etc/nginx/sites-available/site2.com</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">site2.com</span> <span class="s">www.site2.com</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/site2</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.php</span><span class="p">;</span>
+    
+    <span class="kn">access_log</span> <span class="n">/var/log/nginx/site2.access.log</span><span class="p">;</span>
+    <span class="kn">error_log</span> <span class="n">/var/log/nginx/site2.error.log</span><span class="p">;</span>
+    
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="n">/index.php?</span><span class="nv">$query_string</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="ip-기반-virtual-host">IP 기반 Virtual Host</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 첫 번째 IP</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="nf">192.168.1.10</span><span class="p">:</span><span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/site1</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1"># 두 번째 IP</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="nf">192.168.1.11</span><span class="p">:</span><span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/site2</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="포트-기반-virtual-host">포트 기반 Virtual Host</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 8080 포트</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/app1</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1"># 8081 포트</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">8081</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/app2</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="와일드카드-서버-네임">와일드카드 서버 네임</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">*.example.com</span><span class="p">;</span>
+    <span class="kn">root</span> <span class="n">/var/www/subdomains</span><span class="p">;</span>
+    
+    <span class="c1"># 서브도메인에 따른 동적 루트 설정</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">set</span> <span class="nv">$subdomain</span> <span class="s">""</span><span class="p">;</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$host</span> <span class="p">~</span><span class="sr">*</span> <span class="s">"^([^.]+)</span><span class="err">\</span><span class="s">.example</span><span class="err">\</span><span class="s">.com</span>$<span class="s">")</span> <span class="p">{</span>
+            <span class="kn">set</span> <span class="nv">$subdomain</span> <span class="nv">$1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kn">root</span> <span class="n">/var/www/subdomains/</span><span class="nv">$subdomain</span><span class="p">;</span>
+        <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="n">/index.html</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="로드-밸런싱">로드 밸런싱</h2>
+
+<p>Nginx는 여러 백엔드 서버로 트래픽을 분산하는 로드 밸런싱 기능을 제공합니다.</p>
+
+<h3 id="기본-로드-밸런싱">기본 로드 밸런싱</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 업스트림 정의</span>
+<span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="nf">192.168.1.100</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">192.168.1.101</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">192.168.1.102</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+    
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://backend</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="로드-밸런싱-알고리즘">로드 밸런싱 알고리즘</h3>
+
+<h4 id="round-robin-기본값">Round Robin (기본값)</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="s">server1.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server2.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server3.example.com</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="least-connections">Least Connections</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">least_conn</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server1.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server2.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server3.example.com</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="ip-hash">IP Hash</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">ip_hash</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server1.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server2.example.com</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server3.example.com</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="가중치-기반">가중치 기반</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="s">server1.example.com</span> <span class="s">weight=3</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server2.example.com</span> <span class="s">weight=2</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server3.example.com</span> <span class="s">weight=1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="서버-상태-제어">서버 상태 제어</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="s">server1.example.com</span> <span class="s">weight=5</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server2.example.com</span> <span class="s">weight=2</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="s">server3.example.com</span> <span class="s">backup</span><span class="p">;</span>        <span class="c1"># 백업 서버</span>
+    <span class="kn">server</span> <span class="s">server4.example.com</span> <span class="s">down</span><span class="p">;</span>          <span class="c1"># 일시적 비활성화</span>
+    <span class="kn">server</span> <span class="s">server5.example.com</span> <span class="s">max_fails=3</span> <span class="s">fail_timeout=30s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="업스트림-서버-설정">업스트림 서버 설정</h2>
+
+<h3 id="헬스-체크-설정">헬스 체크 설정</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="nf">backend1.example.com</span><span class="p">:</span><span class="mi">8080</span> <span class="s">max_fails=2</span> <span class="s">fail_timeout=30s</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">backend2.example.com</span><span class="p">:</span><span class="mi">8080</span> <span class="s">max_fails=2</span> <span class="s">fail_timeout=30s</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">backend3.example.com</span><span class="p">:</span><span class="mi">8080</span> <span class="s">backup</span><span class="p">;</span>
+    
+    <span class="c1"># 연결 유지</span>
+    <span class="kn">keepalive</span> <span class="mi">32</span><span class="p">;</span>
+    <span class="kn">keepalive_requests</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="kn">keepalive_timeout</span> <span class="s">60s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">api.example.com</span><span class="p">;</span>
+    
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://backend</span><span class="p">;</span>
+        
+        <span class="c1"># 프록시 헤더</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+        
+        <span class="c1"># 타임아웃 설정</span>
+        <span class="kn">proxy_connect_timeout</span> <span class="s">5s</span><span class="p">;</span>
+        <span class="kn">proxy_send_timeout</span> <span class="s">60s</span><span class="p">;</span>
+        <span class="kn">proxy_read_timeout</span> <span class="s">60s</span><span class="p">;</span>
+        
+        <span class="c1"># 버퍼링 설정</span>
+        <span class="kn">proxy_buffering</span> <span class="no">on</span><span class="p">;</span>
+        <span class="kn">proxy_buffer_size</span> <span class="mi">4k</span><span class="p">;</span>
+        <span class="kn">proxy_buffers</span> <span class="mi">8</span> <span class="mi">4k</span><span class="p">;</span>
+        
+        <span class="c1"># 연결 유지</span>
+        <span class="kn">proxy_http_version</span> <span class="mf">1.1</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">""</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="세션-지속성-sticky-sessions">세션 지속성 (Sticky Sessions)</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># IP 해시 방식</span>
+<span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">ip_hash</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">backend1.example.com</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">backend2.example.com</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1"># 쿠키 기반 (nginx-plus)</span>
+<span class="k">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">sticky</span> <span class="s">cookie</span> <span class="s">srv_id</span> <span class="s">expires=1h</span> <span class="s">domain=.example.com</span> <span class="s">path=/</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">backend1.example.com</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">backend2.example.com</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="ssltls-설정">SSL/TLS 설정</h2>
+
+<h3 id="기본-ssl-설정">기본 SSL 설정</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="s">[::]:443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span> <span class="s">www.example.com</span><span class="p">;</span>
+    
+    <span class="c1"># SSL 인증서</span>
+    <span class="kn">ssl_certificate</span> <span class="n">/etc/ssl/certs/example.com.crt</span><span class="p">;</span>
+    <span class="kn">ssl_certificate_key</span> <span class="n">/etc/ssl/private/example.com.key</span><span class="p">;</span>
+    
+    <span class="c1"># SSL 설정</span>
+    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">off</span><span class="p">;</span>
+    <span class="kn">ssl_ciphers</span> <span class="s">ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384</span><span class="p">;</span>
+    
+    <span class="c1"># SSL 세션 캐시</span>
+    <span class="kn">ssl_session_cache</span> <span class="s">shared:SSL:10m</span><span class="p">;</span>
+    <span class="kn">ssl_session_timeout</span> <span class="mi">10m</span><span class="p">;</span>
+    <span class="kn">ssl_session_tickets</span> <span class="no">off</span><span class="p">;</span>
+    
+    <span class="c1"># OCSP Stapling</span>
+    <span class="kn">ssl_stapling</span> <span class="no">on</span><span class="p">;</span>
+    <span class="kn">ssl_stapling_verify</span> <span class="no">on</span><span class="p">;</span>
+    <span class="kn">ssl_trusted_certificate</span> <span class="n">/etc/ssl/certs/ca-certificates.crt</span><span class="p">;</span>
+    
+    <span class="c1"># 보안 헤더</span>
+    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">"max-age=63072000"</span> <span class="s">always</span><span class="p">;</span>
+    <span class="kn">add_header</span> <span class="s">X-Frame-Options</span> <span class="s">DENY</span> <span class="s">always</span><span class="p">;</span>
+    <span class="kn">add_header</span> <span class="s">X-Content-Type-Options</span> <span class="s">nosniff</span> <span class="s">always</span><span class="p">;</span>
+    
+    <span class="kn">root</span> <span class="n">/var/www/html</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1"># HTTP to HTTPS 리다이렉트</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="s">[::]:80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span> <span class="s">www.example.com</span><span class="p">;</span>
+    <span class="kn">return</span> <span class="mi">301</span> <span class="s">https://</span><span class="nv">$server_name$request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="lets-encrypt-설정">Let’s Encrypt 설정</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># HTTP 챌린지용 설정</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span> <span class="s">www.example.com</span><span class="p">;</span>
+    
+    <span class="c1"># Let's Encrypt 검증</span>
+    <span class="kn">location</span> <span class="n">/.well-known/acme-challenge/</span> <span class="p">{</span>
+        <span class="kn">root</span> <span class="n">/var/www/certbot</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 나머지는 HTTPS로 리다이렉트</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">return</span> <span class="mi">301</span> <span class="s">https://</span><span class="nv">$server_name$request_uri</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># HTTPS 서버</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span> <span class="s">www.example.com</span><span class="p">;</span>
+    
+    <span class="kn">ssl_certificate</span> <span class="n">/etc/letsencrypt/live/example.com/fullchain.pem</span><span class="p">;</span>
+    <span class="kn">ssl_certificate_key</span> <span class="n">/etc/letsencrypt/live/example.com/privkey.pem</span><span class="p">;</span>
+    
+    <span class="c1"># SSL 최적 설정</span>
+    <span class="kn">include</span> <span class="n">/etc/letsencrypt/options-ssl-nginx.conf</span><span class="p">;</span>
+    <span class="kn">ssl_dhparam</span> <span class="n">/etc/letsencrypt/ssl-dhparams.pem</span><span class="p">;</span>
+    
+    <span class="kn">root</span> <span class="n">/var/www/html</span><span class="p">;</span>
+    <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="ssl-보안-강화">SSL 보안 강화</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /etc/nginx/snippets/ssl.conf</span>
+<span class="c1"># Modern configuration</span>
+<span class="k">ssl_protocols</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+<span class="k">ssl_prefer_server_ciphers</span> <span class="no">off</span><span class="p">;</span>
+<span class="k">ssl_ciphers</span> <span class="s">ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384</span><span class="p">;</span>
+
+<span class="c1"># SSL 세션 최적화</span>
+<span class="k">ssl_session_cache</span> <span class="s">shared:SSL:50m</span><span class="p">;</span>
+<span class="k">ssl_session_timeout</span> <span class="s">1d</span><span class="p">;</span>
+<span class="k">ssl_session_tickets</span> <span class="no">off</span><span class="p">;</span>
+
+<span class="c1"># DH 파라미터</span>
+<span class="k">ssl_dhparam</span> <span class="n">/etc/nginx/dhparam.pem</span><span class="p">;</span>
+
+<span class="c1"># OCSP 설정</span>
+<span class="k">ssl_stapling</span> <span class="no">on</span><span class="p">;</span>
+<span class="k">ssl_stapling_verify</span> <span class="no">on</span><span class="p">;</span>
+<span class="k">resolver</span> <span class="mf">8.8</span><span class="s">.8.8</span> <span class="mf">8.8</span><span class="s">.4.4</span> <span class="s">valid=300s</span><span class="p">;</span>
+<span class="k">resolver_timeout</span> <span class="s">5s</span><span class="p">;</span>
+
+<span class="c1"># 보안 헤더</span>
+<span class="k">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">"max-age=63072000</span><span class="p">;</span> <span class="k">includeSubDomains</span><span class="p">;</span> <span class="k">preload"</span> <span class="s">always</span><span class="p">;</span>
+<span class="k">add_header</span> <span class="s">X-Frame-Options</span> <span class="s">DENY</span> <span class="s">always</span><span class="p">;</span>
+<span class="k">add_header</span> <span class="s">X-Content-Type-Options</span> <span class="s">nosniff</span> <span class="s">always</span><span class="p">;</span>
+<span class="k">add_header</span> <span class="s">X-XSS-Protection</span> <span class="s">"1</span><span class="p">;</span> <span class="k">mode=block"</span> <span class="s">always</span><span class="p">;</span>
+<span class="k">add_header</span> <span class="s">Referrer-Policy</span> <span class="s">"no-referrer-when-downgrade"</span> <span class="s">always</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="http2-설정">HTTP/2 설정</h2>
+
+<h3 id="http2-활성화">HTTP/2 활성화</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="s">[::]:443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+    
+    <span class="c1"># HTTP/2 Push (선택적)</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="n">/index.html</span> <span class="p">{</span>
+        <span class="kn">http2_push</span> <span class="n">/css/main.css</span><span class="p">;</span>
+        <span class="kn">http2_push</span> <span class="n">/js/main.js</span><span class="p">;</span>
+        <span class="kn">http2_push</span> <span class="n">/images/logo.png</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 정적 파일 최적화</span>
+    <span class="kn">location</span> <span class="p">~</span><span class="sr">*</span> <span class="err">\</span><span class="s">.(css|js|png|jpg|jpeg|gif|ico|svg)</span>$ <span class="p">{</span>
+        <span class="kn">expires</span> <span class="s">1y</span><span class="p">;</span>
+        <span class="kn">add_header</span> <span class="s">Cache-Control</span> <span class="s">"public,</span> <span class="s">immutable"</span><span class="p">;</span>
+        <span class="kn">add_header</span> <span class="s">Vary</span> <span class="s">Accept-Encoding</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="실습-예제">실습 예제</h2>
+
+<h3 id="1-멀티-도메인-wordpress-호스팅">1. 멀티 도메인 WordPress 호스팅</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 디렉토리 구조 생성</span>
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/www/<span class="o">{</span>site1,site2<span class="o">}</span>/public_html
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/log/nginx/<span class="o">{</span>site1,site2<span class="o">}</span>
+
+<span class="c"># 소유권 설정</span>
+<span class="nb">sudo chown</span> <span class="nt">-R</span> www-data:www-data /var/www/
+
+<span class="c"># Site1 설정</span>
+<span class="nb">sudo tee</span> /etc/nginx/sites-available/site1.com <span class="o">&gt;</span> /dev/null <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+server {
+    listen 80;
+    server_name site1.com www.site1.com;
+    root /var/www/site1/public_html;
+    index index.php index.html;
+    
+    access_log /var/log/nginx/site1/access.log;
+    error_log /var/log/nginx/site1/error.log;
+    
+    location / {
+        try_files </span><span class="nv">$uri</span><span class="sh"> </span><span class="nv">$uri</span><span class="sh">/ /index.php?</span><span class="nv">$query_string</span><span class="sh">;
+    }
+    
+    location ~ </span><span class="se">\.</span><span class="sh">php</span><span class="nv">$ </span><span class="sh">{
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME </span><span class="nv">$document_root$fastcgi_script_name</span><span class="sh">;
+        include fastcgi_params;
+    }
+    
+    location ~ /</span><span class="se">\.</span><span class="sh">ht {
+        deny all;
+    }
+    
+    # WordPress 보안
+    location ~ /wp-config.php {
+        deny all;
+    }
+}
+</span><span class="no">EOF
+
+</span><span class="c"># Site2 설정</span>
+<span class="nb">sudo tee</span> /etc/nginx/sites-available/site2.com <span class="o">&gt;</span> /dev/null <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+server {
+    listen 80;
+    server_name site2.com www.site2.com;
+    root /var/www/site2/public_html;
+    index index.php index.html;
+    
+    access_log /var/log/nginx/site2/access.log;
+    error_log /var/log/nginx/site2/error.log;
+    
+    location / {
+        try_files </span><span class="nv">$uri</span><span class="sh"> </span><span class="nv">$uri</span><span class="sh">/ /index.php?</span><span class="nv">$query_string</span><span class="sh">;
+    }
+    
+    location ~ </span><span class="se">\.</span><span class="sh">php</span><span class="nv">$ </span><span class="sh">{
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME </span><span class="nv">$document_root$fastcgi_script_name</span><span class="sh">;
+        include fastcgi_params;
+    }
+}
+</span><span class="no">EOF
+
+</span><span class="c"># 사이트 활성화</span>
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /etc/nginx/sites-available/site1.com /etc/nginx/sites-enabled/
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /etc/nginx/sites-available/site2.com /etc/nginx/sites-enabled/
+</code></pre></div></div>
+
+<h3 id="2-api-게이트웨이-설정">2. API 게이트웨이 설정</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># /etc/nginx/sites-available/api-gateway</span>
+<span class="k">upstream</span> <span class="s">auth_service</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">3001</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">3002</span> <span class="s">backup</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">upstream</span> <span class="s">user_service</span> <span class="p">{</span>
+    <span class="kn">least_conn</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">3011</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">3012</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">upstream</span> <span class="s">product_service</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">3021</span> <span class="s">weight=3</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">3022</span> <span class="s">weight=2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">api.example.com</span><span class="p">;</span>
+    
+    <span class="c1"># Rate limiting</span>
+    <span class="kn">limit_req_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=api:10m</span> <span class="s">rate=10r/s</span><span class="p">;</span>
+    
+    <span class="c1"># 공통 헤더 설정</span>
+    <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+    <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+    <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+    
+    <span class="c1"># 인증 서비스</span>
+    <span class="kn">location</span> <span class="n">/auth/</span> <span class="p">{</span>
+        <span class="kn">limit_req</span> <span class="s">zone=api</span> <span class="s">burst=20</span> <span class="s">nodelay</span><span class="p">;</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://auth_service/</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 사용자 서비스</span>
+    <span class="kn">location</span> <span class="n">/users/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://user_service/</span><span class="p">;</span>
+        <span class="kn">proxy_connect_timeout</span> <span class="s">5s</span><span class="p">;</span>
+        <span class="kn">proxy_send_timeout</span> <span class="s">30s</span><span class="p">;</span>
+        <span class="kn">proxy_read_timeout</span> <span class="s">30s</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 상품 서비스</span>
+    <span class="kn">location</span> <span class="n">/products/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://product_service/</span><span class="p">;</span>
+        <span class="kn">proxy_cache</span> <span class="s">my_cache</span><span class="p">;</span>
+        <span class="kn">proxy_cache_valid</span> <span class="mi">200</span> <span class="mi">5m</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 헬스 체크</span>
+    <span class="kn">location</span> <span class="n">/health</span> <span class="p">{</span>
+        <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span>
+        <span class="kn">return</span> <span class="mi">200</span> <span class="s">"OK"</span><span class="p">;</span>
+        <span class="kn">add_header</span> <span class="s">Content-Type</span> <span class="nc">text/plain</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="3-ssl-자동화-스크립트">3. SSL 자동화 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/ssl-setup.sh</span>
+
+<span class="nv">DOMAIN</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">EMAIL</span><span class="o">=</span><span class="nv">$2</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$DOMAIN</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$EMAIL</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> &lt;domain&gt; &lt;email&gt;"</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="c"># Let's Encrypt 인증서 발급</span>
+certbot certonly <span class="nt">--webroot</span> <span class="se">\</span>
+    <span class="nt">--webroot-path</span><span class="o">=</span>/var/www/certbot <span class="se">\</span>
+    <span class="nt">--email</span> <span class="nv">$EMAIL</span> <span class="se">\</span>
+    <span class="nt">--agree-tos</span> <span class="se">\</span>
+    <span class="nt">--no-eff-email</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="nv">$DOMAIN</span> <span class="se">\</span>
+    <span class="nt">-d</span> www.<span class="nv">$DOMAIN</span>
+
+<span class="c"># Nginx 설정 업데이트</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/nginx/sites-available/<span class="nv">$DOMAIN</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+server {
+    listen 80;
+    server_name </span><span class="nv">$DOMAIN</span><span class="sh"> www.</span><span class="nv">$DOMAIN</span><span class="sh">;
+    
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+    
+    location / {
+        return 301 https://</span><span class="se">\$</span><span class="sh">server_name</span><span class="se">\$</span><span class="sh">request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name </span><span class="nv">$DOMAIN</span><span class="sh"> www.</span><span class="nv">$DOMAIN</span><span class="sh">;
+    
+    ssl_certificate /etc/letsencrypt/live/</span><span class="nv">$DOMAIN</span><span class="sh">/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/</span><span class="nv">$DOMAIN</span><span class="sh">/privkey.pem;
+    
+    include /etc/nginx/snippets/ssl.conf;
+    
+    root /var/www/</span><span class="nv">$DOMAIN</span><span class="sh">;
+    index index.html;
+    
+    location / {
+        try_files </span><span class="se">\$</span><span class="sh">uri </span><span class="se">\$</span><span class="sh">uri/ =404;
+    }
+}
+</span><span class="no">EOF
+
+</span><span class="c"># 사이트 활성화</span>
+<span class="nb">ln</span> <span class="nt">-sf</span> /etc/nginx/sites-available/<span class="nv">$DOMAIN</span> /etc/nginx/sites-enabled/
+
+<span class="c"># Nginx 테스트 및 리로드</span>
+nginx <span class="nt">-t</span> <span class="o">&amp;&amp;</span> systemctl reload nginx
+
+<span class="nb">echo</span> <span class="s2">"SSL setup completed for </span><span class="nv">$DOMAIN</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h2 id="문제-해결">문제 해결</h2>
+
+<h3 id="일반적인-문제들">일반적인 문제들</h3>
+
+<h4 id="1-업스트림-서버-연결-실패">1. 업스트림 서버 연결 실패</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 에러 로그 확인</span>
+<span class="k">tail</span> <span class="s">-f</span> <span class="n">/var/log/nginx/error.log</span>
+
+<span class="c1"># 업스트림 상태 확인</span>
+<span class="s">upstream</span> <span class="s">backend</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="nf">backend1.example.com</span><span class="p">:</span><span class="mi">8080</span> <span class="s">max_fails=3</span> <span class="s">fail_timeout=30s</span><span class="p">;</span>
+    <span class="c1"># 백업 서버 추가</span>
+    <span class="kn">server</span> <span class="nf">backup.example.com</span><span class="p">:</span><span class="mi">8080</span> <span class="s">backup</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="2-ssl-인증서-문제">2. SSL 인증서 문제</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 인증서 유효성 확인</span>
+openssl x509 <span class="nt">-in</span> /path/to/cert.pem <span class="nt">-text</span> <span class="nt">-noout</span>
+
+<span class="c"># SSL 설정 테스트</span>
+nginx <span class="nt">-t</span>
+
+<span class="c"># SSL Labs 테스트</span>
+<span class="c"># https://www.ssllabs.com/ssltest/</span>
+</code></pre></div></div>
+
+<h4 id="3-성능-문제">3. 성능 문제</h4>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 워커 프로세스 조정</span>
+<span class="k">worker_processes</span> <span class="s">auto</span><span class="p">;</span>
+<span class="k">worker_connections</span> <span class="mi">1024</span><span class="p">;</span>
+
+<span class="c1"># 캐시 설정</span>
+<span class="k">proxy_cache_path</span> <span class="n">/var/cache/nginx</span> <span class="s">levels=1:2</span> <span class="s">keys_zone=my_cache:10m</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="다음-단계">다음 단계</h2>
+
+<p>다음 포스트에서는 다음 내용들을 다루겠습니다:</p>
+
+<ul>
+  <li>리버스 프록시 고급 설정</li>
+  <li>캐싱 전략</li>
+  <li>압축 최적화</li>
+  <li>정적 파일 서빙 최적화</li>
+</ul>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.nginx.com/nginx/admin-guide/load-balancer/">Nginx Load Balancing</a></li>
+  <li><a href="https://ssl-config.mozilla.org/">SSL Configuration Guide</a></li>
+  <li><a href="https://certbot.eff.org/instructions?ws=nginx">Let’s Encrypt Nginx</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/05/15/nginx-configuration-guide-part1.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">Nginx 기본 설정 가이드 Part 1 - 설치부터 기본 서버 블록까지</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/05/17/nginx-configuration-guide-part3.html" rel="next">
+          <span class="nav-title">Nginx 고급 설정 가이드 Part 3 - 리버스 프록시, 캐싱, 압축 최적화</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

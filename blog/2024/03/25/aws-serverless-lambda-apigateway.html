@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>AWS 완전 정복 가이드 3편 - 서버리스 아키텍처와 Lambda 마스터 | AWS Complete Guide Part 3 - Serverless Architecture & Lambda Mastery</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">AWS 완전 정복 가이드 3편 - 서버리스 아키텍처와 Lambda 마스터 | AWS Complete Guide Part 3 - Serverless Architecture &amp; Lambda Mastery</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-03-25T05:00:00+00:00">Mar 25, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>AWS</li><li>Cloud</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>AWS 서버리스 생태계를 완전히 마스터해보겠습니다. Lambda부터 API Gateway, DynamoDB, CloudFormation까지 현대적인 서버리스 아키텍처 구축의 모든 것을 다룹니다.</p>
+
+<h2 id="서버리스-아키텍처-개요--serverless-architecture-overview">서버리스 아키텍처 개요 | Serverless Architecture Overview</h2>
+
+<h3 id="-서버리스의-이해">🚀 서버리스의 이해</h3>
+
+<h4 id="서버리스-컴퓨팅의-장점">서버리스 컴퓨팅의 장점</h4>
+<ul>
+  <li><strong>자동 스케일링</strong>: 트래픽에 따른 자동 확장/축소</li>
+  <li><strong>비용 효율성</strong>: 실행 시간에 대해서만 과금</li>
+  <li><strong>운영 부담 감소</strong>: 서버 관리 불필요</li>
+  <li><strong>빠른 개발</strong>: 인프라보다 비즈니스 로직에 집중</li>
+</ul>
+
+<h4 id="aws-서버리스-서비스-스택">AWS 서버리스 서비스 스택</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>프론트엔드: S3 + CloudFront
+API 계층: API Gateway
+컴퓨팅: Lambda Functions
+데이터: DynamoDB, S3
+인증: Cognito
+모니터링: CloudWatch, X-Ray
+배포: CloudFormation, SAM
+</code></pre></div></div>
+
+<h2 id="lambda-완전-마스터--complete-lambda-mastery">Lambda 완전 마스터 | Complete Lambda Mastery</h2>
+
+<h3 id="-lambda-함수-개발-및-관리">⚡ Lambda 함수 개발 및 관리</h3>
+
+<h4 id="lambda-함수-생성-및-배포-python">Lambda 함수 생성 및 배포 (Python)</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># lambda_function.py
+# 종합적인 Lambda 함수 예제
+</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">boto3</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="n">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="kn">import</span> <span class="n">uuid</span>
+
+<span class="c1"># 로깅 설정
+</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
+<span class="n">logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="c1"># AWS 서비스 클라이언트 초기화
+</span><span class="n">dynamodb</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">resource</span><span class="p">(</span><span class="sh">'</span><span class="s">dynamodb</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">'</span><span class="s">s3</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ses</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">'</span><span class="s">ses</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">sns</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">'</span><span class="s">sns</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># 환경 변수
+</span><span class="n">TABLE_NAME</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">DYNAMODB_TABLE</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">S3_BUCKET</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">SNS_TOPIC_ARN</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">SNS_TOPIC_ARN</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">DecimalEncoder</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">JSONEncoder</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">DynamoDB Decimal 타입을 JSON으로 변환</span><span class="sh">"""</span>
+    <span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Decimal</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nf">float</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">(</span><span class="n">DecimalEncoder</span><span class="p">,</span> <span class="n">self</span><span class="p">).</span><span class="nf">default</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">메인 Lambda 핸들러</span><span class="sh">"""</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># 요청 로깅
+</span>        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Event: </span><span class="si">{</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">event</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="c1"># HTTP 메서드별 처리
+</span>        <span class="n">http_method</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">httpMethod</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">path</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">http_method</span> <span class="o">==</span> <span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">handle_get_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">http_method</span> <span class="o">==</span> <span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">handle_post_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">http_method</span> <span class="o">==</span> <span class="sh">'</span><span class="s">PUT</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">handle_put_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">http_method</span> <span class="o">==</span> <span class="sh">'</span><span class="s">DELETE</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">handle_delete_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">405</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Method not allowed</span><span class="sh">'</span><span class="p">})</span>
+            
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error processing request: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Internal server error</span><span class="sh">'</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">handle_get_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">GET 요청 처리</span><span class="sh">"""</span>
+    
+    <span class="n">path_parameters</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">pathParameters</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">query_parameters</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">queryStringParameters</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+    
+    <span class="c1"># 단일 아이템 조회
+</span>    <span class="k">if</span> <span class="sh">'</span><span class="s">id</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">path_parameters</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">get_item_by_id</span><span class="p">(</span><span class="n">path_parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">])</span>
+    
+    <span class="c1"># 목록 조회
+</span>    <span class="k">return</span> <span class="nf">get_items_list</span><span class="p">(</span><span class="n">query_parameters</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">handle_post_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">POST 요청 처리 - 새 아이템 생성</span><span class="sh">"""</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">{}</span><span class="sh">'</span><span class="p">))</span>
+        
+        <span class="c1"># 필수 필드 검증
+</span>        <span class="n">required_fields</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">email</span><span class="sh">'</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">required_fields</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">body</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Missing required field: </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="sh">'</span><span class="p">})</span>
+        
+        <span class="c1"># 새 아이템 생성
+</span>        <span class="n">item_id</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">uuid</span><span class="p">.</span><span class="nf">uuid4</span><span class="p">())</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">utcnow</span><span class="p">().</span><span class="nf">isoformat</span><span class="p">()</span>
+        
+        <span class="n">item</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">],</span>
+            <span class="sh">'</span><span class="s">email</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">[</span><span class="sh">'</span><span class="s">email</span><span class="sh">'</span><span class="p">],</span>
+            <span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">),</span>
+            <span class="sh">'</span><span class="s">created_at</span><span class="sh">'</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">updated_at</span><span class="sh">'</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">active</span><span class="sh">'</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># DynamoDB에 저장
+</span>        <span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="n">TABLE_NAME</span><span class="p">)</span>
+        <span class="n">table</span><span class="p">.</span><span class="nf">put_item</span><span class="p">(</span><span class="n">Item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+        
+        <span class="c1"># 알림 발송
+</span>        <span class="nf">send_notification</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">New item created: </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="c1"># S3에 백업 (선택사항)
+</span>        <span class="nf">backup_to_s3</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Created item with ID: </span><span class="si">{</span><span class="n">item_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">201</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Invalid JSON in request body</span><span class="sh">'</span><span class="p">})</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error creating item: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Failed to create item</span><span class="sh">'</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">handle_put_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">PUT 요청 처리 - 아이템 업데이트</span><span class="sh">"""</span>
+    
+    <span class="n">path_parameters</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">pathParameters</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+    
+    <span class="k">if</span> <span class="sh">'</span><span class="s">id</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path_parameters</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Missing item ID</span><span class="sh">'</span><span class="p">})</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">{}</span><span class="sh">'</span><span class="p">))</span>
+        <span class="n">item_id</span> <span class="o">=</span> <span class="n">path_parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">]</span>
+        
+        <span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="n">TABLE_NAME</span><span class="p">)</span>
+        
+        <span class="c1"># 아이템 존재 확인
+</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="nf">get_item</span><span class="p">(</span><span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">})</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">Item</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Item not found</span><span class="sh">'</span><span class="p">})</span>
+        
+        <span class="c1"># 업데이트 표현식 구성
+</span>        <span class="n">update_expression</span> <span class="o">=</span> <span class="sh">"</span><span class="s">SET updated_at = :timestamp</span><span class="sh">"</span>
+        <span class="n">expression_values</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">:timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">utcnow</span><span class="p">().</span><span class="nf">isoformat</span><span class="p">()}</span>
+        
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">body</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">created_at</span><span class="sh">'</span><span class="p">]:</span>  <span class="c1"># 변경 불가 필드 제외
+</span>                <span class="n">update_expression</span> <span class="o">+=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">, </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s"> = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="sh">"</span>
+                <span class="n">expression_values</span><span class="p">[</span><span class="sa">f</span><span class="sh">"</span><span class="s">:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        
+        <span class="c1"># 아이템 업데이트
+</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="nf">update_item</span><span class="p">(</span>
+            <span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">},</span>
+            <span class="n">UpdateExpression</span><span class="o">=</span><span class="n">update_expression</span><span class="p">,</span>
+            <span class="n">ExpressionAttributeValues</span><span class="o">=</span><span class="n">expression_values</span><span class="p">,</span>
+            <span class="n">ReturnValues</span><span class="o">=</span><span class="sh">'</span><span class="s">ALL_NEW</span><span class="sh">'</span>
+        <span class="p">)</span>
+        
+        <span class="n">updated_item</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Attributes</span><span class="sh">'</span><span class="p">]</span>
+        
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Updated item: </span><span class="si">{</span><span class="n">item_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">updated_item</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Invalid JSON in request body</span><span class="sh">'</span><span class="p">})</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error updating item: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Failed to update item</span><span class="sh">'</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">handle_delete_request</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">DELETE 요청 처리 - 아이템 삭제</span><span class="sh">"""</span>
+    
+    <span class="n">path_parameters</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">pathParameters</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{}</span>
+    
+    <span class="k">if</span> <span class="sh">'</span><span class="s">id</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path_parameters</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Missing item ID</span><span class="sh">'</span><span class="p">})</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">item_id</span> <span class="o">=</span> <span class="n">path_parameters</span><span class="p">[</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="n">TABLE_NAME</span><span class="p">)</span>
+        
+        <span class="c1"># 아이템 존재 확인
+</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="nf">get_item</span><span class="p">(</span><span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">})</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">Item</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Item not found</span><span class="sh">'</span><span class="p">})</span>
+        
+        <span class="c1"># 아이템 삭제
+</span>        <span class="n">table</span><span class="p">.</span><span class="nf">delete_item</span><span class="p">(</span><span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">})</span>
+        
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Deleted item: </span><span class="si">{</span><span class="n">item_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Item deleted successfully</span><span class="sh">'</span><span class="p">})</span>
+        
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error deleting item: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Failed to delete item</span><span class="sh">'</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">get_item_by_id</span><span class="p">(</span><span class="n">item_id</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">ID로 단일 아이템 조회</span><span class="sh">"""</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="n">TABLE_NAME</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="nf">get_item</span><span class="p">(</span><span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">})</span>
+        
+        <span class="k">if</span> <span class="sh">'</span><span class="s">Item</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Item not found</span><span class="sh">'</span><span class="p">})</span>
+        
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Item</span><span class="sh">'</span><span class="p">])</span>
+        
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error getting item: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Failed to get item</span><span class="sh">'</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">get_items_list</span><span class="p">(</span><span class="n">query_parameters</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">아이템 목록 조회 (페이지네이션 지원)</span><span class="sh">"""</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="n">TABLE_NAME</span><span class="p">)</span>
+        
+        <span class="c1"># 페이지네이션 파라미터
+</span>        <span class="n">limit</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">query_parameters</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">limit</span><span class="sh">'</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+        <span class="n">last_key</span> <span class="o">=</span> <span class="n">query_parameters</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">last_key</span><span class="sh">'</span><span class="p">)</span>
+        
+        <span class="n">scan_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">Limit</span><span class="sh">'</span><span class="p">:</span> <span class="n">limit</span><span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">last_key</span><span class="p">:</span>
+            <span class="n">scan_kwargs</span><span class="p">[</span><span class="sh">'</span><span class="s">ExclusiveStartKey</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">last_key</span><span class="p">}</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">table</span><span class="p">.</span><span class="nf">scan</span><span class="p">(</span><span class="o">**</span><span class="n">scan_kwargs</span><span class="p">)</span>
+        
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">items</span><span class="sh">'</span><span class="p">:</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Items</span><span class="sh">'</span><span class="p">],</span>
+            <span class="sh">'</span><span class="s">count</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Items</span><span class="sh">'</span><span class="p">])</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="sh">'</span><span class="s">LastEvaluatedKey</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="sh">'</span><span class="s">last_key</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">LastEvaluatedKey</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error getting items list: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">create_response</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Failed to get items list</span><span class="sh">'</span><span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">send_notification</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">SNS를 통한 알림 발송</span><span class="sh">"""</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sns</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span>
+            <span class="n">TopicArn</span><span class="o">=</span><span class="n">SNS_TOPIC_ARN</span><span class="p">,</span>
+            <span class="n">Message</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>
+            <span class="n">Subject</span><span class="o">=</span><span class="sh">'</span><span class="s">Lambda Function Notification</span><span class="sh">'</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Notification sent: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Failed to send notification: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">backup_to_s3</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">S3에 아이템 백업</span><span class="sh">"""</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">backup_key</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">backups/</span><span class="si">{</span><span class="n">datetime</span><span class="p">.</span><span class="nf">utcnow</span><span class="p">().</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">'</span><span class="s">%Y/%m/%d</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s">.json</span><span class="sh">"</span>
+        
+        <span class="n">s3</span><span class="p">.</span><span class="nf">put_object</span><span class="p">(</span>
+            <span class="n">Bucket</span><span class="o">=</span><span class="n">BUCKET_NAME</span><span class="p">,</span>
+            <span class="n">Key</span><span class="o">=</span><span class="n">backup_key</span><span class="p">,</span>
+            <span class="n">Body</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">DecimalEncoder</span><span class="p">),</span>
+            <span class="n">ContentType</span><span class="o">=</span><span class="sh">'</span><span class="s">application/json</span><span class="sh">'</span>
+        <span class="p">)</span>
+        
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Item backed up to S3: </span><span class="si">{</span><span class="n">backup_key</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Failed to backup to S3: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_response</span><span class="p">(</span><span class="n">status_code</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">HTTP 응답 생성</span><span class="sh">"""</span>
+    
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="sh">'</span><span class="s">statusCode</span><span class="sh">'</span><span class="p">:</span> <span class="n">status_code</span><span class="p">,</span>
+        <span class="sh">'</span><span class="s">headers</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">Content-Type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">application/json</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">Access-Control-Allow-Origin</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">Access-Control-Allow-Headers</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">Access-Control-Allow-Methods</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">GET,POST,PUT,DELETE,OPTIONS</span><span class="sh">'</span>
+        <span class="p">},</span>
+        <span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">:</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">cls</span><span class="o">=</span><span class="n">DecimalEncoder</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="c1"># 추가 유틸리티 함수들
+</span>
+<span class="k">def</span> <span class="nf">validate_email</span><span class="p">(</span><span class="n">email</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">이메일 주소 유효성 검증</span><span class="sh">"""</span>
+    <span class="kn">import</span> <span class="n">re</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">'</span><span class="s">^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</span><span class="sh">'</span>
+    <span class="k">return</span> <span class="n">re</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">generate_presigned_url</span><span class="p">(</span><span class="n">bucket</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">expiration</span><span class="o">=</span><span class="mi">3600</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">S3 객체용 사전 서명된 URL 생성</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">s3</span><span class="p">.</span><span class="nf">generate_presigned_url</span><span class="p">(</span>
+            <span class="sh">'</span><span class="s">get_object</span><span class="sh">'</span><span class="p">,</span>
+            <span class="n">Params</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">Bucket</span><span class="sh">'</span><span class="p">:</span> <span class="n">bucket</span><span class="p">,</span> <span class="sh">'</span><span class="s">Key</span><span class="sh">'</span><span class="p">:</span> <span class="n">key</span><span class="p">},</span>
+            <span class="n">ExpiresIn</span><span class="o">=</span><span class="n">expiration</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error generating presigned URL: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">send_email</span><span class="p">(</span><span class="n">to_email</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">SES를 통한 이메일 발송</span><span class="sh">"""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">ses</span><span class="p">.</span><span class="nf">send_email</span><span class="p">(</span>
+            <span class="n">Source</span><span class="o">=</span><span class="sh">'</span><span class="s">noreply@example.com</span><span class="sh">'</span><span class="p">,</span>
+            <span class="n">Destination</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">ToAddresses</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="n">to_email</span><span class="p">]},</span>
+            <span class="n">Message</span><span class="o">=</span><span class="p">{</span>
+                <span class="sh">'</span><span class="s">Subject</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span><span class="sh">'</span><span class="s">Data</span><span class="sh">'</span><span class="p">:</span> <span class="n">subject</span><span class="p">},</span>
+                <span class="sh">'</span><span class="s">Body</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span><span class="sh">'</span><span class="s">Text</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span><span class="sh">'</span><span class="s">Data</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">}}</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Email sent to </span><span class="si">{</span><span class="n">to_email</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Failed to send email: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div></div>
+
+<h4 id="lambda-배포-스크립트">Lambda 배포 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># Lambda 함수 배포 스크립트</span>
+
+<span class="nv">FUNCTION_NAME</span><span class="o">=</span><span class="s2">"serverless-api-function"</span>
+<span class="nv">ROLE_ARN</span><span class="o">=</span><span class="s2">"arn:aws:iam::123456789012:role/lambda-execution-role"</span>
+<span class="nv">REGION</span><span class="o">=</span><span class="s2">"us-east-1"</span>
+
+<span class="c"># 의존성 설치 및 패키징</span>
+<span class="nb">echo</span> <span class="s2">"Lambda 함수 패키징 중..."</span>
+
+<span class="c"># 임시 디렉토리 생성</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> lambda-package
+<span class="nb">cd </span>lambda-package
+
+<span class="c"># 함수 코드 복사</span>
+<span class="nb">cp</span> ../lambda_function.py <span class="nb">.</span>
+
+<span class="c"># requirements.txt가 있다면 의존성 설치</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"../requirements.txt"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>pip <span class="nb">install</span> <span class="nt">-r</span> ../requirements.txt <span class="nt">-t</span> <span class="nb">.</span>
+<span class="k">fi</span>
+
+<span class="c"># 패키지 생성</span>
+zip <span class="nt">-r</span> ../lambda-function.zip <span class="nb">.</span>
+
+<span class="nb">cd</span> ..
+<span class="nb">rm</span> <span class="nt">-rf</span> lambda-package
+
+<span class="nb">echo</span> <span class="s2">"패키징 완료: lambda-function.zip"</span>
+
+<span class="c"># Lambda 함수 존재 확인</span>
+<span class="k">if </span>aws lambda get-function <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"기존 함수 업데이트 중..."</span>
+    
+    <span class="c"># 함수 코드 업데이트</span>
+    aws lambda update-function-code <span class="se">\</span>
+      <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="se">\</span>
+      <span class="nt">--zip-file</span> fileb://lambda-function.zip
+    
+    <span class="c"># 함수 설정 업데이트</span>
+    aws lambda update-function-configuration <span class="se">\</span>
+      <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="se">\</span>
+      <span class="nt">--timeout</span> 30 <span class="se">\</span>
+      <span class="nt">--memory-size</span> 256 <span class="se">\</span>
+      <span class="nt">--environment</span> <span class="nv">Variables</span><span class="o">=</span><span class="s1">'{
+        "DYNAMODB_TABLE":"serverless-api-table",
+        "S3_BUCKET":"serverless-api-bucket",
+        "SNS_TOPIC_ARN":"arn:aws:sns:us-east-1:123456789012:serverless-notifications"
+      }'</span>
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"새 Lambda 함수 생성 중..."</span>
+    
+    <span class="c"># 새 함수 생성</span>
+    aws lambda create-function <span class="se">\</span>
+      <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="se">\</span>
+      <span class="nt">--runtime</span> python3.9 <span class="se">\</span>
+      <span class="nt">--role</span> <span class="nv">$ROLE_ARN</span> <span class="se">\</span>
+      <span class="nt">--handler</span> lambda_function.lambda_handler <span class="se">\</span>
+      <span class="nt">--zip-file</span> fileb://lambda-function.zip <span class="se">\</span>
+      <span class="nt">--timeout</span> 30 <span class="se">\</span>
+      <span class="nt">--memory-size</span> 256 <span class="se">\</span>
+      <span class="nt">--environment</span> <span class="nv">Variables</span><span class="o">=</span><span class="s1">'{
+        "DYNAMODB_TABLE":"serverless-api-table",
+        "S3_BUCKET":"serverless-api-bucket", 
+        "SNS_TOPIC_ARN":"arn:aws:sns:us-east-1:123456789012:serverless-notifications"
+      }'</span> <span class="se">\</span>
+      <span class="nt">--tags</span> <span class="nv">Environment</span><span class="o">=</span>Production,Project<span class="o">=</span>ServerlessAPI
+<span class="k">fi</span>
+
+<span class="c"># 함수 별칭 생성/업데이트</span>
+aws lambda publish-version <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span>
+
+<span class="c"># PROD 별칭 생성 또는 업데이트</span>
+aws lambda update-alias <span class="se">\</span>
+  <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="se">\</span>
+  <span class="nt">--name</span> PROD <span class="se">\</span>
+  <span class="nt">--function-version</span> <span class="s1">'$LATEST'</span> 2&gt;/dev/null <span class="o">||</span> <span class="se">\</span>
+aws lambda create-alias <span class="se">\</span>
+  <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="se">\</span>
+  <span class="nt">--name</span> PROD <span class="se">\</span>
+  <span class="nt">--function-version</span> <span class="s1">'$LATEST'</span>
+
+<span class="nb">echo</span> <span class="s2">"Lambda 함수 배포 완료!"</span>
+
+<span class="c"># 함수 정보 출력</span>
+aws lambda get-function <span class="nt">--function-name</span> <span class="nv">$FUNCTION_NAME</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Configuration.[FunctionName,Runtime,Timeout,MemorySize,LastModified]'</span> <span class="se">\</span>
+  <span class="nt">--output</span> table
+
+<span class="c"># 정리</span>
+<span class="nb">rm</span> <span class="nt">-f</span> lambda-function.zip
+</code></pre></div></div>
+
+<h2 id="api-gateway-완전-통합--complete-api-gateway-integration">API Gateway 완전 통합 | Complete API Gateway Integration</h2>
+
+<h3 id="-rest-api-구축">🌐 REST API 구축</h3>
+
+<h4 id="api-gateway-생성-및-설정">API Gateway 생성 및 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># API Gateway 생성 스크립트</span>
+
+<span class="nv">API_NAME</span><span class="o">=</span><span class="s2">"serverless-api"</span>
+<span class="nv">LAMBDA_FUNCTION_ARN</span><span class="o">=</span><span class="s2">"arn:aws:lambda:us-east-1:123456789012:function:serverless-api-function"</span>
+<span class="nv">REGION</span><span class="o">=</span><span class="s2">"us-east-1"</span>
+<span class="nv">ACCOUNT_ID</span><span class="o">=</span><span class="s2">"123456789012"</span>
+
+<span class="c"># REST API 생성</span>
+<span class="nb">echo</span> <span class="s2">"REST API 생성 중..."</span>
+
+<span class="nv">API_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway create-rest-api <span class="se">\</span>
+  <span class="nt">--name</span> <span class="nv">$API_NAME</span> <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Serverless API with Lambda integration"</span> <span class="se">\</span>
+  <span class="nt">--endpoint-configuration</span> <span class="nv">types</span><span class="o">=</span>REGIONAL <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"API 생성됨: </span><span class="nv">$API_ID</span><span class="s2">"</span>
+
+<span class="c"># 루트 리소스 ID 가져오기</span>
+<span class="nv">ROOT_RESOURCE_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway get-resources <span class="se">\</span>
+  <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'items[?path==`/`].id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># /items 리소스 생성</span>
+<span class="nv">ITEMS_RESOURCE_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway create-resource <span class="se">\</span>
+  <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+  <span class="nt">--parent-id</span> <span class="nv">$ROOT_RESOURCE_ID</span> <span class="se">\</span>
+  <span class="nt">--path-part</span> items <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># /items/{id} 리소스 생성</span>
+<span class="nv">ITEM_RESOURCE_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway create-resource <span class="se">\</span>
+  <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+  <span class="nt">--parent-id</span> <span class="nv">$ITEMS_RESOURCE_ID</span> <span class="se">\</span>
+  <span class="nt">--path-part</span> <span class="s1">'{id}'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"리소스 생성 완료: /items, /items/{id}"</span>
+
+<span class="c"># Lambda 통합을 위한 공통 함수</span>
+create_lambda_integration<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">resource_id</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">http_method</span><span class="o">=</span><span class="nv">$2</span>
+    
+    <span class="c"># 메서드 생성</span>
+    aws apigateway put-method <span class="se">\</span>
+      <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+      <span class="nt">--resource-id</span> <span class="nv">$resource_id</span> <span class="se">\</span>
+      <span class="nt">--http-method</span> <span class="nv">$http_method</span> <span class="se">\</span>
+      <span class="nt">--authorization-type</span> NONE <span class="se">\</span>
+      <span class="nt">--api-key-required</span>
+    
+    <span class="c"># Lambda 통합 설정</span>
+    aws apigateway put-integration <span class="se">\</span>
+      <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+      <span class="nt">--resource-id</span> <span class="nv">$resource_id</span> <span class="se">\</span>
+      <span class="nt">--http-method</span> <span class="nv">$http_method</span> <span class="se">\</span>
+      <span class="nt">--type</span> AWS_PROXY <span class="se">\</span>
+      <span class="nt">--integration-http-method</span> POST <span class="se">\</span>
+      <span class="nt">--uri</span> arn:aws:apigateway:<span class="nv">$REGION</span>:lambda:path/2015-03-31/functions/<span class="nv">$LAMBDA_FUNCTION_ARN</span>/invocations
+    
+    <span class="c"># Lambda 실행 권한 부여</span>
+    aws lambda add-permission <span class="se">\</span>
+      <span class="nt">--function-name</span> serverless-api-function <span class="se">\</span>
+      <span class="nt">--statement-id</span> <span class="s2">"</span><span class="k">${</span><span class="nv">API_ID</span><span class="k">}</span><span class="s2">-</span><span class="k">${</span><span class="nv">resource_id</span><span class="k">}</span><span class="s2">-</span><span class="k">${</span><span class="nv">http_method</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+      <span class="nt">--action</span> lambda:InvokeFunction <span class="se">\</span>
+      <span class="nt">--principal</span> apigateway.amazonaws.com <span class="se">\</span>
+      <span class="nt">--source-arn</span> <span class="s2">"arn:aws:execute-api:</span><span class="nv">$REGION</span><span class="s2">:</span><span class="nv">$ACCOUNT_ID</span><span class="s2">:</span><span class="nv">$API_ID</span><span class="s2">/*/</span><span class="nv">$http_method</span><span class="s2">/*"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true</span>
+<span class="o">}</span>
+
+<span class="c"># CORS 옵션 메서드 추가</span>
+add_cors_options<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">resource_id</span><span class="o">=</span><span class="nv">$1</span>
+    
+    <span class="c"># OPTIONS 메서드 생성</span>
+    aws apigateway put-method <span class="se">\</span>
+      <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+      <span class="nt">--resource-id</span> <span class="nv">$resource_id</span> <span class="se">\</span>
+      <span class="nt">--http-method</span> OPTIONS <span class="se">\</span>
+      <span class="nt">--authorization-type</span> NONE
+    
+    <span class="c"># Mock 통합 설정</span>
+    aws apigateway put-integration <span class="se">\</span>
+      <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+      <span class="nt">--resource-id</span> <span class="nv">$resource_id</span> <span class="se">\</span>
+      <span class="nt">--http-method</span> OPTIONS <span class="se">\</span>
+      <span class="nt">--type</span> MOCK <span class="se">\</span>
+      <span class="nt">--request-templates</span> <span class="s1">'{"application/json": "{\"statusCode\": 200}"}'</span>
+    
+    <span class="c"># 메서드 응답 설정</span>
+    aws apigateway put-method-response <span class="se">\</span>
+      <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+      <span class="nt">--resource-id</span> <span class="nv">$resource_id</span> <span class="se">\</span>
+      <span class="nt">--http-method</span> OPTIONS <span class="se">\</span>
+      <span class="nt">--status-code</span> 200 <span class="se">\</span>
+      <span class="nt">--response-parameters</span> method.response.header.Access-Control-Allow-Headers<span class="o">=</span><span class="nb">false</span>,method.response.header.Access-Control-Allow-Methods<span class="o">=</span><span class="nb">false</span>,method.response.header.Access-Control-Allow-Origin<span class="o">=</span><span class="nb">false</span>
+    
+    <span class="c"># 통합 응답 설정</span>
+    aws apigateway put-integration-response <span class="se">\</span>
+      <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+      <span class="nt">--resource-id</span> <span class="nv">$resource_id</span> <span class="se">\</span>
+      <span class="nt">--http-method</span> OPTIONS <span class="se">\</span>
+      <span class="nt">--status-code</span> 200 <span class="se">\</span>
+      <span class="nt">--response-parameters</span> <span class="s1">'{"method.response.header.Access-Control-Allow-Headers":"'</span><span class="s2">"'"</span><span class="s1">'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'</span><span class="s2">"'"</span><span class="s1">'","method.response.header.Access-Control-Allow-Methods":"'</span><span class="s2">"'"</span><span class="s1">'GET,POST,PUT,DELETE,OPTIONS'</span><span class="s2">"'"</span><span class="s1">'","method.response.header.Access-Control-Allow-Origin":"'</span><span class="s2">"'"</span><span class="s1">'*'</span><span class="s2">"'"</span><span class="s1">'}'</span>
+<span class="o">}</span>
+
+<span class="c"># /items 리소스에 메서드 추가</span>
+<span class="nb">echo</span> <span class="s2">"API 메서드 생성 중..."</span>
+
+<span class="c"># GET /items (목록 조회)</span>
+create_lambda_integration <span class="nv">$ITEMS_RESOURCE_ID</span> GET
+
+<span class="c"># POST /items (새 아이템 생성)</span>
+create_lambda_integration <span class="nv">$ITEMS_RESOURCE_ID</span> POST
+
+<span class="c"># CORS 옵션 추가</span>
+add_cors_options <span class="nv">$ITEMS_RESOURCE_ID</span>
+
+<span class="c"># /items/{id} 리소스에 메서드 추가</span>
+
+<span class="c"># GET /items/{id} (단일 아이템 조회)</span>
+create_lambda_integration <span class="nv">$ITEM_RESOURCE_ID</span> GET
+
+<span class="c"># PUT /items/{id} (아이템 업데이트)</span>
+create_lambda_integration <span class="nv">$ITEM_RESOURCE_ID</span> PUT
+
+<span class="c"># DELETE /items/{id} (아이템 삭제)</span>
+create_lambda_integration <span class="nv">$ITEM_RESOURCE_ID</span> DELETE
+
+<span class="c"># CORS 옵션 추가</span>
+add_cors_options <span class="nv">$ITEM_RESOURCE_ID</span>
+
+<span class="c"># API 키 생성</span>
+<span class="nv">API_KEY_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway create-api-key <span class="se">\</span>
+  <span class="nt">--name</span> <span class="s2">"</span><span class="k">${</span><span class="nv">API_NAME</span><span class="k">}</span><span class="s2">-key"</span> <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"API key for serverless API"</span> <span class="se">\</span>
+  <span class="nt">--enabled</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nv">API_KEY_VALUE</span><span class="o">=</span><span class="si">$(</span>aws apigateway get-api-key <span class="se">\</span>
+  <span class="nt">--api-key</span> <span class="nv">$API_KEY_ID</span> <span class="se">\</span>
+  <span class="nt">--include-value</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'value'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"API 키 생성됨: </span><span class="nv">$API_KEY_VALUE</span><span class="s2">"</span>
+
+<span class="c"># 사용량 계획 생성</span>
+<span class="nv">USAGE_PLAN_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway create-usage-plan <span class="se">\</span>
+  <span class="nt">--name</span> <span class="s2">"</span><span class="k">${</span><span class="nv">API_NAME</span><span class="k">}</span><span class="s2">-usage-plan"</span> <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Usage plan for serverless API"</span> <span class="se">\</span>
+  <span class="nt">--throttle</span> <span class="nv">burstLimit</span><span class="o">=</span>200,rateLimit<span class="o">=</span>100 <span class="se">\</span>
+  <span class="nt">--quota</span> <span class="nv">limit</span><span class="o">=</span>10000,period<span class="o">=</span>MONTH <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># API 키를 사용량 계획에 연결</span>
+aws apigateway create-usage-plan-key <span class="se">\</span>
+  <span class="nt">--usage-plan-id</span> <span class="nv">$USAGE_PLAN_ID</span> <span class="se">\</span>
+  <span class="nt">--key-id</span> <span class="nv">$API_KEY_ID</span> <span class="se">\</span>
+  <span class="nt">--key-type</span> API_KEY
+
+<span class="c"># 배포 스테이지 생성</span>
+<span class="nv">DEPLOYMENT_ID</span><span class="o">=</span><span class="si">$(</span>aws apigateway create-deployment <span class="se">\</span>
+  <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+  <span class="nt">--stage-name</span> prod <span class="se">\</span>
+  <span class="nt">--stage-description</span> <span class="s2">"Production stage"</span> <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Production deployment"</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'id'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># 사용량 계획에 API 스테이지 추가</span>
+aws apigateway update-usage-plan <span class="se">\</span>
+  <span class="nt">--usage-plan-id</span> <span class="nv">$USAGE_PLAN_ID</span> <span class="se">\</span>
+  <span class="nt">--patch-ops</span> <span class="nv">op</span><span class="o">=</span>add,path<span class="o">=</span><span class="s2">"/apiStages"</span>,value<span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">API_ID</span><span class="k">}</span><span class="s2">:prod"</span>
+
+<span class="c"># CloudWatch 로깅 활성화</span>
+aws apigateway update-stage <span class="se">\</span>
+  <span class="nt">--rest-api-id</span> <span class="nv">$API_ID</span> <span class="se">\</span>
+  <span class="nt">--stage-name</span> prod <span class="se">\</span>
+  <span class="nt">--patch-ops</span> <span class="nv">op</span><span class="o">=</span>replace,path<span class="o">=</span><span class="s2">"/*/logging/loglevel"</span>,value<span class="o">=</span>INFO <span class="se">\</span>
+             <span class="nv">op</span><span class="o">=</span>replace,path<span class="o">=</span><span class="s2">"/*/logging/dataTrace"</span>,value<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+             <span class="nv">op</span><span class="o">=</span>replace,path<span class="o">=</span><span class="s2">"/*/metrics/enabled"</span>,value<span class="o">=</span><span class="nb">true
+
+echo</span> <span class="s2">"=== API Gateway 설정 완료 ==="</span>
+<span class="nb">echo</span> <span class="s2">"API ID: </span><span class="nv">$API_ID</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"API URL: https://</span><span class="nv">$API_ID</span><span class="s2">.execute-api.</span><span class="nv">$REGION</span><span class="s2">.amazonaws.com/prod"</span>
+<span class="nb">echo</span> <span class="s2">"API Key: </span><span class="nv">$API_KEY_VALUE</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">""</span>
+<span class="nb">echo</span> <span class="s2">"사용 예시:"</span>
+<span class="nb">echo</span> <span class="s2">"curl -H 'X-API-Key: </span><span class="nv">$API_KEY_VALUE</span><span class="s2">' https://</span><span class="nv">$API_ID</span><span class="s2">.execute-api.</span><span class="nv">$REGION</span><span class="s2">.amazonaws.com/prod/items"</span>
+</code></pre></div></div>
+
+<h2 id="dynamodb-nosql-데이터베이스--dynamodb-nosql-database">DynamoDB NoSQL 데이터베이스 | DynamoDB NoSQL Database</h2>
+
+<h3 id="-dynamodb-설계-및-최적화">📊 DynamoDB 설계 및 최적화</h3>
+
+<h4 id="dynamodb-테이블-생성-및-설정">DynamoDB 테이블 생성 및 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># DynamoDB 테이블 생성 및 설정 스크립트</span>
+
+<span class="nv">TABLE_NAME</span><span class="o">=</span><span class="s2">"serverless-api-table"</span>
+<span class="nv">REGION</span><span class="o">=</span><span class="s2">"us-east-1"</span>
+
+<span class="c"># DynamoDB 테이블 생성</span>
+<span class="nb">echo</span> <span class="s2">"DynamoDB 테이블 생성 중..."</span>
+
+aws dynamodb create-table <span class="se">\</span>
+  <span class="nt">--table-name</span> <span class="nv">$TABLE_NAME</span> <span class="se">\</span>
+  <span class="nt">--attribute-definitions</span> <span class="se">\</span>
+    <span class="nv">AttributeName</span><span class="o">=</span><span class="nb">id</span>,AttributeType<span class="o">=</span>S <span class="se">\</span>
+    <span class="nv">AttributeName</span><span class="o">=</span>created_at,AttributeType<span class="o">=</span>S <span class="se">\</span>
+    <span class="nv">AttributeName</span><span class="o">=</span>status,AttributeType<span class="o">=</span>S <span class="se">\</span>
+    <span class="nv">AttributeName</span><span class="o">=</span>email,AttributeType<span class="o">=</span>S <span class="se">\</span>
+  <span class="nt">--key-schema</span> <span class="se">\</span>
+    <span class="nv">AttributeName</span><span class="o">=</span><span class="nb">id</span>,KeyType<span class="o">=</span>HASH <span class="se">\</span>
+  <span class="nt">--billing-mode</span> PAY_PER_REQUEST <span class="se">\</span>
+  <span class="nt">--global-secondary-indexes</span> <span class="se">\</span>
+    <span class="nv">IndexName</span><span class="o">=</span>CreatedAtIndex,KeySchema<span class="o">=[{</span><span class="nv">AttributeName</span><span class="o">=</span>status,KeyType<span class="o">=</span>HASH<span class="o">}</span>,<span class="o">{</span><span class="nv">AttributeName</span><span class="o">=</span>created_at,KeyType<span class="o">=</span>RANGE<span class="o">}]</span>,Projection<span class="o">=</span><span class="s1">'{ProjectionType=ALL}'</span>,ProvisionedThroughput<span class="o">=</span><span class="s1">'{ReadCapacityUnits=5,WriteCapacityUnits=5}'</span> <span class="se">\</span>
+    <span class="nv">IndexName</span><span class="o">=</span>EmailIndex,KeySchema<span class="o">=[{</span><span class="nv">AttributeName</span><span class="o">=</span>email,KeyType<span class="o">=</span>HASH<span class="o">}]</span>,Projection<span class="o">=</span><span class="s1">'{ProjectionType=ALL}'</span>,ProvisionedThroughput<span class="o">=</span><span class="s1">'{ReadCapacityUnits=5,WriteCapacityUnits=5}'</span> <span class="se">\</span>
+  <span class="nt">--stream-specification</span> <span class="nv">StreamEnabled</span><span class="o">=</span><span class="nb">true</span>,StreamViewType<span class="o">=</span>NEW_AND_OLD_IMAGES <span class="se">\</span>
+  <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Environment,Value<span class="o">=</span>Production <span class="nv">Key</span><span class="o">=</span>Project,Value<span class="o">=</span>ServerlessAPI
+
+<span class="nb">echo</span> <span class="s2">"테이블 생성 중... 완료까지 잠시 기다려주세요."</span>
+
+<span class="c"># 테이블 생성 완료 대기</span>
+aws dynamodb <span class="nb">wait </span>table-exists <span class="nt">--table-name</span> <span class="nv">$TABLE_NAME</span>
+
+<span class="nb">echo</span> <span class="s2">"DynamoDB 테이블 생성 완료: </span><span class="nv">$TABLE_NAME</span><span class="s2">"</span>
+
+<span class="c"># Point-in-Time Recovery 활성화</span>
+aws dynamodb update-continuous-backups <span class="se">\</span>
+  <span class="nt">--table-name</span> <span class="nv">$TABLE_NAME</span> <span class="se">\</span>
+  <span class="nt">--point-in-time-recovery-specification</span> <span class="nv">PointInTimeRecoveryEnabled</span><span class="o">=</span><span class="nb">true
+
+echo</span> <span class="s2">"Point-in-Time Recovery 활성화 완료"</span>
+
+<span class="c"># 테이블 정보 출력</span>
+aws dynamodb describe-table <span class="nt">--table-name</span> <span class="nv">$TABLE_NAME</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Table.[TableName,TableStatus,ItemCount,TableSizeBytes]'</span> <span class="se">\</span>
+  <span class="nt">--output</span> table
+
+<span class="c"># DynamoDB 스트림을 위한 Lambda 함수 생성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> stream_processor.py <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+import json
+import boto3
+import logging
+from datetime import datetime
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
+def lambda_handler(event, context):
+    """DynamoDB 스트림 이벤트 처리"""
+    
+    for record in event['Records']:
+        event_name = record['eventName']
+        
+        if event_name == 'INSERT':
+            handle_insert(record)
+        elif event_name == 'MODIFY':
+            handle_modify(record)
+        elif event_name == 'REMOVE':
+            handle_remove(record)
+    
+    return {'statusCode': 200}
+
+def handle_insert(record):
+    """새 레코드 삽입 처리"""
+    new_image = record['dynamodb']['NewImage']
+    
+    logger.info(f"New item created: {new_image}")
+    
+    # 여기에 추가 처리 로직 구현
+    # 예: 알림 발송, 검색 인덱스 업데이트 등
+
+def handle_modify(record):
+    """레코드 수정 처리"""
+    old_image = record['dynamodb'].get('OldImage', {})
+    new_image = record['dynamodb']['NewImage']
+    
+    logger.info(f"Item modified: {old_image} -&gt; {new_image}")
+
+def handle_remove(record):
+    """레코드 삭제 처리"""
+    old_image = record['dynamodb']['OldImage']
+    
+    logger.info(f"Item removed: {old_image}")
+</span><span class="no">EOF
+
+</span><span class="c"># 스트림 처리 Lambda 함수 배포</span>
+zip stream_processor.zip stream_processor.py
+
+aws lambda create-function <span class="se">\</span>
+  <span class="nt">--function-name</span> dynamodb-stream-processor <span class="se">\</span>
+  <span class="nt">--runtime</span> python3.9 <span class="se">\</span>
+  <span class="nt">--role</span> arn:aws:iam::123456789012:role/lambda-execution-role <span class="se">\</span>
+  <span class="nt">--handler</span> stream_processor.lambda_handler <span class="se">\</span>
+  <span class="nt">--zip-file</span> fileb://stream_processor.zip <span class="se">\</span>
+  <span class="nt">--timeout</span> 60 <span class="se">\</span>
+  <span class="nt">--memory-size</span> 128
+
+<span class="c"># DynamoDB 스트림 ARN 가져오기</span>
+<span class="nv">STREAM_ARN</span><span class="o">=</span><span class="si">$(</span>aws dynamodb describe-table <span class="se">\</span>
+  <span class="nt">--table-name</span> <span class="nv">$TABLE_NAME</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Table.LatestStreamArn'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># 이벤트 소스 매핑 생성</span>
+aws lambda create-event-source-mapping <span class="se">\</span>
+  <span class="nt">--event-source-arn</span> <span class="nv">$STREAM_ARN</span> <span class="se">\</span>
+  <span class="nt">--function-name</span> dynamodb-stream-processor <span class="se">\</span>
+  <span class="nt">--starting-position</span> LATEST <span class="se">\</span>
+  <span class="nt">--batch-size</span> 10
+
+<span class="nb">echo</span> <span class="s2">"DynamoDB 스트림 처리 설정 완료"</span>
+
+<span class="c"># 정리</span>
+<span class="nb">rm</span> <span class="nt">-f</span> stream_processor.py stream_processor.zip
+</code></pre></div></div>
+
+<h4 id="dynamodb-고급-쿼리-예제">DynamoDB 고급 쿼리 예제</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># advanced_dynamodb_operations.py
+# DynamoDB 고급 작업 예제
+</span>
+<span class="kn">import</span> <span class="n">boto3</span>
+<span class="kn">from</span> <span class="n">boto3.dynamodb.conditions</span> <span class="kn">import</span> <span class="n">Key</span><span class="p">,</span> <span class="n">Attr</span>
+<span class="kn">from</span> <span class="n">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="kn">import</span> <span class="n">json</span>
+
+<span class="n">dynamodb</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">resource</span><span class="p">(</span><span class="sh">'</span><span class="s">dynamodb</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="sh">'</span><span class="s">serverless-api-table</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">DynamoDBOperations</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">table</span> <span class="o">=</span> <span class="n">dynamodb</span><span class="p">.</span><span class="nc">Table</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">batch_write_items</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">배치로 아이템 작성</span><span class="sh">"""</span>
+        <span class="k">with</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="nf">batch_writer</span><span class="p">()</span> <span class="k">as</span> <span class="n">batch</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+                <span class="n">batch</span><span class="p">.</span><span class="nf">put_item</span><span class="p">(</span><span class="n">Item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">query_by_status_and_date</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">상태와 생성일자로 쿼리</span><span class="sh">"""</span>
+        <span class="n">key_condition</span> <span class="o">=</span> <span class="nc">Key</span><span class="p">(</span><span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">).</span><span class="nf">eq</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nc">Key</span><span class="p">(</span><span class="sh">'</span><span class="s">created_at</span><span class="sh">'</span><span class="p">).</span><span class="nf">gte</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">end_date</span><span class="p">:</span>
+            <span class="n">key_condition</span> <span class="o">=</span> <span class="n">key_condition</span> <span class="o">&amp;</span> <span class="nc">Key</span><span class="p">(</span><span class="sh">'</span><span class="s">created_at</span><span class="sh">'</span><span class="p">).</span><span class="nf">lte</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span>
+            <span class="n">IndexName</span><span class="o">=</span><span class="sh">'</span><span class="s">CreatedAtIndex</span><span class="sh">'</span><span class="p">,</span>
+            <span class="n">KeyConditionExpression</span><span class="o">=</span><span class="n">key_condition</span><span class="p">,</span>
+            <span class="n">ScanIndexForward</span><span class="o">=</span><span class="bp">False</span>  <span class="c1"># 최신순 정렬
+</span>        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Items</span><span class="sh">'</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">scan_with_filter</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">filter_expression</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">필터 조건으로 스캔</span><span class="sh">"""</span>
+        <span class="n">scan_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">FilterExpression</span><span class="sh">'</span><span class="p">:</span> <span class="n">filter_expression</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
+            <span class="n">scan_kwargs</span><span class="p">[</span><span class="sh">'</span><span class="s">Limit</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">limit</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="nf">scan</span><span class="p">(</span><span class="o">**</span><span class="n">scan_kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Items</span><span class="sh">'</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">update_item_conditionally</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">updates</span><span class="p">,</span> <span class="n">condition</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">조건부 업데이트</span><span class="sh">"""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">update_expression</span> <span class="o">=</span> <span class="sh">"</span><span class="s">SET </span><span class="sh">"</span>
+            <span class="n">expression_values</span> <span class="o">=</span> <span class="p">{}</span>
+            
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">updates</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+                <span class="n">update_expression</span> <span class="o">+=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s"> = :</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s">, </span><span class="sh">"</span>
+                <span class="n">expression_values</span><span class="p">[</span><span class="sa">f</span><span class="sh">"</span><span class="s">:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            
+            <span class="n">update_expression</span> <span class="o">=</span> <span class="n">update_expression</span><span class="p">.</span><span class="nf">rstrip</span><span class="p">(</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="p">)</span>
+            
+            <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="nf">update_item</span><span class="p">(</span>
+                <span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">},</span>
+                <span class="n">UpdateExpression</span><span class="o">=</span><span class="n">update_expression</span><span class="p">,</span>
+                <span class="n">ExpressionAttributeValues</span><span class="o">=</span><span class="n">expression_values</span><span class="p">,</span>
+                <span class="n">ConditionExpression</span><span class="o">=</span><span class="n">condition</span><span class="p">,</span>
+                <span class="n">ReturnValues</span><span class="o">=</span><span class="sh">'</span><span class="s">ALL_NEW</span><span class="sh">'</span>
+            <span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Attributes</span><span class="sh">'</span><span class="p">]</span>
+            
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Error</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">Code</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">ConditionalCheckFailedException</span><span class="sh">'</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">조건부 업데이트 실패: 조건을 만족하지 않음</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">raise</span>
+    
+    <span class="k">def</span> <span class="nf">paginated_scan</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">페이지네이션을 통한 스캔</span><span class="sh">"""</span>
+        <span class="n">scan_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">Limit</span><span class="sh">'</span><span class="p">:</span> <span class="n">page_size</span>
+        <span class="p">}</span>
+        
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="nf">scan</span><span class="p">(</span><span class="o">**</span><span class="n">scan_kwargs</span><span class="p">)</span>
+            
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">Items</span><span class="sh">'</span><span class="p">]:</span>
+                <span class="k">yield</span> <span class="n">item</span>
+            
+            <span class="k">if</span> <span class="sh">'</span><span class="s">LastEvaluatedKey</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+                <span class="k">break</span>
+            
+            <span class="n">scan_kwargs</span><span class="p">[</span><span class="sh">'</span><span class="s">ExclusiveStartKey</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="sh">'</span><span class="s">LastEvaluatedKey</span><span class="sh">'</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">get_item_with_projection</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">특정 속성만 조회</span><span class="sh">"""</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="nf">get_item</span><span class="p">(</span>
+            <span class="n">Key</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="n">item_id</span><span class="p">},</span>
+            <span class="n">ProjectionExpression</span><span class="o">=</span><span class="sh">'</span><span class="s">,</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Item</span><span class="sh">'</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">transaction_write</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">operations</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">트랜잭션 쓰기</span><span class="sh">"""</span>
+        <span class="n">transact_items</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">operations</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">put</span><span class="sh">'</span><span class="p">:</span>
+                <span class="n">transact_items</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">'</span><span class="s">Put</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="sh">'</span><span class="s">TableName</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="n">table_name</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">Item</span><span class="sh">'</span><span class="p">:</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">item</span><span class="sh">'</span><span class="p">]</span>
+                    <span class="p">}</span>
+                <span class="p">})</span>
+            <span class="k">elif</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">update</span><span class="sh">'</span><span class="p">:</span>
+                <span class="n">transact_items</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">'</span><span class="s">Update</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="sh">'</span><span class="s">TableName</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="n">table_name</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">Key</span><span class="sh">'</span><span class="p">:</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">key</span><span class="sh">'</span><span class="p">],</span>
+                        <span class="sh">'</span><span class="s">UpdateExpression</span><span class="sh">'</span><span class="p">:</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">update_expression</span><span class="sh">'</span><span class="p">],</span>
+                        <span class="sh">'</span><span class="s">ExpressionAttributeValues</span><span class="sh">'</span><span class="p">:</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">expression_values</span><span class="sh">'</span><span class="p">]</span>
+                    <span class="p">}</span>
+                <span class="p">})</span>
+            <span class="k">elif</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">action</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">delete</span><span class="sh">'</span><span class="p">:</span>
+                <span class="n">transact_items</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">'</span><span class="s">Delete</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="sh">'</span><span class="s">TableName</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">table</span><span class="p">.</span><span class="n">table_name</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">Key</span><span class="sh">'</span><span class="p">:</span> <span class="n">op</span><span class="p">[</span><span class="sh">'</span><span class="s">key</span><span class="sh">'</span><span class="p">]</span>
+                    <span class="p">}</span>
+                <span class="p">})</span>
+        
+        <span class="n">dynamodb</span><span class="p">.</span><span class="n">meta</span><span class="p">.</span><span class="n">client</span><span class="p">.</span><span class="nf">transact_write_items</span><span class="p">(</span>
+            <span class="n">TransactItems</span><span class="o">=</span><span class="n">transact_items</span>
+        <span class="p">)</span>
+
+<span class="c1"># 사용 예제
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">db_ops</span> <span class="o">=</span> <span class="nc">DynamoDBOperations</span><span class="p">(</span><span class="sh">'</span><span class="s">serverless-api-table</span><span class="sh">'</span><span class="p">)</span>
+    
+    <span class="c1"># 배치 작성 예제
+</span>    <span class="n">sample_items</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">item1</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Sample Item 1</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">active</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">created_at</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">2024-03-25T10:00:00Z</span><span class="sh">'</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">item2</span><span class="sh">'</span><span class="p">,</span> 
+            <span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Sample Item 2</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">inactive</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">created_at</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">2024-03-25T11:00:00Z</span><span class="sh">'</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+    
+    <span class="n">db_ops</span><span class="p">.</span><span class="nf">batch_write_items</span><span class="p">(</span><span class="n">sample_items</span><span class="p">)</span>
+    
+    <span class="c1"># 쿼리 예제
+</span>    <span class="n">active_items</span> <span class="o">=</span> <span class="n">db_ops</span><span class="p">.</span><span class="nf">query_by_status_and_date</span><span class="p">(</span><span class="sh">'</span><span class="s">active</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">2024-03-25T00:00:00Z</span><span class="sh">'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Active items: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">active_items</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="c1"># 필터링 스캔 예제
+</span>    <span class="n">filtered_items</span> <span class="o">=</span> <span class="n">db_ops</span><span class="p">.</span><span class="nf">scan_with_filter</span><span class="p">(</span>
+        <span class="nc">Attr</span><span class="p">(</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">).</span><span class="nf">contains</span><span class="p">(</span><span class="sh">'</span><span class="s">Sample</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">limit</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Filtered items: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">filtered_items</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>CloudFormation Infrastructure as Code와 CI/CD 파이프라인</strong>을 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>CloudFormation 템플릿 완전 마스터</li>
+  <li>SAM(Serverless Application Model) 활용</li>
+  <li>CodePipeline으로 자동 배포 구축</li>
+  <li>모니터링 및 로깅 완전 설정</li>
+</ul>
+
+<p>AWS 서버리스 아키텍처를 완전히 마스터하셨나요? ⚡🚀</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/03/24/aws-core-services-ec2-vpc-s3-rds.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">AWS 완전 정복 가이드 2편 - 핵심 서비스 실습과 EC2 마스터 | AWS Com...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/03/26/aws-cloudformation-iac-cicd.html" rel="next">
+          <span class="nav-title">AWS 완전 정복 가이드 4편 - CloudFormation IaC와 CI/CD 파이...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

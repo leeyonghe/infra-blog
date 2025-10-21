@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>리눅스 보안 완전 가이드 4편 - 침입 탐지와 실시간 모니터링 | Linux Security Guide Part 4 - Intrusion Detection & Real-time Monitoring</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">리눅스 보안 완전 가이드 4편 - 침입 탐지와 실시간 모니터링 | Linux Security Guide Part 4 - Intrusion Detection &amp; Real-time Monitoring</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2025-04-12T00:00:00+00:00">Apr 12, 2025</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Security</li><li>Linux</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>리눅스 시스템의 완벽한 보안을 위한 마지막 퍼즐 조각인 침입 탐지와 실시간 모니터링을 완전히 마스터해보겠습니다. AIDE부터 Wazuh SIEM까지, 모든 위협을 실시간으로 탐지하고 대응하는 최고급 보안 시스템을 구축합니다.</p>
+
+<h2 id="aide-파일-무결성-모니터링--aide-file-integrity-monitoring">AIDE 파일 무결성 모니터링 | AIDE File Integrity Monitoring</h2>
+
+<h3 id="-aide-완전-설정-및-운영">🔍 AIDE 완전 설정 및 운영</h3>
+
+<h4 id="aide-설치-및-기본-설정">AIDE 설치 및 기본 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AIDE 설치</span>
+<span class="c"># CentOS/RHEL</span>
+yum <span class="nb">install </span>aide
+<span class="c"># Ubuntu/Debian  </span>
+apt-get <span class="nb">install </span>aide aide-common
+
+<span class="c"># 초기 데이터베이스 생성</span>
+aide <span class="nt">--init</span>
+<span class="nb">mv</span> /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+
+<span class="c"># 기본 무결성 검사 실행</span>
+aide <span class="nt">--check</span>
+
+<span class="c"># 설정 파일 위치</span>
+<span class="c"># CentOS/RHEL: /etc/aide.conf</span>
+<span class="c"># Ubuntu/Debian: /etc/aide/aide.conf</span>
+</code></pre></div></div>
+
+<h4 id="고급-aide-설정-파일-작성">고급 AIDE 설정 파일 작성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/aide/aide.conf (Ubuntu) 또는 /etc/aide.conf (CentOS)</span>
+<span class="c"># 종합적인 AIDE 설정</span>
+
+<span class="c"># 데이터베이스 경로</span>
+<span class="nv">database</span><span class="o">=</span>file:/var/lib/aide/aide.db.gz
+<span class="nv">database_out</span><span class="o">=</span>file:/var/lib/aide/aide.db.new.gz
+
+<span class="c"># 로그 설정</span>
+<span class="nv">verbose</span><span class="o">=</span>5
+<span class="nv">report_url</span><span class="o">=</span>file:/var/log/aide/aide.log
+<span class="nv">report_url</span><span class="o">=</span>stdout
+
+<span class="c"># 검사 규칙 정의</span>
+<span class="c"># R = p+i+n+u+g+s+m+c+md5</span>
+<span class="c"># L = p+i+n+u+g</span>
+<span class="c"># E = 빈 그룹 (존재만 확인)</span>
+<span class="c"># &gt; = 로그 파일 (크기 증가만 허용)</span>
+<span class="c"># X = 제외</span>
+
+<span class="c"># 기본 규칙들</span>
+Binlib <span class="o">=</span> p+i+n+u+g+s+b+m+c+md5+sha1+sha256+sha512
+ConfFiles <span class="o">=</span> p+i+n+u+g+s+m+c+md5+sha1+sha256
+LogFiles <span class="o">=</span> p+u+g+i+n+S
+DatabaseFiles <span class="o">=</span> p+i+n+u+g+s+m+c+md5+sha1+sha256
+StaticFiles <span class="o">=</span> p+i+n+u+g+s+m+c+md5+sha1+sha256+acl+selinux+xattrs
+DeviceFiles <span class="o">=</span> p+i+n+u+g+s+b+c+md5+sha1
+
+<span class="c"># 고급 규칙들</span>
+CriticalFiles <span class="o">=</span> p+i+n+u+g+s+m+c+md5+sha1+sha256+sha512+acl+selinux+xattrs
+WebFiles <span class="o">=</span> p+i+n+u+g+s+m+c+md5+sha1+sha256
+TempFiles <span class="o">=</span> n+u+g+i
+UserFiles <span class="o">=</span> p+i+n+u+g+s+m+c+md5+sha1
+
+<span class="c"># 시스템 중요 디렉토리</span>
+/boot                   CriticalFiles
+/bin                    Binlib
+/sbin                   Binlib
+/usr/bin                Binlib
+/usr/sbin               Binlib
+/usr/local/bin          Binlib
+/usr/local/sbin         Binlib
+/lib                    Binlib
+/lib64                  Binlib
+/usr/lib                Binlib
+/usr/lib64              Binlib
+
+<span class="c"># 설정 파일들</span>
+/etc                    ConfFiles
+<span class="o">!</span>/etc/mtab
+<span class="o">!</span>/etc/.<span class="k">*</span>~
+<span class="o">!</span>/etc/<span class="se">\.</span>.<span class="k">*</span>
+<span class="o">!</span>/etc/passwd-
+<span class="o">!</span>/etc/shadow-
+<span class="o">!</span>/etc/group-
+<span class="o">!</span>/etc/gshadow-
+<span class="o">!</span>/etc/security/opasswd
+<span class="o">!</span>/etc/mail/statistics
+<span class="o">!</span>/etc/prelink<span class="se">\.</span>cache
+<span class="o">!</span>/etc/crontab
+<span class="o">!</span>/etc/cron<span class="se">\.</span>d
+<span class="o">!</span>/etc/cron<span class="se">\.</span>daily
+<span class="o">!</span>/etc/cron<span class="se">\.</span>hourly
+<span class="o">!</span>/etc/cron<span class="se">\.</span>monthly
+<span class="o">!</span>/etc/cron<span class="se">\.</span>weekly
+
+<span class="c"># 시스템 특수 파일들</span>
+/etc/passwd             CriticalFiles
+/etc/shadow             CriticalFiles
+/etc/group              CriticalFiles
+/etc/gshadow            CriticalFiles
+/etc/sudoers            CriticalFiles
+/etc/ssh/sshd_config    CriticalFiles
+/etc/hosts              CriticalFiles
+/etc/hosts.allow        CriticalFiles
+/etc/hosts.deny         CriticalFiles
+
+<span class="c"># 웹 서버 파일들 (해당하는 경우)</span>
+/var/www                WebFiles
+<span class="o">!</span>/var/www/html/.<span class="k">*</span><span class="se">\.</span>log<span class="err">$</span>
+<span class="o">!</span>/var/www/.<span class="k">*</span>cache.<span class="k">*</span>
+
+<span class="c"># 로그 디렉토리 (증가만 허용)</span>
+/var/log                LogFiles
+<span class="o">!</span>/var/log/.<span class="k">*</span><span class="se">\.</span><span class="o">[</span>0-9]+<span class="se">\.</span>gz
+<span class="o">!</span>/var/log/.<span class="k">*</span><span class="se">\.</span>old
+<span class="o">!</span>/var/log/.<span class="k">*</span><span class="se">\.</span>log<span class="se">\.</span><span class="o">[</span>0-9]+
+<span class="o">!</span>/var/log/lastlog
+<span class="o">!</span>/var/log/wtmp
+<span class="o">!</span>/var/log/btmp
+<span class="o">!</span>/var/log/utmp
+
+<span class="c"># 사용자 홈 디렉토리 (중요 파일만)</span>
+/home                   UserFiles
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span>bash_history
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span>viminfo
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span>cache
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span><span class="nb">local</span>
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span>mozilla
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span>gnome
+<span class="o">!</span>/home/[^/]+/<span class="se">\.</span>config
+
+<span class="c"># 특별 관심 파일들</span>
+/root                   CriticalFiles
+<span class="o">!</span>/root/<span class="se">\.</span>bash_history
+<span class="o">!</span>/root/<span class="se">\.</span>viminfo
+
+<span class="c"># 데이터베이스 파일들</span>
+/var/lib/mysql          DatabaseFiles
+/var/lib/postgresql     DatabaseFiles
+
+<span class="c"># 임시 디렉토리 (존재만 확인)</span>
+/tmp                    TempFiles
+/var/tmp                TempFiles
+
+<span class="c"># 제외할 디렉토리들</span>
+<span class="o">!</span>/proc
+<span class="o">!</span>/sys
+<span class="o">!</span>/dev
+<span class="o">!</span>/run
+<span class="o">!</span>/var/run
+<span class="o">!</span>/var/lock
+<span class="o">!</span>/var/cache
+<span class="o">!</span>/var/spool
+<span class="o">!</span>/media
+<span class="o">!</span>/mnt
+<span class="o">!</span>/tmp/.<span class="k">*</span>
+<span class="o">!</span>/var/tmp/.<span class="k">*</span>
+<span class="o">!</span>/lost<span class="se">\+</span>found
+
+<span class="c"># 고급 제외 규칙들</span>
+<span class="o">!</span>/<span class="se">\.</span>journal
+<span class="o">!</span>/<span class="se">\.</span>updated
+<span class="o">!</span>/var/lib/dhcp/dhcpd<span class="se">\.</span>leases.<span class="k">*</span>
+<span class="o">!</span>/var/lib/logrotate<span class="se">\.</span>status
+<span class="o">!</span>/var/lib/random-seed
+<span class="o">!</span>/var/lib/systemd
+<span class="o">!</span>/var/lib/dbus
+</code></pre></div></div>
+
+<h4 id="aide-자동화-및-모니터링-스크립트">AIDE 자동화 및 모니터링 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/aide-monitor.sh</span>
+<span class="c"># AIDE 자동 모니터링 및 알림 시스템</span>
+
+<span class="nv">AIDE_CONFIG</span><span class="o">=</span><span class="s2">"/etc/aide/aide.conf"</span>
+<span class="nv">AIDE_DB</span><span class="o">=</span><span class="s2">"/var/lib/aide/aide.db.gz"</span>
+<span class="nv">AIDE_NEW_DB</span><span class="o">=</span><span class="s2">"/var/lib/aide/aide.db.new.gz"</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/var/log/aide/aide-monitor.log"</span>
+<span class="nv">ALERT_LOG</span><span class="o">=</span><span class="s2">"/var/log/aide/aide-alerts.log"</span>
+<span class="nv">EMAIL_TO</span><span class="o">=</span><span class="s2">"admin@example.com"</span>
+<span class="nv">LOCKFILE</span><span class="o">=</span><span class="s2">"/var/run/aide-monitor.lock"</span>
+
+<span class="c"># 함수 정의</span>
+log_message<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - </span><span class="nv">$1</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+<span class="o">}</span>
+
+send_alert<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">subject</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+    <span class="nb">local </span><span class="nv">message</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+    
+    <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - ALERT: </span><span class="nv">$subject</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$ALERT_LOG</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$message</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$ALERT_LOG</span><span class="s2">"</span>
+    
+    <span class="c"># 이메일 발송 (sendmail 또는 mail 명령 사용)</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> mail <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$message</span><span class="s2">"</span> | mail <span class="nt">-s</span> <span class="s2">"AIDE Alert: </span><span class="nv">$subject</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$EMAIL_TO</span><span class="s2">"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># Slack 웹훅 (설정된 경우)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+             <span class="nt">--data</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">text</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">🚨 AIDE Alert: </span><span class="nv">$subject</span><span class="se">\n</span><span class="nv">$message</span><span class="se">\"</span><span class="s2">}"</span> <span class="se">\</span>
+             <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># syslog에도 기록</span>
+    logger <span class="nt">-p</span> local0.alert <span class="s2">"AIDE Alert: </span><span class="nv">$subject</span><span class="s2">"</span>
+<span class="o">}</span>
+
+check_prerequisites<span class="o">()</span> <span class="o">{</span>
+    <span class="c"># AIDE 설치 확인</span>
+    <span class="k">if</span> <span class="o">!</span> <span class="nb">command</span> <span class="nt">-v</span> aide <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>log_message <span class="s2">"ERROR: AIDE is not installed"</span>
+        <span class="nb">exit </span>1
+    <span class="k">fi</span>
+    
+    <span class="c"># 데이터베이스 존재 확인</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$AIDE_DB</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>log_message <span class="s2">"ERROR: AIDE database not found at </span><span class="nv">$AIDE_DB</span><span class="s2">"</span>
+        log_message <span class="s2">"Run: aide --init &amp;&amp; mv </span><span class="nv">$AIDE_NEW_DB</span><span class="s2"> </span><span class="nv">$AIDE_DB</span><span class="s2">"</span>
+        <span class="nb">exit </span>1
+    <span class="k">fi</span>
+    
+    <span class="c"># 로그 디렉토리 생성</span>
+    <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span>
+    <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="nv">$ALERT_LOG</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 락 파일 확인 (중복 실행 방지)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$LOCKFILE</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">PID</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="s2">"</span><span class="nv">$LOCKFILE</span><span class="s2">"</span><span class="si">)</span>
+    <span class="k">if </span>ps <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$PID</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>log_message <span class="s2">"Another instance is running (PID: </span><span class="nv">$PID</span><span class="s2">)"</span>
+        <span class="nb">exit </span>1
+    <span class="k">else
+        </span><span class="nb">rm</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$LOCKFILE</span><span class="s2">"</span>
+    <span class="k">fi
+fi</span>
+
+<span class="c"># 락 파일 생성</span>
+<span class="nb">echo</span> <span class="nv">$$</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$LOCKFILE</span><span class="s2">"</span>
+<span class="nb">trap</span> <span class="s2">"rm -f </span><span class="nv">$LOCKFILE</span><span class="s2">"</span> EXIT
+
+<span class="c"># 액션 파라미터</span>
+<span class="nv">ACTION</span><span class="o">=</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">check</span><span class="k">}</span>
+
+<span class="k">case</span> <span class="nv">$ACTION</span> <span class="k">in</span>
+    <span class="s2">"init"</span><span class="p">)</span>
+        log_message <span class="s2">"Initializing AIDE database..."</span>
+        check_prerequisites
+        
+        aide <span class="nt">--init</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">mv</span> <span class="s2">"</span><span class="nv">$AIDE_NEW_DB</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$AIDE_DB</span><span class="s2">"</span>
+            log_message <span class="s2">"AIDE database initialized successfully"</span>
+        <span class="k">else
+            </span>log_message <span class="s2">"ERROR: AIDE database initialization failed"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"check"</span><span class="p">)</span>
+        log_message <span class="s2">"Starting AIDE integrity check..."</span>
+        check_prerequisites
+        
+        <span class="c"># 임시 파일에 결과 저장</span>
+        <span class="nv">TEMP_RESULT</span><span class="o">=</span><span class="s2">"/tmp/aide-result-</span><span class="nv">$$</span><span class="s2">"</span>
+        
+        <span class="c"># AIDE 실행</span>
+        aide <span class="nt">--check</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$TEMP_RESULT</span><span class="s2">"</span> 2&gt;&amp;1
+        <span class="nv">AIDE_EXIT_CODE</span><span class="o">=</span><span class="nv">$?</span>
+        
+        <span class="k">case</span> <span class="nv">$AIDE_EXIT_CODE</span> <span class="k">in
+            </span>0<span class="p">)</span>
+                log_message <span class="s2">"AIDE check completed - No changes detected"</span>
+                <span class="p">;;</span>
+            1<span class="p">)</span>
+                log_message <span class="s2">"WARNING: AIDE detected file changes"</span>
+                
+                <span class="c"># 변경 사항 분석</span>
+                <span class="nv">CHANGES</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"(added|removed|changed)"</span> <span class="s2">"</span><span class="nv">$TEMP_RESULT</span><span class="s2">"</span> | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span>
+                
+                <span class="c"># 상세 변경 내역</span>
+                <span class="nv">CHANGE_DETAILS</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> <span class="nt">-A</span> 5 <span class="nt">-B</span> 5 <span class="nt">-E</span> <span class="s2">"(added|removed|changed)"</span> <span class="s2">"</span><span class="nv">$TEMP_RESULT</span><span class="s2">"</span><span class="si">)</span>
+                
+                <span class="c"># 알림 발송</span>
+                <span class="nv">ALERT_MESSAGE</span><span class="o">=</span><span class="s2">"AIDE detected </span><span class="nv">$CHANGES</span><span class="s2"> file system changes:
+
+</span><span class="nv">$CHANGE_DETAILS</span><span class="s2">
+
+Full report saved to: </span><span class="nv">$LOG_FILE</span><span class="s2">
+Time: </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">
+Hostname: </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2">"</span>
+                
+                send_alert <span class="s2">"File System Changes Detected"</span> <span class="s2">"</span><span class="nv">$ALERT_MESSAGE</span><span class="s2">"</span>
+                
+                <span class="c"># 전체 결과를 로그에 저장</span>
+                <span class="nb">cat</span> <span class="s2">"</span><span class="nv">$TEMP_RESULT</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+                <span class="p">;;</span>
+            2|3|4|5|6|7|14|15|16|17<span class="p">)</span>
+                log_message <span class="s2">"ERROR: AIDE check failed with exit code </span><span class="nv">$AIDE_EXIT_CODE</span><span class="s2">"</span>
+                send_alert <span class="s2">"AIDE Check Failed"</span> <span class="s2">"AIDE integrity check failed with exit code: </span><span class="nv">$AIDE_EXIT_CODE</span><span class="s2">"</span>
+                <span class="p">;;</span>
+        <span class="k">esac</span>
+        
+        <span class="nb">rm</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$TEMP_RESULT</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"update"</span><span class="p">)</span>
+        log_message <span class="s2">"Updating AIDE database..."</span>
+        check_prerequisites
+        
+        <span class="c"># 백업 생성</span>
+        <span class="nv">BACKUP_DB</span><span class="o">=</span><span class="s2">"/var/lib/aide/aide.db.backup.</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="s2">.gz"</span>
+        <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$AIDE_DB</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$BACKUP_DB</span><span class="s2">"</span>
+        log_message <span class="s2">"Database backed up to </span><span class="nv">$BACKUP_DB</span><span class="s2">"</span>
+        
+        <span class="c"># 새 데이터베이스 생성</span>
+        aide <span class="nt">--init</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">mv</span> <span class="s2">"</span><span class="nv">$AIDE_NEW_DB</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$AIDE_DB</span><span class="s2">"</span>
+            log_message <span class="s2">"AIDE database updated successfully"</span>
+        <span class="k">else
+            </span>log_message <span class="s2">"ERROR: AIDE database update failed"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"config-test"</span><span class="p">)</span>
+        log_message <span class="s2">"Testing AIDE configuration..."</span>
+        aide <span class="nt">--config-check</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span>log_message <span class="s2">"AIDE configuration is valid"</span>
+        <span class="k">else
+            </span>log_message <span class="s2">"ERROR: AIDE configuration has errors"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"stats"</span><span class="p">)</span>
+        log_message <span class="s2">"AIDE Statistics:"</span>
+        <span class="nb">echo</span> <span class="s2">"Database size: </span><span class="si">$(</span><span class="nb">du</span> <span class="nt">-h</span> <span class="nv">$AIDE_DB</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">'N/A'</span><span class="si">)</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"Database date: </span><span class="si">$(</span><span class="nb">stat</span> <span class="nt">-c</span> %y <span class="nv">$AIDE_DB</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">'N/A'</span><span class="si">)</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"Config file: </span><span class="nv">$AIDE_CONFIG</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"Log file: </span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        
+        <span class="c"># 최근 체크 이력</span>
+        <span class="nb">echo</span> <span class="s2">"Recent checks:"</span>
+        <span class="nb">tail</span> <span class="nt">-n</span> 10 <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"No recent checks found"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"report"</span><span class="p">)</span>
+        <span class="nv">DAYS</span><span class="o">=</span><span class="k">${</span><span class="nv">2</span><span class="k">:-</span><span class="nv">7</span><span class="k">}</span>
+        log_message <span class="s2">"Generating AIDE report for last </span><span class="nv">$DAYS</span><span class="s2"> days..."</span>
+        
+        <span class="nb">echo</span> <span class="s2">"=== AIDE Activity Report (Last </span><span class="nv">$DAYS</span><span class="s2"> days) ==="</span>
+        <span class="nb">echo</span> <span class="s2">"Generated: </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        
+        <span class="c"># 최근 체크 결과</span>
+        <span class="nb">echo</span> <span class="s2">"Recent integrity checks:"</span>
+        <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"AIDE check completed|AIDE detected|ERROR:"</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span> 2&gt;/dev/null | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="nt">-v</span> <span class="nv">days</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DAYS</span><span class="s2">"</span> <span class="s1">'
+        BEGIN {
+            cutoff = systime() - (days * 24 * 60 * 60)
+        }
+        {
+            # 날짜 파싱 (간단한 방법)
+            print $0
+        }'</span> | <span class="nb">tail</span> <span class="nt">-n</span> 20
+        
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Alert summary:"</span>
+        <span class="nb">grep</span> <span class="s2">"ALERT:"</span> <span class="s2">"</span><span class="nv">$ALERT_LOG</span><span class="s2">"</span> 2&gt;/dev/null | <span class="nb">tail</span> <span class="nt">-n</span> 10 <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"No alerts in period"</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {init|check|update|config-test|stats|report} [days]"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Actions:"</span>
+        <span class="nb">echo</span> <span class="s2">"  init        - Initialize AIDE database"</span>
+        <span class="nb">echo</span> <span class="s2">"  check       - Perform integrity check"</span>
+        <span class="nb">echo</span> <span class="s2">"  update      - Update AIDE database"</span>
+        <span class="nb">echo</span> <span class="s2">"  config-test - Test configuration"</span>
+        <span class="nb">echo</span> <span class="s2">"  stats       - Show statistics"</span>
+        <span class="nb">echo</span> <span class="s2">"  report      - Generate activity report"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Examples:"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> check              # Perform integrity check"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> report 30          # Generate 30-day report"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+
+log_message <span class="s2">"AIDE monitor completed successfully"</span>
+</code></pre></div></div>
+
+<h4 id="aide-자동화-크론잡-설정">AIDE 자동화 크론잡 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/cron.d/aide-monitoring</span>
+<span class="c"># AIDE 자동 모니터링 크론 설정</span>
+
+<span class="c"># 매일 02:00에 무결성 검사 실행</span>
+0 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/aide-monitor.sh check
+
+<span class="c"># 매주 일요일 03:00에 주간 리포트 생성</span>
+0 3 <span class="k">*</span> <span class="k">*</span> 0 root /usr/local/bin/aide-monitor.sh report 7
+
+<span class="c"># 매월 1일 04:00에 월간 리포트 생성</span>
+0 4 1 <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/aide-monitor.sh report 30
+
+<span class="c"># logrotate 설정</span>
+<span class="c"># /etc/logrotate.d/aide</span>
+/var/log/aide/<span class="k">*</span>.log <span class="o">{</span>
+    daily
+    missingok
+    rotate 365
+    compress
+    delaycompress
+    notifempty
+    create 644 root root
+    postrotate
+        <span class="c"># AIDE 로그 순환 후 처리 (필요시)</span>
+    endscript
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="fail2ban-고급-설정--advanced-fail2ban-configuration">Fail2Ban 고급 설정 | Advanced Fail2Ban Configuration</h2>
+
+<h3 id="-포괄적인-침입-차단-시스템">🚫 포괄적인 침입 차단 시스템</h3>
+
+<h4 id="fail2ban-고급-메인-설정">Fail2Ban 고급 메인 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/fail2ban/jail.local</span>
+<span class="c"># 종합적인 Fail2Ban 설정</span>
+
+<span class="o">[</span>DEFAULT]
+<span class="c"># 기본 설정</span>
+ignorelist <span class="o">=</span> 127.0.0.1/8 ::1 192.168.1.0/24 10.0.0.0/8
+bantime <span class="o">=</span> 3600
+findtime <span class="o">=</span> 600
+maxretry <span class="o">=</span> 3
+backend <span class="o">=</span> auto
+
+<span class="c"># 백엔드 우선순위: systemd &gt; pyinotify &gt; gamin &gt; polling</span>
+backend <span class="o">=</span> systemd
+
+<span class="c"># 액션 설정</span>
+banaction <span class="o">=</span> iptables-multiport
+banaction_allports <span class="o">=</span> iptables-allports
+action_ <span class="o">=</span> %<span class="o">(</span>banaction<span class="o">)</span>s[name<span class="o">=</span>%<span class="o">(</span>__name__<span class="o">)</span>s, <span class="nv">bantime</span><span class="o">=</span><span class="s2">"%(bantime)s"</span>, <span class="nv">port</span><span class="o">=</span><span class="s2">"%(port)s"</span>, <span class="nv">protocol</span><span class="o">=</span><span class="s2">"%(protocol)s"</span>, <span class="nv">chain</span><span class="o">=</span><span class="s2">"%(chain)s"</span><span class="o">]</span>
+
+<span class="c"># 이메일 액션</span>
+action_mw <span class="o">=</span> %<span class="o">(</span>banaction<span class="o">)</span>s[name<span class="o">=</span>%<span class="o">(</span>__name__<span class="o">)</span>s, <span class="nv">bantime</span><span class="o">=</span><span class="s2">"%(bantime)s"</span>, <span class="nv">port</span><span class="o">=</span><span class="s2">"%(port)s"</span>, <span class="nv">protocol</span><span class="o">=</span><span class="s2">"%(protocol)s"</span>, <span class="nv">chain</span><span class="o">=</span><span class="s2">"%(chain)s"</span><span class="o">]</span>
+           %<span class="o">(</span>mta<span class="o">)</span>s-whois[name<span class="o">=</span>%<span class="o">(</span>__name__<span class="o">)</span>s, <span class="nv">sender</span><span class="o">=</span><span class="s2">"%(sender)s"</span>, <span class="nv">dest</span><span class="o">=</span><span class="s2">"%(destemail)s"</span>, <span class="nv">protocol</span><span class="o">=</span><span class="s2">"%(protocol)s"</span>, <span class="nv">chain</span><span class="o">=</span><span class="s2">"%(chain)s"</span><span class="o">]</span>
+
+<span class="c"># 이메일 + 로그 액션  </span>
+action_mwl <span class="o">=</span> %<span class="o">(</span>banaction<span class="o">)</span>s[name<span class="o">=</span>%<span class="o">(</span>__name__<span class="o">)</span>s, <span class="nv">bantime</span><span class="o">=</span><span class="s2">"%(bantime)s"</span>, <span class="nv">port</span><span class="o">=</span><span class="s2">"%(port)s"</span>, <span class="nv">protocol</span><span class="o">=</span><span class="s2">"%(protocol)s"</span>, <span class="nv">chain</span><span class="o">=</span><span class="s2">"%(chain)s"</span><span class="o">]</span>
+            %<span class="o">(</span>mta<span class="o">)</span>s-whois-lines[name<span class="o">=</span>%<span class="o">(</span>__name__<span class="o">)</span>s, <span class="nv">sender</span><span class="o">=</span><span class="s2">"%(sender)s"</span>, <span class="nv">dest</span><span class="o">=</span><span class="s2">"%(destemail)s"</span>, <span class="nv">logpath</span><span class="o">=</span><span class="s2">"%(logpath)s"</span>, <span class="nv">chain</span><span class="o">=</span><span class="s2">"%(chain)s"</span><span class="o">]</span>
+
+<span class="c"># 기본 액션</span>
+action <span class="o">=</span> %<span class="o">(</span>action_mwl<span class="o">)</span>s
+
+<span class="c"># 이메일 설정</span>
+destemail <span class="o">=</span> admin@example.com
+sender <span class="o">=</span> fail2ban@example.com
+mta <span class="o">=</span> sendmail
+
+<span class="c"># 로그 레벨</span>
+loglevel <span class="o">=</span> INFO
+logtarget <span class="o">=</span> /var/log/fail2ban.log
+
+<span class="c"># 소켓 설정</span>
+socket <span class="o">=</span> /var/run/fail2ban/fail2ban.sock
+pidfile <span class="o">=</span> /var/run/fail2ban/fail2ban.pid
+
+<span class="c"># 데이터베이스 설정</span>
+dbfile <span class="o">=</span> /var/lib/fail2ban/fail2ban.sqlite3
+dbpurgeage <span class="o">=</span> 86400
+
+<span class="c">#</span>
+<span class="c"># SSH 보안 강화</span>
+<span class="c">#</span>
+<span class="o">[</span>sshd]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> ssh,2222
+filter <span class="o">=</span> sshd
+logpath <span class="o">=</span> /var/log/auth.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+findtime <span class="o">=</span> 600
+
+<span class="o">[</span>sshd-ddos]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> ssh,2222
+filter <span class="o">=</span> sshd-ddos
+logpath <span class="o">=</span> /var/log/auth.log
+maxretry <span class="o">=</span> 6
+bantime <span class="o">=</span> 1800
+findtime <span class="o">=</span> 120
+
+<span class="c">#</span>
+<span class="c"># 웹 서버 보안</span>
+<span class="c">#</span>
+<span class="o">[</span>apache-auth]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> apache-auth
+logpath <span class="o">=</span> /var/log/apache2/error.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="o">[</span>apache-badbots]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> apache-badbots
+logpath <span class="o">=</span> /var/log/apache2/access.log
+maxretry <span class="o">=</span> 2
+bantime <span class="o">=</span> 7200
+
+<span class="o">[</span>apache-noscript]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> apache-noscript
+logpath <span class="o">=</span> /var/log/apache2/access.log
+maxretry <span class="o">=</span> 6
+bantime <span class="o">=</span> 1800
+
+<span class="o">[</span>apache-overflows]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> apache-overflows
+logpath <span class="o">=</span> /var/log/apache2/error.log
+maxretry <span class="o">=</span> 2
+bantime <span class="o">=</span> 7200
+
+<span class="o">[</span>apache-nohome]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> apache-nohome
+logpath <span class="o">=</span> /var/log/apache2/access.log
+maxretry <span class="o">=</span> 2
+bantime <span class="o">=</span> 3600
+
+<span class="o">[</span>apache-botsearch]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> apache-botsearch
+logpath <span class="o">=</span> /var/log/apache2/access.log
+maxretry <span class="o">=</span> 2
+bantime <span class="o">=</span> 7200
+
+<span class="c">#</span>
+<span class="c"># Nginx 보안</span>
+<span class="c">#</span>
+<span class="o">[</span>nginx-http-auth]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> nginx-http-auth
+logpath <span class="o">=</span> /var/log/nginx/error.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="o">[</span>nginx-limit-req]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> nginx-limit-req
+logpath <span class="o">=</span> /var/log/nginx/error.log
+maxretry <span class="o">=</span> 10
+bantime <span class="o">=</span> 600
+findtime <span class="o">=</span> 60
+
+<span class="o">[</span>nginx-botsearch]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+filter <span class="o">=</span> nginx-botsearch
+logpath <span class="o">=</span> /var/log/nginx/access.log
+maxretry <span class="o">=</span> 2
+bantime <span class="o">=</span> 7200
+
+<span class="c">#</span>
+<span class="c"># 메일 서버 보안</span>
+<span class="c">#</span>
+<span class="o">[</span>postfix]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> smtp,465,submission
+filter <span class="o">=</span> postfix
+logpath <span class="o">=</span> /var/log/mail.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="o">[</span>dovecot]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> pop3,pop3s,imap,imaps,submission,465,sieve
+filter <span class="o">=</span> dovecot
+logpath <span class="o">=</span> /var/log/mail.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="c">#</span>
+<span class="c"># FTP 보안</span>
+<span class="c">#</span>
+<span class="o">[</span>vsftpd]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> ftp,ftp-data,ftps,ftps-data
+filter <span class="o">=</span> vsftpd
+logpath <span class="o">=</span> /var/log/vsftpd.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="c">#</span>
+<span class="c"># 데이터베이스 보안</span>
+<span class="c">#</span>
+<span class="o">[</span>mysqld-auth]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> 3306
+filter <span class="o">=</span> mysqld-auth
+logpath <span class="o">=</span> /var/log/mysql/error.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="c">#</span>
+<span class="c"># 커스텀 애플리케이션 보안</span>
+<span class="c">#</span>
+<span class="o">[</span>custom-app]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> 8080,8443
+filter <span class="o">=</span> custom-app
+logpath <span class="o">=</span> /var/log/custom-app/security.log
+maxretry <span class="o">=</span> 5
+bantime <span class="o">=</span> 7200
+findtime <span class="o">=</span> 300
+
+<span class="c">#</span>
+<span class="c"># 시스템 로그 모니터링</span>
+<span class="c">#</span>
+<span class="o">[</span>pam-generic]
+enabled <span class="o">=</span> <span class="nb">true
+</span>filter <span class="o">=</span> pam-generic
+logpath <span class="o">=</span> /var/log/auth.log
+maxretry <span class="o">=</span> 6
+bantime <span class="o">=</span> 1800
+
+<span class="o">[</span><span class="nb">sudo</span><span class="o">]</span>
+enabled <span class="o">=</span> <span class="nb">true
+</span>filter <span class="o">=</span> <span class="nb">sudo
+</span>logpath <span class="o">=</span> /var/log/auth.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+</code></pre></div></div>
+
+<h4 id="고급-커스텀-필터-작성">고급 커스텀 필터 작성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/fail2ban/filter.d/custom-app.conf</span>
+<span class="c"># 커스텀 애플리케이션용 필터</span>
+
+<span class="o">[</span>Definition]
+<span class="c"># 실패한 로그인 시도</span>
+failregex <span class="o">=</span> ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"POST /api/login HTTP.*"</span> 401 .<span class="k">*</span><span class="err">$</span>
+            ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"POST /admin/login HTTP.*"</span> 403 .<span class="k">*</span><span class="err">$</span>
+            ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"Failed login attempt for user .* from &lt;HOST&gt;"</span><span class="err">$</span>
+            ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"Invalid API key from &lt;HOST&gt;"</span><span class="err">$</span>
+            ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"Suspicious activity detected from &lt;HOST&gt;"</span><span class="err">$</span>
+            ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"Rate limit exceeded for &lt;HOST&gt;"</span><span class="err">$</span>
+            ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"Brute force attempt detected from &lt;HOST&gt;"</span><span class="err">$</span>
+
+<span class="c"># 무시할 패턴</span>
+ignoreregex <span class="o">=</span> ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"GET /health HTTP.*"</span> 200 .<span class="k">*</span><span class="err">$</span>
+              ^&lt;HOST&gt; .<span class="k">*</span> <span class="s2">"GET /status HTTP.*"</span> 200 .<span class="k">*</span><span class="err">$</span>
+
+<span class="c"># /etc/fail2ban/filter.d/nginx-botsearch.conf</span>
+<span class="c"># Nginx 봇 검색 패턴 필터</span>
+
+<span class="o">[</span>Definition]
+failregex <span class="o">=</span> ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span><span class="o">(</span><span class="se">\.</span>php|<span class="se">\.</span>asp|<span class="se">\.</span>exe|<span class="se">\.</span>pl|<span class="se">\.</span>cgi|<span class="se">\.</span>scgi<span class="o">)</span>
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>admin
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>phpMyAdmin
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>wp-admin
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>wp-login
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>/etc/passwd
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span><span class="se">\.\.</span>/
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span><span class="o">(</span>proc/self/environ|etc/shadow|etc/passwd<span class="o">)</span>
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span><span class="o">(</span>cmd<span class="se">\.</span>exe|command<span class="se">\.</span>com<span class="o">)</span>
+            ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>sql.<span class="k">*</span>dump
+
+ignoreregex <span class="o">=</span>
+
+<span class="c"># /etc/fail2ban/filter.d/wordpress-security.conf</span>
+<span class="c"># WordPress 보안 전용 필터</span>
+
+<span class="o">[</span>Definition]
+failregex <span class="o">=</span> ^&lt;HOST&gt; .<span class="k">*</span>POST.<span class="k">*</span>/wp-login<span class="se">\.</span>php.<span class="k">*</span> 200
+            ^&lt;HOST&gt; .<span class="k">*</span>POST.<span class="k">*</span>/wp-admin/admin-ajax<span class="se">\.</span>php.<span class="k">*</span> 400
+            ^&lt;HOST&gt; .<span class="k">*</span>GET.<span class="k">*</span>/wp-admin.<span class="k">*</span>
+            ^&lt;HOST&gt; .<span class="k">*</span>GET.<span class="k">*</span>/wp-content/.<span class="k">*</span><span class="se">\.</span>php
+            ^&lt;HOST&gt; .<span class="k">*</span>GET.<span class="k">*</span><span class="se">\?</span><span class="nv">author</span><span class="o">=</span><span class="se">\d</span>+
+            ^&lt;HOST&gt; .<span class="k">*</span>GET.<span class="k">*</span>/xmlrpc<span class="se">\.</span>php
+
+ignoreregex <span class="o">=</span> ^&lt;HOST&gt; .<span class="k">*</span>POST.<span class="k">*</span>/wp-login<span class="se">\.</span>php.<span class="k">*</span> <span class="s2">"WordPress/.*"</span>
+
+<span class="c"># /etc/fail2ban/filter.d/ddos.conf</span>
+<span class="c"># DDoS 공격 감지 필터</span>
+
+<span class="o">[</span>Definition]
+failregex <span class="o">=</span> ^&lt;HOST&gt; -.<span class="k">*</span>GET.<span class="k">*</span>
+ignoreregex <span class="o">=</span>
+
+<span class="c"># /etc/fail2ban/filter.d/port-scan.conf</span>
+<span class="c"># 포트 스캔 감지 필터</span>
+
+<span class="o">[</span>Definition]
+failregex <span class="o">=</span> ^.<span class="k">*</span>kernel:.<span class="k">*</span><span class="nv">IN</span><span class="o">=</span>.<span class="k">*</span><span class="nv">SRC</span><span class="o">=</span>&lt;HOST&gt;.<span class="k">*</span><span class="nv">DPT</span><span class="o">=(</span>1|7|9|11|15|70|79|80|109|110|143|443|993|995<span class="o">)</span>.<span class="k">*</span>
+            ^.<span class="k">*</span>kernel:.<span class="k">*</span><span class="nv">SRC</span><span class="o">=</span>&lt;HOST&gt;.<span class="k">*</span><span class="nv">DPT</span><span class="o">=(</span>23|53|111|137|139|445|513|514|515|993|995|1433|1521|3389<span class="o">)</span>.<span class="k">*</span>
+
+ignoreregex <span class="o">=</span>
+</code></pre></div></div>
+
+<h4 id="fail2ban-고급-관리-스크립트">Fail2Ban 고급 관리 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/fail2ban-manager.sh</span>
+<span class="c"># Fail2Ban 고급 관리 도구</span>
+
+<span class="nv">ACTION</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">JAIL</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">IP</span><span class="o">=</span><span class="nv">$3</span>
+
+<span class="c"># 색상 정의</span>
+<span class="nv">RED</span><span class="o">=</span><span class="s1">'\033[0;31m'</span>
+<span class="nv">GREEN</span><span class="o">=</span><span class="s1">'\033[0;32m'</span>
+<span class="nv">YELLOW</span><span class="o">=</span><span class="s1">'\033[1;33m'</span>
+<span class="nv">BLUE</span><span class="o">=</span><span class="s1">'\033[0;34m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\033[0m'</span> <span class="c"># No Color</span>
+
+print_color<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">2</span><span class="k">}${</span><span class="nv">1</span><span class="k">}${</span><span class="nv">NC</span><span class="k">}</span><span class="s2">"</span>
+<span class="o">}</span>
+
+check_fail2ban<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">!</span> systemctl is-active <span class="nt">--quiet</span> fail2ban<span class="p">;</span> <span class="k">then
+        </span>print_color <span class="s2">"ERROR: Fail2Ban is not running"</span> <span class="s2">"</span><span class="nv">$RED</span><span class="s2">"</span>
+        <span class="nb">exit </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="nv">$ACTION</span> <span class="k">in</span>
+    <span class="s2">"status"</span><span class="p">)</span>
+        check_fail2ban
+        <span class="nb">echo</span> <span class="s2">"=== Fail2Ban Status ==="</span>
+        fail2ban-client status
+        
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">""</span>
+            <span class="nb">echo</span> <span class="s2">"=== Jail: </span><span class="nv">$JAIL</span><span class="s2"> ==="</span>
+            fail2ban-client status <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span>
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"ban"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> ban &lt;jail&gt; &lt;ip&gt;"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        
+        </span>check_fail2ban
+        print_color <span class="s2">"Banning IP </span><span class="nv">$IP</span><span class="s2"> in jail </span><span class="nv">$JAIL</span><span class="s2">..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+        fail2ban-client <span class="nb">set</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> banip <span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span>
+        print_color <span class="s2">"IP </span><span class="nv">$IP</span><span class="s2"> banned successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"unban"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> unban &lt;jail|all&gt; &lt;ip&gt;"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        
+        </span>check_fail2ban
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"all"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span>print_color <span class="s2">"Unbanning IP </span><span class="nv">$IP</span><span class="s2"> from all jails..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+            <span class="k">for </span>jail <span class="k">in</span> <span class="si">$(</span>fail2ban-client status | <span class="nb">grep</span> <span class="s2">"Jail list:"</span> | <span class="nb">cut</span> <span class="nt">-d</span>: <span class="nt">-f2</span> | <span class="nb">tr</span> <span class="s1">','</span> <span class="s1">' '</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+                </span><span class="nv">jail</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$jail</span> | xargs<span class="si">)</span>  <span class="c"># trim whitespace</span>
+                fail2ban-client <span class="nb">set</span> <span class="s2">"</span><span class="nv">$jail</span><span class="s2">"</span> unbanip <span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+            </span><span class="k">done
+        else
+            </span>print_color <span class="s2">"Unbanning IP </span><span class="nv">$IP</span><span class="s2"> from jail </span><span class="nv">$JAIL</span><span class="s2">..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+            fail2ban-client <span class="nb">set</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> unbanip <span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span>
+        <span class="k">fi
+        </span>print_color <span class="s2">"IP </span><span class="nv">$IP</span><span class="s2"> unbanned successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"list-banned"</span><span class="p">)</span>
+        check_fail2ban
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"=== Banned IPs in jail: </span><span class="nv">$JAIL</span><span class="s2"> ==="</span>
+            fail2ban-client get <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> banip
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"=== All Banned IPs ==="</span>
+            <span class="k">for </span>jail <span class="k">in</span> <span class="si">$(</span>fail2ban-client status | <span class="nb">grep</span> <span class="s2">"Jail list:"</span> | <span class="nb">cut</span> <span class="nt">-d</span>: <span class="nt">-f2</span> | <span class="nb">tr</span> <span class="s1">','</span> <span class="s1">' '</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+                </span><span class="nv">jail</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$jail</span> | xargs<span class="si">)</span>
+                <span class="nv">banned</span><span class="o">=</span><span class="si">$(</span>fail2ban-client get <span class="s2">"</span><span class="nv">$jail</span><span class="s2">"</span> banip 2&gt;/dev/null<span class="si">)</span>
+                <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$banned</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$banned</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"[]"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+                    </span><span class="nb">echo</span> <span class="s2">"Jail: </span><span class="nv">$jail</span><span class="s2">"</span>
+                    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$banned</span><span class="s2">"</span>
+                    <span class="nb">echo</span> <span class="s2">""</span>
+                <span class="k">fi
+            done
+        fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"stats"</span><span class="p">)</span>
+        check_fail2ban
+        <span class="nb">echo</span> <span class="s2">"=== Fail2Ban Statistics ==="</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        
+        <span class="c"># 전체 통계</span>
+        <span class="nb">echo</span> <span class="s2">"Active jails:"</span>
+        fail2ban-client status | <span class="nb">grep</span> <span class="s2">"Jail list:"</span> | <span class="nb">cut</span> <span class="nt">-d</span>: <span class="nt">-f2</span>
+        
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Jail statistics:"</span>
+        <span class="k">for </span>jail <span class="k">in</span> <span class="si">$(</span>fail2ban-client status | <span class="nb">grep</span> <span class="s2">"Jail list:"</span> | <span class="nb">cut</span> <span class="nt">-d</span>: <span class="nt">-f2</span> | <span class="nb">tr</span> <span class="s1">','</span> <span class="s1">' '</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+            </span><span class="nv">jail</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$jail</span> | xargs<span class="si">)</span>
+            <span class="nv">status</span><span class="o">=</span><span class="si">$(</span>fail2ban-client status <span class="s2">"</span><span class="nv">$jail</span><span class="s2">"</span> 2&gt;/dev/null<span class="si">)</span>
+            <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+                </span><span class="nv">currently_failed</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$status</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="s2">"Currently failed:"</span> | <span class="nb">awk</span> <span class="s1">'{print $NF}'</span><span class="si">)</span>
+                <span class="nv">total_failed</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$status</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="s2">"Total failed:"</span> | <span class="nb">awk</span> <span class="s1">'{print $NF}'</span><span class="si">)</span>
+                <span class="nv">currently_banned</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$status</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="s2">"Currently banned:"</span> | <span class="nb">awk</span> <span class="s1">'{print $NF}'</span><span class="si">)</span>
+                <span class="nv">total_banned</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$status</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="s2">"Total banned:"</span> | <span class="nb">awk</span> <span class="s1">'{print $NF}'</span><span class="si">)</span>
+                
+                <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$jail</span><span class="s2">: Failed=</span><span class="nv">$currently_failed</span><span class="s2">/</span><span class="nv">$total_failed</span><span class="s2">, Banned=</span><span class="nv">$currently_banned</span><span class="s2">/</span><span class="nv">$total_banned</span><span class="s2">"</span>
+            <span class="k">fi
+        done
+        
+        </span><span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Top banned IPs:"</span>
+        <span class="nb">grep</span> <span class="s2">"Ban "</span> /var/log/fail2ban.log 2&gt;/dev/null | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="s1">'{print $(NF-1)}'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-nr</span> | <span class="nb">head</span> <span class="nt">-10</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"top-attackers"</span><span class="p">)</span>
+        <span class="nv">DAYS</span><span class="o">=</span><span class="k">${</span><span class="nv">JAIL</span><span class="k">:-</span><span class="nv">7</span><span class="k">}</span>
+        <span class="nb">echo</span> <span class="s2">"=== Top Attackers (Last </span><span class="nv">$DAYS</span><span class="s2"> days) ==="</span>
+        
+        <span class="c"># 지정된 날짜부터의 로그 분석</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$DAYS</span> <span class="nt">-gt</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nv">DATE_FILTER</span><span class="o">=</span><span class="s2">"-since </span><span class="se">\"</span><span class="nv">$DAYS</span><span class="s2"> days ago</span><span class="se">\"</span><span class="s2">"</span>
+        <span class="k">else
+            </span><span class="nv">DATE_FILTER</span><span class="o">=</span><span class="s2">""</span>
+        <span class="k">fi</span>
+        
+        <span class="c"># 로그에서 공격 IP 추출 및 분석</span>
+        <span class="nb">eval </span>journalctl <span class="nt">-u</span> fail2ban <span class="nv">$DATE_FILTER</span> 2&gt;/dev/null | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="s2">"Ban "</span> | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="s1">'{print $(NF-1)}'</span> | <span class="se">\</span>
+        <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-nr</span> | <span class="nb">head</span> <span class="nt">-20</span> | <span class="se">\</span>
+        <span class="k">while </span><span class="nb">read </span>count ip<span class="p">;</span> <span class="k">do</span>
+            <span class="c"># IP 지역 정보 조회 (geoip 사용, 설치된 경우)</span>
+            <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> geoiplookup <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+                </span><span class="nv">country</span><span class="o">=</span><span class="si">$(</span>geoiplookup <span class="s2">"</span><span class="nv">$ip</span><span class="s2">"</span> 2&gt;/dev/null | <span class="nb">cut</span> <span class="nt">-d</span>: <span class="nt">-f2</span> | xargs<span class="si">)</span>
+            <span class="k">else
+                </span><span class="nv">country</span><span class="o">=</span><span class="s2">"Unknown"</span>
+            <span class="k">fi
+            </span><span class="nb">printf</span> <span class="s2">"%-6s %-15s %s</span><span class="se">\n</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$count</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$ip</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$country</span><span class="s2">"</span>
+        <span class="k">done</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"analyze"</span><span class="p">)</span>
+        <span class="nv">HOURS</span><span class="o">=</span><span class="k">${</span><span class="nv">JAIL</span><span class="k">:-</span><span class="nv">24</span><span class="k">}</span>
+        <span class="nb">echo</span> <span class="s2">"=== Fail2Ban Analysis (Last </span><span class="nv">$HOURS</span><span class="s2"> hours) ==="</span>
+        
+        <span class="c"># 최근 활동 분석</span>
+        <span class="nb">eval </span>journalctl <span class="nt">-u</span> fail2ban <span class="nt">--since</span> <span class="s2">"</span><span class="nv">$HOURS</span><span class="s2"> hours ago"</span> 2&gt;/dev/null | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"(Ban|Unban)"</span> | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="s1">'{
+            if ($0 ~ /Ban /) bans++
+            if ($0 ~ /Unban/) unbans++
+        }
+        END {
+            print "Total bans: " (bans ? bans : 0)
+            print "Total unbans: " (unbans ? unbans : 0)
+            print "Net banned: " ((bans ? bans : 0) - (unbans ? unbans : 0))
+        }'</span>
+        
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Activity by jail:"</span>
+        <span class="nb">eval </span>journalctl <span class="nt">-u</span> fail2ban <span class="nt">--since</span> <span class="s2">"</span><span class="nv">$HOURS</span><span class="s2"> hours ago"</span> 2&gt;/dev/null | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="s2">"Ban "</span> | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="s1">'{
+            # jail 이름 추출 (로그 형식에 따라 조정 필요)
+            match($0, /\[([^\]]+)\]/, arr)
+            if (arr[1]) jails[arr[1]]++
+        }
+        END {
+            for (jail in jails) {
+                print "  " jail ": " jails[jail]
+            }
+        }'</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"reload"</span><span class="p">)</span>
+        print_color <span class="s2">"Reloading Fail2Ban configuration..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+        systemctl reload fail2ban
+        print_color <span class="s2">"Fail2Ban reloaded successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"test-filter"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> test-filter &lt;filter-name&gt; [log-file]"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        
+        </span><span class="nv">FILTER</span><span class="o">=</span><span class="nv">$JAIL</span>
+        <span class="nv">LOGFILE</span><span class="o">=</span><span class="k">${</span><span class="nv">IP</span><span class="k">:-</span><span class="p">/var/log/auth.log</span><span class="k">}</span>
+        
+        <span class="nb">echo</span> <span class="s2">"=== Testing filter: </span><span class="nv">$FILTER</span><span class="s2"> ==="</span>
+        <span class="nb">echo</span> <span class="s2">"Log file: </span><span class="nv">$LOGFILE</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        
+        fail2ban-regex <span class="s2">"</span><span class="nv">$LOGFILE</span><span class="s2">"</span> <span class="s2">"/etc/fail2ban/filter.d/</span><span class="k">${</span><span class="nv">FILTER</span><span class="k">}</span><span class="s2">.conf"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"whitelist"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$JAIL</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$IP</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> whitelist &lt;add|remove|list&gt; &lt;ip|network&gt;"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        
+        </span><span class="nv">WHITELIST_ACTION</span><span class="o">=</span><span class="nv">$JAIL</span>
+        <span class="nv">TARGET_IP</span><span class="o">=</span><span class="nv">$IP</span>
+        
+        <span class="k">case</span> <span class="nv">$WHITELIST_ACTION</span> <span class="k">in</span>
+            <span class="s2">"add"</span><span class="p">)</span>
+                print_color <span class="s2">"Adding </span><span class="nv">$TARGET_IP</span><span class="s2"> to whitelist..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+                <span class="c"># jail.local의 ignoreip에 추가</span>
+                <span class="k">if </span><span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"ignoreip.*</span><span class="nv">$TARGET_IP</span><span class="s2">"</span> /etc/fail2ban/jail.local<span class="p">;</span> <span class="k">then
+                    </span>print_color <span class="s2">"IP </span><span class="nv">$TARGET_IP</span><span class="s2"> is already whitelisted"</span> <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2">"</span>
+                <span class="k">else
+                    </span><span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"/^ignoreip = / s/</span><span class="nv">$/</span><span class="s2"> </span><span class="nv">$TARGET_IP</span><span class="s2">/"</span> /etc/fail2ban/jail.local
+                    systemctl reload fail2ban
+                    print_color <span class="s2">"IP </span><span class="nv">$TARGET_IP</span><span class="s2"> added to whitelist"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+                <span class="k">fi</span>
+                <span class="p">;;</span>
+            <span class="s2">"remove"</span><span class="p">)</span>
+                print_color <span class="s2">"Removing </span><span class="nv">$TARGET_IP</span><span class="s2"> from whitelist..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+                <span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s/ </span><span class="nv">$TARGET_IP</span><span class="s2">//g"</span> /etc/fail2ban/jail.local
+                systemctl reload fail2ban
+                print_color <span class="s2">"IP </span><span class="nv">$TARGET_IP</span><span class="s2"> removed from whitelist"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+                <span class="p">;;</span>
+            <span class="s2">"list"</span><span class="p">)</span>
+                <span class="nb">echo</span> <span class="s2">"=== Current Whitelist ==="</span>
+                <span class="nb">grep</span> <span class="s2">"^ignoreip"</span> /etc/fail2ban/jail.local
+                <span class="p">;;</span>
+        <span class="k">esac</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"backup"</span><span class="p">)</span>
+        <span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/etc/fail2ban/backup/</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="s2">"</span>
+        <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>
+        
+        <span class="nb">cp</span> <span class="nt">-r</span> /etc/fail2ban/jail.local <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+        cp</span> <span class="nt">-r</span> /etc/fail2ban/filter.d/<span class="k">*</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+        cp</span> <span class="nt">-r</span> /etc/fail2ban/action.d/<span class="k">*</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+        
+        </span>print_color <span class="s2">"Fail2Ban configuration backed up to: </span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {status|ban|unban|list-banned|stats|top-attackers|analyze|reload|test-filter|whitelist|backup} [options]"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Commands:"</span>
+        <span class="nb">echo</span> <span class="s2">"  status [jail]                    - Show Fail2Ban status"</span>
+        <span class="nb">echo</span> <span class="s2">"  ban &lt;jail&gt; &lt;ip&gt;                 - Ban IP in specific jail"</span>
+        <span class="nb">echo</span> <span class="s2">"  unban &lt;jail|all&gt; &lt;ip&gt;           - Unban IP from jail or all jails"</span>
+        <span class="nb">echo</span> <span class="s2">"  list-banned [jail]              - List banned IPs"</span>
+        <span class="nb">echo</span> <span class="s2">"  stats                           - Show comprehensive statistics"</span>
+        <span class="nb">echo</span> <span class="s2">"  top-attackers [days]            - Show top attacking IPs"</span>
+        <span class="nb">echo</span> <span class="s2">"  analyze [hours]                 - Analyze recent activity"</span>
+        <span class="nb">echo</span> <span class="s2">"  reload                          - Reload configuration"</span>
+        <span class="nb">echo</span> <span class="s2">"  test-filter &lt;filter&gt; [logfile]  - Test filter regex"</span>
+        <span class="nb">echo</span> <span class="s2">"  whitelist &lt;add|remove|list&gt; &lt;ip&gt; - Manage whitelist"</span>
+        <span class="nb">echo</span> <span class="s2">"  backup                          - Backup configuration"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Examples:"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> status sshd"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> ban sshd 192.168.1.100"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> unban all 192.168.1.100"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> top-attackers 30"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> test-filter sshd"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>Wazuh SIEM과 컨테이너 보안</strong>을 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>Wazuh 완전 구축 및 설정</li>
+  <li>실시간 위협 탐지 룰 작성</li>
+  <li>Docker/Kubernetes 보안 강화</li>
+  <li>컴플라이언스 및 감사 로그 관리</li>
+</ul>
+
+<p>AIDE와 Fail2Ban으로 강력한 침입 탐지 시스템을 완성하셨나요? 🔍🛡️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2025/03/07/networking-guide-part5.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">네트워킹 완전 가이드 5편 - 네트워크 보안과 트러블슈팅 | Complete Netw...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2025/05/24/linux-security-guide-part5.html" rel="next">
+          <span class="nav-title">리눅스 보안 완전 가이드 5편 - Wazuh SIEM과 컨테이너 보안 | Linux ...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

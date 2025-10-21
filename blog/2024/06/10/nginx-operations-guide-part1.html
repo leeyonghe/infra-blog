@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>Nginx 운영 가이드 Part 1 - 프로세스 관리, 서비스 제어, 로그 관리</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">Nginx 운영 가이드 Part 1 - 프로세스 관리, 서비스 제어, 로그 관리</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-06-10T00:00:00+00:00">Jun 10, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Infrastructure</li><li>Nginx</li><li>Operations</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <h1 id="nginx-운영-가이드-part-1---프로세스-관리-서비스-제어-로그-관리">Nginx 운영 가이드 Part 1 - 프로세스 관리, 서비스 제어, 로그 관리</h1>
+
+<p>실무에서 Nginx를 안정적으로 운영하기 위한 핵심 기술들을 다룹니다. 프로세스 관리부터 서비스 제어, 로그 관리까지 운영자가 반드시 알아야 할 내용들을 실습 중심으로 학습합니다.</p>
+
+<!--more-->
+
+<h2 id="목차">목차</h2>
+<ol>
+  <li><a href="#프로세스-관리">프로세스 관리</a></li>
+  <li><a href="#서비스-제어">서비스 제어</a></li>
+  <li><a href="#로그-관리">로그 관리</a></li>
+  <li><a href="#설정-테스트-및-리로드">설정 테스트 및 리로드</a></li>
+  <li><a href="#시그널-처리">시그널 처리</a></li>
+  <li><a href="#자동화-스크립트">자동화 스크립트</a></li>
+</ol>
+
+<h2 id="프로세스-관리">프로세스 관리</h2>
+
+<h3 id="nginx-프로세스-구조">Nginx 프로세스 구조</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 프로세스 트리 확인</span>
+ps aux <span class="nt">--forest</span> | <span class="nb">grep </span>nginx
+
+<span class="c"># 프로세스 상세 정보</span>
+ps <span class="nt">-eo</span> pid,ppid,cmd,%mem,%cpu <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">grep </span>nginx
+
+<span class="c"># 메모리 사용량 상세 분석</span>
+<span class="nb">cat</span> /proc/<span class="si">$(</span>pgrep <span class="nt">-f</span> <span class="s2">"nginx: master"</span><span class="si">)</span>/status
+</code></pre></div></div>
+
+<h3 id="마스터워커-프로세스-관리">마스터/워커 프로세스 관리</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># nginx.conf</span>
+<span class="k">user</span> <span class="s">www-data</span><span class="p">;</span>
+<span class="k">worker_processes</span> <span class="s">auto</span><span class="p">;</span>  <span class="c1"># CPU 코어 수만큼 자동 생성</span>
+<span class="k">worker_cpu_affinity</span> <span class="s">auto</span><span class="p">;</span>  <span class="c1"># CPU 코어에 워커 바인딩</span>
+<span class="k">worker_rlimit_nofile</span> <span class="mi">65535</span><span class="p">;</span>  <span class="c1"># 파일 디스크립터 한계</span>
+
+<span class="c1"># 워커 프로세스 우선순위</span>
+<span class="k">worker_priority</span> <span class="s">-10</span><span class="p">;</span>  <span class="c1"># -20(highest) to 20(lowest)</span>
+
+<span class="c1"># 워커 종료 타임아웃</span>
+<span class="k">worker_shutdown_timeout</span> <span class="s">30s</span><span class="p">;</span>
+
+<span class="c1"># 워커별 메모리 제한</span>
+<span class="k">worker_rlimit_core</span> <span class="mi">2G</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="프로세스-모니터링-스크립트">프로세스 모니터링 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-monitor.sh</span>
+
+<span class="nv">NGINX_PID_FILE</span><span class="o">=</span><span class="s2">"/var/run/nginx.pid"</span>
+<span class="nv">THRESHOLD_CPU</span><span class="o">=</span>80
+<span class="nv">THRESHOLD_MEM</span><span class="o">=</span>80
+
+<span class="c"># 프로세스 상태 확인</span>
+check_nginx_status<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$NGINX_PID_FILE</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="nv">$NGINX_PID_FILE</span><span class="si">)</span>
+        <span class="k">if </span>ps <span class="nt">-p</span> <span class="nv">$pid</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Nginx is running (PID: </span><span class="nv">$pid</span><span class="s2">)"</span>
+            <span class="k">return </span>0
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"Nginx PID file exists but process is dead"</span>
+            <span class="k">return </span>1
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"Nginx is not running"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 리소스 사용량 확인</span>
+check_resource_usage<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">nginx_pids</span><span class="o">=</span><span class="si">$(</span>pgrep nginx<span class="si">)</span>
+    <span class="nb">local </span><span class="nv">total_cpu</span><span class="o">=</span>0
+    <span class="nb">local </span><span class="nv">total_mem</span><span class="o">=</span>0
+    
+    <span class="k">for </span>pid <span class="k">in</span> <span class="nv">$nginx_pids</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/proc/</span><span class="nv">$pid</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">local </span><span class="nv">cpu</span><span class="o">=</span><span class="si">$(</span>ps <span class="nt">-p</span> <span class="nv">$pid</span> <span class="nt">-o</span> %cpu <span class="nt">--no-headers</span><span class="si">)</span>
+            <span class="nb">local </span><span class="nv">mem</span><span class="o">=</span><span class="si">$(</span>ps <span class="nt">-p</span> <span class="nv">$pid</span> <span class="nt">-o</span> %mem <span class="nt">--no-headers</span><span class="si">)</span>
+            <span class="nv">total_cpu</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$total_cpu</span><span class="s2"> + </span><span class="nv">$cpu</span><span class="s2">"</span> | bc <span class="nt">-l</span><span class="si">)</span>
+            <span class="nv">total_mem</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$total_mem</span><span class="s2"> + </span><span class="nv">$mem</span><span class="s2">"</span> | bc <span class="nt">-l</span><span class="si">)</span>
+        <span class="k">fi
+    done
+    
+    </span><span class="nb">echo</span> <span class="s2">"Total CPU usage: </span><span class="k">${</span><span class="nv">total_cpu</span><span class="k">}</span><span class="s2">%"</span>
+    <span class="nb">echo</span> <span class="s2">"Total Memory usage: </span><span class="k">${</span><span class="nv">total_mem</span><span class="k">}</span><span class="s2">%"</span>
+    
+    <span class="c"># 임계값 확인</span>
+    <span class="k">if</span> <span class="o">((</span> <span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$total_cpu</span><span class="s2"> &gt; </span><span class="nv">$THRESHOLD_CPU</span><span class="s2">"</span> | bc <span class="nt">-l</span><span class="si">)</span> <span class="o">))</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"WARNING: CPU usage exceeds threshold!"</span>
+        <span class="c"># 알림 발송 로직 추가</span>
+    <span class="k">fi
+    
+    if</span> <span class="o">((</span> <span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$total_mem</span><span class="s2"> &gt; </span><span class="nv">$THRESHOLD_MEM</span><span class="s2">"</span> | bc <span class="nt">-l</span><span class="si">)</span> <span class="o">))</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"WARNING: Memory usage exceeds threshold!"</span>
+        <span class="c"># 알림 발송 로직 추가</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 워커 프로세스 개수 확인</span>
+check_worker_count<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">master_pid</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="nv">$NGINX_PID_FILE</span> 2&gt;/dev/null<span class="si">)</span>
+    <span class="nb">local </span><span class="nv">worker_count</span><span class="o">=</span><span class="si">$(</span>pgrep <span class="nt">-P</span> <span class="nv">$master_pid</span> 2&gt;/dev/null | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span>
+    <span class="nb">local </span><span class="nv">expected_workers</span><span class="o">=</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>
+    
+    <span class="nb">echo</span> <span class="s2">"Worker processes: </span><span class="nv">$worker_count</span><span class="s2"> (expected: </span><span class="nv">$expected_workers</span><span class="s2">)"</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$worker_count</span> <span class="nt">-ne</span> <span class="nv">$expected_workers</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"WARNING: Worker process count mismatch!"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+check_nginx_status
+check_resource_usage
+check_worker_count
+</code></pre></div></div>
+
+<h2 id="서비스-제어">서비스 제어</h2>
+
+<h3 id="systemd-서비스-관리">Systemd 서비스 관리</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 서비스 상태 확인</span>
+systemctl status nginx
+
+<span class="c"># 상세 상태 정보</span>
+systemctl show nginx
+
+<span class="c"># 서비스 시작/중지/재시작</span>
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+systemctl reload nginx
+
+<span class="c"># 서비스 활성화/비활성화</span>
+systemctl <span class="nb">enable </span>nginx
+systemctl disable nginx
+
+<span class="c"># 서비스 로그 확인</span>
+journalctl <span class="nt">-u</span> nginx <span class="nt">-f</span>
+journalctl <span class="nt">-u</span> nginx <span class="nt">--since</span> <span class="s2">"1 hour ago"</span>
+</code></pre></div></div>
+
+<h3 id="커스텀-systemd-서비스-파일">커스텀 Systemd 서비스 파일</h3>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/systemd/system/nginx.service
+</span><span class="nn">[Unit]</span><span class="w">
+</span><span class="py">Description</span><span class="p">=</span><span class="s">A high performance web server and a reverse proxy server</span>
+<span class="py">Documentation</span><span class="p">=</span><span class="s">man:nginx(8)</span>
+<span class="py">After</span><span class="p">=</span><span class="s">network.target nss-lookup.target</span>
+<span class="w">
+</span><span class="nn">[Service]</span><span class="w">
+</span><span class="py">Type</span><span class="p">=</span><span class="s">forking</span>
+<span class="py">PIDFile</span><span class="p">=</span><span class="s">/run/nginx.pid</span>
+<span class="py">ExecStartPre</span><span class="p">=</span><span class="s">/usr/sbin/nginx -t -q -g 'daemon on; master_process on;'</span>
+<span class="py">ExecStart</span><span class="p">=</span><span class="s">/usr/sbin/nginx -g 'daemon on; master_process on;'</span>
+<span class="py">ExecReload</span><span class="p">=</span><span class="s">/bin/sh -c "/bin/kill -s HUP $(/bin/cat /run/nginx.pid)"</span>
+<span class="py">ExecStop</span><span class="p">=</span><span class="s">/bin/sh -c "/bin/kill -s TERM $(/bin/cat /run/nginx.pid)"</span>
+<span class="py">TimeoutStopSec</span><span class="p">=</span><span class="s">5</span>
+<span class="py">KillMode</span><span class="p">=</span><span class="s">mixed</span>
+<span class="py">PrivateTmp</span><span class="p">=</span><span class="s">true</span>
+<span class="py">LimitNOFILE</span><span class="p">=</span><span class="s">65535</span>
+<span class="py">LimitNPROC</span><span class="p">=</span><span class="s">4096</span>
+<span class="w">
+</span><span class="c"># 보안 강화
+</span><span class="py">NoNewPrivileges</span><span class="p">=</span><span class="s">true</span>
+<span class="py">ProtectSystem</span><span class="p">=</span><span class="s">strict</span>
+<span class="py">ProtectHome</span><span class="p">=</span><span class="s">true</span>
+<span class="py">ReadWritePaths</span><span class="p">=</span><span class="s">/var/log/nginx /var/cache/nginx /run</span>
+<span class="w">
+</span><span class="nn">[Install]</span><span class="w">
+</span><span class="py">WantedBy</span><span class="p">=</span><span class="s">multi-user.target</span>
+</code></pre></div></div>
+
+<h3 id="그레이스풀-셧다운-스크립트">그레이스풀 셧다운 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-graceful-shutdown.sh</span>
+
+<span class="nv">NGINX_PID_FILE</span><span class="o">=</span><span class="s2">"/var/run/nginx.pid"</span>
+<span class="nv">SHUTDOWN_TIMEOUT</span><span class="o">=</span>30
+
+graceful_shutdown<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$NGINX_PID_FILE</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Nginx is not running"</span>
+        <span class="k">return </span>0
+    <span class="k">fi
+    
+    </span><span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="nv">$NGINX_PID_FILE</span><span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Starting graceful shutdown of Nginx (PID: </span><span class="nv">$pid</span><span class="s2">)"</span>
+    
+    <span class="c"># 새 연결 차단</span>
+    <span class="nb">kill</span> <span class="nt">-QUIT</span> <span class="nv">$pid</span>
+    
+    <span class="c"># 워커 프로세스들이 종료될 때까지 대기</span>
+    <span class="nb">local </span><span class="nv">count</span><span class="o">=</span>0
+    <span class="k">while </span><span class="nb">kill</span> <span class="nt">-0</span> <span class="nv">$pid</span> 2&gt;/dev/null<span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nv">$count</span> <span class="nt">-ge</span> <span class="nv">$SHUTDOWN_TIMEOUT</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Timeout reached, forcing shutdown"</span>
+            <span class="nb">kill</span> <span class="nt">-TERM</span> <span class="nv">$pid</span>
+            <span class="nb">sleep </span>2
+            <span class="nb">kill</span> <span class="nt">-KILL</span> <span class="nv">$pid</span> 2&gt;/dev/null
+            <span class="nb">break
+        </span><span class="k">fi
+        
+        </span><span class="nb">echo</span> <span class="s2">"Waiting for graceful shutdown... (</span><span class="nv">$count</span><span class="s2">/</span><span class="nv">$SHUTDOWN_TIMEOUT</span><span class="s2">)"</span>
+        <span class="nb">sleep </span>1
+        <span class="o">((</span>count++<span class="o">))</span>
+    <span class="k">done
+    
+    </span><span class="nb">echo</span> <span class="s2">"Nginx shutdown complete"</span>
+<span class="o">}</span>
+
+graceful_shutdown
+</code></pre></div></div>
+
+<h2 id="로그-관리">로그 관리</h2>
+
+<h3 id="로그-설정-최적화">로그 설정 최적화</h3>
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">http</span> <span class="p">{</span>
+    <span class="c1"># 로그 형식 정의</span>
+    <span class="kn">log_format</span> <span class="s">main</span> <span class="s">'</span><span class="nv">$remote_addr</span> <span class="s">-</span> <span class="nv">$remote_user</span> <span class="s">[</span><span class="nv">$time_local</span><span class="s">]</span> <span class="s">'</span>
+                   <span class="s">'"</span><span class="nv">$request</span><span class="s">"</span> <span class="nv">$status</span> <span class="nv">$body_bytes_sent</span> <span class="s">'</span>
+                   <span class="s">'"</span><span class="nv">$http_referer</span><span class="s">"</span> <span class="s">"</span><span class="nv">$http_user_agent</span><span class="s">"'</span><span class="p">;</span>
+    
+    <span class="kn">log_format</span> <span class="s">detailed</span> <span class="s">'</span><span class="nv">$remote_addr</span> <span class="s">-</span> <span class="nv">$remote_user</span> <span class="s">[</span><span class="nv">$time_local</span><span class="s">]</span> <span class="s">'</span>
+                       <span class="s">'"</span><span class="nv">$request</span><span class="s">"</span> <span class="nv">$status</span> <span class="nv">$body_bytes_sent</span> <span class="s">'</span>
+                       <span class="s">'"</span><span class="nv">$http_referer</span><span class="s">"</span> <span class="s">"</span><span class="nv">$http_user_agent</span><span class="s">"</span> <span class="s">'</span>
+                       <span class="s">'</span><span class="nv">$request_time</span> <span class="nv">$upstream_response_time</span> <span class="s">'</span>
+                       <span class="s">'</span><span class="nv">$pipe</span> <span class="nv">$connection_requests</span><span class="s">'</span><span class="p">;</span>
+    
+    <span class="kn">log_format</span> <span class="s">json</span> <span class="s">escape=json</span> <span class="s">'</span><span class="p">{</span><span class="kn">'</span>
+                   <span class="s">'"timestamp":"</span><span class="nv">$time_iso8601</span><span class="s">",'</span>
+                   <span class="s">'"remote_addr":"</span><span class="nv">$remote_addr</span><span class="s">",'</span>
+                   <span class="s">'"method":"</span><span class="nv">$request_method</span><span class="s">",'</span>
+                   <span class="s">'"uri":"</span><span class="nv">$request_uri</span><span class="s">",'</span>
+                   <span class="s">'"status":</span><span class="nv">$status</span><span class="s">,'</span>
+                   <span class="s">'"bytes_sent":</span><span class="nv">$body_bytes_sent</span><span class="s">,'</span>
+                   <span class="s">'"request_time":</span><span class="nv">$request_time</span><span class="s">,'</span>
+                   <span class="s">'"user_agent":"</span><span class="nv">$http_user_agent</span><span class="s">",'</span>
+                   <span class="s">'"referer":"</span><span class="nv">$http_referer</span><span class="s">"'</span>
+                   <span class="s">'</span><span class="err">}</span><span class="s">'</span><span class="p">;</span>
+    
+    <span class="c1"># 조건부 로깅</span>
+    <span class="kn">map</span> <span class="nv">$status</span> <span class="nv">$loggable</span> <span class="p">{</span>
+        <span class="kn">~^[23]</span>  <span class="mi">0</span><span class="p">;</span>  <span class="c1"># 2xx, 3xx는 로그하지 않음</span>
+        <span class="kn">default</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 전역 로그 설정</span>
+    <span class="kn">access_log</span> <span class="n">/var/log/nginx/access.log</span> <span class="s">main</span> <span class="s">buffer=32k</span> <span class="s">flush=5m</span><span class="p">;</span>
+    <span class="kn">error_log</span> <span class="n">/var/log/nginx/error.log</span> <span class="s">warn</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kn">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+    
+    <span class="c1"># 사이트별 로그</span>
+    <span class="kn">access_log</span> <span class="n">/var/log/nginx/example.access.log</span> <span class="s">detailed</span> <span class="s">if=</span><span class="nv">$loggable</span><span class="p">;</span>
+    <span class="kn">error_log</span> <span class="n">/var/log/nginx/example.error.log</span><span class="p">;</span>
+    
+    <span class="c1"># API 로그 분리</span>
+    <span class="kn">location</span> <span class="n">/api/</span> <span class="p">{</span>
+        <span class="kn">access_log</span> <span class="n">/var/log/nginx/api.log</span> <span class="s">json</span><span class="p">;</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://backend</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 정적 파일 로그 비활성화</span>
+    <span class="kn">location</span> <span class="p">~</span><span class="sr">*</span> <span class="err">\</span><span class="s">.(js|css|png|jpg|jpeg|gif|ico|svg)</span>$ <span class="p">{</span>
+        <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span>
+        <span class="kn">expires</span> <span class="s">1y</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># 로봇 로그 분리</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="n">/robots.txt</span> <span class="p">{</span>
+        <span class="kn">access_log</span> <span class="n">/var/log/nginx/robots.log</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="로그-로테이션-설정">로그 로테이션 설정</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/logrotate.d/nginx</span>
+/var/log/nginx/<span class="k">*</span>.log <span class="o">{</span>
+    daily
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    create 644 www-data adm
+    sharedscripts
+    
+    prerotate
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> /etc/logrotate.d/httpd-prerotate <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span>run-parts /etc/logrotate.d/httpd-prerotate
+        <span class="k">fi
+    </span>endscript
+    
+    postrotate
+        <span class="c"># USR1 시그널로 로그 파일 재오픈</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> /var/run/nginx.pid <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">kill</span> <span class="nt">-USR1</span> <span class="sb">`</span><span class="nb">cat</span> /var/run/nginx.pid<span class="sb">`</span>
+        <span class="k">fi
+    </span>endscript
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="실시간-로그-분석-스크립트">실시간 로그 분석 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-log-analyzer.sh</span>
+
+<span class="nv">ACCESS_LOG</span><span class="o">=</span><span class="s2">"/var/log/nginx/access.log"</span>
+<span class="nv">ERROR_LOG</span><span class="o">=</span><span class="s2">"/var/log/nginx/error.log"</span>
+
+<span class="c"># 실시간 에러 모니터링</span>
+monitor_errors<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Monitoring Nginx errors (Ctrl+C to stop)..."</span>
+    <span class="nb">tail</span> <span class="nt">-f</span> <span class="nv">$ERROR_LOG</span> | <span class="k">while </span><span class="nb">read </span>line<span class="p">;</span> <span class="k">do
+        if </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"error"</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"[ERROR] </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">: </span><span class="nv">$line</span><span class="s2">"</span>
+            <span class="c"># 심각한 에러 시 알림 발송</span>
+            <span class="k">if </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-qE</span> <span class="s2">"(emerg|alert|crit)"</span><span class="p">;</span> <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"CRITICAL ERROR DETECTED!"</span> | wall
+            <span class="k">fi
+        fi
+    done</span>
+<span class="o">}</span>
+
+<span class="c"># 트래픽 통계</span>
+traffic_stats<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Traffic Statistics (Last 1000 requests) ==="</span>
+    <span class="nb">tail</span> <span class="nt">-1000</span> <span class="nv">$ACCESS_LOG</span> | <span class="nb">awk</span> <span class="s1">'{
+        status_code = $9
+        response_size += $10
+        request_count++
+        
+        if (status_code ~ /^2/) { success++ }
+        else if (status_code ~ /^3/) { redirect++ }
+        else if (status_code ~ /^4/) { client_error++ }
+        else if (status_code ~ /^5/) { server_error++ }
+    }
+    END {
+        print "Total requests:", request_count
+        print "Success (2xx):", success
+        print "Redirects (3xx):", redirect
+        print "Client errors (4xx):", client_error
+        print "Server errors (5xx):", server_error
+        print "Average response size:", response_size/request_count " bytes"
+        print "Error rate:", (client_error+server_error)/request_count*100 "%"
+    }'</span>
+<span class="o">}</span>
+
+<span class="c"># 상위 IP 주소</span>
+top_ips<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Top 10 IP Addresses ==="</span>
+    <span class="nb">tail</span> <span class="nt">-10000</span> <span class="nv">$ACCESS_log</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-nr</span> | <span class="nb">head</span> <span class="nt">-10</span>
+<span class="o">}</span>
+
+<span class="c"># 상위 User-Agent</span>
+top_user_agents<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Top 10 User Agents ==="</span>
+    <span class="nb">tail</span> <span class="nt">-1000</span> <span class="nv">$ACCESS_LOG</span> | <span class="nb">awk</span> <span class="nt">-F</span><span class="s1">'"'</span> <span class="s1">'{print $6}'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-nr</span> | <span class="nb">head</span> <span class="nt">-10</span>
+<span class="o">}</span>
+
+<span class="c"># 응답 시간 분석</span>
+response_time_analysis<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Response Time Analysis ==="</span>
+    <span class="nb">tail</span> <span class="nt">-1000</span> <span class="nv">$ACCESS_LOG</span> | <span class="nb">awk</span> <span class="s1">'{
+        if (NF &gt;= 11 &amp;&amp; $11 ~ /^[0-9]/) {
+            response_time = $11
+            total_time += response_time
+            count++
+            
+            if (response_time &lt; 0.1) slow_requests[1]++
+            else if (response_time &lt; 0.5) slow_requests[2]++
+            else if (response_time &lt; 1.0) slow_requests[3]++
+            else slow_requests[4]++
+        }
+    }
+    END {
+        if (count &gt; 0) {
+            print "Average response time:", total_time/count "s"
+            print "&lt; 0.1s:", slow_requests[1]
+            print "0.1s - 0.5s:", slow_requests[2]
+            print "0.5s - 1.0s:", slow_requests[3]
+            print "&gt; 1.0s:", slow_requests[4]
+        }
+    }'</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 메뉴</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"monitor"</span><span class="p">)</span>
+        monitor_errors
+        <span class="p">;;</span>
+    <span class="s2">"stats"</span><span class="p">)</span>
+        traffic_stats
+        <span class="p">;;</span>
+    <span class="s2">"ips"</span><span class="p">)</span>
+        top_ips
+        <span class="p">;;</span>
+    <span class="s2">"agents"</span><span class="p">)</span>
+        top_user_agents
+        <span class="p">;;</span>
+    <span class="s2">"response-time"</span><span class="p">)</span>
+        response_time_analysis
+        <span class="p">;;</span>
+    <span class="s2">"all"</span><span class="p">)</span>
+        traffic_stats
+        <span class="nb">echo</span> <span class="s2">""</span>
+        top_ips
+        <span class="nb">echo</span> <span class="s2">""</span>
+        response_time_analysis
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {monitor|stats|ips|agents|response-time|all}"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="설정-테스트-및-리로드">설정 테스트 및 리로드</h2>
+
+<h3 id="설정-검증-자동화">설정 검증 자동화</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-config-test.sh</span>
+
+<span class="nv">CONFIG_DIR</span><span class="o">=</span><span class="s2">"/etc/nginx"</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/etc/nginx/backup"</span>
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span>
+
+<span class="c"># 설정 백업</span>
+backup_config<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Backing up current configuration..."</span>
+    <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$BACKUP_DIR</span>
+    <span class="nb">tar </span>czf <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/nginx_config_</span><span class="nv">$TIMESTAMP</span><span class="s2">.tar.gz"</span> <span class="nt">-C</span> /etc nginx/
+    <span class="nb">echo</span> <span class="s2">"Configuration backed up to: </span><span class="nv">$BACKUP_DIR</span><span class="s2">/nginx_config_</span><span class="nv">$TIMESTAMP</span><span class="s2">.tar.gz"</span>
+<span class="o">}</span>
+
+<span class="c"># 설정 문법 검사</span>
+test_config<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Testing Nginx configuration..."</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span> <span class="nt">-q</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Configuration test passed"</span>
+        <span class="k">return </span>0
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Configuration test failed"</span>
+        nginx <span class="nt">-t</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 안전한 리로드</span>
+safe_reload<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Performing safe reload..."</span>
+    
+    <span class="c"># 설정 백업</span>
+    backup_config
+    
+    <span class="c"># 설정 테스트</span>
+    <span class="k">if</span> <span class="o">!</span> test_config<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Configuration test failed. Aborting reload."</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+    
+    <span class="c"># 리로드 수행</span>
+    <span class="k">if </span>systemctl reload nginx<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Nginx reloaded successfully"</span>
+        
+        <span class="c"># 리로드 후 상태 확인</span>
+        <span class="nb">sleep </span>2
+        <span class="k">if </span>systemctl is-active nginx <span class="o">&gt;</span>/dev/null<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"✓ Nginx is running properly after reload"</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"✗ Nginx failed after reload, attempting rollback..."</span>
+            systemctl restart nginx
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Nginx reload failed"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 설정 비교</span>
+compare_configs<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Comparing current config with backup: </span><span class="nv">$1</span><span class="s2">"</span>
+        diff <span class="nt">-u</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> compare &lt;backup_file&gt;"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 로직</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"test"</span><span class="p">)</span>
+        test_config
+        <span class="p">;;</span>
+    <span class="s2">"backup"</span><span class="p">)</span>
+        backup_config
+        <span class="p">;;</span>
+    <span class="s2">"reload"</span><span class="p">)</span>
+        safe_reload
+        <span class="p">;;</span>
+    <span class="s2">"compare"</span><span class="p">)</span>
+        compare_configs <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {test|backup|reload|compare}"</span>
+        <span class="nb">echo</span> <span class="s2">"  test    - Test configuration syntax"</span>
+        <span class="nb">echo</span> <span class="s2">"  backup  - Backup current configuration"</span>
+        <span class="nb">echo</span> <span class="s2">"  reload  - Safe configuration reload with backup"</span>
+        <span class="nb">echo</span> <span class="s2">"  compare - Compare configurations"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="시그널-처리">시그널 처리</h2>
+
+<h3 id="nginx-시그널-정리">Nginx 시그널 정리</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-signals.sh</span>
+
+<span class="nv">NGINX_PID_FILE</span><span class="o">=</span><span class="s2">"/var/run/nginx.pid"</span>
+
+get_nginx_pid<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$NGINX_PID_FILE</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">cat</span> <span class="nv">$NGINX_PID_FILE</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Nginx PID file not found"</span> <span class="o">&gt;</span>&amp;2
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 시그널 함수들</span>
+nginx_quit<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span>get_nginx_pid<span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Sending QUIT signal to Nginx (graceful shutdown)"</span>
+    <span class="nb">kill</span> <span class="nt">-QUIT</span> <span class="nv">$pid</span>
+<span class="o">}</span>
+
+nginx_reload<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span>get_nginx_pid<span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Sending HUP signal to Nginx (reload configuration)"</span>
+    <span class="nb">kill</span> <span class="nt">-HUP</span> <span class="nv">$pid</span>
+<span class="o">}</span>
+
+nginx_reopen_logs<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span>get_nginx_pid<span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Sending USR1 signal to Nginx (reopen log files)"</span>
+    <span class="nb">kill</span> <span class="nt">-USR1</span> <span class="nv">$pid</span>
+<span class="o">}</span>
+
+nginx_upgrade<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span>get_nginx_pid<span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Sending USR2 signal to Nginx (upgrade binary)"</span>
+    <span class="nb">kill</span> <span class="nt">-USR2</span> <span class="nv">$pid</span>
+    
+    <span class="c"># 새 마스터 프로세스 확인</span>
+    <span class="nb">sleep </span>2
+    <span class="nb">local </span><span class="nv">new_pid</span><span class="o">=</span><span class="si">$(</span>pgrep <span class="nt">-f</span> <span class="s2">"nginx: master process"</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nv">$pid</span><span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$new_pid</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"New master process started (PID: </span><span class="nv">$new_pid</span><span class="s2">)"</span>
+        <span class="nb">echo</span> <span class="s2">"Send WINCH to old master to shutdown old workers: kill -WINCH </span><span class="nv">$pid</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"Send QUIT to old master when ready: kill -QUIT </span><span class="nv">$pid</span><span class="s2">"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Failed to start new master process"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+nginx_worker_shutdown<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">pid</span><span class="o">=</span><span class="si">$(</span>get_nginx_pid<span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Sending WINCH signal to Nginx (graceful worker shutdown)"</span>
+    <span class="nb">kill</span> <span class="nt">-WINCH</span> <span class="nv">$pid</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 메뉴</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"quit"</span><span class="p">)</span>
+        nginx_quit
+        <span class="p">;;</span>
+    <span class="s2">"reload"</span><span class="p">)</span>
+        nginx_reload
+        <span class="p">;;</span>
+    <span class="s2">"reopen"</span><span class="p">)</span>
+        nginx_reopen_logs
+        <span class="p">;;</span>
+    <span class="s2">"upgrade"</span><span class="p">)</span>
+        nginx_upgrade
+        <span class="p">;;</span>
+    <span class="s2">"winch"</span><span class="p">)</span>
+        nginx_worker_shutdown
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Nginx Signal Manager"</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {quit|reload|reopen|upgrade|winch}"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"  quit    - QUIT (graceful shutdown)"</span>
+        <span class="nb">echo</span> <span class="s2">"  reload  - HUP (reload configuration)"</span>
+        <span class="nb">echo</span> <span class="s2">"  reopen  - USR1 (reopen log files)"</span>
+        <span class="nb">echo</span> <span class="s2">"  upgrade - USR2 (upgrade binary)"</span>
+        <span class="nb">echo</span> <span class="s2">"  winch   - WINCH (graceful worker shutdown)"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="자동화-스크립트">자동화 스크립트</h2>
+
+<h3 id="종합-관리-스크립트">종합 관리 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-manager.sh</span>
+
+<span class="nv">SCRIPT_DIR</span><span class="o">=</span><span class="s2">"/usr/local/bin"</span>
+<span class="nv">LOG_DIR</span><span class="o">=</span><span class="s2">"/var/log/nginx"</span>
+<span class="nv">CONFIG_DIR</span><span class="o">=</span><span class="s2">"/etc/nginx"</span>
+
+<span class="c"># 색상 정의</span>
+<span class="nv">RED</span><span class="o">=</span><span class="s1">'\033[0;31m'</span>
+<span class="nv">GREEN</span><span class="o">=</span><span class="s1">'\033[0;32m'</span>
+<span class="nv">YELLOW</span><span class="o">=</span><span class="s1">'\033[1;33m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\033[0m'</span> <span class="c"># No Color</span>
+
+log_info<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">GREEN</span><span class="k">}</span><span class="s2">[INFO]</span><span class="k">${</span><span class="nv">NC</span><span class="k">}</span><span class="s2"> </span><span class="nv">$1</span><span class="s2">"</span>
+<span class="o">}</span>
+
+log_warn<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">YELLOW</span><span class="k">}</span><span class="s2">[WARN]</span><span class="k">${</span><span class="nv">NC</span><span class="k">}</span><span class="s2"> </span><span class="nv">$1</span><span class="s2">"</span>
+<span class="o">}</span>
+
+log_error<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">RED</span><span class="k">}</span><span class="s2">[ERROR]</span><span class="k">${</span><span class="nv">NC</span><span class="k">}</span><span class="s2"> </span><span class="nv">$1</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 상태 확인</span>
+status_check<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Nginx Status Check ==="</span>
+    
+    <span class="c"># 프로세스 상태</span>
+    <span class="k">if </span>systemctl is-active nginx <span class="o">&gt;</span>/dev/null<span class="p">;</span> <span class="k">then
+        </span>log_info <span class="s2">"Nginx service is active"</span>
+    <span class="k">else
+        </span>log_error <span class="s2">"Nginx service is not active"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 설정 테스트</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span> <span class="nt">-q</span> 2&gt;/dev/null<span class="p">;</span> <span class="k">then
+        </span>log_info <span class="s2">"Configuration is valid"</span>
+    <span class="k">else
+        </span>log_error <span class="s2">"Configuration has errors"</span>
+        nginx <span class="nt">-t</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 포트 확인</span>
+    <span class="k">if </span>netstat <span class="nt">-tlpn</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">":80.*nginx"</span> 2&gt;/dev/null<span class="p">;</span> <span class="k">then
+        </span>log_info <span class="s2">"HTTP port (80) is listening"</span>
+    <span class="k">else
+        </span>log_warn <span class="s2">"HTTP port (80) is not listening"</span>
+    <span class="k">fi
+    
+    if </span>netstat <span class="nt">-tlpn</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">":443.*nginx"</span> 2&gt;/dev/null<span class="p">;</span> <span class="k">then
+        </span>log_info <span class="s2">"HTTPS port (443) is listening"</span>
+    <span class="k">else
+        </span>log_warn <span class="s2">"HTTPS port (443) is not listening"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 로그 파일 확인</span>
+    <span class="nb">local </span><span class="nv">log_files</span><span class="o">=(</span><span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/access.log"</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/error.log"</span><span class="o">)</span>
+    <span class="k">for </span>log_file <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">log_files</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$log_file</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">local </span><span class="nv">size</span><span class="o">=</span><span class="si">$(</span><span class="nb">du</span> <span class="nt">-h</span> <span class="s2">"</span><span class="nv">$log_file</span><span class="s2">"</span> | <span class="nb">cut</span> <span class="nt">-f1</span><span class="si">)</span>
+            log_info <span class="s2">"Log file </span><span class="nv">$log_file</span><span class="s2"> exists (size: </span><span class="nv">$size</span><span class="s2">)"</span>
+        <span class="k">else
+            </span>log_warn <span class="s2">"Log file </span><span class="nv">$log_file</span><span class="s2"> not found"</span>
+        <span class="k">fi
+    done</span>
+<span class="o">}</span>
+
+<span class="c"># 성능 체크</span>
+performance_check<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Performance Check ==="</span>
+    
+    <span class="c"># CPU 및 메모리 사용량</span>
+    <span class="nb">local </span><span class="nv">cpu_usage</span><span class="o">=</span><span class="si">$(</span>ps <span class="nt">-C</span> nginx <span class="nt">-o</span> %cpu <span class="nt">--no-headers</span> | <span class="nb">awk</span> <span class="s1">'{sum += $1} END {print sum}'</span><span class="si">)</span>
+    <span class="nb">local </span><span class="nv">mem_usage</span><span class="o">=</span><span class="si">$(</span>ps <span class="nt">-C</span> nginx <span class="nt">-o</span> %mem <span class="nt">--no-headers</span> | <span class="nb">awk</span> <span class="s1">'{sum += $1} END {print sum}'</span><span class="si">)</span>
+    
+    <span class="nb">echo</span> <span class="s2">"CPU Usage: </span><span class="k">${</span><span class="nv">cpu_usage</span><span class="k">}</span><span class="s2">%"</span>
+    <span class="nb">echo</span> <span class="s2">"Memory Usage: </span><span class="k">${</span><span class="nv">mem_usage</span><span class="k">}</span><span class="s2">%"</span>
+    
+    <span class="c"># 연결 수 확인</span>
+    <span class="nb">local </span><span class="nv">connections</span><span class="o">=</span><span class="si">$(</span>ss <span class="nt">-tuln</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">':80|:443'</span> | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Active connections: </span><span class="nv">$connections</span><span class="s2">"</span>
+    
+    <span class="c"># 워커 프로세스 수</span>
+    <span class="nb">local </span><span class="nv">workers</span><span class="o">=</span><span class="si">$(</span>pgrep <span class="nt">-c</span> <span class="s2">"nginx: worker"</span><span class="si">)</span>
+    <span class="nb">local </span><span class="nv">cpu_cores</span><span class="o">=</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Worker processes: </span><span class="nv">$workers</span><span class="s2"> (CPU cores: </span><span class="nv">$cpu_cores</span><span class="s2">)"</span>
+<span class="o">}</span>
+
+<span class="c"># 헬스체크</span>
+health_check<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Health Check ==="</span>
+    
+    <span class="c"># HTTP 응답 확인</span>
+    <span class="nb">local </span><span class="nv">http_status</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="nt">-o</span> /dev/null <span class="nt">-w</span> <span class="s2">"%{http_code}"</span> http://localhost/ 2&gt;/dev/null<span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$http_status</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"200"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>log_info <span class="s2">"HTTP health check passed (status: </span><span class="nv">$http_status</span><span class="s2">)"</span>
+    <span class="k">else
+        </span>log_error <span class="s2">"HTTP health check failed (status: </span><span class="nv">$http_status</span><span class="s2">)"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 최근 에러 로그 확인</span>
+    <span class="nb">local </span><span class="nv">recent_errors</span><span class="o">=</span><span class="si">$(</span><span class="nb">tail</span> <span class="nt">-100</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/error.log"</span> 2&gt;/dev/null | <span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y/%m/%d'</span><span class="si">)</span><span class="s2">"</span><span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$recent_errors</span><span class="s2">"</span> <span class="nt">-gt</span> 10 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>log_warn <span class="s2">"High error count today: </span><span class="nv">$recent_errors</span><span class="s2">"</span>
+    <span class="k">else
+        </span>log_info <span class="s2">"Error count today: </span><span class="nv">$recent_errors</span><span class="s2">"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 메뉴</span>
+main_menu<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"================================"</span>
+    <span class="nb">echo</span> <span class="s2">"     Nginx Management Tool      "</span>
+    <span class="nb">echo</span> <span class="s2">"================================"</span>
+    <span class="nb">echo</span> <span class="s2">"1. Status Check"</span>
+    <span class="nb">echo</span> <span class="s2">"2. Performance Check"</span>
+    <span class="nb">echo</span> <span class="s2">"3. Health Check"</span>
+    <span class="nb">echo</span> <span class="s2">"4. All Checks"</span>
+    <span class="nb">echo</span> <span class="s2">"5. Configuration Test"</span>
+    <span class="nb">echo</span> <span class="s2">"6. Safe Reload"</span>
+    <span class="nb">echo</span> <span class="s2">"7. View Recent Logs"</span>
+    <span class="nb">echo</span> <span class="s2">"8. Exit"</span>
+    <span class="nb">echo</span> <span class="s2">"================================"</span>
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"Select option: "</span> choice
+    
+    <span class="k">case</span> <span class="nv">$choice</span> <span class="k">in
+        </span>1<span class="p">)</span> status_check <span class="p">;;</span>
+        2<span class="p">)</span> performance_check <span class="p">;;</span>
+        3<span class="p">)</span> health_check <span class="p">;;</span>
+        4<span class="p">)</span> status_check<span class="p">;</span> <span class="nb">echo</span> <span class="s2">""</span><span class="p">;</span> performance_check<span class="p">;</span> <span class="nb">echo</span> <span class="s2">""</span><span class="p">;</span> health_check <span class="p">;;</span>
+        5<span class="p">)</span> nginx <span class="nt">-t</span> <span class="p">;;</span>
+        6<span class="p">)</span> <span class="nv">$SCRIPT_DIR</span>/nginx-config-test.sh reload <span class="p">;;</span>
+        7<span class="p">)</span> <span class="nv">$SCRIPT_DIR</span>/nginx-log-analyzer.sh all <span class="p">;;</span>
+        8<span class="p">)</span> <span class="nb">exit </span>0 <span class="p">;;</span>
+        <span class="k">*</span><span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Invalid option"</span><span class="p">;</span> main_menu <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="nb">echo</span> <span class="s2">""</span>
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"Press Enter to continue..."</span>
+    main_menu
+<span class="o">}</span>
+
+<span class="c"># 스크립트 실행</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"status"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>status_check
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"performance"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>performance_check
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"health"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>health_check
+<span class="k">elif</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"all"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>status_check
+    <span class="nb">echo</span> <span class="s2">""</span>
+    performance_check
+    <span class="nb">echo</span> <span class="s2">""</span>
+    health_check
+<span class="k">else
+    </span>main_menu
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<h2 id="cron-작업-설정">Cron 작업 설정</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/cron.d/nginx-maintenance</span>
+<span class="c"># Nginx 로그 분석 (매시간)</span>
+0 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/nginx-log-analyzer.sh stats <span class="o">&gt;&gt;</span> /var/log/nginx/hourly-stats.log 2&gt;&amp;1
+
+<span class="c"># Nginx 상태 체크 (5분마다)</span>
+<span class="k">*</span>/5 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/nginx-monitor.sh <span class="o">&gt;&gt;</span> /var/log/nginx/monitor.log 2&gt;&amp;1
+
+<span class="c"># 로그 로테이션 후 통계 (매일 자정)</span>
+5 0 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/nginx-log-analyzer.sh all <span class="o">&gt;</span> /var/log/nginx/daily-report.log 2&gt;&amp;1
+
+<span class="c"># 설정 백업 (매일)</span>
+30 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/nginx-config-test.sh backup <span class="o">&gt;&gt;</span> /var/log/nginx/backup.log 2&gt;&amp;1
+</code></pre></div></div>
+
+<h2 id="다음-단계">다음 단계</h2>
+
+<p>다음 포스트에서는 다음 내용들을 다루겠습니다:</p>
+
+<ul>
+  <li>성능 모니터링 및 메트릭 수집</li>
+  <li>Prometheus/Grafana 연동</li>
+  <li>알림 시스템 구축</li>
+  <li>트래픽 분석 및 최적화</li>
+</ul>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.nginx.com/nginx/admin-guide/">Nginx Admin Guide</a></li>
+  <li><a href="https://docs.nginx.com/nginx/admin-guide/monitoring/logging/">Nginx Logging Guide</a></li>
+  <li><a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">Systemd Service Management</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/05/17/nginx-configuration-guide-part3.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">Nginx 고급 설정 가이드 Part 3 - 리버스 프록시, 캐싱, 압축 최적화</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/06/11/nginx-operations-guide-part2.html" rel="next">
+          <span class="nav-title">Nginx 운영 가이드 Part 2 - 성능 모니터링, 메트릭 수집, 상태 확인</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

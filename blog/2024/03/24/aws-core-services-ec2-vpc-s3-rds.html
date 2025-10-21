@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>AWS 완전 정복 가이드 2편 - 핵심 서비스 실습과 EC2 마스터 | AWS Complete Guide Part 2 - Core Services & EC2 Mastery</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">AWS 완전 정복 가이드 2편 - 핵심 서비스 실습과 EC2 마스터 | AWS Complete Guide Part 2 - Core Services &amp; EC2 Mastery</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-03-24T05:00:00+00:00">Mar 24, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>AWS</li><li>Cloud</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>AWS의 핵심 서비스들을 실제 실습을 통해 완전히 마스터해보겠습니다. EC2부터 VPC, S3, RDS까지 실무에서 바로 활용할 수 있는 모든 것을 다룹니다.</p>
+
+<h2 id="ec2-완전-마스터--complete-ec2-mastery">EC2 완전 마스터 | Complete EC2 Mastery</h2>
+
+<h3 id="️-ec2-인스턴스-생성-및-관리">🖥️ EC2 인스턴스 생성 및 관리</h3>
+
+<h4 id="ec2-인스턴스-타입-선택-가이드">EC2 인스턴스 타입 선택 가이드</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 인스턴스 패밀리별 특징</span>
+범용: t3, t4g, m5, m6i
+├── t3.micro <span class="o">(</span>1 vCPU, 1GB RAM<span class="o">)</span> - 테스트/개발
+├── t3.small <span class="o">(</span>2 vCPU, 2GB RAM<span class="o">)</span> - 소규모 웹사이트
+├── m5.large <span class="o">(</span>2 vCPU, 8GB RAM<span class="o">)</span> - 일반적인 워크로드
+└── m5.xlarge <span class="o">(</span>4 vCPU, 16GB RAM<span class="o">)</span> - 중간 규모 애플리케이션
+
+컴퓨팅 최적화: c5, c6i
+├── c5.large <span class="o">(</span>2 vCPU, 4GB RAM<span class="o">)</span> - CPU 집약적 작업
+└── c5.xlarge <span class="o">(</span>4 vCPU, 8GB RAM<span class="o">)</span> - 고성능 웹 서버
+
+메모리 최적화: r5, r6i, x1e
+├── r5.large <span class="o">(</span>2 vCPU, 16GB RAM<span class="o">)</span> - 인메모리 데이터베이스
+└── r5.xlarge <span class="o">(</span>4 vCPU, 32GB RAM<span class="o">)</span> - 대용량 메모리 필요 작업
+
+스토리지 최적화: i3, d2, h1
+├── i3.large <span class="o">(</span>2 vCPU, 15.25GB RAM<span class="o">)</span> - NoSQL 데이터베이스
+└── d2.xlarge <span class="o">(</span>4 vCPU, 30.5GB RAM<span class="o">)</span> - 빅데이터 처리
+
+가속화된 컴퓨팅: p3, g4, inf1
+├── p3.2xlarge <span class="o">(</span>8 vCPU, 61GB RAM, 1 GPU<span class="o">)</span> - 머신러닝
+└── g4dn.xlarge <span class="o">(</span>4 vCPU, 16GB RAM, 1 GPU<span class="o">)</span> - 그래픽 워크로드
+</code></pre></div></div>
+
+<h4 id="cli를-통한-ec2-인스턴스-관리">CLI를 통한 EC2 인스턴스 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># EC2 인스턴스 관리 스크립트</span>
+
+<span class="c"># AWS CLI 설정 확인</span>
+aws configure list
+
+<span class="c"># 사용 가능한 AMI 조회</span>
+aws ec2 describe-images <span class="se">\</span>
+  <span class="nt">--owners</span> amazon <span class="se">\</span>
+  <span class="nt">--filters</span> <span class="s2">"Name=name,Values=amzn2-ami-hvm-*"</span> <span class="se">\</span>
+          <span class="s2">"Name=architecture,Values=x86_64"</span> <span class="se">\</span>
+          <span class="s2">"Name=virtualization-type,Values=hvm"</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Images[*].[ImageId,Name,CreationDate]'</span> <span class="se">\</span>
+  <span class="nt">--output</span> table
+
+<span class="c"># 키 페어 생성</span>
+aws ec2 create-key-pair <span class="se">\</span>
+  <span class="nt">--key-name</span> MyKeyPair <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'KeyMaterial'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text <span class="o">&gt;</span> MyKeyPair.pem
+
+<span class="nb">chmod </span>400 MyKeyPair.pem
+
+<span class="c"># 보안 그룹 생성</span>
+<span class="nv">SECURITY_GROUP_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-security-group <span class="se">\</span>
+  <span class="nt">--group-name</span> WebServerSecurityGroup <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Security group for web server"</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'GroupId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># SSH 접근 허용</span>
+aws ec2 authorize-security-group-ingress <span class="se">\</span>
+  <span class="nt">--group-id</span> <span class="nv">$SECURITY_GROUP_ID</span> <span class="se">\</span>
+  <span class="nt">--protocol</span> tcp <span class="se">\</span>
+  <span class="nt">--port</span> 22 <span class="se">\</span>
+  <span class="nt">--cidr</span> 0.0.0.0/0
+
+<span class="c"># HTTP 접근 허용</span>
+aws ec2 authorize-security-group-ingress <span class="se">\</span>
+  <span class="nt">--group-id</span> <span class="nv">$SECURITY_GROUP_ID</span> <span class="se">\</span>
+  <span class="nt">--protocol</span> tcp <span class="se">\</span>
+  <span class="nt">--port</span> 80 <span class="se">\</span>
+  <span class="nt">--cidr</span> 0.0.0.0/0
+
+<span class="c"># HTTPS 접근 허용</span>
+aws ec2 authorize-security-group-ingress <span class="se">\</span>
+  <span class="nt">--group-id</span> <span class="nv">$SECURITY_GROUP_ID</span> <span class="se">\</span>
+  <span class="nt">--protocol</span> tcp <span class="se">\</span>
+  <span class="nt">--port</span> 443 <span class="se">\</span>
+  <span class="nt">--cidr</span> 0.0.0.0/0
+
+<span class="c"># 사용자 데이터 스크립트 작성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> user-data.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+
+# 간단한 웹페이지 생성
+cat &gt; /var/www/html/index.html &lt;&lt; 'HTML'
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;AWS EC2 Instance&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .header { background-color: #232F3E; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; }
+        .instance-info { background-color: #f0f0f0; padding: 15px; margin: 20px 0; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;AWS EC2 웹 서버가 성공적으로 실행 중입니다!&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class="content"&gt;
+        &lt;h2&gt;인스턴스 정보&lt;/h2&gt;
+        &lt;div class="instance-info"&gt;
+            &lt;p&gt;&lt;strong&gt;인스턴스 ID:&lt;/strong&gt; </span><span class="si">$(</span>curl <span class="nt">-s</span> http://169.254.169.254/latest/meta-data/instance-id<span class="si">)</span><span class="sh">&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;가용 영역:&lt;/strong&gt; </span><span class="si">$(</span>curl <span class="nt">-s</span> http://169.254.169.254/latest/meta-data/placement/availability-zone<span class="si">)</span><span class="sh">&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;인스턴스 타입:&lt;/strong&gt; </span><span class="si">$(</span>curl <span class="nt">-s</span> http://169.254.169.254/latest/meta-data/instance-type<span class="si">)</span><span class="sh">&lt;/p&gt;
+            &lt;p&gt;&lt;strong&gt;퍼블릭 IP:&lt;/strong&gt; </span><span class="si">$(</span>curl <span class="nt">-s</span> http://169.254.169.254/latest/meta-data/public-ipv4<span class="si">)</span><span class="sh">&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;h2&gt;설치된 소프트웨어&lt;/h2&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Apache HTTP Server&lt;/li&gt;
+            &lt;li&gt;Amazon Linux 2&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+HTML
+
+# 인스턴스 정보를 실시간으로 업데이트
+cat &gt; /var/www/html/info.php &lt;&lt; 'PHP'
+&lt;?php
+echo "&lt;h2&gt;실시간 시스템 정보&lt;/h2&gt;";
+echo "&lt;p&gt;현재 시간: " . date('Y-m-d H:i:s') . "&lt;/p&gt;";
+echo "&lt;p&gt;서버 가동시간: " . shell_exec('uptime') . "&lt;/p&gt;";
+echo "&lt;p&gt;메모리 사용량: " . shell_exec('free -h') . "&lt;/p&gt;";
+echo "&lt;p&gt;디스크 사용량: " . shell_exec('df -h') . "&lt;/p&gt;";
+?&gt;
+PHP
+
+# CloudWatch 에이전트 설치
+yum install -y amazon-cloudwatch-agent
+</span><span class="no">EOF
+
+</span><span class="c"># EC2 인스턴스 시작</span>
+<span class="nv">INSTANCE_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 run-instances <span class="se">\</span>
+  <span class="nt">--image-id</span> ami-0abcdef1234567890 <span class="se">\</span>
+  <span class="nt">--count</span> 1 <span class="se">\</span>
+  <span class="nt">--instance-type</span> t3.micro <span class="se">\</span>
+  <span class="nt">--key-name</span> MyKeyPair <span class="se">\</span>
+  <span class="nt">--security-group-ids</span> <span class="nv">$SECURITY_GROUP_ID</span> <span class="se">\</span>
+  <span class="nt">--user-data</span> file://user-data.sh <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=instance,Tags=[{Key=Name,Value=WebServer}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Instances[0].InstanceId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"인스턴스 </span><span class="nv">$INSTANCE_ID</span><span class="s2"> 시작 중..."</span>
+
+<span class="c"># 인스턴스 상태 대기</span>
+aws ec2 <span class="nb">wait </span>instance-running <span class="nt">--instance-ids</span> <span class="nv">$INSTANCE_ID</span>
+
+<span class="c"># 퍼블릭 IP 조회</span>
+<span class="nv">PUBLIC_IP</span><span class="o">=</span><span class="si">$(</span>aws ec2 describe-instances <span class="se">\</span>
+  <span class="nt">--instance-ids</span> <span class="nv">$INSTANCE_ID</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Reservations[0].Instances[0].PublicIpAddress'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"인스턴스가 성공적으로 시작되었습니다!"</span>
+<span class="nb">echo</span> <span class="s2">"퍼블릭 IP: </span><span class="nv">$PUBLIC_IP</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"웹사이트: http://</span><span class="nv">$PUBLIC_IP</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"SSH 접속: ssh -i MyKeyPair.pem ec2-user@</span><span class="nv">$PUBLIC_IP</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h4 id="ec2-고급-관리-기능">EC2 고급 관리 기능</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># EC2 인스턴스 고급 관리 스크립트</span>
+<span class="c">#!/bin/bash</span>
+
+<span class="c"># 인스턴스 모니터링 활성화</span>
+enable_detailed_monitoring<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">instance_id</span><span class="o">=</span><span class="nv">$1</span>
+    aws ec2 monitor-instances <span class="nt">--instance-ids</span> <span class="nv">$instance_id</span>
+    <span class="nb">echo</span> <span class="s2">"상세 모니터링이 활성화되었습니다: </span><span class="nv">$instance_id</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># EBS 볼륨 생성 및 연결</span>
+create_and_attach_volume<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">instance_id</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">volume_size</span><span class="o">=</span><span class="nv">$2</span>
+    <span class="nb">local </span><span class="nv">device_name</span><span class="o">=</span><span class="nv">$3</span>
+    
+    <span class="c"># 인스턴스의 가용 영역 확인</span>
+    <span class="nv">AZ</span><span class="o">=</span><span class="si">$(</span>aws ec2 describe-instances <span class="se">\</span>
+      <span class="nt">--instance-ids</span> <span class="nv">$instance_id</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'Reservations[0].Instances[0].Placement.AvailabilityZone'</span> <span class="se">\</span>
+      <span class="nt">--output</span> text<span class="si">)</span>
+    
+    <span class="c"># EBS 볼륨 생성</span>
+    <span class="nv">VOLUME_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-volume <span class="se">\</span>
+      <span class="nt">--size</span> <span class="nv">$volume_size</span> <span class="se">\</span>
+      <span class="nt">--volume-type</span> gp3 <span class="se">\</span>
+      <span class="nt">--availability-zone</span> <span class="nv">$AZ</span> <span class="se">\</span>
+      <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=volume,Tags=[{Key=Name,Value=DataVolume}]'</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'VolumeId'</span> <span class="se">\</span>
+      <span class="nt">--output</span> text<span class="si">)</span>
+    
+    <span class="c"># 볼륨 생성 대기</span>
+    aws ec2 <span class="nb">wait </span>volume-available <span class="nt">--volume-ids</span> <span class="nv">$VOLUME_ID</span>
+    
+    <span class="c"># 볼륨 연결</span>
+    aws ec2 attach-volume <span class="se">\</span>
+      <span class="nt">--volume-id</span> <span class="nv">$VOLUME_ID</span> <span class="se">\</span>
+      <span class="nt">--instance-id</span> <span class="nv">$instance_id</span> <span class="se">\</span>
+      <span class="nt">--device</span> <span class="nv">$device_name</span>
+    
+    <span class="nb">echo</span> <span class="s2">"볼륨 </span><span class="nv">$VOLUME_ID</span><span class="s2">가 </span><span class="nv">$instance_id</span><span class="s2">에 연결되었습니다 (</span><span class="nv">$device_name</span><span class="s2">)"</span>
+<span class="o">}</span>
+
+<span class="c"># 스냅샷 생성</span>
+create_snapshot<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">volume_id</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">description</span><span class="o">=</span><span class="nv">$2</span>
+    
+    <span class="nv">SNAPSHOT_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-snapshot <span class="se">\</span>
+      <span class="nt">--volume-id</span> <span class="nv">$volume_id</span> <span class="se">\</span>
+      <span class="nt">--description</span> <span class="s2">"</span><span class="nv">$description</span><span class="s2">"</span> <span class="se">\</span>
+      <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=snapshot,Tags=[{Key=Name,Value=BackupSnapshot}]'</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'SnapshotId'</span> <span class="se">\</span>
+      <span class="nt">--output</span> text<span class="si">)</span>
+    
+    <span class="nb">echo</span> <span class="s2">"스냅샷 생성 중: </span><span class="nv">$SNAPSHOT_ID</span><span class="s2">"</span>
+    <span class="k">return</span> <span class="nv">$SNAPSHOT_ID</span>
+<span class="o">}</span>
+
+<span class="c"># AMI 생성</span>
+create_ami<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">instance_id</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">ami_name</span><span class="o">=</span><span class="nv">$2</span>
+    <span class="nb">local </span><span class="nv">description</span><span class="o">=</span><span class="nv">$3</span>
+    
+    <span class="nv">AMI_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-image <span class="se">\</span>
+      <span class="nt">--instance-id</span> <span class="nv">$instance_id</span> <span class="se">\</span>
+      <span class="nt">--name</span> <span class="s2">"</span><span class="nv">$ami_name</span><span class="s2">"</span> <span class="se">\</span>
+      <span class="nt">--description</span> <span class="s2">"</span><span class="nv">$description</span><span class="s2">"</span> <span class="se">\</span>
+      <span class="nt">--no-reboot</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'ImageId'</span> <span class="se">\</span>
+      <span class="nt">--output</span> text<span class="si">)</span>
+    
+    <span class="nb">echo</span> <span class="s2">"AMI 생성 중: </span><span class="nv">$AMI_ID</span><span class="s2">"</span>
+    <span class="k">return</span> <span class="nv">$AMI_ID</span>
+<span class="o">}</span>
+
+<span class="c"># 인스턴스 크기 조정</span>
+resize_instance<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">instance_id</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">new_instance_type</span><span class="o">=</span><span class="nv">$2</span>
+    
+    <span class="nb">echo</span> <span class="s2">"인스턴스 중지 중..."</span>
+    aws ec2 stop-instances <span class="nt">--instance-ids</span> <span class="nv">$instance_id</span>
+    aws ec2 <span class="nb">wait </span>instance-stopped <span class="nt">--instance-ids</span> <span class="nv">$instance_id</span>
+    
+    <span class="nb">echo</span> <span class="s2">"인스턴스 타입 변경 중..."</span>
+    aws ec2 modify-instance-attribute <span class="se">\</span>
+      <span class="nt">--instance-id</span> <span class="nv">$instance_id</span> <span class="se">\</span>
+      <span class="nt">--instance-type</span> <span class="nv">Value</span><span class="o">=</span><span class="nv">$new_instance_type</span>
+    
+    <span class="nb">echo</span> <span class="s2">"인스턴스 시작 중..."</span>
+    aws ec2 start-instances <span class="nt">--instance-ids</span> <span class="nv">$instance_id</span>
+    aws ec2 <span class="nb">wait </span>instance-running <span class="nt">--instance-ids</span> <span class="nv">$instance_id</span>
+    
+    <span class="nb">echo</span> <span class="s2">"인스턴스 크기 조정 완료: </span><span class="nv">$new_instance_type</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 사용 예시</span>
+<span class="c"># enable_detailed_monitoring "i-1234567890abcdef0"</span>
+<span class="c"># create_and_attach_volume "i-1234567890abcdef0" 20 "/dev/sdf"</span>
+<span class="c"># create_snapshot "vol-1234567890abcdef0" "Daily backup"</span>
+<span class="c"># create_ami "i-1234567890abcdef0" "WebServer-v1.0" "Production web server AMI"</span>
+<span class="c"># resize_instance "i-1234567890abcdef0" "t3.small"</span>
+</code></pre></div></div>
+
+<h2 id="vpc-네트워킹-심화--advanced-vpc-networking">VPC 네트워킹 심화 | Advanced VPC Networking</h2>
+
+<h3 id="-vpc-설계-및-구축">🌐 VPC 설계 및 구축</h3>
+
+<h4 id="완전한-vpc-인프라-구축">완전한 VPC 인프라 구축</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># 프로덕션 레벨 VPC 인프라 구축 스크립트</span>
+
+<span class="c"># 변수 설정</span>
+<span class="nv">VPC_CIDR</span><span class="o">=</span><span class="s2">"10.0.0.0/16"</span>
+<span class="nv">PUBLIC_SUBNET_1_CIDR</span><span class="o">=</span><span class="s2">"10.0.1.0/24"</span>
+<span class="nv">PUBLIC_SUBNET_2_CIDR</span><span class="o">=</span><span class="s2">"10.0.2.0/24"</span>
+<span class="nv">PRIVATE_SUBNET_1_CIDR</span><span class="o">=</span><span class="s2">"10.0.10.0/24"</span>
+<span class="nv">PRIVATE_SUBNET_2_CIDR</span><span class="o">=</span><span class="s2">"10.0.20.0/24"</span>
+<span class="nv">DB_SUBNET_1_CIDR</span><span class="o">=</span><span class="s2">"10.0.100.0/24"</span>
+<span class="nv">DB_SUBNET_2_CIDR</span><span class="o">=</span><span class="s2">"10.0.200.0/24"</span>
+
+<span class="c"># 가용 영역 조회</span>
+<span class="nv">AZ1</span><span class="o">=</span><span class="si">$(</span>aws ec2 describe-availability-zones <span class="nt">--query</span> <span class="s1">'AvailabilityZones[0].ZoneName'</span> <span class="nt">--output</span> text<span class="si">)</span>
+<span class="nv">AZ2</span><span class="o">=</span><span class="si">$(</span>aws ec2 describe-availability-zones <span class="nt">--query</span> <span class="s1">'AvailabilityZones[1].ZoneName'</span> <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"가용 영역: </span><span class="nv">$AZ1</span><span class="s2">, </span><span class="nv">$AZ2</span><span class="s2">"</span>
+
+<span class="c"># 1. VPC 생성</span>
+<span class="nv">VPC_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-vpc <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$VPC_CIDR</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=vpc,Tags=[{Key=Name,Value=Production-VPC}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Vpc.VpcId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"VPC 생성됨: </span><span class="nv">$VPC_ID</span><span class="s2">"</span>
+
+<span class="c"># DNS 호스트명 활성화</span>
+aws ec2 modify-vpc-attribute <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="nt">--enable-dns-hostnames</span>
+aws ec2 modify-vpc-attribute <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="nt">--enable-dns-support</span>
+
+<span class="c"># 2. 인터넷 게이트웨이 생성 및 연결</span>
+<span class="nv">IGW_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-internet-gateway <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=internet-gateway,Tags=[{Key=Name,Value=Production-IGW}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'InternetGateway.InternetGatewayId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 attach-internet-gateway <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="nt">--internet-gateway-id</span> <span class="nv">$IGW_ID</span>
+<span class="nb">echo</span> <span class="s2">"인터넷 게이트웨이 생성 및 연결됨: </span><span class="nv">$IGW_ID</span><span class="s2">"</span>
+
+<span class="c"># 3. 퍼블릭 서브넷 생성</span>
+<span class="nv">PUBLIC_SUBNET_1_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-subnet <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$PUBLIC_SUBNET_1_CIDR</span> <span class="se">\</span>
+  <span class="nt">--availability-zone</span> <span class="nv">$AZ1</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=subnet,Tags=[{Key=Name,Value=Public-Subnet-1}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Subnet.SubnetId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nv">PUBLIC_SUBNET_2_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-subnet <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$PUBLIC_SUBNET_2_CIDR</span> <span class="se">\</span>
+  <span class="nt">--availability-zone</span> <span class="nv">$AZ2</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=subnet,Tags=[{Key=Name,Value=Public-Subnet-2}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Subnet.SubnetId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># 퍼블릭 IP 자동 할당 활성화</span>
+aws ec2 modify-subnet-attribute <span class="nt">--subnet-id</span> <span class="nv">$PUBLIC_SUBNET_1_ID</span> <span class="nt">--map-public-ip-on-launch</span>
+aws ec2 modify-subnet-attribute <span class="nt">--subnet-id</span> <span class="nv">$PUBLIC_SUBNET_2_ID</span> <span class="nt">--map-public-ip-on-launch</span>
+
+<span class="nb">echo</span> <span class="s2">"퍼블릭 서브넷 생성됨: </span><span class="nv">$PUBLIC_SUBNET_1_ID</span><span class="s2">, </span><span class="nv">$PUBLIC_SUBNET_2_ID</span><span class="s2">"</span>
+
+<span class="c"># 4. 프라이빗 서브넷 생성</span>
+<span class="nv">PRIVATE_SUBNET_1_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-subnet <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$PRIVATE_SUBNET_1_CIDR</span> <span class="se">\</span>
+  <span class="nt">--availability-zone</span> <span class="nv">$AZ1</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=subnet,Tags=[{Key=Name,Value=Private-Subnet-1}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Subnet.SubnetId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nv">PRIVATE_SUBNET_2_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-subnet <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$PRIVATE_SUBNET_2_CIDR</span> <span class="se">\</span>
+  <span class="nt">--availability-zone</span> <span class="nv">$AZ2</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=subnet,Tags=[{Key=Name,Value=Private-Subnet-2}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Subnet.SubnetId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"프라이빗 서브넷 생성됨: </span><span class="nv">$PRIVATE_SUBNET_1_ID</span><span class="s2">, </span><span class="nv">$PRIVATE_SUBNET_2_ID</span><span class="s2">"</span>
+
+<span class="c"># 5. 데이터베이스 서브넷 생성</span>
+<span class="nv">DB_SUBNET_1_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-subnet <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$DB_SUBNET_1_CIDR</span> <span class="se">\</span>
+  <span class="nt">--availability-zone</span> <span class="nv">$AZ1</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=subnet,Tags=[{Key=Name,Value=DB-Subnet-1}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Subnet.SubnetId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nv">DB_SUBNET_2_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-subnet <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--cidr-block</span> <span class="nv">$DB_SUBNET_2_CIDR</span> <span class="se">\</span>
+  <span class="nt">--availability-zone</span> <span class="nv">$AZ2</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=subnet,Tags=[{Key=Name,Value=DB-Subnet-2}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'Subnet.SubnetId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"데이터베이스 서브넷 생성됨: </span><span class="nv">$DB_SUBNET_1_ID</span><span class="s2">, </span><span class="nv">$DB_SUBNET_2_ID</span><span class="s2">"</span>
+
+<span class="c"># 6. NAT 게이트웨이용 Elastic IP 할당</span>
+<span class="nv">EIP_1_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 allocate-address <span class="se">\</span>
+  <span class="nt">--domain</span> vpc <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=elastic-ip,Tags=[{Key=Name,Value=NAT-Gateway-1-EIP}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'AllocationId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nv">EIP_2_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 allocate-address <span class="se">\</span>
+  <span class="nt">--domain</span> vpc <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=elastic-ip,Tags=[{Key=Name,Value=NAT-Gateway-2-EIP}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'AllocationId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"Elastic IP 할당됨: </span><span class="nv">$EIP_1_ID</span><span class="s2">, </span><span class="nv">$EIP_2_ID</span><span class="s2">"</span>
+
+<span class="c"># 7. NAT 게이트웨이 생성</span>
+<span class="nv">NAT_GW_1_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-nat-gateway <span class="se">\</span>
+  <span class="nt">--subnet-id</span> <span class="nv">$PUBLIC_SUBNET_1_ID</span> <span class="se">\</span>
+  <span class="nt">--allocation-id</span> <span class="nv">$EIP_1_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=nat-gateway,Tags=[{Key=Name,Value=NAT-Gateway-1}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'NatGateway.NatGatewayId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nv">NAT_GW_2_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-nat-gateway <span class="se">\</span>
+  <span class="nt">--subnet-id</span> <span class="nv">$PUBLIC_SUBNET_2_ID</span> <span class="se">\</span>
+  <span class="nt">--allocation-id</span> <span class="nv">$EIP_2_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=nat-gateway,Tags=[{Key=Name,Value=NAT-Gateway-2}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'NatGateway.NatGatewayId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"NAT 게이트웨이 생성 중: </span><span class="nv">$NAT_GW_1_ID</span><span class="s2">, </span><span class="nv">$NAT_GW_2_ID</span><span class="s2">"</span>
+
+<span class="c"># NAT 게이트웨이 사용 가능 대기</span>
+aws ec2 <span class="nb">wait </span>nat-gateway-available <span class="nt">--nat-gateway-ids</span> <span class="nv">$NAT_GW_1_ID</span> <span class="nv">$NAT_GW_2_ID</span>
+
+<span class="c"># 8. 라우팅 테이블 생성 및 설정</span>
+
+<span class="c"># 퍼블릭 라우팅 테이블</span>
+<span class="nv">PUBLIC_RT_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-route-table <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=route-table,Tags=[{Key=Name,Value=Public-Route-Table}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'RouteTable.RouteTableId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+<span class="c"># 인터넷 게이트웨이로의 라우트 추가</span>
+aws ec2 create-route <span class="se">\</span>
+  <span class="nt">--route-table-id</span> <span class="nv">$PUBLIC_RT_ID</span> <span class="se">\</span>
+  <span class="nt">--destination-cidr-block</span> 0.0.0.0/0 <span class="se">\</span>
+  <span class="nt">--gateway-id</span> <span class="nv">$IGW_ID</span>
+
+<span class="c"># 퍼블릭 서브넷과 연결</span>
+aws ec2 associate-route-table <span class="nt">--subnet-id</span> <span class="nv">$PUBLIC_SUBNET_1_ID</span> <span class="nt">--route-table-id</span> <span class="nv">$PUBLIC_RT_ID</span>
+aws ec2 associate-route-table <span class="nt">--subnet-id</span> <span class="nv">$PUBLIC_SUBNET_2_ID</span> <span class="nt">--route-table-id</span> <span class="nv">$PUBLIC_RT_ID</span>
+
+<span class="nb">echo</span> <span class="s2">"퍼블릭 라우팅 테이블 설정 완료: </span><span class="nv">$PUBLIC_RT_ID</span><span class="s2">"</span>
+
+<span class="c"># 프라이빗 라우팅 테이블 1</span>
+<span class="nv">PRIVATE_RT_1_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-route-table <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=route-table,Tags=[{Key=Name,Value=Private-Route-Table-1}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'RouteTable.RouteTableId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 create-route <span class="se">\</span>
+  <span class="nt">--route-table-id</span> <span class="nv">$PRIVATE_RT_1_ID</span> <span class="se">\</span>
+  <span class="nt">--destination-cidr-block</span> 0.0.0.0/0 <span class="se">\</span>
+  <span class="nt">--nat-gateway-id</span> <span class="nv">$NAT_GW_1_ID</span>
+
+aws ec2 associate-route-table <span class="nt">--subnet-id</span> <span class="nv">$PRIVATE_SUBNET_1_ID</span> <span class="nt">--route-table-id</span> <span class="nv">$PRIVATE_RT_1_ID</span>
+
+<span class="c"># 프라이빗 라우팅 테이블 2</span>
+<span class="nv">PRIVATE_RT_2_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-route-table <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=route-table,Tags=[{Key=Name,Value=Private-Route-Table-2}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'RouteTable.RouteTableId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 create-route <span class="se">\</span>
+  <span class="nt">--route-table-id</span> <span class="nv">$PRIVATE_RT_2_ID</span> <span class="se">\</span>
+  <span class="nt">--destination-cidr-block</span> 0.0.0.0/0 <span class="se">\</span>
+  <span class="nt">--nat-gateway-id</span> <span class="nv">$NAT_GW_2_ID</span>
+
+aws ec2 associate-route-table <span class="nt">--subnet-id</span> <span class="nv">$PRIVATE_SUBNET_2_ID</span> <span class="nt">--route-table-id</span> <span class="nv">$PRIVATE_RT_2_ID</span>
+
+<span class="nb">echo</span> <span class="s2">"프라이빗 라우팅 테이블 설정 완료: </span><span class="nv">$PRIVATE_RT_1_ID</span><span class="s2">, </span><span class="nv">$PRIVATE_RT_2_ID</span><span class="s2">"</span>
+
+<span class="c"># 데이터베이스 라우팅 테이블</span>
+<span class="nv">DB_RT_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-route-table <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=route-table,Tags=[{Key=Name,Value=DB-Route-Table}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'RouteTable.RouteTableId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 associate-route-table <span class="nt">--subnet-id</span> <span class="nv">$DB_SUBNET_1_ID</span> <span class="nt">--route-table-id</span> <span class="nv">$DB_RT_ID</span>
+aws ec2 associate-route-table <span class="nt">--subnet-id</span> <span class="nv">$DB_SUBNET_2_ID</span> <span class="nt">--route-table-id</span> <span class="nv">$DB_RT_ID</span>
+
+<span class="nb">echo</span> <span class="s2">"데이터베이스 라우팅 테이블 설정 완료: </span><span class="nv">$DB_RT_ID</span><span class="s2">"</span>
+
+<span class="c"># 9. 보안 그룹 생성</span>
+
+<span class="c"># 웹 서버 보안 그룹</span>
+<span class="nv">WEB_SG_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-security-group <span class="se">\</span>
+  <span class="nt">--group-name</span> WebServer-SG <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Security group for web servers"</span> <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=security-group,Tags=[{Key=Name,Value=WebServer-SG}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'GroupId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 authorize-security-group-ingress <span class="nt">--group-id</span> <span class="nv">$WEB_SG_ID</span> <span class="nt">--protocol</span> tcp <span class="nt">--port</span> 80 <span class="nt">--cidr</span> 0.0.0.0/0
+aws ec2 authorize-security-group-ingress <span class="nt">--group-id</span> <span class="nv">$WEB_SG_ID</span> <span class="nt">--protocol</span> tcp <span class="nt">--port</span> 443 <span class="nt">--cidr</span> 0.0.0.0/0
+aws ec2 authorize-security-group-ingress <span class="nt">--group-id</span> <span class="nv">$WEB_SG_ID</span> <span class="nt">--protocol</span> tcp <span class="nt">--port</span> 22 <span class="nt">--source-group</span> <span class="nv">$BASTION_SG_ID</span>
+
+<span class="c"># 베스천 호스트 보안 그룹</span>
+<span class="nv">BASTION_SG_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-security-group <span class="se">\</span>
+  <span class="nt">--group-name</span> Bastion-SG <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Security group for bastion hosts"</span> <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=security-group,Tags=[{Key=Name,Value=Bastion-SG}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'GroupId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 authorize-security-group-ingress <span class="nt">--group-id</span> <span class="nv">$BASTION_SG_ID</span> <span class="nt">--protocol</span> tcp <span class="nt">--port</span> 22 <span class="nt">--cidr</span> 0.0.0.0/0
+
+<span class="c"># 데이터베이스 보안 그룹</span>
+<span class="nv">DB_SG_ID</span><span class="o">=</span><span class="si">$(</span>aws ec2 create-security-group <span class="se">\</span>
+  <span class="nt">--group-name</span> Database-SG <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Security group for databases"</span> <span class="se">\</span>
+  <span class="nt">--vpc-id</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--tag-specifications</span> <span class="s1">'ResourceType=security-group,Tags=[{Key=Name,Value=Database-SG}]'</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'GroupId'</span> <span class="se">\</span>
+  <span class="nt">--output</span> text<span class="si">)</span>
+
+aws ec2 authorize-security-group-ingress <span class="nt">--group-id</span> <span class="nv">$DB_SG_ID</span> <span class="nt">--protocol</span> tcp <span class="nt">--port</span> 3306 <span class="nt">--source-group</span> <span class="nv">$WEB_SG_ID</span>
+
+<span class="nb">echo</span> <span class="s2">"보안 그룹 생성 완료: Web=</span><span class="nv">$WEB_SG_ID</span><span class="s2">, Bastion=</span><span class="nv">$BASTION_SG_ID</span><span class="s2">, DB=</span><span class="nv">$DB_SG_ID</span><span class="s2">"</span>
+
+<span class="c"># 10. VPC 플로우 로그 활성화</span>
+aws ec2 create-flow-logs <span class="se">\</span>
+  <span class="nt">--resource-type</span> VPC <span class="se">\</span>
+  <span class="nt">--resource-ids</span> <span class="nv">$VPC_ID</span> <span class="se">\</span>
+  <span class="nt">--traffic-type</span> ALL <span class="se">\</span>
+  <span class="nt">--log-destination-type</span> cloud-watch-logs <span class="se">\</span>
+  <span class="nt">--log-group-name</span> VPCFlowLogs <span class="se">\</span>
+  <span class="nt">--deliver-logs-permission-arn</span> arn:aws:iam::123456789012:role/flowlogsRole
+
+<span class="nb">echo</span> <span class="s2">"=== VPC 인프라 구축 완료 ==="</span>
+<span class="nb">echo</span> <span class="s2">"VPC ID: </span><span class="nv">$VPC_ID</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"퍼블릭 서브넷: </span><span class="nv">$PUBLIC_SUBNET_1_ID</span><span class="s2">, </span><span class="nv">$PUBLIC_SUBNET_2_ID</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"프라이빗 서브넷: </span><span class="nv">$PRIVATE_SUBNET_1_ID</span><span class="s2">, </span><span class="nv">$PRIVATE_SUBNET_2_ID</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"데이터베이스 서브넷: </span><span class="nv">$DB_SUBNET_1_ID</span><span class="s2">, </span><span class="nv">$DB_SUBNET_2_ID</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"NAT 게이트웨이: </span><span class="nv">$NAT_GW_1_ID</span><span class="s2">, </span><span class="nv">$NAT_GW_2_ID</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h2 id="s3-스토리지-완전-활용--complete-s3-storage-utilization">S3 스토리지 완전 활용 | Complete S3 Storage Utilization</h2>
+
+<h3 id="️-s3-고급-활용-및-관리">🗄️ S3 고급 활용 및 관리</h3>
+
+<h4 id="s3-버킷-생성-및-정책-설정">S3 버킷 생성 및 정책 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># S3 종합 관리 스크립트</span>
+
+<span class="nv">BUCKET_NAME</span><span class="o">=</span><span class="s2">"my-production-bucket-</span><span class="si">$(</span><span class="nb">date</span> +%s<span class="si">)</span><span class="s2">"</span>
+<span class="nv">REGION</span><span class="o">=</span><span class="s2">"us-east-1"</span>
+
+<span class="c"># S3 버킷 생성</span>
+create_s3_bucket<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"S3 버킷 생성 중: </span><span class="nv">$BUCKET_NAME</span><span class="s2">"</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$REGION</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"us-east-1"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>aws s3api create-bucket <span class="se">\</span>
+          <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="se">\</span>
+          <span class="nt">--region</span> <span class="nv">$REGION</span> <span class="se">\</span>
+          <span class="nt">--create-bucket-configuration</span> <span class="nv">LocationConstraint</span><span class="o">=</span><span class="nv">$REGION</span>
+    <span class="k">else
+        </span>aws s3api create-bucket <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="nt">--region</span> <span class="nv">$REGION</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 퍼블릭 액세스 차단 (기본 보안)</span>
+    aws s3api put-public-access-block <span class="se">\</span>
+      <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="se">\</span>
+      <span class="nt">--public-access-block-configuration</span> <span class="se">\</span>
+        <span class="s2">"BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true"</span>
+    
+    <span class="nb">echo</span> <span class="s2">"S3 버킷 생성 완료: </span><span class="nv">$BUCKET_NAME</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 버킷 정책 설정</span>
+setup_bucket_policy<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> bucket-policy.json <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyInsecureConnections",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::</span><span class="nv">$BUCKET_NAME</span><span class="sh">",
+                "arn:aws:s3:::</span><span class="nv">$BUCKET_NAME</span><span class="sh">/*"
+            ],
+            "Condition": {
+                "Bool": {
+                    "aws:SecureTransport": "false"
+                }
+            }
+        },
+        {
+            "Sid": "AllowSpecificIPAccess",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::</span><span class="nv">$BUCKET_NAME</span><span class="sh">/*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": [
+                        "203.0.113.0/24",
+                        "198.51.100.0/24"
+                    ]
+                }
+            }
+        }
+    ]
+}
+</span><span class="no">EOF
+
+</span>    aws s3api put-bucket-policy <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="nt">--policy</span> file://bucket-policy.json
+    <span class="nb">echo</span> <span class="s2">"버킷 정책 적용 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># 수명 주기 정책 설정</span>
+setup_lifecycle_policy<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> lifecycle-policy.json <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+{
+    "Rules": [
+        {
+            "ID": "TransitionToIA",
+            "Status": "Enabled",
+            "Filter": {
+                "Prefix": "documents/"
+            },
+            "Transitions": [
+                {
+                    "Days": 30,
+                    "StorageClass": "STANDARD_IA"
+                },
+                {
+                    "Days": 90,
+                    "StorageClass": "GLACIER"
+                },
+                {
+                    "Days": 365,
+                    "StorageClass": "DEEP_ARCHIVE"
+                }
+            ]
+        },
+        {
+            "ID": "DeleteIncompleteMultipartUploads",
+            "Status": "Enabled",
+            "Filter": {},
+            "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 7
+            }
+        },
+        {
+            "ID": "DeleteOldVersions",
+            "Status": "Enabled",
+            "Filter": {},
+            "NoncurrentVersionTransitions": [
+                {
+                    "NoncurrentDays": 30,
+                    "StorageClass": "GLACIER"
+                }
+            ],
+            "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 365
+            }
+        }
+    ]
+}
+</span><span class="no">EOF
+
+</span>    aws s3api put-bucket-lifecycle-configuration <span class="se">\</span>
+      <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="se">\</span>
+      <span class="nt">--lifecycle-configuration</span> file://lifecycle-policy.json
+    
+    <span class="nb">echo</span> <span class="s2">"수명 주기 정책 적용 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># 버전 관리 활성화</span>
+enable_versioning<span class="o">()</span> <span class="o">{</span>
+    aws s3api put-bucket-versioning <span class="se">\</span>
+      <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="se">\</span>
+      <span class="nt">--versioning-configuration</span> <span class="nv">Status</span><span class="o">=</span>Enabled
+    
+    <span class="nb">echo</span> <span class="s2">"버전 관리 활성화 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># 서버 측 암호화 설정</span>
+setup_encryption<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> encryption-config.json <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+{
+    "Rules": [
+        {
+            "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+            },
+            "BucketKeyEnabled": true
+        }
+    ]
+}
+</span><span class="no">EOF
+
+</span>    aws s3api put-bucket-encryption <span class="se">\</span>
+      <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="se">\</span>
+      <span class="nt">--server-side-encryption-configuration</span> file://encryption-config.json
+    
+    <span class="nb">echo</span> <span class="s2">"서버 측 암호화 설정 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># 로깅 설정</span>
+setup_logging<span class="o">()</span> <span class="o">{</span>
+    <span class="c"># 액세스 로그를 저장할 버킷 (기존 버킷이나 별도 로그 버킷 사용)</span>
+    <span class="nv">LOG_BUCKET</span><span class="o">=</span><span class="s2">"</span><span class="nv">$BUCKET_NAME</span><span class="s2">-logs"</span>
+    
+    aws s3api create-bucket <span class="nt">--bucket</span> <span class="nv">$LOG_BUCKET</span> <span class="nt">--region</span> <span class="nv">$REGION</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> logging-config.json <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+{
+    "LoggingEnabled": {
+        "TargetBucket": "</span><span class="nv">$LOG_BUCKET</span><span class="sh">",
+        "TargetPrefix": "access-logs/"
+    }
+}
+</span><span class="no">EOF
+
+</span>    aws s3api put-bucket-logging <span class="se">\</span>
+      <span class="nt">--bucket</span> <span class="nv">$BUCKET_NAME</span> <span class="se">\</span>
+      <span class="nt">--bucket-logging-status</span> file://logging-config.json
+    
+    <span class="nb">echo</span> <span class="s2">"액세스 로깅 설정 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># CloudFront 배포 생성 (S3와 연동)</span>
+create_cloudfront_distribution<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> cloudfront-config.json <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+{
+    "CallerReference": "</span><span class="si">$(</span><span class="nb">date</span> +%s<span class="si">)</span><span class="sh">",
+    "Comment": "CloudFront distribution for S3 bucket",
+    "DefaultRootObject": "index.html",
+    "Origins": {
+        "Quantity": 1,
+        "Items": [
+            {
+                "Id": "S3-</span><span class="nv">$BUCKET_NAME</span><span class="sh">",
+                "DomainName": "</span><span class="nv">$BUCKET_NAME</span><span class="sh">.s3.amazonaws.com",
+                "S3OriginConfig": {
+                    "OriginAccessIdentity": ""
+                }
+            }
+        ]
+    },
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "S3-</span><span class="nv">$BUCKET_NAME</span><span class="sh">",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "MinTTL": 0,
+        "ForwardedValues": {
+            "QueryString": false,
+            "Cookies": {
+                "Forward": "none"
+            }
+        }
+    },
+    "Enabled": true,
+    "PriceClass": "PriceClass_100"
+}
+</span><span class="no">EOF
+
+</span>    <span class="nv">DISTRIBUTION_ID</span><span class="o">=</span><span class="si">$(</span>aws cloudfront create-distribution <span class="se">\</span>
+      <span class="nt">--distribution-config</span> file://cloudfront-config.json <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'Distribution.Id'</span> <span class="se">\</span>
+      <span class="nt">--output</span> text<span class="si">)</span>
+    
+    <span class="nb">echo</span> <span class="s2">"CloudFront 배포 생성 완료: </span><span class="nv">$DISTRIBUTION_ID</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># S3 동기화 및 업로드 스크립트</span>
+sync_content<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">source_dir</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">target_prefix</span><span class="o">=</span><span class="nv">$2</span>
+    
+    <span class="nb">echo</span> <span class="s2">"컨텐츠 동기화 중: </span><span class="nv">$source_dir</span><span class="s2"> -&gt; s3://</span><span class="nv">$BUCKET_NAME</span><span class="s2">/</span><span class="nv">$target_prefix</span><span class="s2">"</span>
+    
+    aws s3 <span class="nb">sync</span> <span class="s2">"</span><span class="nv">$source_dir</span><span class="s2">"</span> <span class="s2">"s3://</span><span class="nv">$BUCKET_NAME</span><span class="s2">/</span><span class="nv">$target_prefix</span><span class="s2">"</span> <span class="se">\</span>
+      <span class="nt">--delete</span> <span class="se">\</span>
+      <span class="nt">--exact-timestamps</span> <span class="se">\</span>
+      <span class="nt">--exclude</span> <span class="s2">"*.tmp"</span> <span class="se">\</span>
+      <span class="nt">--exclude</span> <span class="s2">".DS_Store"</span> <span class="se">\</span>
+      <span class="nt">--exclude</span> <span class="s2">"Thumbs.db"</span>
+    
+    <span class="nb">echo</span> <span class="s2">"동기화 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행 함수</span>
+main<span class="o">()</span> <span class="o">{</span>
+    create_s3_bucket
+    setup_bucket_policy
+    setup_lifecycle_policy
+    enable_versioning
+    setup_encryption
+    setup_logging
+    
+    <span class="nb">echo</span> <span class="s2">"=== S3 버킷 설정 완료 ==="</span>
+    <span class="nb">echo</span> <span class="s2">"버킷 이름: </span><span class="nv">$BUCKET_NAME</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"리전: </span><span class="nv">$REGION</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"기능: 버전 관리, 암호화, 수명 주기 정책, 액세스 로깅"</span>
+<span class="o">}</span>
+
+<span class="c"># 스크립트 실행</span>
+main
+</code></pre></div></div>
+
+<h2 id="rds-데이터베이스-구축-및-운영--rds-database-setup--operations">RDS 데이터베이스 구축 및 운영 | RDS Database Setup &amp; Operations</h2>
+
+<h3 id="️-rds-완전-마스터">🗃️ RDS 완전 마스터</h3>
+
+<h4 id="rds-인스턴스-생성-및-관리">RDS 인스턴스 생성 및 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># RDS 종합 관리 스크립트</span>
+
+<span class="nv">DB_INSTANCE_IDENTIFIER</span><span class="o">=</span><span class="s2">"production-mysql-db"</span>
+<span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">"productiondb"</span>
+<span class="nv">MASTER_USERNAME</span><span class="o">=</span><span class="s2">"admin"</span>
+<span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s2">"MySecurePassword123!"</span>
+<span class="nv">DB_INSTANCE_CLASS</span><span class="o">=</span><span class="s2">"db.t3.micro"</span>
+<span class="nv">ENGINE</span><span class="o">=</span><span class="s2">"mysql"</span>
+<span class="nv">ENGINE_VERSION</span><span class="o">=</span><span class="s2">"8.0.35"</span>
+<span class="nv">ALLOCATED_STORAGE</span><span class="o">=</span>20
+<span class="nv">VPC_SECURITY_GROUP_ID</span><span class="o">=</span><span class="s2">"sg-xxxxxxxxx"</span>  <span class="c"># 이전에 생성한 DB 보안 그룹 ID</span>
+
+<span class="c"># DB 서브넷 그룹 생성</span>
+create_db_subnet_group<span class="o">()</span> <span class="o">{</span>
+    aws rds create-db-subnet-group <span class="se">\</span>
+      <span class="nt">--db-subnet-group-name</span> production-db-subnet-group <span class="se">\</span>
+      <span class="nt">--db-subnet-group-description</span> <span class="s2">"Subnet group for production database"</span> <span class="se">\</span>
+      <span class="nt">--subnet-ids</span> subnet-xxxxxxxxx subnet-yyyyyyyyy <span class="se">\</span>
+      <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>Production-DB-Subnet-Group
+    
+    <span class="nb">echo</span> <span class="s2">"DB 서브넷 그룹 생성 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># RDS 인스턴스 생성</span>
+create_rds_instance<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"RDS 인스턴스 생성 중..."</span>
+    
+    aws rds create-db-instance <span class="se">\</span>
+      <span class="nt">--db-instance-identifier</span> <span class="nv">$DB_INSTANCE_IDENTIFIER</span> <span class="se">\</span>
+      <span class="nt">--db-instance-class</span> <span class="nv">$DB_INSTANCE_CLASS</span> <span class="se">\</span>
+      <span class="nt">--engine</span> <span class="nv">$ENGINE</span> <span class="se">\</span>
+      <span class="nt">--engine-version</span> <span class="nv">$ENGINE_VERSION</span> <span class="se">\</span>
+      <span class="nt">--master-username</span> <span class="nv">$MASTER_USERNAME</span> <span class="se">\</span>
+      <span class="nt">--master-user-password</span> <span class="nv">$MASTER_PASSWORD</span> <span class="se">\</span>
+      <span class="nt">--allocated-storage</span> <span class="nv">$ALLOCATED_STORAGE</span> <span class="se">\</span>
+      <span class="nt">--db-name</span> <span class="nv">$DB_NAME</span> <span class="se">\</span>
+      <span class="nt">--vpc-security-group-ids</span> <span class="nv">$VPC_SECURITY_GROUP_ID</span> <span class="se">\</span>
+      <span class="nt">--db-subnet-group-name</span> production-db-subnet-group <span class="se">\</span>
+      <span class="nt">--backup-retention-period</span> 7 <span class="se">\</span>
+      <span class="nt">--backup-window</span> <span class="s2">"03:00-04:00"</span> <span class="se">\</span>
+      <span class="nt">--maintenance-window</span> <span class="s2">"sun:04:00-sun:05:00"</span> <span class="se">\</span>
+      <span class="nt">--multi-az</span> <span class="se">\</span>
+      <span class="nt">--storage-type</span> gp2 <span class="se">\</span>
+      <span class="nt">--storage-encrypted</span> <span class="se">\</span>
+      <span class="nt">--monitoring-interval</span> 60 <span class="se">\</span>
+      <span class="nt">--monitoring-role-arn</span> arn:aws:iam::123456789012:role/rds-monitoring-role <span class="se">\</span>
+      <span class="nt">--enable-performance-insights</span> <span class="se">\</span>
+      <span class="nt">--performance-insights-retention-period</span> 7 <span class="se">\</span>
+      <span class="nt">--deletion-protection</span> <span class="se">\</span>
+      <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>Production-MySQL-DB <span class="nv">Key</span><span class="o">=</span>Environment,Value<span class="o">=</span>Production
+    
+    <span class="nb">echo</span> <span class="s2">"RDS 인스턴스 생성 중... 완료까지 10-15분 소요됩니다."</span>
+    
+    <span class="c"># 인스턴스 사용 가능 대기</span>
+    aws rds <span class="nb">wait </span>db-instance-available <span class="nt">--db-instance-identifier</span> <span class="nv">$DB_INSTANCE_IDENTIFIER</span>
+    
+    <span class="nb">echo</span> <span class="s2">"RDS 인스턴스 생성 완료!"</span>
+<span class="o">}</span>
+
+<span class="c"># 읽기 전용 복제본 생성</span>
+create_read_replica<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">replica_identifier</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">DB_INSTANCE_IDENTIFIER</span><span class="k">}</span><span class="s2">-read-replica"</span>
+    
+    aws rds create-db-instance-read-replica <span class="se">\</span>
+      <span class="nt">--db-instance-identifier</span> <span class="nv">$replica_identifier</span> <span class="se">\</span>
+      <span class="nt">--source-db-instance-identifier</span> <span class="nv">$DB_INSTANCE_IDENTIFIER</span> <span class="se">\</span>
+      <span class="nt">--db-instance-class</span> <span class="nv">$DB_INSTANCE_CLASS</span> <span class="se">\</span>
+      <span class="nt">--publicly-accessible</span> <span class="se">\</span>
+      <span class="nt">--multi-az</span> <span class="se">\</span>
+      <span class="nt">--storage-encrypted</span> <span class="se">\</span>
+      <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>Production-MySQL-DB-Replica <span class="nv">Key</span><span class="o">=</span>Environment,Value<span class="o">=</span>Production
+    
+    <span class="nb">echo</span> <span class="s2">"읽기 전용 복제본 생성 중: </span><span class="nv">$replica_identifier</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 데이터베이스 스냅샷 생성</span>
+create_snapshot<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">snapshot_identifier</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">DB_INSTANCE_IDENTIFIER</span><span class="k">}</span><span class="s2">-snapshot-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="s2">"</span>
+    
+    aws rds create-db-snapshot <span class="se">\</span>
+      <span class="nt">--db-instance-identifier</span> <span class="nv">$DB_INSTANCE_IDENTIFIER</span> <span class="se">\</span>
+      <span class="nt">--db-snapshot-identifier</span> <span class="nv">$snapshot_identifier</span> <span class="se">\</span>
+      <span class="nt">--tags</span> <span class="nv">Key</span><span class="o">=</span>Name,Value<span class="o">=</span>Manual-Snapshot <span class="nv">Key</span><span class="o">=</span>CreatedBy,Value<span class="o">=</span>Script
+    
+    <span class="nb">echo</span> <span class="s2">"스냅샷 생성 중: </span><span class="nv">$snapshot_identifier</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 자동 백업 설정 수정</span>
+modify_backup_settings<span class="o">()</span> <span class="o">{</span>
+    aws rds modify-db-instance <span class="se">\</span>
+      <span class="nt">--db-instance-identifier</span> <span class="nv">$DB_INSTANCE_IDENTIFIER</span> <span class="se">\</span>
+      <span class="nt">--backup-retention-period</span> 14 <span class="se">\</span>
+      <span class="nt">--backup-window</span> <span class="s2">"02:00-03:00"</span> <span class="se">\</span>
+      <span class="nt">--apply-immediately</span>
+    
+    <span class="nb">echo</span> <span class="s2">"백업 설정 수정 완료 (보존 기간: 14일)"</span>
+<span class="o">}</span>
+
+<span class="c"># 데이터베이스 연결 및 초기 설정</span>
+setup_database<span class="o">()</span> <span class="o">{</span>
+    <span class="c"># RDS 엔드포인트 가져오기</span>
+    <span class="nv">DB_ENDPOINT</span><span class="o">=</span><span class="si">$(</span>aws rds describe-db-instances <span class="se">\</span>
+      <span class="nt">--db-instance-identifier</span> <span class="nv">$DB_INSTANCE_IDENTIFIER</span> <span class="se">\</span>
+      <span class="nt">--query</span> <span class="s1">'DBInstances[0].Endpoint.Address'</span> <span class="se">\</span>
+      <span class="nt">--output</span> text<span class="si">)</span>
+    
+    <span class="nb">echo</span> <span class="s2">"데이터베이스 엔드포인트: </span><span class="nv">$DB_ENDPOINT</span><span class="s2">"</span>
+    
+    <span class="c"># 데이터베이스 초기 설정 SQL 스크립트</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> init-database.sql <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+-- 데이터베이스 초기 설정
+USE productiondb;
+
+-- 사용자 테이블 생성
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_username (username),
+    INDEX idx_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 제품 테이블 생성
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    stock_quantity INT DEFAULT 0,
+    category_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_category (category_id),
+    INDEX idx_price (price)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 주문 테이블 생성
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    status ENUM('pending', 'processing', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id),
+    INDEX idx_status (status),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 성능 최적화 설정
+SET GLOBAL innodb_buffer_pool_size = 1073741824; -- 1GB
+SET GLOBAL query_cache_size = 67108864; -- 64MB
+SET GLOBAL slow_query_log = 1;
+SET GLOBAL long_query_time = 2;
+
+-- 샘플 데이터 삽입
+INSERT INTO users (username, email, password_hash) VALUES
+('admin', 'admin@example.com', SHA2('admin123', 256)),
+('john_doe', 'john@example.com', SHA2('password123', 256)),
+('jane_smith', 'jane@example.com', SHA2('password456', 256));
+
+INSERT INTO products (name, description, price, stock_quantity, category_id) VALUES
+('Laptop Pro', 'High-performance laptop for professionals', 1299.99, 50, 1),
+('Wireless Mouse', 'Ergonomic wireless mouse', 29.99, 200, 2),
+('USB-C Hub', 'Multi-port USB-C hub with HDMI output', 79.99, 100, 2);
+
+INSERT INTO orders (user_id, total_amount, status) VALUES
+(2, 1329.98, 'delivered'),
+(3, 109.98, 'processing'),
+(2, 29.99, 'shipped');
+</span><span class="no">EOF
+    
+</span>    <span class="c"># MySQL 클라이언트로 초기 설정 실행 (로컬에 mysql 클라이언트가 설치되어 있어야 함)</span>
+    <span class="c"># mysql -h $DB_ENDPOINT -u $MASTER_USERNAME -p$MASTER_PASSWORD &lt; init-database.sql</span>
+    
+    <span class="nb">echo</span> <span class="s2">"데이터베이스 초기 설정 스크립트 생성 완료: init-database.sql"</span>
+    <span class="nb">echo</span> <span class="s2">"다음 명령으로 실행하세요: mysql -h </span><span class="nv">$DB_ENDPOINT</span><span class="s2"> -u </span><span class="nv">$MASTER_USERNAME</span><span class="s2"> -p &lt; init-database.sql"</span>
+<span class="o">}</span>
+
+<span class="c"># 데이터베이스 모니터링 설정</span>
+setup_monitoring<span class="o">()</span> <span class="o">{</span>
+    <span class="c"># CloudWatch 알람 생성</span>
+    aws cloudwatch put-metric-alarm <span class="se">\</span>
+      <span class="nt">--alarm-name</span> <span class="s2">"RDS-CPU-Utilization-High"</span> <span class="se">\</span>
+      <span class="nt">--alarm-description</span> <span class="s2">"RDS CPU utilization is too high"</span> <span class="se">\</span>
+      <span class="nt">--metric-name</span> CPUUtilization <span class="se">\</span>
+      <span class="nt">--namespace</span> AWS/RDS <span class="se">\</span>
+      <span class="nt">--statistic</span> Average <span class="se">\</span>
+      <span class="nt">--period</span> 300 <span class="se">\</span>
+      <span class="nt">--threshold</span> 80 <span class="se">\</span>
+      <span class="nt">--comparison-operator</span> GreaterThanThreshold <span class="se">\</span>
+      <span class="nt">--evaluation-periods</span> 2 <span class="se">\</span>
+      <span class="nt">--alarm-actions</span> arn:aws:sns:us-east-1:123456789012:rds-alerts <span class="se">\</span>
+      <span class="nt">--dimensions</span> <span class="nv">Name</span><span class="o">=</span>DBInstanceIdentifier,Value<span class="o">=</span><span class="nv">$DB_INSTANCE_IDENTIFIER</span>
+    
+    aws cloudwatch put-metric-alarm <span class="se">\</span>
+      <span class="nt">--alarm-name</span> <span class="s2">"RDS-FreeableMemory-Low"</span> <span class="se">\</span>
+      <span class="nt">--alarm-description</span> <span class="s2">"RDS freeable memory is too low"</span> <span class="se">\</span>
+      <span class="nt">--metric-name</span> FreeableMemory <span class="se">\</span>
+      <span class="nt">--namespace</span> AWS/RDS <span class="se">\</span>
+      <span class="nt">--statistic</span> Average <span class="se">\</span>
+      <span class="nt">--period</span> 300 <span class="se">\</span>
+      <span class="nt">--threshold</span> 104857600 <span class="se">\</span>
+      <span class="nt">--comparison-operator</span> LessThanThreshold <span class="se">\</span>
+      <span class="nt">--evaluation-periods</span> 2 <span class="se">\</span>
+      <span class="nt">--alarm-actions</span> arn:aws:sns:us-east-1:123456789012:rds-alerts <span class="se">\</span>
+      <span class="nt">--dimensions</span> <span class="nv">Name</span><span class="o">=</span>DBInstanceIdentifier,Value<span class="o">=</span><span class="nv">$DB_INSTANCE_IDENTIFIER</span>
+    
+    <span class="nb">echo</span> <span class="s2">"CloudWatch 알람 설정 완료"</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행 함수</span>
+main<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== RDS 데이터베이스 구축 시작 ==="</span>
+    
+    create_db_subnet_group
+    create_rds_instance
+    setup_database
+    setup_monitoring
+    
+    <span class="nb">echo</span> <span class="s2">"=== RDS 구축 완료 ==="</span>
+    <span class="nb">echo</span> <span class="s2">"DB 인스턴스: </span><span class="nv">$DB_INSTANCE_IDENTIFIER</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"엔진: </span><span class="nv">$ENGINE</span><span class="s2"> </span><span class="nv">$ENGINE_VERSION</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"클래스: </span><span class="nv">$DB_INSTANCE_CLASS</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"다중 AZ: 활성화"</span>
+    <span class="nb">echo</span> <span class="s2">"암호화: 활성화"</span>
+    <span class="nb">echo</span> <span class="s2">"백업 보존: 7일"</span>
+<span class="o">}</span>
+
+<span class="c"># 스크립트 실행</span>
+main
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>AWS 서버리스 아키텍처와 Lambda 완전 마스터</strong>를 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>Lambda 함수 개발부터 고급 패턴까지</li>
+  <li>API Gateway와 완전 통합</li>
+  <li>DynamoDB NoSQL 데이터베이스</li>
+  <li>CloudFormation 인프라 자동화</li>
+</ul>
+
+<p>AWS 핵심 서비스들을 완전히 마스터하셨나요? 🚀☁️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/03/23/aws-fundamentals-architecture-patterns.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">AWS 완전 정복 가이드 1편 - 기초부터 아키텍처 패턴까지 | AWS Complet...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/03/25/aws-serverless-lambda-apigateway.html" rel="next">
+          <span class="nav-title">AWS 완전 정복 가이드 3편 - 서버리스 아키텍처와 Lambda 마스터 | AWS ...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

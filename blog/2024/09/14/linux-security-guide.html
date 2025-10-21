@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>리눅스 보안 완전 가이드 | Complete Linux Security Guide - 시스템 보안부터 고급 보안 기법까지</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">리눅스 보안 완전 가이드 | Complete Linux Security Guide - 시스템 보안부터 고급 보안 기법까지</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-09-14T03:00:00+00:00">Sep 14, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Security</li><li>Linux</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>리눅스 시스템의 보안을 체계적으로 구축하고 관리하는 완전한 가이드입니다. 기초부터 고급 보안 기법까지 실무에 바로 적용할 수 있는 내용으로 구성했습니다.</p>
+
+<h2 id="리눅스-보안-기초--linux-security-fundamentals">리눅스 보안 기초 | Linux Security Fundamentals</h2>
+
+<h3 id="-사용자-계정-보안">🔐 사용자 계정 보안</h3>
+
+<h4 id="패스워드-정책-강화">패스워드 정책 강화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 패스워드 복잡성 정책 설정</span>
+<span class="c"># /etc/pam.d/common-password (Ubuntu/Debian)</span>
+password requisite pam_pwquality.so <span class="nv">retry</span><span class="o">=</span>3 <span class="nv">minlen</span><span class="o">=</span>12 <span class="nv">minclass</span><span class="o">=</span>3 <span class="nv">maxrepeat</span><span class="o">=</span>2 <span class="nv">ucredit</span><span class="o">=</span><span class="nt">-1</span> <span class="nv">lcredit</span><span class="o">=</span><span class="nt">-1</span> <span class="nv">dcredit</span><span class="o">=</span><span class="nt">-1</span> <span class="nv">ocredit</span><span class="o">=</span><span class="nt">-1</span>
+
+<span class="c"># /etc/security/pwquality.conf</span>
+minlen <span class="o">=</span> 12
+minclass <span class="o">=</span> 3
+maxrepeat <span class="o">=</span> 2
+maxclasssrepeat <span class="o">=</span> 4
+ucredit <span class="o">=</span> <span class="nt">-1</span>    <span class="c"># 최소 대문자 1개</span>
+lcredit <span class="o">=</span> <span class="nt">-1</span>    <span class="c"># 최소 소문자 1개  </span>
+dcredit <span class="o">=</span> <span class="nt">-1</span>    <span class="c"># 최소 숫자 1개</span>
+ocredit <span class="o">=</span> <span class="nt">-1</span>    <span class="c"># 최소 특수문자 1개</span>
+difok <span class="o">=</span> 3       <span class="c"># 이전 패스워드와 3글자 이상 달라야 함</span>
+
+<span class="c"># 패스워드 에이징 정책</span>
+<span class="c"># /etc/login.defs</span>
+PASS_MAX_DAYS   90     <span class="c"># 최대 유효기간</span>
+PASS_MIN_DAYS   1      <span class="c"># 최소 변경 주기</span>
+PASS_MIN_LEN    12     <span class="c"># 최소 길이</span>
+PASS_WARN_AGE   7      <span class="c"># 만료 경고 기간</span>
+
+<span class="c"># 기존 사용자에게 정책 적용</span>
+chage <span class="nt">-M</span> 90 <span class="nt">-m</span> 1 <span class="nt">-W</span> 7 username
+
+<span class="c"># 계정 잠금 정책 (실패 시도 제한)</span>
+<span class="c"># /etc/pam.d/common-auth</span>
+auth required pam_tally2.so <span class="nv">deny</span><span class="o">=</span>5 <span class="nv">unlock_time</span><span class="o">=</span>1800 <span class="nv">onerr</span><span class="o">=</span>fail
+
+<span class="c"># 잠긴 계정 확인 및 해제</span>
+pam_tally2 <span class="nt">--user</span> username
+pam_tally2 <span class="nt">--user</span> username <span class="nt">--reset</span>
+</code></pre></div></div>
+
+<h4 id="루트-계정-보안">루트 계정 보안</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 루트 직접 로그인 차단</span>
+<span class="c"># /etc/ssh/sshd_config</span>
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication <span class="nb">yes</span>
+
+<span class="c"># 콘솔 루트 로그인 제한</span>
+<span class="c"># /etc/securetty (허용할 터미널만 남기기)</span>
+console
+tty1
+
+<span class="c"># sudo 권한 세밀하게 제어</span>
+<span class="c"># /etc/sudoers</span>
+<span class="c"># 특정 명령만 허용</span>
+webadmin <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> /usr/sbin/service apache2 <span class="k">*</span>, /usr/sbin/service nginx <span class="k">*</span>
+<span class="c"># 패스워드 없이 특정 명령 실행</span>
+backup <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> NOPASSWD: /usr/bin/rsync, /bin/tar
+
+<span class="c"># sudo 사용 로그 강화</span>
+<span class="c"># /etc/rsyslog.conf 또는 /etc/rsyslog.d/50-default.conf</span>
+local2.<span class="k">*</span>                        /var/log/sudo.log
+
+<span class="c"># /etc/sudoers에 추가</span>
+Defaults    <span class="nv">logfile</span><span class="o">=</span><span class="s2">"/var/log/sudo.log"</span>
+Defaults    log_input, log_output
+Defaults    <span class="nv">iolog_dir</span><span class="o">=</span><span class="s2">"/var/log/sudo-io"</span>
+</code></pre></div></div>
+
+<h3 id="-ssh-보안-강화">🔒 SSH 보안 강화</h3>
+
+<h4 id="ssh-서버-보안-설정">SSH 서버 보안 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/ssh/sshd_config 보안 설정</span>
+Protocol 2
+Port 2222                    <span class="c"># 기본 포트 변경</span>
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication <span class="nb">yes
+</span>AuthorizedKeysFile .ssh/authorized_keys
+MaxAuthTries 3
+MaxSessions 3
+MaxStartups 3
+LoginGraceTime 60
+ClientAliveInterval 300
+ClientAliveCountMax 2
+UsePAM <span class="nb">yes
+</span>X11Forwarding no
+AllowTcpForwarding no
+GatewayPorts no
+PermitTunnel no
+
+<span class="c"># 특정 사용자/그룹만 SSH 접근 허용</span>
+AllowUsers admin developer
+AllowGroups sshusers
+DenyUsers guest anonymous
+DenyGroups wheel
+
+<span class="c"># 특정 IP에서만 접근 허용</span>
+Match Address 192.168.1.0/24,10.0.0.0/8
+    PasswordAuthentication <span class="nb">yes
+    
+</span>Match Address <span class="k">*</span>,!192.168.1.0/24,!10.0.0.0/8
+    DenyUsers <span class="k">*</span>
+
+<span class="c"># 서비스 재시작</span>
+systemctl restart sshd
+</code></pre></div></div>
+
+<h4 id="ssh-키-기반-인증-구축">SSH 키 기반 인증 구축</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 클라이언트에서 키 생성 (ED25519 권장)</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"your-email@domain.com"</span>
+<span class="c"># 또는 RSA 키 (최소 4096비트)</span>
+ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"your-email@domain.com"</span>
+
+<span class="c"># 공개키 서버에 복사</span>
+ssh-copy-id <span class="nt">-i</span> ~/.ssh/id_ed25519.pub username@server-ip
+
+<span class="c"># 수동으로 공개키 설정</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/.ssh
+<span class="nb">chmod </span>700 ~/.ssh
+<span class="nb">cat</span> <span class="o">&gt;&gt;</span> ~/.ssh/authorized_keys <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... your-email@domain.com
+</span><span class="no">EOF
+</span><span class="nb">chmod </span>600 ~/.ssh/authorized_keys
+<span class="nb">chown </span>username:username ~/.ssh <span class="nt">-R</span>
+
+<span class="c"># SSH 키 관리 - 키별 제한 설정</span>
+<span class="c"># ~/.ssh/authorized_keys</span>
+<span class="nb">command</span><span class="o">=</span><span class="s2">"/usr/local/bin/backup-script"</span>,no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-rsa AAAAB3... backup@server
+<span class="nv">from</span><span class="o">=</span><span class="s2">"192.168.1.100"</span>,no-port-forwarding ssh-rsa AAAAB3... admin@workstation
+
+<span class="c"># SSH Certificate Authority 구축</span>
+<span class="c"># CA 키 생성</span>
+ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-f</span> /etc/ssh/ca_key
+
+<span class="c"># 사용자 인증서 발급</span>
+ssh-keygen <span class="nt">-s</span> /etc/ssh/ca_key <span class="nt">-I</span> <span class="s2">"user-certificate"</span> <span class="nt">-n</span> username <span class="nt">-V</span> +1w ~/.ssh/id_rsa.pub
+
+<span class="c"># 서버 설정에서 CA 신뢰</span>
+<span class="c"># /etc/ssh/sshd_config</span>
+TrustedUserCAKeys /etc/ssh/ca_key.pub
+</code></pre></div></div>
+
+<h3 id="️-방화벽-설정">🛡️ 방화벽 설정</h3>
+
+<h4 id="iptables-기본-보안-설정">iptables 기본 보안 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># 강력한 iptables 보안 설정</span>
+
+<span class="c"># 모든 기존 규칙 초기화</span>
+iptables <span class="nt">-F</span>
+iptables <span class="nt">-X</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-F</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-X</span>
+iptables <span class="nt">-t</span> mangle <span class="nt">-F</span>
+iptables <span class="nt">-t</span> mangle <span class="nt">-X</span>
+
+<span class="c"># 기본 정책: 모든 트래픽 차단</span>
+iptables <span class="nt">-P</span> INPUT DROP
+iptables <span class="nt">-P</span> FORWARD DROP
+iptables <span class="nt">-P</span> OUTPUT DROP
+
+<span class="c"># Loopback 허용</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> lo <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-o</span> lo <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 기존 연결 유지</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> ESTABLISHED,RELATED <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> ESTABLISHED <span class="nt">-j</span> ACCEPT
+
+<span class="c"># SSH 접근 허용 (브루트포스 방지)</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> NEW <span class="nt">-m</span> recent <span class="nt">--set</span> <span class="nt">--name</span> SSH
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> NEW <span class="nt">-m</span> recent <span class="nt">--update</span> <span class="nt">--seconds</span> 60 <span class="nt">--hitcount</span> 4 <span class="nt">--name</span> SSH <span class="nt">-j</span> DROP
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--sport</span> 2222 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># DNS 허용 (필수)</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> udp <span class="nt">--dport</span> 53 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 53 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># NTP 허용</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> udp <span class="nt">--dport</span> 123 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># HTTP/HTTPS 아웃바운드 허용</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 443 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 웹 서버가 있다면 인바운드도 허용</span>
+<span class="c"># iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span>
+<span class="c"># iptables -A INPUT -p tcp --dport 443 -j ACCEPT</span>
+
+<span class="c"># ICMP 제한적 허용 (ping)</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> echo-request <span class="nt">-m</span> limit <span class="nt">--limit</span> 1/second <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> echo-reply <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> echo-request <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 로깅 설정 (DDoS 방지)</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> limit <span class="nt">--limit</span> 5/min <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"iptables INPUT denied: "</span> <span class="nt">--log-level</span> 7
+
+<span class="c"># 설정 저장</span>
+iptables-save <span class="o">&gt;</span> /etc/iptables/rules.v4
+
+<span class="c"># 부팅 시 자동 로드</span>
+<span class="nb">echo</span> <span class="s1">'#!/bin/bash'</span> <span class="o">&gt;</span> /etc/network/if-pre-up.d/iptables
+<span class="nb">echo</span> <span class="s1">'iptables-restore &lt; /etc/iptables/rules.v4'</span> <span class="o">&gt;&gt;</span> /etc/network/if-pre-up.d/iptables
+<span class="nb">chmod</span> +x /etc/network/if-pre-up.d/iptables
+</code></pre></div></div>
+
+<h4 id="ufw-uncomplicated-firewall-활용">UFW (Uncomplicated Firewall) 활용</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># UFW 초기화 및 기본 설정</span>
+ufw <span class="nt">--force</span> reset
+ufw default deny incoming
+ufw default deny outgoing
+ufw default deny forward
+
+<span class="c"># 필수 아웃바운드 허용</span>
+ufw allow out 53      <span class="c"># DNS</span>
+ufw allow out 80      <span class="c"># HTTP</span>
+ufw allow out 443     <span class="c"># HTTPS</span>
+ufw allow out 123     <span class="c"># NTP</span>
+
+<span class="c"># SSH 접근 허용 (포트 변경했다면)</span>
+ufw allow from 192.168.1.0/24 to any port 2222
+
+<span class="c"># 애플리케이션별 허용</span>
+ufw allow <span class="s2">"Apache Full"</span>
+ufw allow <span class="s2">"Nginx Full"</span>
+
+<span class="c"># 고급 규칙</span>
+ufw allow from 10.0.0.0/8 to any port 3306  <span class="c"># MySQL</span>
+ufw deny from 192.168.1.100                 <span class="c"># 특정 IP 차단</span>
+
+<span class="c"># 로깅 활성화</span>
+ufw logging on
+
+<span class="c"># 방화벽 활성화</span>
+ufw <span class="nb">enable</span>
+
+<span class="c"># 상태 확인</span>
+ufw status verbose
+ufw status numbered
+</code></pre></div></div>
+
+<h2 id="selinuxapparmor-보안--mandatory-access-control">SELinux/AppArmor 보안 | Mandatory Access Control</h2>
+
+<h3 id="-selinux-구성-및-관리">🔐 SELinux 구성 및 관리</h3>
+
+<h4 id="selinux-기본-설정">SELinux 기본 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SELinux 상태 확인</span>
+sestatus
+getenforce
+
+<span class="c"># SELinux 모드 변경</span>
+<span class="c"># /etc/selinux/config</span>
+<span class="nv">SELINUX</span><span class="o">=</span>enforcing     <span class="c"># enforcing, permissive, disabled</span>
+<span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted  <span class="c"># targeted, minimum, mls</span>
+
+<span class="c"># 임시 모드 변경</span>
+setenforce 1  <span class="c"># enforcing</span>
+setenforce 0  <span class="c"># permissive</span>
+
+<span class="c"># 컨텍스트 확인</span>
+<span class="nb">ls</span> <span class="nt">-lZ</span> /var/www/html/
+ps auxZ | <span class="nb">grep </span>httpd
+<span class="nb">id</span> <span class="nt">-Z</span>
+
+<span class="c"># 파일 컨텍스트 복원</span>
+restorecon <span class="nt">-Rv</span> /var/www/html/
+restorecon <span class="nt">-Rv</span> /home/username/
+
+<span class="c"># 컨텍스트 수동 설정</span>
+<span class="nb">chcon</span> <span class="nt">-t</span> httpd_exec_t /usr/local/apache2/bin/httpd
+semanage fcontext <span class="nt">-a</span> <span class="nt">-t</span> httpd_exec_t <span class="s2">"/usr/local/apache2/bin/httpd"</span>
+</code></pre></div></div>
+
+<h4 id="selinux-정책-관리">SELinux 정책 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 불린 값 확인 및 설정</span>
+getsebool <span class="nt">-a</span> | <span class="nb">grep </span>httpd
+setsebool <span class="nt">-P</span> httpd_can_network_connect on
+setsebool <span class="nt">-P</span> httpd_can_sendmail on
+
+<span class="c"># 포트 라벨 관리</span>
+semanage port <span class="nt">-l</span> | <span class="nb">grep </span>http
+semanage port <span class="nt">-a</span> <span class="nt">-t</span> http_port_t <span class="nt">-p</span> tcp 8080
+
+<span class="c"># 사용자 매핑</span>
+semanage login <span class="nt">-l</span>
+semanage user <span class="nt">-l</span>
+semanage login <span class="nt">-a</span> <span class="nt">-s</span> user_u regularuser
+
+<span class="c"># 커스텀 정책 모듈 생성</span>
+<span class="c"># audit.log에서 정책 생성</span>
+<span class="nb">grep </span>httpd /var/log/audit/audit.log | audit2allow <span class="nt">-m</span> myhttpd
+<span class="nb">grep </span>httpd /var/log/audit/audit.log | audit2allow <span class="nt">-M</span> myhttpd
+semodule <span class="nt">-i</span> myhttpd.pp
+
+<span class="c"># 정책 모듈 관리</span>
+semodule <span class="nt">-l</span> | <span class="nb">grep </span>my
+semodule <span class="nt">-r</span> myhttpd
+</code></pre></div></div>
+
+<h3 id="️-apparmor-프로파일-작성">🛡️ AppArmor 프로파일 작성</h3>
+
+<h4 id="apparmor-기본-관리">AppArmor 기본 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AppArmor 상태 확인</span>
+aa-status
+aa-enabled
+
+<span class="c"># 프로파일 모드 확인</span>
+aa-status | <span class="nb">grep </span>profiles
+
+<span class="c"># 프로파일 모드 변경</span>
+aa-enforce /etc/apparmor.d/usr.bin.firefox
+aa-complain /etc/apparmor.d/usr.bin.firefox
+aa-disable /etc/apparmor.d/usr.bin.firefox
+
+<span class="c"># 프로파일 재로드</span>
+apparmor_parser <span class="nt">-r</span> /etc/apparmor.d/usr.bin.firefox
+</code></pre></div></div>
+
+<h4 id="커스텀-apparmor-프로파일-작성">커스텀 AppArmor 프로파일 작성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 새로운 애플리케이션 프로파일 생성</span>
+<span class="c"># /etc/apparmor.d/usr.local.bin.myapp</span>
+<span class="c">#include &lt;tunables/global&gt;</span>
+
+/usr/local/bin/myapp <span class="o">{</span>
+  <span class="c">#include &lt;abstractions/base&gt;</span>
+  <span class="c">#include &lt;abstractions/nameservice&gt;</span>
+  
+  <span class="c"># 실행 파일</span>
+  /usr/local/bin/myapp mr,
+  
+  <span class="c"># 라이브러리</span>
+  /lib<span class="o">{</span>,32,64<span class="o">}</span>/<span class="k">**</span> mr,
+  /usr/lib<span class="o">{</span>,32,64<span class="o">}</span>/<span class="k">**</span> mr,
+  
+  <span class="c"># 설정 파일 (읽기 전용)</span>
+  /etc/myapp/<span class="k">**</span> r,
+  owner /home/<span class="k">*</span>/.myapp/<span class="k">**</span> rw,
+  
+  <span class="c"># 데이터 디렉토리</span>
+  /var/lib/myapp/<span class="k">**</span> rw,
+  /var/log/myapp/<span class="k">**</span> w,
+  
+  <span class="c"># 네트워크 접근</span>
+  network inet stream,
+  network inet6 stream,
+  
+  <span class="c"># 프로세스 제어</span>
+  capability setuid,
+  capability setgid,
+  
+  <span class="c"># 임시 파일</span>
+  /tmp/myapp.<span class="k">**</span> rw,
+  owner /tmp/myapp-<span class="k">**</span> rw,
+  
+  <span class="c"># 거부할 접근</span>
+  deny /etc/passwd r,
+  deny /etc/shadow r,
+  deny owner /home/<span class="k">*</span>/.ssh/<span class="k">**</span> rw,
+  
+  <span class="c"># 하위 프로세스 실행</span>
+  /bin/dash ix,
+  /usr/bin/python3 ix,
+<span class="o">}</span>
+
+<span class="c"># 프로파일 로드 및 활성화</span>
+apparmor_parser <span class="nt">-r</span> /etc/apparmor.d/usr.local.bin.myapp
+aa-enforce /etc/apparmor.d/usr.local.bin.myapp
+
+<span class="c"># 프로파일 개발 모드 (학습)</span>
+aa-genprof /usr/local/bin/myapp
+<span class="c"># 애플리케이션 실행하며 동작 확인</span>
+aa-logprof
+</code></pre></div></div>
+
+<h2 id="시스템-하드닝--system-hardening">시스템 하드닝 | System Hardening</h2>
+
+<h3 id="-커널-보안-매개변수-조정">🔧 커널 보안 매개변수 조정</h3>
+
+<h4 id="sysctl-보안-설정">sysctl 보안 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/sysctl.d/99-security.conf</span>
+<span class="c"># 네트워크 보안</span>
+net.ipv4.ip_forward <span class="o">=</span> 0
+net.ipv4.conf.all.send_redirects <span class="o">=</span> 0
+net.ipv4.conf.default.send_redirects <span class="o">=</span> 0
+net.ipv4.conf.all.accept_redirects <span class="o">=</span> 0
+net.ipv4.conf.default.accept_redirects <span class="o">=</span> 0
+net.ipv4.conf.all.secure_redirects <span class="o">=</span> 0
+net.ipv4.conf.default.secure_redirects <span class="o">=</span> 0
+net.ipv6.conf.all.accept_redirects <span class="o">=</span> 0
+net.ipv6.conf.default.accept_redirects <span class="o">=</span> 0
+net.ipv4.conf.all.accept_source_route <span class="o">=</span> 0
+net.ipv4.conf.default.accept_source_route <span class="o">=</span> 0
+net.ipv6.conf.all.accept_source_route <span class="o">=</span> 0
+net.ipv6.conf.default.accept_source_route <span class="o">=</span> 0
+
+<span class="c"># SYN 플러드 방지</span>
+net.ipv4.tcp_syncookies <span class="o">=</span> 1
+net.ipv4.tcp_max_syn_backlog <span class="o">=</span> 2048
+net.ipv4.tcp_synack_retries <span class="o">=</span> 2
+net.ipv4.tcp_syn_retries <span class="o">=</span> 5
+
+<span class="c"># ICMP 보안</span>
+net.ipv4.icmp_echo_ignore_broadcasts <span class="o">=</span> 1
+net.ipv4.icmp_ignore_bogus_error_responses <span class="o">=</span> 1
+net.ipv4.icmp_echo_ignore_all <span class="o">=</span> 0
+
+<span class="c"># IP 스푸핑 방지</span>
+net.ipv4.conf.all.rp_filter <span class="o">=</span> 1
+net.ipv4.conf.default.rp_filter <span class="o">=</span> 1
+
+<span class="c"># IPv6 보안</span>
+net.ipv6.conf.all.disable_ipv6 <span class="o">=</span> 1
+net.ipv6.conf.default.disable_ipv6 <span class="o">=</span> 1
+
+<span class="c"># 메모리 보안</span>
+kernel.randomize_va_space <span class="o">=</span> 2
+kernel.exec-shield <span class="o">=</span> 1
+kernel.dmesg_restrict <span class="o">=</span> 1
+kernel.kptr_restrict <span class="o">=</span> 2
+
+<span class="c"># 프로세스 보안  </span>
+fs.suid_dumpable <span class="o">=</span> 0
+kernel.core_uses_pid <span class="o">=</span> 1
+kernel.ctrl-alt-del <span class="o">=</span> 0
+
+<span class="c"># 설정 적용</span>
+sysctl <span class="nt">-p</span> /etc/sysctl.d/99-security.conf
+</code></pre></div></div>
+
+<h4 id="파일-시스템-보안">파일 시스템 보안</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 중요 디렉토리 마운트 옵션 강화</span>
+<span class="c"># /etc/fstab</span>
+/tmp        /tmp        tmpfs   defaults,nodev,nosuid,noexec    0 0
+/var/tmp    /var/tmp    tmpfs   defaults,nodev,nosuid,noexec    0 0
+/dev/shm    /dev/shm    tmpfs   defaults,nodev,nosuid,noexec    0 0
+
+<span class="c"># 파일 권한 강화</span>
+<span class="nb">chmod </span>700 /root
+<span class="nb">chmod </span>600 /etc/ssh/sshd_config
+<span class="nb">chmod </span>600 /etc/passwd-
+<span class="nb">chmod </span>600 /etc/shadow
+<span class="nb">chmod </span>600 /etc/gshadow
+<span class="nb">chmod </span>644 /etc/group
+
+<span class="c"># 불필요한 SUID/SGID 제거</span>
+find / <span class="nt">-type</span> f <span class="se">\(</span> <span class="nt">-perm</span> <span class="nt">-4000</span> <span class="nt">-o</span> <span class="nt">-perm</span> <span class="nt">-2000</span> <span class="se">\)</span> <span class="nt">-print</span> <span class="o">&gt;</span> /tmp/suid_sgid_files
+<span class="c"># 검토 후 필요없는 것들 제거</span>
+<span class="nb">chmod </span>u-s /usr/bin/unnecessary-suid-program
+
+<span class="c"># 숨겨진 파일 및 디렉토리 검사</span>
+find / <span class="nt">-name</span> <span class="s2">".*"</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">ls</span> <span class="nt">-la</span> <span class="o">{}</span> <span class="se">\;</span> 2&gt;/dev/null
+find / <span class="nt">-name</span> <span class="s2">".*"</span> <span class="nt">-type</span> d <span class="nt">-exec</span> <span class="nb">ls</span> <span class="nt">-lad</span> <span class="o">{}</span> <span class="se">\;</span> 2&gt;/dev/null
+
+<span class="c"># 대용량 파일 검사 (backdoor 가능성)</span>
+find / <span class="nt">-size</span> +10M <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">ls</span> <span class="nt">-la</span> <span class="o">{}</span> <span class="se">\;</span> 2&gt;/dev/null
+
+<span class="c"># 최근 수정된 파일 검사</span>
+find / <span class="nt">-mtime</span> <span class="nt">-7</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">ls</span> <span class="nt">-la</span> <span class="o">{}</span> <span class="se">\;</span> 2&gt;/dev/null
+</code></pre></div></div>
+
+<h3 id="-서비스-및-데몬-보안">🔍 서비스 및 데몬 보안</h3>
+
+<h4 id="불필요한-서비스-제거">불필요한 서비스 제거</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 실행 중인 서비스 확인</span>
+systemctl list-units <span class="nt">--type</span><span class="o">=</span>service <span class="nt">--state</span><span class="o">=</span>running
+netstat <span class="nt">-tulpn</span>
+ss <span class="nt">-tulpn</span>
+
+<span class="c"># 불필요한 서비스 중지 및 비활성화</span>
+systemctl stop cups
+systemctl disable cups
+systemctl mask cups
+
+<span class="c"># 위험한 서비스들 (일반적으로 비활성화)</span>
+<span class="nv">services_to_disable</span><span class="o">=(</span>
+    <span class="s2">"telnet"</span>
+    <span class="s2">"rsh"</span>
+    <span class="s2">"rlogin"</span>
+    <span class="s2">"tftp"</span>
+    <span class="s2">"xinetd"</span>
+    <span class="s2">"sendmail"</span>
+    <span class="s2">"postfix"</span>
+    <span class="s2">"dovecot"</span>
+    <span class="s2">"cups"</span>
+    <span class="s2">"avahi-daemon"</span>
+    <span class="s2">"bluetooth"</span>
+<span class="o">)</span>
+
+<span class="k">for </span>service <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">services_to_disable</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    if </span>systemctl is-enabled <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Disabling </span><span class="nv">$service</span><span class="s2">..."</span>
+        systemctl stop <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span>
+        systemctl disable <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span>
+        systemctl mask <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span>
+    <span class="k">fi
+done</span>
+
+<span class="c"># 네트워크 서비스 점검</span>
+lsof <span class="nt">-i</span>
+netstat <span class="nt">-anp</span> | <span class="nb">grep </span>LISTEN
+</code></pre></div></div>
+
+<h4 id="애플리케이션별-보안-설정">애플리케이션별 보안 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Apache 보안 설정</span>
+<span class="c"># /etc/apache2/conf-available/security.conf</span>
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+Header always <span class="nb">set </span>X-Content-Type-Options nosniff
+Header always <span class="nb">set </span>X-Frame-Options DENY
+Header always <span class="nb">set </span>X-XSS-Protection <span class="s2">"1; mode=block"</span>
+Header always <span class="nb">set </span>Strict-Transport-Security <span class="s2">"max-age=63072000; includeSubDomains; preload"</span>
+
+<span class="c"># Nginx 보안 설정</span>
+<span class="c"># /etc/nginx/nginx.conf</span>
+server_tokens off<span class="p">;</span>
+add_header X-Frame-Options DENY<span class="p">;</span>
+add_header X-Content-Type-Options nosniff<span class="p">;</span>
+add_header X-XSS-Protection <span class="s2">"1; mode=block"</span><span class="p">;</span>
+add_header Strict-Transport-Security <span class="s2">"max-age=63072000; includeSubDomains; preload"</span><span class="p">;</span>
+
+<span class="c"># MySQL/MariaDB 보안</span>
+mysql_secure_installation
+
+<span class="c"># PostgreSQL 보안 설정</span>
+<span class="c"># /etc/postgresql/*/main/postgresql.conf</span>
+ssl <span class="o">=</span> on
+ssl_ciphers <span class="o">=</span> <span class="s1">'HIGH:MEDIUM:+3DES:!aNULL'</span>
+ssl_prefer_server_ciphers <span class="o">=</span> on
+
+<span class="c"># /etc/postgresql/*/main/pg_hba.conf</span>
+<span class="c"># TYPE  DATABASE        USER            ADDRESS                 METHOD</span>
+<span class="nb">local   </span>all             all                                     md5
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5
+</code></pre></div></div>
+
+<h2 id="침입-탐지-시스템--intrusion-detection-systems">침입 탐지 시스템 | Intrusion Detection Systems</h2>
+
+<h3 id="-aide-advanced-intrusion-detection-environment">🚨 AIDE (Advanced Intrusion Detection Environment)</h3>
+
+<h4 id="aide-설치-및-구성">AIDE 설치 및 구성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AIDE 설치</span>
+apt-get <span class="nb">install </span>aide aide-common
+
+<span class="c"># 설정 파일 수정</span>
+<span class="c"># /etc/aide/aide.conf</span>
+<span class="nv">database</span><span class="o">=</span>file:/var/lib/aide/aide.db
+<span class="nv">database_out</span><span class="o">=</span>file:/var/lib/aide/aide.db.new
+<span class="nv">gzip_dbout</span><span class="o">=</span><span class="nb">yes
+</span><span class="nv">report_url</span><span class="o">=</span>file:/var/log/aide/aide.log
+<span class="nv">report_url</span><span class="o">=</span>stdout
+
+<span class="c"># 규칙 정의</span>
+/boot   f+p+u+g+s+b+m+c+md5+sha1
+/bin    f+p+u+g+s+b+m+c+md5+sha1
+/sbin   f+p+u+g+s+b+m+c+md5+sha1
+/lib    f+p+u+g+s+b+m+c+md5+sha1
+/opt    f+p+u+g+s+b+m+c+md5+sha1
+/usr    f+p+u+g+s+b+m+c+md5+sha1
+/root   f+p+u+g+s+b+m+c+md5+sha1
+/etc    f+p+u+g+s+b+m+c+md5+sha1
+
+<span class="c"># 제외할 디렉토리</span>
+<span class="o">!</span>/var/log/.<span class="k">*</span>
+<span class="o">!</span>/var/spool/.<span class="k">*</span>
+<span class="o">!</span>/var/run/.<span class="k">*</span>
+<span class="o">!</span>/var/lock/.<span class="k">*</span>
+<span class="o">!</span>/proc/.<span class="k">*</span>
+<span class="o">!</span>/sys/.<span class="k">*</span>
+<span class="o">!</span>/dev/.<span class="k">*</span>
+<span class="o">!</span>/tmp/.<span class="k">*</span>
+
+<span class="c"># 초기 데이터베이스 생성</span>
+aideinit
+
+<span class="c"># 데이터베이스 업데이트</span>
+<span class="nb">cp</span> /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+
+<span class="c"># 무결성 검사 실행</span>
+aide <span class="nt">--check</span>
+
+<span class="c"># 자동화 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/aide-check.sh</span>
+<span class="nv">AIDE_LOG</span><span class="o">=</span><span class="s2">"/var/log/aide/aide-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">.log"</span>
+
+aide <span class="nt">--check</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$AIDE_LOG</span><span class="s2">"</span> 2&gt;&amp;1
+<span class="nv">EXIT_CODE</span><span class="o">=</span><span class="nv">$?</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$EXIT_CODE</span> <span class="nt">-ne</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"AIDE detected changes on </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2">"</span> | <span class="se">\</span>
+    mail <span class="nt">-s</span> <span class="s2">"AIDE Alert - File Integrity Check Failed"</span> admin@company.com <span class="se">\</span>
+    <span class="nt">-A</span> <span class="s2">"</span><span class="nv">$AIDE_LOG</span><span class="s2">"</span>
+<span class="k">fi</span>
+
+<span class="c"># cron 설정</span>
+<span class="c"># /etc/cron.d/aide</span>
+0 2 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> root /usr/local/bin/aide-check.sh
+</code></pre></div></div>
+
+<h3 id="-fail2ban-설정">🔍 Fail2Ban 설정</h3>
+
+<h4 id="fail2ban-구성-및-커스터마이징">Fail2Ban 구성 및 커스터마이징</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Fail2Ban 설치</span>
+apt-get <span class="nb">install </span>fail2ban
+
+<span class="c"># 기본 설정 파일 복사</span>
+<span class="nb">cp</span> /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+<span class="c"># /etc/fail2ban/jail.local 설정</span>
+<span class="o">[</span>DEFAULT]
+bantime <span class="o">=</span> 3600
+findtime <span class="o">=</span> 600
+maxretry <span class="o">=</span> 3
+backend <span class="o">=</span> systemd
+banaction <span class="o">=</span> iptables-multiport
+banaction_allports <span class="o">=</span> iptables-allports
+ignoreip <span class="o">=</span> 127.0.0.1/8 192.168.1.0/24 10.0.0.0/8
+
+<span class="c"># SSH 보호</span>
+<span class="o">[</span>sshd]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> 2222
+logpath <span class="o">=</span> /var/log/auth.log
+maxretry <span class="o">=</span> 3
+bantime <span class="o">=</span> 3600
+
+<span class="c"># Apache 보호</span>
+<span class="o">[</span>apache-auth]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+logpath <span class="o">=</span> /var/log/apache2/error.log
+
+<span class="o">[</span>apache-badbots]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+logpath <span class="o">=</span> /var/log/apache2/access.log
+
+<span class="o">[</span>apache-noscript]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> http,https
+logpath <span class="o">=</span> /var/log/apache2/access.log
+
+<span class="c"># 커스텀 필터 생성</span>
+<span class="c"># /etc/fail2ban/filter.d/custom-app.conf</span>
+<span class="o">[</span>Definition]
+failregex <span class="o">=</span> ^.<span class="k">*</span>Failed login attempt from &lt;HOST&gt;.<span class="k">*</span><span class="err">$</span>
+            ^.<span class="k">*</span>Invalid user .<span class="k">*</span> from &lt;HOST&gt;.<span class="k">*</span><span class="err">$</span>
+            ^.<span class="k">*</span>authentication failure.<span class="k">*</span><span class="nv">rhost</span><span class="o">=</span>&lt;HOST&gt;.<span class="k">*</span><span class="err">$</span>
+ignoreregex <span class="o">=</span>
+
+<span class="c"># 커스텀 jail 설정</span>
+<span class="c"># /etc/fail2ban/jail.local에 추가</span>
+<span class="o">[</span>custom-app]
+enabled <span class="o">=</span> <span class="nb">true
+</span>port <span class="o">=</span> 8080
+logpath <span class="o">=</span> /var/log/custom-app.log
+filter <span class="o">=</span> custom-app
+maxretry <span class="o">=</span> 5
+bantime <span class="o">=</span> 7200
+
+<span class="c"># Fail2Ban 관리 명령</span>
+fail2ban-client status
+fail2ban-client status sshd
+fail2ban-client unban 192.168.1.100
+fail2ban-client reload
+</code></pre></div></div>
+
+<h3 id="-ossecwazuh-설치">🔐 OSSEC/Wazuh 설치</h3>
+
+<h4 id="wazuh-agent-설치-및-구성">Wazuh Agent 설치 및 구성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Wazuh 저장소 추가</span>
+curl <span class="nt">-s</span> https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
+<span class="nb">echo</span> <span class="s2">"deb https://packages.wazuh.com/4.x/apt/ stable main"</span> <span class="o">&gt;</span> /etc/apt/sources.list.d/wazuh.list
+apt-get update
+
+<span class="c"># Wazuh Agent 설치</span>
+apt-get <span class="nb">install </span>wazuh-agent
+
+<span class="c"># 에이전트 설정</span>
+<span class="c"># /var/ossec/etc/ossec.conf</span>
+&lt;ossec_config&gt;
+  &lt;client&gt;
+    &lt;server&gt;
+      &lt;address&gt;MANAGER_IP&lt;/address&gt;
+      &lt;port&gt;1514&lt;/port&gt;
+      &lt;protocol&gt;tcp&lt;/protocol&gt;
+    &lt;/server&gt;
+    &lt;config-profile&gt;linux, ubuntu, ubuntu20,&lt;/config-profile&gt;
+    &lt;notify_time&gt;10&lt;/notify_time&gt;
+    &lt;time-reconnect&gt;60&lt;/time-reconnect&gt;
+    &lt;auto_restart&gt;yes&lt;/auto_restart&gt;
+    &lt;crypto_method&gt;aes&lt;/crypto_method&gt;
+  &lt;/client&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 로그 모니터링 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;localfile&gt;
+    &lt;log_format&gt;syslog&lt;/log_format&gt;
+    &lt;location&gt;/var/log/auth.log&lt;/location&gt;
+  &lt;/localfile&gt;
+
+  &lt;localfile&gt;
+    &lt;log_format&gt;syslog&lt;/log_format&gt;
+    &lt;location&gt;/var/log/syslog&lt;/location&gt;
+  &lt;/localfile&gt;
+
+  &lt;localfile&gt;
+    &lt;log_format&gt;apache&lt;/log_format&gt;
+    &lt;location&gt;/var/log/apache2/access.log&lt;/location&gt;
+  &lt;/localfile&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 파일 무결성 모니터링 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;syscheck&gt;
+    &lt;disabled&gt;no&lt;/disabled&gt;
+    &lt;frequency&gt;43200&lt;/frequency&gt;
+    &lt;scan_on_start&gt;yes&lt;/scan_on_start&gt;
+    
+    &lt;directories <span class="nv">check_all</span><span class="o">=</span><span class="s2">"yes"</span> <span class="nv">realtime</span><span class="o">=</span><span class="s2">"yes"</span><span class="o">&gt;</span>/etc&lt;/directories&gt;
+    &lt;directories <span class="nv">check_all</span><span class="o">=</span><span class="s2">"yes"</span> <span class="nv">realtime</span><span class="o">=</span><span class="s2">"yes"</span><span class="o">&gt;</span>/usr/bin&lt;/directories&gt;
+    &lt;directories <span class="nv">check_all</span><span class="o">=</span><span class="s2">"yes"</span> <span class="nv">realtime</span><span class="o">=</span><span class="s2">"yes"</span><span class="o">&gt;</span>/usr/sbin&lt;/directories&gt;
+    &lt;directories <span class="nv">check_all</span><span class="o">=</span><span class="s2">"yes"</span> <span class="nv">realtime</span><span class="o">=</span><span class="s2">"yes"</span><span class="o">&gt;</span>/bin&lt;/directories&gt;
+    &lt;directories <span class="nv">check_all</span><span class="o">=</span><span class="s2">"yes"</span> <span class="nv">realtime</span><span class="o">=</span><span class="s2">"yes"</span><span class="o">&gt;</span>/sbin&lt;/directories&gt;
+    
+    &lt;ignore&gt;/etc/mtab&lt;/ignore&gt;
+    &lt;ignore&gt;/etc/hosts.deny&lt;/ignore&gt;
+    &lt;ignore&gt;/etc/mail/statistics&lt;/ignore&gt;
+    &lt;ignore&gt;/etc/random-seed&lt;/ignore&gt;
+    &lt;ignore&gt;/etc/adjtime&lt;/ignore&gt;
+  &lt;/syscheck&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 루트킷 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rootcheck&gt;
+    &lt;disabled&gt;no&lt;/disabled&gt;
+    &lt;check_files&gt;yes&lt;/check_files&gt;
+    &lt;check_trojans&gt;yes&lt;/check_trojans&gt;
+    &lt;check_dev&gt;yes&lt;/check_dev&gt;
+    &lt;check_sys&gt;yes&lt;/check_sys&gt;
+    &lt;check_pids&gt;yes&lt;/check_pids&gt;
+    &lt;check_ports&gt;yes&lt;/check_ports&gt;
+    &lt;check_if&gt;yes&lt;/check_if&gt;
+  &lt;/rootcheck&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 활성 응답 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;active-response&gt;
+    &lt;disabled&gt;no&lt;/disabled&gt;
+    &lt;ca_store&gt;/var/ossec/etc/wpk_root.pem&lt;/ca_store&gt;
+    &lt;ca_verification&gt;yes&lt;/ca_verification&gt;
+  &lt;/active-response&gt;
+&lt;/ossec_config&gt;
+
+<span class="c"># 서비스 시작</span>
+systemctl <span class="nb">enable </span>wazuh-agent
+systemctl start wazuh-agent
+
+<span class="c"># 상태 확인</span>
+systemctl status wazuh-agent
+/var/ossec/bin/ossec-control status
+</code></pre></div></div>
+
+<h2 id="컨테이너-보안--container-security">컨테이너 보안 | Container Security</h2>
+
+<h3 id="-docker-보안-설정">🐳 Docker 보안 설정</h3>
+
+<h4 id="docker-데몬-보안-강화">Docker 데몬 보안 강화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Docker 데몬 설정</span>
+<span class="c"># /etc/docker/daemon.json</span>
+<span class="o">{</span>
+    <span class="s2">"icc"</span>: <span class="nb">false</span>,
+    <span class="s2">"userns-remap"</span>: <span class="s2">"default"</span>,
+    <span class="s2">"no-new-privileges"</span>: <span class="nb">true</span>,
+    <span class="s2">"seccomp-profile"</span>: <span class="s2">"/etc/docker/seccomp.json"</span>,
+    <span class="s2">"selinux-enabled"</span>: <span class="nb">true</span>,
+    <span class="s2">"disable-legacy-registry"</span>: <span class="nb">true</span>,
+    <span class="s2">"live-restore"</span>: <span class="nb">true</span>,
+    <span class="s2">"userland-proxy"</span>: <span class="nb">false</span>,
+    <span class="s2">"experimental"</span>: <span class="nb">false</span>,
+    <span class="s2">"metrics-addr"</span>: <span class="s2">"127.0.0.1:9323"</span>,
+    <span class="s2">"log-driver"</span>: <span class="s2">"json-file"</span>,
+    <span class="s2">"log-opts"</span>: <span class="o">{</span>
+        <span class="s2">"max-size"</span>: <span class="s2">"10m"</span>,
+        <span class="s2">"max-file"</span>: <span class="s2">"3"</span>
+    <span class="o">}</span>,
+    <span class="s2">"storage-driver"</span>: <span class="s2">"overlay2"</span>,
+    <span class="s2">"default-ulimits"</span>: <span class="o">{</span>
+        <span class="s2">"nofile"</span>: <span class="o">{</span>
+            <span class="s2">"name"</span>: <span class="s2">"nofile"</span>,
+            <span class="s2">"hard"</span>: 64000,
+            <span class="s2">"soft"</span>: 64000
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c"># 시스템 재시작</span>
+systemctl restart docker
+
+<span class="c"># 보안 컨테이너 실행 예시</span>
+docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--name</span> secure-app <span class="se">\</span>
+  <span class="nt">--read-only</span> <span class="se">\</span>
+  <span class="nt">--tmpfs</span> /tmp <span class="se">\</span>
+  <span class="nt">--tmpfs</span> /var/run <span class="se">\</span>
+  <span class="nt">--tmpfs</span> /var/lock <span class="se">\</span>
+  <span class="nt">--user</span> 1000:1000 <span class="se">\</span>
+  <span class="nt">--cap-drop</span> ALL <span class="se">\</span>
+  <span class="nt">--cap-add</span> NET_BIND_SERVICE <span class="se">\</span>
+  <span class="nt">--security-opt</span> no-new-privileges:true <span class="se">\</span>
+  <span class="nt">--security-opt</span> apparmor:docker-default <span class="se">\</span>
+  <span class="nt">--memory</span> 512m <span class="se">\</span>
+  <span class="nt">--cpus</span><span class="o">=</span><span class="s2">"0.5"</span> <span class="se">\</span>
+  <span class="nt">--pids-limit</span> 100 <span class="se">\</span>
+  <span class="nt">--restart</span> unless-stopped <span class="se">\</span>
+  nginx:alpine
+</code></pre></div></div>
+
+<h4 id="dockerfile-보안-모범-사례">Dockerfile 보안 모범 사례</h4>
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 보안 강화 Dockerfile 예시</span>
+<span class="k">FROM</span><span class="s"> alpine:3.18</span>
+
+<span class="c"># 보안 업데이트 적용</span>
+<span class="k">RUN </span>apk update <span class="o">&amp;&amp;</span> apk upgrade <span class="o">&amp;&amp;</span> <span class="se">\
+</span>    apk add <span class="nt">--no-cache</span> tini <span class="o">&amp;&amp;</span> <span class="se">\
+</span>    <span class="nb">rm</span> <span class="nt">-rf</span> /var/cache/apk/<span class="k">*</span>
+
+<span class="c"># 비특권 사용자 생성</span>
+<span class="k">RUN </span>addgroup <span class="nt">-g</span> 1000 <span class="nt">-S</span> appgroup <span class="o">&amp;&amp;</span> <span class="se">\
+</span>    adduser <span class="nt">-u</span> 1000 <span class="nt">-S</span> appuser <span class="nt">-G</span> appgroup
+
+<span class="c"># 애플리케이션 디렉토리 생성 및 권한 설정</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> --chown=appuser:appgroup . .</span>
+
+<span class="c"># 실행 파일 권한만 부여</span>
+<span class="k">RUN </span><span class="nb">chmod </span>755 /app/entrypoint.sh <span class="o">&amp;&amp;</span> <span class="se">\
+</span>    <span class="nb">chmod </span>644 /app/<span class="k">*</span>.conf
+
+<span class="c"># 비특권 사용자로 전환</span>
+<span class="k">USER</span><span class="s"> appuser:appgroup</span>
+
+<span class="c"># 시그널 처리를 위한 tini 사용</span>
+<span class="k">ENTRYPOINT</span><span class="s"> ["/sbin/tini", "--"]</span>
+<span class="k">CMD</span><span class="s"> ["./entrypoint.sh"]</span>
+
+<span class="c"># 불필요한 네트워크 포트 노출 금지</span>
+<span class="c"># EXPOSE 80 (필요한 경우만)</span>
+
+<span class="c"># 헬스체크 추가</span>
+<span class="k">HEALTHCHECK</span><span class="s"> --interval=30s --timeout=3s --start-period=5s --retries=3 \</span>
+  CMD curl -f http://localhost:8080/health || exit 1
+</code></pre></div></div>
+
+<h3 id="-kubernetes-보안">⚓ Kubernetes 보안</h3>
+
+<h4 id="pod-security-standards-적용">Pod Security Standards 적용</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Pod Security Policy (deprecated, use Pod Security Standards)</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Namespace</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">secure-namespace</span>
+  <span class="na">labels</span><span class="pi">:</span>
+    <span class="na">pod-security.kubernetes.io/enforce</span><span class="pi">:</span> <span class="s">restricted</span>
+    <span class="na">pod-security.kubernetes.io/audit</span><span class="pi">:</span> <span class="s">restricted</span>
+    <span class="na">pod-security.kubernetes.io/warn</span><span class="pi">:</span> <span class="s">restricted</span>
+
+<span class="nn">---</span>
+<span class="c1"># 보안 강화 Pod 예시</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">secure-pod</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">secure-namespace</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">securityContext</span><span class="pi">:</span>
+    <span class="na">runAsNonRoot</span><span class="pi">:</span> <span class="kc">true</span>
+    <span class="na">runAsUser</span><span class="pi">:</span> <span class="m">1000</span>
+    <span class="na">runAsGroup</span><span class="pi">:</span> <span class="m">1000</span>
+    <span class="na">fsGroup</span><span class="pi">:</span> <span class="m">1000</span>
+    <span class="na">seccompProfile</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">RuntimeDefault</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">app</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">nginx:alpine</span>
+    <span class="na">securityContext</span><span class="pi">:</span>
+      <span class="na">allowPrivilegeEscalation</span><span class="pi">:</span> <span class="kc">false</span>
+      <span class="na">readOnlyRootFilesystem</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">runAsNonRoot</span><span class="pi">:</span> <span class="kc">true</span>
+      <span class="na">runAsUser</span><span class="pi">:</span> <span class="m">1000</span>
+      <span class="na">capabilities</span><span class="pi">:</span>
+        <span class="na">drop</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">ALL</span>
+        <span class="na">add</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">NET_BIND_SERVICE</span>
+    <span class="na">resources</span><span class="pi">:</span>
+      <span class="na">limits</span><span class="pi">:</span>
+        <span class="na">memory</span><span class="pi">:</span> <span class="s2">"</span><span class="s">256Mi"</span>
+        <span class="na">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">200m"</span>
+      <span class="na">requests</span><span class="pi">:</span>
+        <span class="na">memory</span><span class="pi">:</span> <span class="s2">"</span><span class="s">128Mi"</span>
+        <span class="na">cpu</span><span class="pi">:</span> <span class="s2">"</span><span class="s">100m"</span>
+    <span class="na">volumeMounts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tmp-volume</span>
+      <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/tmp</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">var-cache-nginx</span>
+      <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/cache/nginx</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">var-run</span>
+      <span class="na">mountPath</span><span class="pi">:</span> <span class="s">/var/run</span>
+  <span class="na">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">tmp-volume</span>
+    <span class="na">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">var-cache-nginx</span>
+    <span class="na">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">var-run</span>
+    <span class="na">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+
+<span class="nn">---</span>
+<span class="c1"># Network Policy</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">default-deny-all</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">secure-namespace</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span> <span class="pi">{}</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Ingress</span>
+  <span class="pi">-</span> <span class="s">Egress</span>
+
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">networking.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">NetworkPolicy</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">allow-web-traffic</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">secure-namespace</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">podSelector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">web</span>
+  <span class="na">policyTypes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Ingress</span>
+  <span class="pi">-</span> <span class="s">Egress</span>
+  <span class="na">ingress</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">from</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">namespaceSelector</span><span class="pi">:</span>
+        <span class="na">matchLabels</span><span class="pi">:</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="s">ingress-system</span>
+    <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">80</span>
+  <span class="na">egress</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">podSelector</span><span class="pi">:</span>
+        <span class="na">matchLabels</span><span class="pi">:</span>
+          <span class="na">app</span><span class="pi">:</span> <span class="s">database</span>
+    <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">5432</span>
+  <span class="pi">-</span> <span class="na">to</span><span class="pi">:</span> <span class="pi">{}</span>
+    <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">protocol</span><span class="pi">:</span> <span class="s">UDP</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">53</span>
+</code></pre></div></div>
+
+<h2 id="컴플라이언스와-감사--compliance-and-auditing">컴플라이언스와 감사 | Compliance and Auditing</h2>
+
+<h3 id="-cis-benchmark-적용">📋 CIS Benchmark 적용</h3>
+
+<h4 id="cis-controls-자동화-스크립트">CIS Controls 자동화 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># CIS Ubuntu 20.04 LTS Benchmark 자동 적용 스크립트</span>
+
+<span class="nb">echo</span> <span class="s2">"CIS Benchmark 자동 적용을 시작합니다..."</span>
+
+<span class="c"># 1. 파일 시스템 구성</span>
+<span class="nb">echo</span> <span class="s2">"1. 파일 시스템 보안 설정..."</span>
+
+<span class="c"># 1.1 임시 파일 시스템 보안</span>
+<span class="k">if</span> <span class="o">!</span> <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"/tmp.*nodev"</span> /etc/fstab<span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"/tmp /tmp tmpfs defaults,rw,nosuid,nodev,noexec,relatime 0 0"</span> <span class="o">&gt;&gt;</span> /etc/fstab
+<span class="k">fi</span>
+
+<span class="c"># 1.2 불필요한 파일 시스템 비활성화</span>
+<span class="nb">cat</span> <span class="o">&gt;&gt;</span> /etc/modprobe.d/blacklist-rare-filesystems.conf <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+install cramfs /bin/true
+install freevxfs /bin/true
+install jffs2 /bin/true
+install hfs /bin/true
+install hfsplus /bin/true
+install squashfs /bin/true
+install udf /bin/true
+install fat /bin/true
+install vfat /bin/true
+install usb-storage /bin/true
+</span><span class="no">EOF
+
+</span><span class="c"># 2. 서비스 설정</span>
+<span class="nb">echo</span> <span class="s2">"2. 서비스 보안 설정..."</span>
+
+<span class="c"># 2.1 시간 동기화</span>
+systemctl <span class="nb">enable </span>ntp
+systemctl start ntp
+
+<span class="c"># 2.2 불필요한 서비스 비활성화</span>
+<span class="nv">services_to_disable</span><span class="o">=(</span>
+    <span class="s2">"autofs"</span>
+    <span class="s2">"avahi-daemon"</span> 
+    <span class="s2">"cups"</span>
+    <span class="s2">"dhcpd"</span>
+    <span class="s2">"slapd"</span>
+    <span class="s2">"nfs"</span>
+    <span class="s2">"rpcbind"</span>
+    <span class="s2">"bind9"</span>
+    <span class="s2">"vsftpd"</span>
+    <span class="s2">"apache2"</span>
+    <span class="s2">"dovecot"</span>
+    <span class="s2">"smbd"</span>
+    <span class="s2">"squid"</span>
+    <span class="s2">"snmpd"</span>
+    <span class="s2">"rsync"</span>
+<span class="o">)</span>
+
+<span class="k">for </span>service <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">services_to_disable</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    if </span>systemctl is-enabled <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>systemctl disable <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span>
+        systemctl stop <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span>
+    <span class="k">fi
+done</span>
+
+<span class="c"># 3. 네트워크 매개변수 설정</span>
+<span class="nb">echo</span> <span class="s2">"3. 네트워크 보안 설정..."</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/sysctl.d/99-cis.conf <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+net.ipv4.ip_forward = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.conf.all.secure_redirects = 0
+net.ipv4.conf.default.secure_redirects = 0
+net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+net.ipv4.conf.all.rp_filter = 1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.tcp_syncookies = 1
+net.ipv6.conf.all.accept_ra = 0
+net.ipv6.conf.default.accept_ra = 0
+net.ipv6.conf.all.accept_redirects = 0
+net.ipv6.conf.default.accept_redirects = 0
+net.ipv6.conf.all.disable_ipv6 = 1
+</span><span class="no">EOF
+
+</span>sysctl <span class="nt">-p</span> /etc/sysctl.d/99-cis.conf
+
+<span class="c"># 4. 로깅 및 감사 설정</span>
+<span class="nb">echo</span> <span class="s2">"4. 로깅 및 감사 설정..."</span>
+
+<span class="c"># 4.1 auditd 설치 및 구성</span>
+apt-get <span class="nb">install</span> <span class="nt">-y</span> auditd audispd-plugins
+
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/audit/rules.d/cis.rules <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+# 시간 변경 감사
+-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change
+-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change
+-a always,exit -F arch=b64 -S clock_settime -k time-change
+-a always,exit -F arch=b32 -S clock_settime -k time-change
+-w /etc/localtime -p wa -k time-change
+
+# 사용자/그룹 정보 감사
+-w /etc/group -p wa -k identity
+-w /etc/passwd -p wa -k identity
+-w /etc/gshadow -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/security/opasswd -p wa -k identity
+
+# 네트워크 환경 감사
+-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale
+-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale
+-w /etc/issue -p wa -k system-locale
+-w /etc/issue.net -p wa -k system-locale
+-w /etc/hosts -p wa -k system-locale
+-w /etc/network -p wa -k system-locale
+
+# MAC 정책 변경 감사
+-w /etc/selinux/ -p wa -k MAC-policy
+-w /usr/share/selinux/ -p wa -k MAC-policy
+
+# 로그인/로그아웃 감사
+-w /var/log/faillog -p wa -k logins
+-w /var/log/lastlog -p wa -k logins
+-w /var/log/tallylog -p wa -k logins
+
+# 세션 시작 정보 감사
+-w /var/run/utmp -p wa -k session
+-w /var/log/wtmp -p wa -k logins
+-w /var/log/btmp -p wa -k logins
+
+# 권한 변경 감사
+-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid&gt;=1000 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid&gt;=1000 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid&gt;=1000 -F auid!=4294967295 -k perm_mod
+-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid&gt;=1000 -F auid!=4294967295 -k perm_mod
+
+# 관리자 액세스 감사
+-w /etc/sudoers -p wa -k scope
+-w /etc/sudoers.d/ -p wa -k scope
+
+# 커널 모듈 로딩/언로딩 감사
+-w /sbin/insmod -p x -k modules
+-w /sbin/rmmod -p x -k modules
+-w /sbin/modprobe -p x -k modules
+-a always,exit -F arch=b64 -S init_module -S delete_module -k modules
+
+# 파일 삭제 감사
+-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid&gt;=1000 -F auid!=4294967295 -k delete
+-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid&gt;=1000 -F auid!=4294967295 -k delete
+
+# 설정 불변성
+-e 2
+</span><span class="no">EOF
+
+</span>systemctl <span class="nb">enable </span>auditd
+systemctl start auditd
+
+<span class="c"># 5. 액세스 제어 설정</span>
+<span class="nb">echo</span> <span class="s2">"5. 액세스 제어 설정..."</span>
+
+<span class="c"># 5.1 cron 접근 제한</span>
+<span class="nb">echo</span> <span class="s2">"root"</span> <span class="o">&gt;</span> /etc/cron.allow
+<span class="nb">chmod </span>600 /etc/cron.allow
+<span class="nb">rm</span> <span class="nt">-f</span> /etc/cron.deny
+
+<span class="c"># 5.2 SSH 보안 강화 (이미 앞에서 다룸)</span>
+<span class="c"># 5.3 PAM 설정 강화 (이미 앞에서 다룸)</span>
+
+<span class="c"># 6. 시스템 유지보수</span>
+<span class="nb">echo</span> <span class="s2">"6. 시스템 유지보수 설정..."</span>
+
+<span class="c"># 6.1 파일 권한 점검</span>
+find /etc <span class="nt">-type</span> f <span class="nt">-perm</span> /g+w,o+w <span class="nt">-exec</span> <span class="nb">chmod </span>go-w <span class="o">{}</span> <span class="se">\;</span>
+
+<span class="c"># 6.2 SUID/SGID 점검 스크립트 생성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/check-suid-sgid.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+find / </span><span class="se">\(</span><span class="sh"> -perm -4000 -o -perm -2000 </span><span class="se">\)</span><span class="sh"> -type f -exec ls -ld {} </span><span class="se">\;</span><span class="sh"> 2&gt;/dev/null | </span><span class="se">\</span><span class="sh">
+while read line; do
+    echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: </span><span class="nv">$line</span><span class="sh">" &gt;&gt; /var/log/suid-sgid.log
+done
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x /usr/local/bin/check-suid-sgid.sh
+
+<span class="c"># 6.3 정기 보안 점검 cron 설정</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/cron.daily/security-check <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+/usr/local/bin/check-suid-sgid.sh
+/usr/bin/aide --check 2&gt;&amp;1 | logger -t aide
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x /etc/cron.daily/security-check
+
+<span class="nb">echo</span> <span class="s2">"CIS Benchmark 적용 완료!"</span>
+<span class="nb">echo</span> <span class="s2">"시스템을 재부팅하여 모든 설정을 적용하세요."</span>
+</code></pre></div></div>
+
+<h3 id="-보안-모니터링-대시보드">📊 보안 모니터링 대시보드</h3>
+
+<h4 id="prometheus--grafana-보안-메트릭">Prometheus + Grafana 보안 메트릭</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># prometheus-rules.yml</span>
+<span class="na">groups</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">security_rules</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">alert</span><span class="pi">:</span> <span class="s">HighFailedLoginRate</span>
+    <span class="na">expr</span><span class="pi">:</span> <span class="s">rate(node_auth_failed_total[5m]) &gt; </span><span class="m">0.1</span>
+    <span class="na">for</span><span class="pi">:</span> <span class="s">2m</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">severity</span><span class="pi">:</span> <span class="s">warning</span>
+    <span class="na">annotations</span><span class="pi">:</span>
+      <span class="na">summary</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High</span><span class="nv"> </span><span class="s">failed</span><span class="nv"> </span><span class="s">login</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">detected"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.instance</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">has</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">high</span><span class="nv"> </span><span class="s">failed</span><span class="nv"> </span><span class="s">login</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$value</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">second"</span>
+
+  <span class="pi">-</span> <span class="na">alert</span><span class="pi">:</span> <span class="s">RootLoginDetected</span>
+    <span class="na">expr</span><span class="pi">:</span> <span class="s">increase(node_auth_success_total{user="root"}[1m]) &gt; </span><span class="m">0</span>
+    <span class="na">for</span><span class="pi">:</span> <span class="s">0m</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">severity</span><span class="pi">:</span> <span class="s">critical</span>
+    <span class="na">annotations</span><span class="pi">:</span>
+      <span class="na">summary</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Root</span><span class="nv"> </span><span class="s">login</span><span class="nv"> </span><span class="s">detected"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Root</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">login</span><span class="nv"> </span><span class="s">detected</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.instance</span><span class="nv"> </span><span class="s">}}"</span>
+
+  <span class="pi">-</span> <span class="na">alert</span><span class="pi">:</span> <span class="s">SudoCommandExecuted</span>
+    <span class="na">expr</span><span class="pi">:</span> <span class="s">increase(node_sudo_commands_total[1m]) &gt; </span><span class="m">0</span>
+    <span class="na">for</span><span class="pi">:</span> <span class="s">0m</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">severity</span><span class="pi">:</span> <span class="s">info</span>
+    <span class="na">annotations</span><span class="pi">:</span>
+      <span class="na">summary</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Sudo</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">executed"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Sudo</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">executed</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.instance</span><span class="nv"> </span><span class="s">}}"</span>
+
+  <span class="pi">-</span> <span class="na">alert</span><span class="pi">:</span> <span class="s">FileSystemModification</span>
+    <span class="na">expr</span><span class="pi">:</span> <span class="s">rate(node_filesystem_files_free[5m]) &lt; -0.1</span>
+    <span class="na">for</span><span class="pi">:</span> <span class="s">5m</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">severity</span><span class="pi">:</span> <span class="s">warning</span>
+    <span class="na">annotations</span><span class="pi">:</span>
+      <span class="na">summary</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Rapid</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">changes</span><span class="nv"> </span><span class="s">detected"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Rapid</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">changes</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.instance</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">{{</span><span class="nv"> </span><span class="s">$labels.mountpoint</span><span class="nv"> </span><span class="s">}}"</span>
+</code></pre></div></div>
+
+<h4 id="보안-로그-분석-스크립트">보안 로그 분석 스크립트</h4>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3
+</span><span class="kn">import</span> <span class="n">re</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="k">class</span> <span class="nc">SecurityLogAnalyzer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">failed_logins</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">successful_logins</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sudo_commands</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">suspicious_activities</span> <span class="o">=</span> <span class="p">[]</span>
+        
+    <span class="k">def</span> <span class="nf">parse_auth_log</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">log_file</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">인증 로그 파싱</span><span class="sh">"""</span>
+        <span class="n">patterns</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">failed_login</span><span class="sh">'</span><span class="p">:</span> <span class="sa">r</span><span class="sh">'</span><span class="s">(\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}).*Failed password for (\w+) from (\d+\.\d+\.\d+\.\d+)</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">successful_login</span><span class="sh">'</span><span class="p">:</span> <span class="sa">r</span><span class="sh">'</span><span class="s">(\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}).*Accepted password for (\w+) from (\d+\.\d+\.\d+\.\d+)</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">sudo_command</span><span class="sh">'</span><span class="p">:</span> <span class="sa">r</span><span class="sh">'</span><span class="s">(\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}).*sudo.*USER=(\w+).*COMMAND=(.*)</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">invalid_user</span><span class="sh">'</span><span class="p">:</span> <span class="sa">r</span><span class="sh">'</span><span class="s">(\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}).*Invalid user (\w+) from (\d+\.\d+\.\d+\.\d+)</span><span class="sh">'</span>
+        <span class="p">}</span>
+        
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="c1"># 실패한 로그인 시도
+</span>                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="sh">'</span><span class="s">failed_login</span><span class="sh">'</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">timestamp</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">groups</span><span class="p">()</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">failed_logins</span><span class="p">[</span><span class="n">ip</span><span class="p">].</span><span class="nf">append</span><span class="p">({</span>
+                        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">ip</span>
+                    <span class="p">})</span>
+                
+                <span class="c1"># 성공한 로그인
+</span>                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="sh">'</span><span class="s">successful_login</span><span class="sh">'</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">timestamp</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">groups</span><span class="p">()</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">successful_logins</span><span class="p">[</span><span class="n">ip</span><span class="p">].</span><span class="nf">append</span><span class="p">({</span>
+                        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">ip</span>
+                    <span class="p">})</span>
+                
+                <span class="c1"># sudo 명령
+</span>                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="sh">'</span><span class="s">sudo_command</span><span class="sh">'</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">timestamp</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">groups</span><span class="p">()</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">sudo_commands</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">command</span><span class="sh">'</span><span class="p">:</span> <span class="n">command</span>
+                    <span class="p">})</span>
+                
+                <span class="c1"># 잘못된 사용자
+</span>                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="n">patterns</span><span class="p">[</span><span class="sh">'</span><span class="s">invalid_user</span><span class="sh">'</span><span class="p">],</span> <span class="n">line</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">timestamp</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">ip</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">groups</span><span class="p">()</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">suspicious_activities</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                        <span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">invalid_user</span><span class="sh">'</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                        <span class="sh">'</span><span class="s">ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">ip</span>
+                    <span class="p">})</span>
+    
+    <span class="k">def</span> <span class="nf">detect_brute_force</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">브루트포스 공격 탐지</span><span class="sh">"""</span>
+        <span class="n">brute_force_ips</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">ip</span><span class="p">,</span> <span class="n">attempts</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">failed_logins</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">attempts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">:</span>
+                <span class="n">brute_force_ips</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">'</span><span class="s">ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">ip</span><span class="p">,</span>
+                    <span class="sh">'</span><span class="s">attempts</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">attempts</span><span class="p">),</span>
+                    <span class="sh">'</span><span class="s">users_targeted</span><span class="sh">'</span><span class="p">:</span> <span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">([</span><span class="n">attempt</span><span class="p">[</span><span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="n">attempts</span><span class="p">])),</span>
+                    <span class="sh">'</span><span class="s">first_attempt</span><span class="sh">'</span><span class="p">:</span> <span class="n">attempts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">],</span>
+                    <span class="sh">'</span><span class="s">last_attempt</span><span class="sh">'</span><span class="p">:</span> <span class="n">attempts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">]</span>
+                <span class="p">})</span>
+        
+        <span class="k">return</span> <span class="n">brute_force_ips</span>
+    
+    <span class="k">def</span> <span class="nf">detect_privilege_escalation</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">권한 상승 탐지</span><span class="sh">"""</span>
+        <span class="n">privilege_escalations</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">dangerous_commands</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sh">'</span><span class="s">passwd</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">useradd</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">usermod</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">userdel</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">chmod 777</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">chmod 4755</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">chown root</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">systemctl</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">service</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">crontab -e</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">/bin/bash</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">/bin/sh</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">su -</span><span class="sh">'</span>
+        <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">sudo_cmd</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">sudo_commands</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">dangerous_cmd</span> <span class="ow">in</span> <span class="n">dangerous_commands</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dangerous_cmd</span> <span class="ow">in</span> <span class="n">sudo_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">command</span><span class="sh">'</span><span class="p">]:</span>
+                    <span class="n">privilege_escalations</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">sudo_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">],</span>
+                        <span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">:</span> <span class="n">sudo_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">],</span>
+                        <span class="sh">'</span><span class="s">command</span><span class="sh">'</span><span class="p">:</span> <span class="n">sudo_cmd</span><span class="p">[</span><span class="sh">'</span><span class="s">command</span><span class="sh">'</span><span class="p">],</span>
+                        <span class="sh">'</span><span class="s">risk_level</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">high</span><span class="sh">'</span> <span class="k">if</span> <span class="n">dangerous_cmd</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">passwd</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">useradd</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">/bin/bash</span><span class="sh">'</span><span class="p">]</span> <span class="k">else</span> <span class="sh">'</span><span class="s">medium</span><span class="sh">'</span>
+                    <span class="p">})</span>
+                    <span class="k">break</span>
+        
+        <span class="k">return</span> <span class="n">privilege_escalations</span>
+    
+    <span class="k">def</span> <span class="nf">analyze_login_patterns</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">로그인 패턴 분석</span><span class="sh">"""</span>
+        <span class="n">patterns</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">geographic_anomalies</span><span class="sh">'</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="sh">'</span><span class="s">time_anomalies</span><span class="sh">'</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="sh">'</span><span class="s">user_anomalies</span><span class="sh">'</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># 사용자별 로그인 빈도 분석
+</span>        <span class="n">user_login_count</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">ip</span><span class="p">,</span> <span class="n">logins</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">successful_logins</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">login</span> <span class="ow">in</span> <span class="n">logins</span><span class="p">:</span>
+                <span class="n">user_login_count</span><span class="p">[</span><span class="n">login</span><span class="p">[</span><span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># 비정상적으로 많은 로그인
+</span>        <span class="n">avg_logins</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">user_login_count</span><span class="p">.</span><span class="nf">values</span><span class="p">())</span> <span class="o">/</span> <span class="nf">len</span><span class="p">(</span><span class="n">user_login_count</span><span class="p">)</span> <span class="k">if</span> <span class="n">user_login_count</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">user</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">user_login_count</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">avg_logins</span> <span class="o">*</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># 평균의 3배 이상
+</span>                <span class="n">patterns</span><span class="p">[</span><span class="sh">'</span><span class="s">user_anomalies</span><span class="sh">'</span><span class="p">].</span><span class="nf">append</span><span class="p">({</span>
+                    <span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+                    <span class="sh">'</span><span class="s">login_count</span><span class="sh">'</span><span class="p">:</span> <span class="n">count</span><span class="p">,</span>
+                    <span class="sh">'</span><span class="s">anomaly_type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">excessive_logins</span><span class="sh">'</span>
+                <span class="p">})</span>
+        
+        <span class="k">return</span> <span class="n">patterns</span>
+    
+    <span class="k">def</span> <span class="nf">generate_report</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">보안 분석 리포트 생성</span><span class="sh">"""</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">analysis_date</span><span class="sh">'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">().</span><span class="nf">isoformat</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="sh">'</span><span class="s">total_failed_logins</span><span class="sh">'</span><span class="p">:</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">attempts</span><span class="p">)</span> <span class="k">for</span> <span class="n">attempts</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">failed_logins</span><span class="p">.</span><span class="nf">values</span><span class="p">()),</span>
+                <span class="sh">'</span><span class="s">total_successful_logins</span><span class="sh">'</span><span class="p">:</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">logins</span><span class="p">)</span> <span class="k">for</span> <span class="n">logins</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">successful_logins</span><span class="p">.</span><span class="nf">values</span><span class="p">()),</span>
+                <span class="sh">'</span><span class="s">total_sudo_commands</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">sudo_commands</span><span class="p">),</span>
+                <span class="sh">'</span><span class="s">suspicious_activities</span><span class="sh">'</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">suspicious_activities</span><span class="p">)</span>
+            <span class="p">},</span>
+            <span class="sh">'</span><span class="s">brute_force_attacks</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">detect_brute_force</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">privilege_escalations</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">detect_privilege_escalation</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">login_patterns</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">analyze_login_patterns</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">suspicious_activities</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">suspicious_activities</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">recommendations</span><span class="sh">'</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># 추천사항 생성
+</span>        <span class="k">if</span> <span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">brute_force_attacks</span><span class="sh">'</span><span class="p">]:</span>
+            <span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">recommendations</span><span class="sh">'</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span>
+                <span class="sh">"</span><span class="s">브루트포스 공격이 탐지되었습니다. fail2ban 설정을 검토하고 IP 차단을 고려하세요.</span><span class="sh">"</span>
+            <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">privilege_escalations</span><span class="sh">'</span><span class="p">]:</span>
+            <span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">recommendations</span><span class="sh">'</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span>
+                <span class="sh">"</span><span class="s">권한 상승 활동이 탐지되었습니다. sudo 사용을 검토하고 필요시 권한을 제한하세요.</span><span class="sh">"</span>
+            <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">total_failed_logins</span><span class="sh">'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">report</span><span class="p">[</span><span class="sh">'</span><span class="s">recommendations</span><span class="sh">'</span><span class="p">].</span><span class="nf">append</span><span class="p">(</span>
+                <span class="sh">"</span><span class="s">과도한 실패 로그인 시도가 있습니다. 패스워드 정책을 강화하세요.</span><span class="sh">"</span>
+            <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">report</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">'</span><span class="s">Security Log Analyzer</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--log-file</span><span class="sh">'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">/var/log/auth.log</span><span class="sh">'</span><span class="p">,</span> 
+                       <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">Path to authentication log file</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--output</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-o</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">Output file for JSON report</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--threshold</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">Brute force detection threshold</span><span class="sh">'</span><span class="p">)</span>
+    
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+    
+    <span class="n">analyzer</span> <span class="o">=</span> <span class="nc">SecurityLogAnalyzer</span><span class="p">()</span>
+    <span class="n">analyzer</span><span class="p">.</span><span class="nf">parse_auth_log</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">log_file</span><span class="p">)</span>
+    
+    <span class="n">report</span> <span class="o">=</span> <span class="n">analyzer</span><span class="p">.</span><span class="nf">generate_report</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">output</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">output</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="마무리와-다음-단계">마무리와 다음 단계</h2>
+
+<p>이 종합적인 리눅스 보안 가이드를 통해 다음과 같은 내용을 다뤘습니다:</p>
+
+<h3 id="-다룬-주요-내용">✅ 다룬 주요 내용</h3>
+<ul>
+  <li><strong>기초 보안</strong>: 사용자 계정, SSH, 방화벽 설정</li>
+  <li><strong>고급 보안</strong>: SELinux/AppArmor, 시스템 하드닝</li>
+  <li><strong>침입 탐지</strong>: AIDE, Fail2Ban, Wazuh 구축</li>
+  <li><strong>컨테이너 보안</strong>: Docker/Kubernetes 보안 설정</li>
+  <li><strong>컴플라이언스</strong>: CIS Benchmark 적용</li>
+  <li><strong>모니터링</strong>: 보안 로그 분석 및 대시보드</li>
+</ul>
+
+<h3 id="-다음-단계-권장사항">🚀 다음 단계 권장사항</h3>
+
+<ol>
+  <li><strong>정기적인 보안 점검</strong> - 월간 보안 체크리스트 운영</li>
+  <li><strong>침투 테스트</strong> - 분기별 모의 해킹 테스트 수행</li>
+  <li><strong>보안 교육</strong> - 팀원 대상 보안 인식 교육</li>
+  <li><strong>인시던트 대응</strong> - 보안 사고 대응 절차 수립</li>
+  <li><strong>백업 및 복구</strong> - 정기적인 백업 및 복구 테스트</li>
+</ol>
+
+<h3 id="-추가-학습-자료">📚 추가 학습 자료</h3>
+<ul>
+  <li><strong>인증</strong>: CompTIA Security+, CISSP, CEH</li>
+  <li><strong>도구</strong>: Metasploit, Nessus, OpenVAS</li>
+  <li><strong>표준</strong>: NIST Cybersecurity Framework, ISO 27001</li>
+</ul>
+
+<p>리눅스 보안은 지속적인 과정입니다. 항상 최신 위협 동향을 파악하고 보안 설정을 업데이트하세요! 🔒🛡️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/08/22/networking-guide-part2.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">네트워킹 완전 가이드 2편 - IP 주소와 서브네팅 마스터하기 | Complete N...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/10/26/linux-security-guide-part1.html" rel="next">
+          <span class="nav-title">리눅스 보안 완전 가이드 1편 - 기초 보안 설정 | Linux Security Gu...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

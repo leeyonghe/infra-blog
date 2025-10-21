@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>리눅스 보안 완전 가이드 2편 - SSH 고급 보안과 방화벽 | Linux Security Guide Part 2 - Advanced SSH Security & Firewall</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">리눅스 보안 완전 가이드 2편 - SSH 고급 보안과 방화벽 | Linux Security Guide Part 2 - Advanced SSH Security &amp; Firewall</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-12-08T00:00:00+00:00">Dec 8, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Security</li><li>Linux</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>SSH 보안을 한 단계 높이고 강력한 방화벽 정책을 구축하는 방법을 완벽하게 마스터해보겠습니다. SSH 키 관리부터 고급 방화벽 설정까지 실무에서 바로 활용할 수 있는 내용으로 구성했습니다.</p>
+
+<h2 id="ssh-고급-보안-설정--advanced-ssh-security">SSH 고급 보안 설정 | Advanced SSH Security</h2>
+
+<h3 id="-ssh-키-기반-인증-완벽-구축">🔑 SSH 키 기반 인증 완벽 구축</h3>
+
+<h4 id="강화된-ssh-키-생성-및-관리">강화된 SSH 키 생성 및 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 최신 암호화 알고리즘을 사용한 키 생성</span>
+<span class="c"># ED25519 (권장 - 빠르고 안전)</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"admin@company.com-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span> <span class="nt">-f</span> ~/.ssh/id_ed25519_admin
+
+<span class="c"># RSA 키 (호환성이 필요한 경우)</span>
+ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"admin@company.com-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span> <span class="nt">-f</span> ~/.ssh/id_rsa_admin
+
+<span class="c"># ECDSA 키 (대안)</span>
+ssh-keygen <span class="nt">-t</span> ecdsa <span class="nt">-b</span> 521 <span class="nt">-C</span> <span class="s2">"admin@company.com-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span> <span class="nt">-f</span> ~/.ssh/id_ecdsa_admin
+
+<span class="c"># 키 생성 시 보안 옵션</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-b</span> 4096 <span class="se">\</span>
+    <span class="nt">-C</span> <span class="s2">"admin@company.com-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-f</span> ~/.ssh/id_ed25519_admin <span class="se">\</span>
+    <span class="nt">-N</span> <span class="s2">"</span><span class="si">$(</span>openssl rand <span class="nt">-base64</span> 32<span class="si">)</span><span class="s2">"</span> <span class="se">\ </span> <span class="c"># 강력한 패스프레이즈 자동 생성</span>
+    <span class="nt">-o</span> <span class="se">\ </span>                              <span class="c"># OpenSSH 형식 사용</span>
+    <span class="nt">-a</span> 100                            <span class="c"># KDF 라운드 수 증가</span>
+
+<span class="c"># 키 권한 설정 (중요!)</span>
+<span class="nb">chmod </span>700 ~/.ssh
+<span class="nb">chmod </span>600 ~/.ssh/id_<span class="k">*</span>
+<span class="nb">chmod </span>644 ~/.ssh/id_<span class="k">*</span>.pub
+<span class="nb">chmod </span>600 ~/.ssh/authorized_keys
+<span class="nb">chmod </span>600 ~/.ssh/config
+
+<span class="c"># 키 핑거프린트 확인</span>
+ssh-keygen <span class="nt">-lf</span> ~/.ssh/id_ed25519_admin.pub
+ssh-keygen <span class="nt">-E</span> sha256 <span class="nt">-lf</span> ~/.ssh/id_ed25519_admin.pub  <span class="c"># SHA256 해시</span>
+
+<span class="c"># 키 만료일 설정 (OpenSSH 8.2+)</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-V</span> +365d <span class="nt">-C</span> <span class="s2">"expires-</span><span class="si">$(</span><span class="nb">date</span> <span class="nt">-d</span> <span class="s1">'+1 year'</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h4 id="ssh-클라이언트-설정-최적화">SSH 클라이언트 설정 최적화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># ~/.ssh/config - 클라이언트 설정</span>
+<span class="c"># 기본 설정</span>
+Host <span class="k">*</span>
+    <span class="c"># 보안 설정</span>
+    Protocol 2
+    HashKnownHosts <span class="nb">yes
+    </span>VisualHostKey <span class="nb">yes
+    </span>StrictHostKeyChecking ask
+    UserKnownHostsFile ~/.ssh/known_hosts
+    
+    <span class="c"># 연결 설정</span>
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+    ConnectTimeout 10
+    TCPKeepAlive no
+    
+    <span class="c"># 암호화 설정</span>
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group16-sha512
+    MACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com
+    HostKeyAlgorithms ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521
+    
+    <span class="c"># 인증 설정</span>
+    PreferredAuthentications publickey,keyboard-interactive,password
+    PubkeyAuthentication <span class="nb">yes
+    </span>PasswordAuthentication no
+    GSSAPIAuthentication no
+    
+    <span class="c"># 포워딩 설정 (기본적으로 비활성화)</span>
+    ForwardAgent no
+    ForwardX11 no
+    ForwardX11Trusted no
+
+<span class="c"># 서버별 개별 설정</span>
+Host production-server
+    HostName 192.168.1.100
+    Port 2222
+    User admin
+    IdentityFile ~/.ssh/id_ed25519_admin
+    IdentitiesOnly <span class="nb">yes
+    </span>RequestTTY <span class="nb">yes
+    </span>RemoteForward 9000 localhost:9000
+    
+Host development-<span class="k">*</span>
+    Port 22
+    User developer
+    IdentityFile ~/.ssh/id_ed25519_dev
+    StrictHostKeyChecking no        <span class="c"># 개발 서버용</span>
+    UserKnownHostsFile /dev/null
+    LogLevel QUIET
+
+Host bastion
+    HostName bastion.company.com
+    Port 2222
+    User jumpuser
+    IdentityFile ~/.ssh/id_ed25519_jump
+    ControlMaster auto
+    ControlPath ~/.ssh/control-%h-%p-%r
+    ControlPersist 600
+
+<span class="c"># 베스천 호스트를 통한 접근</span>
+Host internal-<span class="k">*</span>
+    ProxyJump bastion
+    User admin
+    IdentityFile ~/.ssh/id_ed25519_admin
+
+<span class="c"># 키 에이전트 설정</span>
+<span class="c"># ~/.bashrc에 추가</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$SSH_AUTH_SOCK</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="si">$(</span>ssh-agent <span class="nt">-s</span><span class="si">)</span>
+    ssh-add ~/.ssh/id_ed25519_admin
+    ssh-add ~/.ssh/id_ed25519_dev
+<span class="k">fi</span>
+
+<span class="c"># 키 만료 확인 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/check-ssh-keys.sh</span>
+<span class="k">for </span>keyfile <span class="k">in</span> ~/.ssh/id_<span class="k">*</span><span class="p">;</span> <span class="k">do
+    if</span> <span class="o">[[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$keyfile</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> <span class="o">!</span> <span class="s2">"</span><span class="nv">$keyfile</span><span class="s2">"</span> <span class="o">==</span> <span class="k">*</span>.pub <span class="o">]]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Checking </span><span class="nv">$keyfile</span><span class="s2">..."</span>
+        ssh-keygen <span class="nt">-l</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$keyfile</span><span class="s2">"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"  Invalid or encrypted key"</span>
+    <span class="k">fi
+done</span>
+</code></pre></div></div>
+
+<h4 id="ssh-certificate-authority-ca-구축">SSH Certificate Authority (CA) 구축</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. CA 키 생성 (보안이 중요한 별도 시스템에서)</span>
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-f</span> /etc/ssh/ca_key <span class="nt">-C</span> <span class="s2">"SSH-CA-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span>
+<span class="nb">chmod </span>600 /etc/ssh/ca_key
+<span class="nb">chmod </span>644 /etc/ssh/ca_key.pub
+
+<span class="c"># 2. 사용자 인증서 발급</span>
+<span class="c"># 단기간 유효한 사용자 인증서 (1주일)</span>
+ssh-keygen <span class="nt">-s</span> /etc/ssh/ca_key <span class="se">\</span>
+    <span class="nt">-I</span> <span class="s2">"john-doe-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nt">-n</span> john,admin <span class="se">\</span>
+    <span class="nt">-V</span> +7d <span class="se">\</span>
+    <span class="nt">-z</span> 1001 <span class="se">\</span>
+    ~/.ssh/id_ed25519.pub
+
+<span class="c"># 호스트별 제한된 인증서</span>
+ssh-keygen <span class="nt">-s</span> /etc/ssh/ca_key <span class="se">\</span>
+    <span class="nt">-I</span> <span class="s2">"backup-service"</span> <span class="se">\</span>
+    <span class="nt">-n</span> backup <span class="se">\</span>
+    <span class="nt">-V</span> +1d <span class="se">\</span>
+    <span class="nt">-O</span> clear <span class="se">\</span>
+    <span class="nt">-O</span> source-address<span class="o">=</span><span class="s2">"192.168.1.100/32"</span> <span class="se">\</span>
+    <span class="nt">-O</span> force-command<span class="o">=</span><span class="s2">"/usr/local/bin/backup-script"</span> <span class="se">\</span>
+    ~/.ssh/id_ed25519_backup.pub
+
+<span class="c"># 권한 제한 인증서</span>
+ssh-keygen <span class="nt">-s</span> /etc/ssh/ca_key <span class="se">\</span>
+    <span class="nt">-I</span> <span class="s2">"readonly-access"</span> <span class="se">\</span>
+    <span class="nt">-n</span> <span class="nb">readonly</span> <span class="se">\</span>
+    <span class="nt">-V</span> +1h <span class="se">\</span>
+    <span class="nt">-O</span> clear <span class="se">\</span>
+    <span class="nt">-O</span> no-agent-forwarding <span class="se">\</span>
+    <span class="nt">-O</span> no-port-forwarding <span class="se">\</span>
+    <span class="nt">-O</span> no-pty <span class="se">\</span>
+    <span class="nt">-O</span> no-user-rc <span class="se">\</span>
+    ~/.ssh/id_ed25519_readonly.pub
+
+<span class="c"># 3. 서버 설정에서 CA 신뢰</span>
+<span class="c"># /etc/ssh/sshd_config</span>
+TrustedUserCAKeys /etc/ssh/ca_key.pub
+AuthorizedPrincipalsFile /etc/ssh/auth_principals/%u
+PubkeyAuthentication <span class="nb">yes
+</span>CertificateAuthentication <span class="nb">yes</span>
+
+<span class="c"># 4. 사용자별 주체(principal) 설정</span>
+<span class="c"># /etc/ssh/auth_principals/john</span>
+john
+admin
+developer
+
+<span class="c"># /etc/ssh/auth_principals/backup</span>
+backup
+
+<span class="c"># 5. 호스트 인증서도 구축</span>
+<span class="c"># 호스트 키에 대한 인증서 발급</span>
+ssh-keygen <span class="nt">-s</span> /etc/ssh/ca_key <span class="se">\</span>
+    <span class="nt">-I</span> <span class="s2">"server1.company.com"</span> <span class="se">\</span>
+    <span class="nt">-h</span> <span class="se">\</span>
+    <span class="nt">-n</span> server1.company.com,server1,192.168.1.100 <span class="se">\</span>
+    <span class="nt">-V</span> +365d <span class="se">\</span>
+    /etc/ssh/ssh_host_ed25519_key.pub
+
+<span class="c"># 클라이언트에서 호스트 CA 신뢰</span>
+<span class="c"># ~/.ssh/known_hosts에 추가</span>
+@cert-authority <span class="k">*</span>.company.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICAKeyFromCA...
+
+<span class="c"># 6. 인증서 관리 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/ssh-cert-manager.sh</span>
+
+<span class="nv">ACTION</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">USER</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">DAYS</span><span class="o">=</span><span class="k">${</span><span class="nv">3</span><span class="k">:-</span><span class="nv">7</span><span class="k">}</span>
+
+<span class="k">case</span> <span class="nv">$ACTION</span> <span class="k">in</span>
+    <span class="s2">"issue"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$USER</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> issue &lt;username&gt; [days]"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        
+        </span><span class="nv">USER_KEY</span><span class="o">=</span><span class="s2">"/home/</span><span class="nv">$USER</span><span class="s2">/.ssh/id_ed25519.pub"</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$USER_KEY</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"User key not found: </span><span class="nv">$USER_KEY</span><span class="s2">"</span>
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        
+        </span>ssh-keygen <span class="nt">-s</span> /etc/ssh/ca_key <span class="se">\</span>
+            <span class="nt">-I</span> <span class="s2">"</span><span class="nv">$USER</span><span class="s2">-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="s2">"</span> <span class="se">\</span>
+            <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$USER</span><span class="s2">"</span> <span class="se">\</span>
+            <span class="nt">-V</span> <span class="s2">"+</span><span class="k">${</span><span class="nv">DAYS</span><span class="k">}</span><span class="s2">d"</span> <span class="se">\</span>
+            <span class="s2">"</span><span class="nv">$USER_KEY</span><span class="s2">"</span>
+        
+        <span class="nb">echo</span> <span class="s2">"Certificate issued for </span><span class="nv">$USER</span><span class="s2">, valid for </span><span class="nv">$DAYS</span><span class="s2"> days"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"revoke"</span><span class="p">)</span>
+        <span class="c"># 인증서 폐기 목록 관리</span>
+        <span class="nv">CERT_SERIAL</span><span class="o">=</span><span class="si">$(</span>ssh-keygen <span class="nt">-L</span> <span class="nt">-f</span> <span class="s2">"/home/</span><span class="nv">$USER</span><span class="s2">/.ssh/id_ed25519-cert.pub"</span> | <span class="nb">grep </span>Serial | <span class="nb">awk</span> <span class="s1">'{print $2}'</span><span class="si">)</span>
+        <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$CERT_SERIAL</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /etc/ssh/revoked_keys
+        <span class="nb">echo</span> <span class="s2">"Certificate revoked for </span><span class="nv">$USER</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"list"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Active certificates:"</span>
+        <span class="k">for </span>cert <span class="k">in</span> /home/<span class="k">*</span>/.ssh/<span class="k">*</span><span class="nt">-cert</span>.pub<span class="p">;</span> <span class="k">do
+            if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$cert</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">basename</span> <span class="si">$(</span><span class="nb">dirname</span> <span class="nv">$cert</span><span class="si">))</span><span class="s2">: </span><span class="si">$(</span>ssh-keygen <span class="nt">-L</span> <span class="nt">-f</span> <span class="nv">$cert</span> | <span class="nb">grep </span>Valid<span class="si">)</span><span class="s2">"</span>
+            <span class="k">fi
+        done</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {issue|revoke|list} &lt;username&gt; [days]"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h3 id="️-ssh-서버-고급-보안-설정">🛡️ SSH 서버 고급 보안 설정</h3>
+
+<h4 id="강화된-sshd_config-설정">강화된 sshd_config 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/ssh/sshd_config - 최고 보안 수준 설정</span>
+<span class="c"># 기본 설정</span>
+Protocol 2
+Port 2222                           <span class="c"># 기본 포트 변경</span>
+AddressFamily inet                  <span class="c"># IPv4만 사용 (필요시)</span>
+ListenAddress 192.168.1.100        <span class="c"># 특정 IP만 바인딩</span>
+
+<span class="c"># 암호화 및 키 교환</span>
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group16-sha512
+
+<span class="c"># 호스트 키 설정 (약한 키 제거)</span>
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+<span class="c"># RSA 키는 4096비트 이상만 사용</span>
+HostKey /etc/ssh/ssh_host_rsa_key
+
+<span class="c"># 인증 설정</span>
+PubkeyAuthentication <span class="nb">yes
+</span>AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+HostbasedAuthentication no
+IgnoreUserKnownHosts <span class="nb">yes
+</span>PermitRootLogin no
+
+<span class="c"># 로그인 제한</span>
+LoginGraceTime 30
+MaxAuthTries 3
+MaxSessions 3
+MaxStartups 3:30:10
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+<span class="c"># 사용자/그룹 제한</span>
+AllowUsers admin developer
+AllowGroups sshusers
+DenyUsers guest anonymous backup
+DenyGroups wheel nogroup
+
+<span class="c"># 기능 제한</span>
+X11Forwarding no
+AllowTcpForwarding no
+GatewayPorts no
+PermitTunnel no
+PermitUserEnvironment no
+PermitUserRC no
+PrintMotd <span class="nb">yes
+</span>PrintLastLog <span class="nb">yes
+</span>TCPKeepAlive no
+Compression no                      <span class="c"># 압축 비활성화 (보안)</span>
+
+<span class="c"># 로깅</span>
+SyslogFacility AUTH
+LogLevel VERBOSE                    <span class="c"># 상세 로깅</span>
+
+<span class="c"># Chroot 설정 (SFTP 전용 사용자)</span>
+Subsystem sftp /usr/lib/openssh/sftp-server
+
+<span class="c"># 조건부 설정</span>
+Match User sftpuser
+    ChrootDirectory /var/sftp/%u
+    ForceCommand internal-sftp
+    AllowTcpForwarding no
+    X11Forwarding no
+    PermitTunnel no
+
+Match Address 192.168.1.0/24
+    PasswordAuthentication <span class="nb">yes
+    </span>MaxAuthTries 5
+
+Match Address 10.0.0.0/8
+    AllowTcpForwarding <span class="nb">local
+    </span>GatewayPorts no
+
+Match Group developers
+    AllowTcpForwarding <span class="nb">yes
+    </span>PermitOpen localhost:3000 localhost:8080
+
+<span class="c"># 설정 검증</span>
+sshd <span class="nt">-t</span>
+sshd <span class="nt">-T</span> | <span class="nb">grep</span> <span class="nt">-i</span> cipher          <span class="c"># 암호화 설정 확인</span>
+sshd <span class="nt">-T</span> | <span class="nb">grep</span> <span class="nt">-i</span> mac             <span class="c"># MAC 설정 확인</span>
+</code></pre></div></div>
+
+<h4 id="ssh-접근-제어-및-모니터링">SSH 접근 제어 및 모니터링</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. TCP Wrapper 설정</span>
+<span class="c"># /etc/hosts.allow</span>
+sshd: 192.168.1.0/24 : ALLOW
+sshd: 10.0.0.0/8 : ALLOW
+sshd: ALL : spawn <span class="o">(</span>/usr/local/bin/log-ssh-attempt %a %d<span class="o">)</span> : DENY
+
+<span class="c"># /etc/hosts.deny</span>
+sshd: ALL
+
+<span class="c"># 2. SSH 접근 로깅 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/log-ssh-attempt</span>
+<span class="nv">CLIENT_IP</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">DAEMON</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span>
+
+<span class="nb">echo</span> <span class="s2">"</span><span class="nv">$TIMESTAMP</span><span class="s2">: Blocked SSH attempt from </span><span class="nv">$CLIENT_IP</span><span class="s2"> to </span><span class="nv">$DAEMON</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/ssh-blocked.log
+
+<span class="c"># 지리적 위치 확인 (선택사항)</span>
+<span class="c"># LOCATION=$(geoiplookup $CLIENT_IP 2&gt;/dev/null | cut -d: -f2)</span>
+<span class="c"># echo "$TIMESTAMP: $CLIENT_IP ($LOCATION) blocked" &gt;&gt; /var/log/ssh-geo.log</span>
+
+<span class="c"># 3. SSH 세션 모니터링</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/ssh-monitor.sh</span>
+
+<span class="c"># 활성 SSH 세션 모니터링</span>
+<span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do
+    </span><span class="nv">ACTIVE_SESSIONS</span><span class="o">=</span><span class="si">$(</span><span class="nb">who</span> | <span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"pts/"</span><span class="si">)</span>
+    <span class="nv">SSH_PROCESSES</span><span class="o">=</span><span class="si">$(</span>pgrep <span class="nt">-c</span> sshd<span class="si">)</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$ACTIVE_SESSIONS</span> <span class="nt">-gt</span> 10 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">: High SSH session count: </span><span class="nv">$ACTIVE_SESSIONS</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/ssh-monitor.log
+        <span class="c"># 알림 발송</span>
+        <span class="nb">echo</span> <span class="s2">"High SSH session count detected: </span><span class="nv">$ACTIVE_SESSIONS</span><span class="s2"> active sessions"</span> | <span class="se">\</span>
+        mail <span class="nt">-s</span> <span class="s2">"SSH Monitor Alert"</span> admin@company.com
+    <span class="k">fi</span>
+    
+    <span class="c"># 장시간 유지되는 세션 확인</span>
+    <span class="nb">who</span> | <span class="k">while </span><span class="nb">read </span>user <span class="nb">tty time </span>rest<span class="p">;</span> <span class="k">do</span>
+        <span class="c"># 12시간 이상 유지된 세션 확인</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$time</span><span class="s2">"</span> &lt; <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="nt">-d</span> <span class="s1">'12 hours ago'</span> <span class="s1">'+%H:%M'</span><span class="si">)</span><span class="s2">"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">: Long running session: </span><span class="nv">$user</span><span class="s2"> on </span><span class="nv">$tty</span><span class="s2"> since </span><span class="nv">$time</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/ssh-monitor.log
+        <span class="k">fi
+    done
+    
+    </span><span class="nb">sleep </span>60
+<span class="k">done</span>
+
+<span class="c"># 4. SSH 키 로테이션 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/ssh-key-rotation.sh</span>
+
+<span class="c"># 90일마다 호스트 키 로테이션</span>
+<span class="nv">HOSTKEY_AGE</span><span class="o">=</span><span class="si">$(</span>find /etc/ssh/ssh_host_<span class="k">*</span>_key <span class="nt">-mtime</span> +90 2&gt;/dev/null | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$HOSTKEY_AGE</span> <span class="nt">-gt</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">: Host keys are older than 90 days. Rotation recommended."</span> <span class="o">&gt;&gt;</span> /var/log/ssh-key-rotation.log
+    
+    <span class="c"># 백업</span>
+    <span class="nb">cp</span> <span class="nt">-r</span> /etc/ssh /etc/ssh.backup.<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>
+    
+    <span class="c"># 새 키 생성</span>
+    ssh-keygen <span class="nt">-A</span>
+    
+    <span class="c"># 서비스 재시작</span>
+    systemctl restart sshd
+    
+    <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">: Host keys rotated successfully"</span> <span class="o">&gt;&gt;</span> /var/log/ssh-key-rotation.log
+<span class="k">fi</span>
+
+<span class="c"># 사용자 키 만료 확인</span>
+<span class="k">for </span>user_home <span class="k">in</span> /home/<span class="k">*</span><span class="p">;</span> <span class="k">do
+    </span><span class="nv">username</span><span class="o">=</span><span class="si">$(</span><span class="nb">basename</span> <span class="nv">$user_home</span><span class="si">)</span>
+    <span class="nv">auth_keys</span><span class="o">=</span><span class="s2">"</span><span class="nv">$user_home</span><span class="s2">/.ssh/authorized_keys"</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$auth_keys</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        while </span><span class="nb">read</span> <span class="nt">-r</span> key<span class="p">;</span> <span class="k">do
+            if</span> <span class="o">[[</span> <span class="nv">$key</span> <span class="o">=</span>~ ^ssh- <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+                <span class="c"># 키 생성일 확인 (코멘트에서 날짜 추출)</span>
+                <span class="nv">key_date</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$key</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s1">'[0-9]\{8\}'</span> | <span class="nb">head</span> <span class="nt">-1</span><span class="si">)</span>
+                <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$key_date</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+                    </span><span class="nv">key_age</span><span class="o">=</span><span class="k">$((</span> <span class="o">(</span><span class="si">$(</span><span class="nb">date</span> +%s<span class="si">)</span> <span class="o">-</span> <span class="si">$(</span><span class="nb">date</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$key_date</span><span class="s2">"</span> +%s<span class="si">)</span><span class="o">)</span> <span class="o">/</span> <span class="m">86400</span> <span class="k">))</span>
+                    <span class="k">if</span> <span class="o">[</span> <span class="nv">$key_age</span> <span class="nt">-gt</span> 365 <span class="o">]</span><span class="p">;</span> <span class="k">then
+                        </span><span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">: User </span><span class="nv">$username</span><span class="s2"> has key older than 1 year (</span><span class="nv">$key_age</span><span class="s2"> days)"</span> <span class="o">&gt;&gt;</span> /var/log/ssh-key-rotation.log
+                    <span class="k">fi
+                fi
+            fi
+        done</span> &lt; <span class="s2">"</span><span class="nv">$auth_keys</span><span class="s2">"</span>
+    <span class="k">fi
+done</span>
+</code></pre></div></div>
+
+<h3 id="-방화벽-보안-설정">🔥 방화벽 보안 설정</h3>
+
+<h4 id="iptables-고급-보안-규칙">iptables 고급 보안 규칙</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/setup-iptables-advanced.sh</span>
+<span class="c"># 고급 iptables 보안 설정 스크립트</span>
+
+<span class="c"># 기존 규칙 초기화</span>
+iptables <span class="nt">-F</span>
+iptables <span class="nt">-X</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-F</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-X</span>
+iptables <span class="nt">-t</span> mangle <span class="nt">-F</span>
+iptables <span class="nt">-t</span> mangle <span class="nt">-X</span>
+iptables <span class="nt">-t</span> raw <span class="nt">-F</span>
+iptables <span class="nt">-t</span> raw <span class="nt">-X</span>
+
+<span class="c"># 기본 정책 설정 (모든 트래픽 차단)</span>
+iptables <span class="nt">-P</span> INPUT DROP
+iptables <span class="nt">-P</span> FORWARD DROP
+iptables <span class="nt">-P</span> OUTPUT DROP
+
+<span class="c"># 1. 기본 허용 규칙</span>
+<span class="c"># Loopback 인터페이스 허용</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> lo <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-o</span> lo <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 기존 연결 유지</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> ESTABLISHED,RELATED <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> ESTABLISHED <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> FORWARD <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> ESTABLISHED,RELATED <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 2. SSH 보안 규칙 (고급)</span>
+<span class="c"># SSH 브루트포스 방지 (복합적 접근)</span>
+iptables <span class="nt">-N</span> SSH_BRUTEFORCE
+iptables <span class="nt">-A</span> SSH_BRUTEFORCE <span class="nt">-m</span> recent <span class="nt">--set</span> <span class="nt">--name</span> SSH_ATTACK
+iptables <span class="nt">-A</span> SSH_BRUTEFORCE <span class="nt">-m</span> recent <span class="nt">--update</span> <span class="nt">--seconds</span> 3600 <span class="nt">--hitcount</span> 3 <span class="nt">--name</span> SSH_ATTACK <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"SSH Bruteforce: "</span>
+iptables <span class="nt">-A</span> SSH_BRUTEFORCE <span class="nt">-m</span> recent <span class="nt">--update</span> <span class="nt">--seconds</span> 3600 <span class="nt">--hitcount</span> 3 <span class="nt">--name</span> SSH_ATTACK <span class="nt">-j</span> DROP
+iptables <span class="nt">-A</span> SSH_BRUTEFORCE <span class="nt">-j</span> ACCEPT
+
+<span class="c"># SSH 접근 제한</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-s</span> 192.168.1.0/24 <span class="nt">-j</span> SSH_BRUTEFORCE
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-s</span> 10.0.0.0/8 <span class="nt">-j</span> SSH_BRUTEFORCE
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"SSH Unauthorized: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-j</span> DROP
+
+<span class="c"># 3. 웹 서버 보안 (있는 경우)</span>
+<span class="c"># HTTP/HTTPS with rate limiting</span>
+iptables <span class="nt">-N</span> WEB_RATE_LIMIT
+iptables <span class="nt">-A</span> WEB_RATE_LIMIT <span class="nt">-m</span> limit <span class="nt">--limit</span> 25/minute <span class="nt">--limit-burst</span> 100 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> WEB_RATE_LIMIT <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"HTTP Rate Limit: "</span>
+iptables <span class="nt">-A</span> WEB_RATE_LIMIT <span class="nt">-j</span> DROP
+
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-j</span> WEB_RATE_LIMIT
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 443 <span class="nt">-j</span> WEB_RATE_LIMIT
+
+<span class="c"># 4. DDoS 방지 규칙</span>
+<span class="c"># SYN Flood 방지</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--syn</span> <span class="nt">-m</span> limit <span class="nt">--limit</span> 1/second <span class="nt">--limit-burst</span> 3 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--syn</span> <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"SYN Flood: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--syn</span> <span class="nt">-j</span> DROP
+
+<span class="c"># Ping Flood 방지</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> echo-request <span class="nt">-m</span> limit <span class="nt">--limit</span> 1/second <span class="nt">--limit-burst</span> 2 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> echo-request <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"Ping Flood: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> icmp <span class="nt">--icmp-type</span> echo-request <span class="nt">-j</span> DROP
+
+<span class="c"># Port Scan 방지</span>
+iptables <span class="nt">-N</span> PORT_SCAN
+iptables <span class="nt">-A</span> PORT_SCAN <span class="nt">-p</span> tcp <span class="nt">--tcp-flags</span> SYN,ACK,FIN,RST RST <span class="nt">-m</span> limit <span class="nt">--limit</span> 1/s <span class="nt">--limit-burst</span> 2 <span class="nt">-j</span> RETURN
+iptables <span class="nt">-A</span> PORT_SCAN <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"Port Scan: "</span>
+iptables <span class="nt">-A</span> PORT_SCAN <span class="nt">-j</span> DROP
+iptables <span class="nt">-A</span> INPUT <span class="nt">-j</span> PORT_SCAN
+
+<span class="c"># 5. 아웃바운드 트래픽 제어</span>
+<span class="c"># DNS 허용 (필수)</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> udp <span class="nt">--dport</span> 53 <span class="nt">-d</span> 8.8.8.8 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> udp <span class="nt">--dport</span> 53 <span class="nt">-d</span> 1.1.1.1 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 53 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># NTP 허용</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> udp <span class="nt">--dport</span> 123 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># HTTP/HTTPS 아웃바운드 (업데이트용)</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 80 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 443 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># SMTP 아웃바운드 (이메일)</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 587 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 25 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># SSH 아웃바운드 (관리용)</span>
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 22 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 2222 <span class="nt">-j</span> ACCEPT
+
+<span class="c"># 6. 지리적 IP 차단 (GeoIP 사용)</span>
+<span class="c"># 특정 국가 IP 차단 (예: 러시아, 중국, 북한)</span>
+<span class="c"># iptables -A INPUT -m geoip --src-cc RU,CN,KP -j LOG --log-prefix "GeoIP Block: "</span>
+<span class="c"># iptables -A INPUT -m geoip --src-cc RU,CN,KP -j DROP</span>
+
+<span class="c"># 7. 애플리케이션별 보안 규칙</span>
+<span class="c"># 데이터베이스 접근 제한 (내부 네트워크만)</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 3306 <span class="nt">-s</span> 192.168.1.0/24 <span class="nt">-j</span> ACCEPT  <span class="c"># MySQL</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 5432 <span class="nt">-s</span> 192.168.1.0/24 <span class="nt">-j</span> ACCEPT  <span class="c"># PostgreSQL</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 3306 <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"MySQL Unauthorized: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 3306 <span class="nt">-j</span> DROP
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 5432 <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"PostgreSQL Unauthorized: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--dport</span> 5432 <span class="nt">-j</span> DROP
+
+<span class="c"># 8. 악성 트래픽 차단</span>
+<span class="c"># Invalid 패킷 차단</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> INVALID <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"Invalid Packet: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> conntrack <span class="nt">--ctstate</span> INVALID <span class="nt">-j</span> DROP
+
+<span class="c"># NULL 스캔 차단</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--tcp-flags</span> ALL NONE <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"NULL Scan: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--tcp-flags</span> ALL NONE <span class="nt">-j</span> DROP
+
+<span class="c"># XMAS 스캔 차단</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--tcp-flags</span> ALL ALL <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"XMAS Scan: "</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">--tcp-flags</span> ALL ALL <span class="nt">-j</span> DROP
+
+<span class="c"># 9. 로깅 설정 (최종 단계)</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> limit <span class="nt">--limit</span> 5/min <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"INPUT DROP: "</span> <span class="nt">--log-level</span> 7
+iptables <span class="nt">-A</span> OUTPUT <span class="nt">-m</span> limit <span class="nt">--limit</span> 5/min <span class="nt">-j</span> LOG <span class="nt">--log-prefix</span> <span class="s2">"OUTPUT DROP: "</span> <span class="nt">--log-level</span> 7
+
+<span class="c"># 10. 설정 저장</span>
+iptables-save <span class="o">&gt;</span> /etc/iptables/rules.v4
+
+<span class="c"># 11. 부팅 시 자동 로드 설정</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/systemd/system/iptables-restore.service <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[Unit]
+Description=Restore iptables rules
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/iptables-restore /etc/iptables/rules.v4
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+</span><span class="no">EOF
+
+</span>systemctl <span class="nb">enable </span>iptables-restore.service
+
+<span class="nb">echo</span> <span class="s2">"Advanced iptables configuration completed!"</span>
+<span class="nb">echo</span> <span class="s2">"Rules saved to /etc/iptables/rules.v4"</span>
+<span class="nb">echo</span> <span class="s2">"Service enabled for boot: iptables-restore.service"</span>
+
+<span class="c"># 규칙 확인</span>
+iptables <span class="nt">-L</span> <span class="nt">-n</span> <span class="nt">-v</span> <span class="nt">--line-numbers</span>
+</code></pre></div></div>
+
+<h4 id="ufw-고급-설정-및-자동화">UFW 고급 설정 및 자동화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/setup-ufw-advanced.sh</span>
+<span class="c"># UFW 고급 보안 설정</span>
+
+<span class="c"># UFW 초기화 및 기본 설정</span>
+ufw <span class="nt">--force</span> reset
+ufw default deny incoming
+ufw default deny outgoing
+ufw default deny forward
+
+<span class="c"># 기본 서비스 허용</span>
+<span class="nb">echo</span> <span class="s2">"Setting up basic services..."</span>
+
+<span class="c"># SSH (보안 포트)</span>
+ufw allow from 192.168.1.0/24 to any port 2222 comment <span class="s1">'SSH from LAN'</span>
+ufw allow from 10.0.0.0/8 to any port 2222 comment <span class="s1">'SSH from VPN'</span>
+
+<span class="c"># 아웃바운드 필수 서비스</span>
+ufw allow out 53 comment <span class="s1">'DNS'</span>
+ufw allow out 123 comment <span class="s1">'NTP'</span>
+ufw allow out 80 comment <span class="s1">'HTTP'</span>
+ufw allow out 443 comment <span class="s1">'HTTPS'</span>
+
+<span class="c"># 메일 발송</span>
+ufw allow out 587 comment <span class="s1">'SMTP-TLS'</span>
+ufw allow out 25 comment <span class="s1">'SMTP'</span>
+
+<span class="c"># 웹 서버 (있는 경우)</span>
+<span class="c"># ufw allow 80 comment 'HTTP Server'</span>
+<span class="c"># ufw allow 443 comment 'HTTPS Server'</span>
+
+<span class="c"># 고급 규칙 설정</span>
+<span class="nb">echo</span> <span class="s2">"Setting up advanced rules..."</span>
+
+<span class="c"># 1. 애플리케이션 프로파일 생성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/ufw/applications.d/custom-apps <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[SSH-Custom]
+title=SSH Custom Port
+description=SSH on custom port 2222
+ports=2222/tcp
+
+[Database-Internal]
+title=Database Internal Access
+description=MySQL/PostgreSQL for internal network
+ports=3306,5432/tcp
+
+[Monitoring]
+title=Monitoring Services
+description=Prometheus, Grafana, etc.
+ports=9090,3000,9100/tcp
+</span><span class="no">EOF
+
+</span>ufw app update SSH-Custom
+ufw allow SSH-Custom
+
+<span class="c"># 2. Rate limiting 설정</span>
+ufw limit ssh comment <span class="s1">'Rate limit SSH'</span>
+ufw limit 80/tcp comment <span class="s1">'Rate limit HTTP'</span>
+ufw limit 443/tcp comment <span class="s1">'Rate limit HTTPS'</span>
+
+<span class="c"># 3. 특정 IP 차단 (예시)</span>
+<span class="c"># 알려진 악성 IP 차단</span>
+<span class="nv">MALICIOUS_IPS</span><span class="o">=(</span>
+    <span class="s2">"192.0.2.100"</span>
+    <span class="s2">"203.0.113.50"</span>
+<span class="o">)</span>
+
+<span class="k">for </span>ip <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">MALICIOUS_IPS</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    </span>ufw deny from <span class="s2">"</span><span class="nv">$ip</span><span class="s2">"</span> comment <span class="s2">"Known malicious IP"</span>
+<span class="k">done</span>
+
+<span class="c"># 4. 지역별 접근 제한 (예시)</span>
+<span class="c"># 관리 서비스는 국내 IP만 허용</span>
+ufw allow from 220.0.0.0/8 to any port 22 comment <span class="s1">'Korea Telecom range'</span>
+ufw allow from 121.0.0.0/8 to any port 22 comment <span class="s1">'SK Broadband range'</span>
+
+<span class="c"># 5. 로깅 설정</span>
+ufw logging on
+
+<span class="c"># 6. UFW 활성화</span>
+ufw <span class="nt">--force</span> <span class="nb">enable</span>
+
+<span class="c"># 7. 상태 출력</span>
+ufw status verbose
+
+<span class="c"># 8. UFW 로그 모니터링 스크립트 생성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/ufw-log-monitor.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+# UFW 로그 모니터링 및 분석
+
+UFW_LOG="/var/log/ufw.log"
+ALERT_EMAIL="admin@company.com"
+
+# 로그 패턴 분석
+analyze_ufw_logs() {
+    echo "=== UFW Log Analysis Report </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh"> ==="
+    
+    # 최근 1시간 동안의 차단된 연결
+    echo "Top blocked IPs (last hour):"
+    grep "</span><span class="si">$(</span><span class="nb">date</span> <span class="nt">-d</span> <span class="s1">'1 hour ago'</span> <span class="s1">'+%b %d %H'</span><span class="si">)</span><span class="sh">" "</span><span class="nv">$UFW_LOG</span><span class="sh">" 2&gt;/dev/null | </span><span class="se">\</span><span class="sh">
+    grep "BLOCK" | awk '{print </span><span class="si">$(</span>NF-1<span class="si">)</span><span class="sh">}' | cut -d= -f2 | </span><span class="se">\</span><span class="sh">
+    sort | uniq -c | sort -nr | head -10
+    
+    echo ""
+    
+    # 포트별 공격 통계
+    echo "Top attacked ports (last hour):"
+    grep "</span><span class="si">$(</span><span class="nb">date</span> <span class="nt">-d</span> <span class="s1">'1 hour ago'</span> <span class="s1">'+%b %d %H'</span><span class="si">)</span><span class="sh">" "</span><span class="nv">$UFW_LOG</span><span class="sh">" 2&gt;/dev/null | </span><span class="se">\</span><span class="sh">
+    grep "BLOCK" | grep -o "DPT=[0-9]*" | cut -d= -f2 | </span><span class="se">\</span><span class="sh">
+    sort | uniq -c | sort -nr | head -10
+    
+    echo ""
+    
+    # 프로토콜별 통계
+    echo "Protocol statistics (last hour):"
+    grep "</span><span class="si">$(</span><span class="nb">date</span> <span class="nt">-d</span> <span class="s1">'1 hour ago'</span> <span class="s1">'+%b %d %H'</span><span class="si">)</span><span class="sh">" "</span><span class="nv">$UFW_LOG</span><span class="sh">" 2&gt;/dev/null | </span><span class="se">\</span><span class="sh">
+    grep "BLOCK" | grep -o "PROTO=[A-Z]*" | cut -d= -f2 | </span><span class="se">\</span><span class="sh">
+    sort | uniq -c | sort -nr
+    
+    echo "=================================="
+}
+
+# 실시간 모니터링
+monitor_realtime() {
+    tail -f "</span><span class="nv">$UFW_LOG</span><span class="sh">" | while read line; do
+        if echo "</span><span class="nv">$line</span><span class="sh">" | grep -q "BLOCK"; then
+            src_ip=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s2">"SRC=[0-9.]*"</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="o">=</span> <span class="nt">-f2</span><span class="si">)</span><span class="sh">
+            dst_port=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s2">"DPT=[0-9]*"</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="o">=</span> <span class="nt">-f2</span><span class="si">)</span><span class="sh">
+            
+            # 높은 빈도 공격 감지
+            recent_blocks=</span><span class="si">$(</span><span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"</span><span class="nv">$src_ip</span><span class="s2">"</span> &lt;<span class="o">(</span><span class="nb">tail</span> <span class="nt">-100</span> <span class="s2">"</span><span class="nv">$UFW_LOG</span><span class="s2">"</span><span class="o">)</span><span class="si">)</span><span class="sh">
+            
+            if [ "</span><span class="nv">$recent_blocks</span><span class="sh">" -gt 10 ]; then
+                echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: High frequency attack from </span><span class="nv">$src_ip</span><span class="sh"> (port </span><span class="nv">$dst_port</span><span class="sh">)"
+                # 자동 차단 강화 (선택사항)
+                # ufw insert 1 deny from "</span><span class="nv">$src_ip</span><span class="sh">" comment "Auto-blocked: high frequency"
+            fi
+        fi
+    done
+}
+
+case "</span><span class="nv">$1</span><span class="sh">" in
+    "analyze")
+        analyze_ufw_logs
+        ;;
+    "monitor")
+        echo "Starting real-time UFW monitoring... (Ctrl+C to stop)"
+        monitor_realtime
+        ;;
+    "report")
+        analyze_ufw_logs | mail -s "UFW Security Report" "</span><span class="nv">$ALERT_EMAIL</span><span class="sh">"
+        ;;
+    *)
+        echo "Usage: </span><span class="nv">$0</span><span class="sh"> {analyze|monitor|report}"
+        exit 1
+        ;;
+esac
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x /usr/local/bin/ufw-log-monitor.sh
+
+<span class="c"># 9. 정기적인 로그 분석 설정</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> /etc/cron.hourly/ufw-analysis <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+/usr/local/bin/ufw-log-monitor.sh analyze &gt;&gt; /var/log/ufw-analysis.log
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x /etc/cron.hourly/ufw-analysis
+
+<span class="nb">echo</span> <span class="s2">"UFW advanced configuration completed!"</span>
+<span class="nb">echo</span> <span class="s2">"Monitor logs with: /usr/local/bin/ufw-log-monitor.sh monitor"</span>
+<span class="nb">echo</span> <span class="s2">"View status with: ufw status verbose"</span>
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>SELinux/AppArmor와 시스템 하드닝</strong>을 자세히 다룰 예정입니다:</p>
+<ul>
+  <li>SELinux 정책 작성 및 관리</li>
+  <li>AppArmor 프로파일 커스터마이징</li>
+  <li>커널 보안 매개변수 최적화</li>
+  <li>파일 시스템 보안 강화</li>
+</ul>
+
+<p>SSH와 방화벽 보안을 완벽하게 마스터하셨나요? 🔐🛡️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/11/04/deployment-strategies-guide.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">배포 전략 완전 가이드 | Complete Deployment Strategies G...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2025/01/18/networking-guide-part4.html" rel="next">
+          <span class="nav-title">네트워킹 완전 가이드 4편 - 무선 네트워킹과 최신 기술 | Complete Netw...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

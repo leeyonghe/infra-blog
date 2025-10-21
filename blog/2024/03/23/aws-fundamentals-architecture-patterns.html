@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>AWS 완전 정복 가이드 1편 - 기초부터 아키텍처 패턴까지 | AWS Complete Guide Part 1 - Fundamentals to Architecture Patterns</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">AWS 완전 정복 가이드 1편 - 기초부터 아키텍처 패턴까지 | AWS Complete Guide Part 1 - Fundamentals to Architecture Patterns</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-03-23T05:00:00+00:00">Mar 23, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>AWS</li><li>Cloud</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>AWS 클라우드의 모든 것을 체계적으로 마스터하는 완전 가이드 시리즈가 시작됩니다. 이번 편에서는 AWS 기초 개념부터 고급 아키텍처 설계 패턴까지 핵심 내용을 다룹니다.</p>
+
+<h2 id="aws-기초-개념--aws-fundamentals">AWS 기초 개념 | AWS Fundamentals</h2>
+
+<h3 id="-클라우드-컴퓨팅의-이해">🌐 클라우드 컴퓨팅의 이해</h3>
+
+<h4 id="클라우드-컴퓨팅-서비스-모델">클라우드 컴퓨팅 서비스 모델</h4>
+<ul>
+  <li><strong>IaaS (Infrastructure as a Service)</strong>: EC2, VPC, EBS</li>
+  <li><strong>PaaS (Platform as a Service)</strong>: Elastic Beanstalk, Lambda</li>
+  <li><strong>SaaS (Software as a Service)</strong>: WorkDocs, WorkMail</li>
+</ul>
+
+<h4 id="클라우드-배포-모델">클라우드 배포 모델</h4>
+<ul>
+  <li><strong>Public Cloud</strong>: 완전한 클라우드 배포</li>
+  <li><strong>Hybrid Cloud</strong>: 온프레미스와 클라우드 혼합</li>
+  <li><strong>Private Cloud</strong>: 온프레미스 클라우드 인프라</li>
+</ul>
+
+<h4 id="aws-글로벌-인프라">AWS 글로벌 인프라</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AWS 글로벌 인프라 구조:
+├── 리전 (Regions): 지리적으로 분리된 데이터센터 그룹
+├── 가용 영역 (AZs): 리전 내 물리적으로 분리된 데이터센터
+├── 엣지 로케이션 (Edge Locations): CloudFront CDN 캐시 서버
+└── 로컬 존 (Local Zones): 최종 사용자에 더 가까운 위치
+</code></pre></div></div>
+
+<h2 id="well-architected-framework--아키텍처-설계-원칙">Well-Architected Framework | 아키텍처 설계 원칙</h2>
+
+<p>AWS Well-Architected Framework의 5가지 핵심 원칙:</p>
+
+<h3 id="1-운영-우수성-operational-excellence">1. 운영 우수성 (Operational Excellence)</h3>
+<ul>
+  <li><strong>Infrastructure as Code</strong> 활용</li>
+  <li><strong>자동화된 배포</strong> 파이프라인</li>
+  <li><strong>모니터링 및 로깅</strong> 체계</li>
+</ul>
+
+<h3 id="2-보안-security">2. 보안 (Security)</h3>
+<ul>
+  <li><strong>최소 권한 원칙</strong> (Principle of Least Privilege)</li>
+  <li><strong>다단계 보안</strong> 설정</li>
+  <li><strong>데이터 암호화</strong> (전송 중/저장 중)</li>
+</ul>
+
+<h3 id="3-신뢰성-reliability">3. 신뢰성 (Reliability)</h3>
+<ul>
+  <li><strong>Multi-AZ 배포</strong></li>
+  <li><strong>자동 장애 조치</strong></li>
+  <li><strong>백업 및 복구</strong> 전략</li>
+</ul>
+
+<h3 id="4-성능-효율성-performance-efficiency">4. 성능 효율성 (Performance Efficiency)</h3>
+<ul>
+  <li><strong>적절한 인스턴스 타입</strong> 선택</li>
+  <li><strong>CDN 활용</strong></li>
+  <li><strong>캐싱 전략</strong></li>
+</ul>
+
+<h3 id="5-비용-최적화-cost-optimization">5. 비용 최적화 (Cost Optimization)</h3>
+<ul>
+  <li><strong>Reserved Instance</strong> 활용</li>
+  <li><strong>Spot Instance</strong> 적용</li>
+  <li><strong>리소스 모니터링</strong></li>
+</ul>
+
+<h2 id="주요-아키텍처-패턴--key-architecture-patterns">주요 아키텍처 패턴 | Key Architecture Patterns</h2>
+
+<h3 id="1-3-tier-web-architecture">1. 3-Tier Web Architecture</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>인터넷 → ALB → EC2 (Web) → RDS (Database)
+         ↓
+     CloudFront (CDN)
+         ↓
+     S3 (Static Assets)
+</code></pre></div></div>
+
+<h3 id="2-마이크로서비스-아키텍처">2. 마이크로서비스 아키텍처</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>API Gateway → Lambda Functions
+            → ECS/EKS Services  
+            → RDS/DynamoDB
+</code></pre></div></div>
+
+<h3 id="3-서버리스-아키텍처">3. 서버리스 아키텍처</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CloudFront → S3 (Static Site)
+           → API Gateway → Lambda
+                        → DynamoDB
+</code></pre></div></div>
+
+<h2 id="실제-구현-예제--implementation-examples">실제 구현 예제 | Implementation Examples</h2>
+
+<h3 id="vpc-설계">VPC 설계</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"VPC"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.0.0.0/16"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"PublicSubnets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"10.0.1.0/24 (us-east-1a)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"10.0.2.0/24 (us-east-1b)"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"PrivateSubnets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"10.0.10.0/24 (us-east-1a)"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"10.0.20.0/24 (us-east-1b)"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"DatabaseSubnets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"10.0.100.0/24 (us-east-1a)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"10.0.200.0/24 (us-east-1b)"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="auto-scaling-구성">Auto Scaling 구성</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Auto Scaling Group 생성</span>
+aws autoscaling create-auto-scaling-group <span class="se">\</span>
+  <span class="nt">--auto-scaling-group-name</span> web-asg <span class="se">\</span>
+  <span class="nt">--launch-template</span> <span class="nv">LaunchTemplateName</span><span class="o">=</span>web-template <span class="se">\</span>
+  <span class="nt">--min-size</span> 2 <span class="se">\</span>
+  <span class="nt">--max-size</span> 10 <span class="se">\</span>
+  <span class="nt">--desired-capacity</span> 4 <span class="se">\</span>
+  <span class="nt">--vpc-zone-identifier</span> <span class="s2">"subnet-12345,subnet-67890"</span>
+</code></pre></div></div>
+
+<h3 id="cloudformation-템플릿">CloudFormation 템플릿</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Resources</span><span class="pi">:</span>
+  <span class="na">WebServerGroup</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::AutoScaling::AutoScalingGroup</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">VPCZoneIdentifier</span><span class="pi">:</span> 
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">PrivateSubnet1</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">PrivateSubnet2</span>
+      <span class="na">LaunchTemplate</span><span class="pi">:</span>
+        <span class="na">LaunchTemplateId</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">LaunchTemplate</span>
+        <span class="na">Version</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">LaunchTemplate.LatestVersionNumber</span>
+      <span class="na">MinSize</span><span class="pi">:</span> <span class="m">2</span>
+      <span class="na">MaxSize</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">DesiredCapacity</span><span class="pi">:</span> <span class="m">4</span>
+      <span class="na">TargetGroupARNs</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="kt">!Ref</span> <span class="s">ALBTargetGroup</span>
+</code></pre></div></div>
+
+<h2 id="비용-최적화-전략--cost-optimization-strategies">비용 최적화 전략 | Cost Optimization Strategies</h2>
+
+<h3 id="1-인스턴스-최적화">1. 인스턴스 최적화</h3>
+<ul>
+  <li><strong>Right Sizing</strong>: 적절한 인스턴스 크기 선택</li>
+  <li><strong>Reserved Instances</strong>: 1-3년 예약으로 최대 75% 절약</li>
+  <li><strong>Spot Instances</strong>: 일시적 워크로드에 최대 90% 절약</li>
+</ul>
+
+<h3 id="2-스토리지-최적화">2. 스토리지 최적화</h3>
+<ul>
+  <li><strong>S3 Storage Classes</strong>: 액세스 패턴에 따른 클래스 선택</li>
+  <li><strong>EBS Optimization</strong>: GP3로 마이그레이션</li>
+  <li><strong>Lifecycle Policies</strong>: 자동 데이터 이전</li>
+</ul>
+
+<h3 id="3-네트워크-최적화">3. 네트워크 최적화</h3>
+<ul>
+  <li><strong>CloudFront</strong>: CDN 활용으로 대역폭 비용 절감</li>
+  <li><strong>VPC Endpoints</strong>: NAT Gateway 비용 절약</li>
+  <li><strong>Direct Connect</strong>: 대용량 데이터 전송</li>
+</ul>
+
+<h2 id="보안-모범-사례--security-best-practices">보안 모범 사례 | Security Best Practices</h2>
+
+<h3 id="iam-정책">IAM 정책</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"s3:GetObject"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arn:aws:s3:::my-bucket/*"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"IpAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"aws:SourceIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"203.0.113.0/24"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="vpc-security-groups">VPC Security Groups</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 웹 서버용 보안 그룹</span>
+aws ec2 create-security-group <span class="se">\</span>
+  <span class="nt">--group-name</span> web-sg <span class="se">\</span>
+  <span class="nt">--description</span> <span class="s2">"Web server security group"</span>
+
+aws ec2 authorize-security-group-ingress <span class="se">\</span>
+  <span class="nt">--group-id</span> sg-12345678 <span class="se">\</span>
+  <span class="nt">--protocol</span> tcp <span class="se">\</span>
+  <span class="nt">--port</span> 80 <span class="se">\</span>
+  <span class="nt">--cidr</span> 0.0.0.0/0
+</code></pre></div></div>
+
+<p>다음 포스트에서는 <strong>AWS 핵심 서비스 실습과 EC2 완전 마스터</strong>를 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>EC2 인스턴스 생성부터 고급 관리까지</li>
+  <li>VPC 네트워킹 심화 학습</li>
+  <li>S3 스토리지 완전 활용</li>
+  <li>RDS 데이터베이스 구축 및 운영</li>
+</ul>
+
+<p>AWS 기초와 아키텍처 패턴을 완벽하게 이해하셨나요? 🚀☁️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/03/22/kubernetes-basics.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">Kubernetes 기초부터 실전까지 | Kubernetes from Basics t...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/03/24/aws-core-services-ec2-vpc-s3-rds.html" rel="next">
+          <span class="nav-title">AWS 완전 정복 가이드 2편 - 핵심 서비스 실습과 EC2 마스터 | AWS Com...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

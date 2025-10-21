@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>리눅스 보안 완전 가이드 5편 - Wazuh SIEM과 컨테이너 보안 | Linux Security Guide Part 5 - Wazuh SIEM & Container Security</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">리눅스 보안 완전 가이드 5편 - Wazuh SIEM과 컨테이너 보안 | Linux Security Guide Part 5 - Wazuh SIEM &amp; Container Security</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2025-05-24T00:00:00+00:00">May 24, 2025</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Security</li><li>Linux</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>리눅스 보안의 최종 완성 단계인 Wazuh SIEM 구축과 컨테이너 보안을 완전히 마스터해보겠습니다. 엔터프라이즈급 보안 모니터링부터 최신 컨테이너 환경 보안까지, 차세대 보안 인프라를 구축하는 모든 것을 다룹니다.</p>
+
+<h2 id="wazuh-siem-완전-구축--complete-wazuh-siem-implementation">Wazuh SIEM 완전 구축 | Complete Wazuh SIEM Implementation</h2>
+
+<h3 id="-wazuh-아키텍처-및-설치">🔍 Wazuh 아키텍처 및 설치</h3>
+
+<h4 id="wazuh-완전-설치-스크립트">Wazuh 완전 설치 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/wazuh-installer.sh</span>
+<span class="c"># Wazuh SIEM 완전 자동 설치 스크립트</span>
+
+<span class="nb">set</span> <span class="nt">-e</span>
+
+<span class="c"># 색상 정의</span>
+<span class="nv">RED</span><span class="o">=</span><span class="s1">'\033[0;31m'</span>
+<span class="nv">GREEN</span><span class="o">=</span><span class="s1">'\033[0;32m'</span>
+<span class="nv">YELLOW</span><span class="o">=</span><span class="s1">'\033[1;33m'</span>
+<span class="nv">BLUE</span><span class="o">=</span><span class="s1">'\033[0;34m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\033[0m'</span>
+
+print_color<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"</span><span class="k">${</span><span class="nv">2</span><span class="k">}${</span><span class="nv">1</span><span class="k">}${</span><span class="nv">NC</span><span class="k">}</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 시스템 정보 확인</span>
+<span class="nv">OS_ID</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> ^ID<span class="o">=</span> /etc/os-release | <span class="nb">cut</span> <span class="nt">-d</span><span class="o">=</span> <span class="nt">-f2</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'"'</span><span class="si">)</span>
+<span class="nv">OS_VERSION</span><span class="o">=</span><span class="si">$(</span><span class="nb">grep</span> ^VERSION_ID<span class="o">=</span> /etc/os-release | <span class="nb">cut</span> <span class="nt">-d</span><span class="o">=</span> <span class="nt">-f2</span> | <span class="nb">tr</span> <span class="nt">-d</span> <span class="s1">'"'</span><span class="si">)</span>
+
+print_color <span class="s2">"=== Wazuh SIEM Installation Started ==="</span> <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2">"</span>
+print_color <span class="s2">"OS: </span><span class="nv">$OS_ID</span><span class="s2"> </span><span class="nv">$OS_VERSION</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2">"</span>
+
+<span class="c"># 전제 조건 확인</span>
+check_prerequisites<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Checking prerequisites..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="c"># 최소 시스템 요구사항 확인</span>
+    <span class="nv">RAM_GB</span><span class="o">=</span><span class="si">$(</span>free <span class="nt">-g</span> | <span class="nb">awk</span> <span class="s1">'/^Mem:/{print $2}'</span><span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$RAM_GB</span><span class="s2">"</span> <span class="nt">-lt</span> 2 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>print_color <span class="s2">"WARNING: Minimum 2GB RAM recommended (Current: </span><span class="k">${</span><span class="nv">RAM_GB</span><span class="k">}</span><span class="s2">GB)"</span> <span class="s2">"</span><span class="nv">$RED</span><span class="s2">"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 디스크 공간 확인</span>
+    <span class="nv">DISK_GB</span><span class="o">=</span><span class="si">$(</span><span class="nb">df</span> / | <span class="nb">awk</span> <span class="s1">'NR==2{print int($4/1048576)}'</span><span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$DISK_GB</span><span class="s2">"</span> <span class="nt">-lt</span> 10 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>print_color <span class="s2">"WARNING: Minimum 10GB disk space recommended (Available: </span><span class="k">${</span><span class="nv">DISK_GB</span><span class="k">}</span><span class="s2">GB)"</span> <span class="s2">"</span><span class="nv">$RED</span><span class="s2">"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 네트워크 연결 확인</span>
+    <span class="k">if</span> <span class="o">!</span> ping <span class="nt">-c</span> 1 packages.wazuh.com <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>print_color <span class="s2">"ERROR: Cannot reach Wazuh repository"</span> <span class="s2">"</span><span class="nv">$RED</span><span class="s2">"</span>
+        <span class="nb">exit </span>1
+    <span class="k">fi
+    
+    </span>print_color <span class="s2">"Prerequisites check completed"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Wazuh 저장소 추가</span>
+setup_repository<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Setting up Wazuh repository..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            <span class="c"># CentOS/RHEL/Fedora</span>
+            rpm <span class="nt">--import</span> https://packages.wazuh.com/key/GPG-KEY-WAZUH
+            <span class="nb">cat</span> <span class="o">&gt;</span> /etc/yum.repos.d/wazuh.repo <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[wazuh]
+gpgcheck=1
+gpgkey=https://packages.wazuh.com/key/GPG-KEY-WAZUH
+enabled=1
+name=EL-</span><span class="nv">$releasever</span><span class="sh"> - Wazuh
+baseurl=https://packages.wazuh.com/4.x/yum/
+protect=1
+</span><span class="no">EOF
+</span>            <span class="p">;;</span>
+            
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            <span class="c"># Ubuntu/Debian</span>
+            curl <span class="nt">-s</span> https://packages.wazuh.com/key/GPG-KEY-WAZUH | gpg <span class="nt">--no-default-keyring</span> <span class="nt">--keyring</span> gnupg-ring:/usr/share/keyrings/wazuh.gpg <span class="nt">--import</span> <span class="o">&amp;&amp;</span> <span class="nb">chmod </span>644 /usr/share/keyrings/wazuh.gpg
+            <span class="nb">echo</span> <span class="s2">"deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main"</span> | <span class="nb">tee</span> <span class="nt">-a</span> /etc/apt/sources.list.d/wazuh.list
+            apt-get update
+            <span class="p">;;</span>
+            
+        <span class="k">*</span><span class="p">)</span>
+            print_color <span class="s2">"Unsupported OS: </span><span class="nv">$OS_ID</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$RED</span><span class="s2">"</span>
+            <span class="nb">exit </span>1
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    print_color <span class="s2">"Repository setup completed"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Wazuh Manager 설치</span>
+install_wazuh_manager<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Installing Wazuh Manager..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">-y</span> wazuh-manager
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> wazuh-manager
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># 서비스 활성화</span>
+    systemctl daemon-reload
+    systemctl <span class="nb">enable </span>wazuh-manager
+    systemctl start wazuh-manager
+    
+    print_color <span class="s2">"Wazuh Manager installed successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Wazuh API 설치 및 설정</span>
+install_wazuh_api<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Installing and configuring Wazuh API..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">-y</span> nodejs npm
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> nodejs npm
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># Wazuh API 설치</span>
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">-y</span> wazuh-api
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> wazuh-api
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># API 설정</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /var/ossec/api/configuration/config.js <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+var config = {};
+
+config.port = "55000";
+config.host = "0.0.0.0";
+config.https = "no";
+config.basic_auth = "yes";
+config.BehindProxyServer = "no";
+config.cors = "yes";
+
+module.exports = config;
+</span><span class="no">EOF
+    
+</span>    <span class="c"># API 사용자 생성</span>
+    <span class="nb">cd</span> /var/ossec/api/scripts
+    ./configure_api.sh
+    
+    systemctl <span class="nb">enable </span>wazuh-api
+    systemctl start wazuh-api
+    
+    print_color <span class="s2">"Wazuh API configured successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Elastic Stack 설치</span>
+install_elastic_stack<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Installing Elastic Stack..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="c"># Elasticsearch 저장소 추가</span>
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            rpm <span class="nt">--import</span> https://artifacts.elastic.co/GPG-KEY-elasticsearch
+            <span class="nb">cat</span> <span class="o">&gt;</span> /etc/yum.repos.d/elasticsearch.repo <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[elasticsearch]
+name=Elasticsearch repository for 7.x packages
+baseurl=https://artifacts.elastic.co/packages/7.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=0
+autorefresh=1
+type=rpm-md
+</span><span class="no">EOF
+</span>            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            wget <span class="nt">-qO</span> - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+            <span class="nb">echo</span> <span class="s2">"deb https://artifacts.elastic.co/packages/7.x/apt stable main"</span> | <span class="nb">tee</span> /etc/apt/sources.list.d/elastic-7.x.list
+            apt-get update
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># Java 설치 (Elasticsearch 요구사항)</span>
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">-y</span> java-11-openjdk
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> openjdk-11-jdk
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># Elasticsearch 설치</span>
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">--enablerepo</span><span class="o">=</span>elasticsearch <span class="nt">-y</span> elasticsearch
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> elasticsearch
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># Elasticsearch 설정</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/elasticsearch/elasticsearch.yml <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+cluster.name: wazuh-cluster
+node.name: wazuh-node
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+network.host: localhost
+http.port: 9200
+cluster.initial_master_nodes: ["wazuh-node"]
+</span><span class="no">EOF
+    
+</span>    <span class="c"># JVM 힙 크기 설정 (시스템 메모리의 50%)</span>
+    <span class="nv">HEAP_SIZE</span><span class="o">=</span><span class="k">$((</span>RAM_GB <span class="o">/</span> <span class="m">2</span><span class="k">))</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$HEAP_SIZE</span> <span class="nt">-lt</span> 1 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nv">HEAP_SIZE</span><span class="o">=</span>1
+    <span class="k">fi
+    
+    </span><span class="nb">cat</span> <span class="o">&gt;</span> /etc/elasticsearch/jvm.options.d/wazuh.options <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+-Xms</span><span class="k">${</span><span class="nv">HEAP_SIZE</span><span class="k">}</span><span class="sh">g
+-Xmx</span><span class="k">${</span><span class="nv">HEAP_SIZE</span><span class="k">}</span><span class="sh">g
+</span><span class="no">EOF
+    
+</span>    systemctl daemon-reload
+    systemctl <span class="nb">enable </span>elasticsearch
+    systemctl start elasticsearch
+    
+    <span class="c"># Elasticsearch 시작 대기</span>
+    <span class="nb">sleep </span>30
+    
+    <span class="c"># Kibana 설치</span>
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">--enablerepo</span><span class="o">=</span>elasticsearch <span class="nt">-y</span> kibana
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> kibana
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># Kibana 설정</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/kibana/kibana.yml <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+server.port: 5601
+server.host: "0.0.0.0"
+elasticsearch.hosts: ["http://localhost:9200"]
+logging.dest: /var/log/kibana/kibana.log
+</span><span class="no">EOF
+    
+</span>    systemctl <span class="nb">enable </span>kibana
+    systemctl start kibana
+    
+    print_color <span class="s2">"Elastic Stack installed successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Wazuh Kibana 플러그인 설치</span>
+install_wazuh_kibana_plugin<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Installing Wazuh Kibana plugin..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="c"># Kibana 정지</span>
+    systemctl stop kibana
+    
+    <span class="c"># 플러그인 설치</span>
+    <span class="nb">sudo</span> <span class="nt">-u</span> kibana /usr/share/kibana/bin/kibana-plugin <span class="nb">install </span>https://packages.wazuh.com/4.x/ui/kibana/wazuh_kibana-4.8.0_7.17.0-1.zip
+    
+    <span class="c"># Kibana 시작</span>
+    systemctl start kibana
+    
+    print_color <span class="s2">"Wazuh Kibana plugin installed successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Filebeat 설치 및 설정</span>
+install_filebeat<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Installing and configuring Filebeat..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="k">case</span> <span class="nv">$OS_ID</span> <span class="k">in</span>
+        <span class="s2">"centos"</span><span class="p">|</span><span class="s2">"rhel"</span><span class="p">|</span><span class="s2">"fedora"</span><span class="p">)</span>
+            yum <span class="nb">install</span> <span class="nt">--enablerepo</span><span class="o">=</span>elasticsearch <span class="nt">-y</span> filebeat
+            <span class="p">;;</span>
+        <span class="s2">"ubuntu"</span><span class="p">|</span><span class="s2">"debian"</span><span class="p">)</span>
+            apt-get <span class="nb">install</span> <span class="nt">-y</span> filebeat
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+    
+    <span class="c"># Filebeat 설정</span>
+    curl <span class="nt">-so</span> /etc/filebeat/filebeat.yml https://raw.githubusercontent.com/wazuh/wazuh/4.8/extensions/filebeat/7.x/filebeat.yml
+    curl <span class="nt">-so</span> /etc/filebeat/wazuh-template.json https://raw.githubusercontent.com/wazuh/wazuh/4.8/extensions/elasticsearch/7.x/wazuh-template.json
+    
+    <span class="c"># Wazuh 모듈 다운로드</span>
+    curl <span class="nt">-s</span> https://packages.wazuh.com/4.x/filebeat/wazuh-filebeat-0.4.tar.gz | <span class="nb">tar</span> <span class="nt">-xvz</span> <span class="nt">-C</span> /usr/share/filebeat/module
+    
+    <span class="c"># Elasticsearch 템플릿 및 파이프라인 설정</span>
+    filebeat setup <span class="nt">--template</span>
+    
+    systemctl daemon-reload
+    systemctl <span class="nb">enable </span>filebeat
+    systemctl start filebeat
+    
+    print_color <span class="s2">"Filebeat configured successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 방화벽 설정</span>
+configure_firewall<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Configuring firewall..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="c"># 필요한 포트들</span>
+    <span class="c"># 1514/udp: Wazuh agents</span>
+    <span class="c"># 1515/tcp: Wazuh agents registration</span>
+    <span class="c"># 55000/tcp: Wazuh API</span>
+    <span class="c"># 5601/tcp: Kibana</span>
+    <span class="c"># 9200/tcp: Elasticsearch</span>
+    
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> ufw <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then</span>
+        <span class="c"># Ubuntu UFW</span>
+        ufw allow 1514/udp
+        ufw allow 1515/tcp
+        ufw allow 55000/tcp
+        ufw allow 5601/tcp
+        ufw allow 9200/tcp
+    <span class="k">elif </span><span class="nb">command</span> <span class="nt">-v</span> firewall-cmd <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then</span>
+        <span class="c"># CentOS/RHEL firewalld</span>
+        firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-port</span><span class="o">=</span>1514/udp
+        firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-port</span><span class="o">=</span>1515/tcp
+        firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-port</span><span class="o">=</span>55000/tcp
+        firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-port</span><span class="o">=</span>5601/tcp
+        firewall-cmd <span class="nt">--permanent</span> <span class="nt">--add-port</span><span class="o">=</span>9200/tcp
+        firewall-cmd <span class="nt">--reload</span>
+    <span class="k">fi
+    
+    </span>print_color <span class="s2">"Firewall configured successfully"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 설치 검증</span>
+verify_installation<span class="o">()</span> <span class="o">{</span>
+    print_color <span class="s2">"Verifying installation..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    
+    <span class="c"># 서비스 상태 확인</span>
+    <span class="nv">SERVICES</span><span class="o">=(</span><span class="s2">"wazuh-manager"</span> <span class="s2">"wazuh-api"</span> <span class="s2">"elasticsearch"</span> <span class="s2">"kibana"</span> <span class="s2">"filebeat"</span><span class="o">)</span>
+    
+    <span class="k">for </span>service <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">SERVICES</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if </span>systemctl is-active <span class="nt">--quiet</span> <span class="s2">"</span><span class="nv">$service</span><span class="s2">"</span><span class="p">;</span> <span class="k">then
+            </span>print_color <span class="s2">"✓ </span><span class="nv">$service</span><span class="s2"> is running"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+        <span class="k">else
+            </span>print_color <span class="s2">"✗ </span><span class="nv">$service</span><span class="s2"> is not running"</span> <span class="s2">"</span><span class="nv">$RED</span><span class="s2">"</span>
+        <span class="k">fi
+    done</span>
+    
+    <span class="c"># 포트 확인</span>
+    print_color <span class="s2">"</span><span class="se">\n</span><span class="s2">Port status:"</span> <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2">"</span>
+    ss <span class="nt">-tlnp</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">':(1514|1515|5601|9200|55000)'</span>
+    
+    <span class="c"># Wazuh 에이전트 키 생성 예제</span>
+    print_color <span class="s2">"</span><span class="se">\n</span><span class="s2">Generating example agent key..."</span> <span class="s2">"</span><span class="nv">$YELLOW</span><span class="s2">"</span>
+    /var/ossec/bin/manage_agents <span class="nt">-a</span> <span class="nt">-n</span> example-agent <span class="nt">-i</span> 001
+    
+    print_color <span class="s2">"</span><span class="se">\n</span><span class="s2">=== Installation Summary ==="</span> <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"Wazuh Manager: http://</span><span class="si">$(</span><span class="nb">hostname</span> <span class="nt">-I</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="si">)</span><span class="s2">:55000"</span>
+    <span class="nb">echo</span> <span class="s2">"Kibana Dashboard: http://</span><span class="si">$(</span><span class="nb">hostname</span> <span class="nt">-I</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="si">)</span><span class="s2">:5601"</span>
+    <span class="nb">echo</span> <span class="s2">"Elasticsearch: http://</span><span class="si">$(</span><span class="nb">hostname</span> <span class="nt">-I</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="si">)</span><span class="s2">:9200"</span>
+    <span class="nb">echo</span> <span class="s2">""</span>
+    <span class="nb">echo</span> <span class="s2">"Default credentials:"</span>
+    <span class="nb">echo</span> <span class="s2">"- Wazuh API: admin / admin"</span>
+    <span class="nb">echo</span> <span class="s2">"- Change default passwords immediately!"</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 설치 프로세스</span>
+main<span class="o">()</span> <span class="o">{</span>
+    check_prerequisites
+    setup_repository
+    install_wazuh_manager
+    install_wazuh_api
+    install_elastic_stack
+    install_wazuh_kibana_plugin
+    install_filebeat
+    configure_firewall
+    verify_installation
+    
+    print_color <span class="s2">"</span><span class="se">\n</span><span class="s2">🎉 Wazuh SIEM installation completed successfully!"</span> <span class="s2">"</span><span class="nv">$GREEN</span><span class="s2">"</span>
+    print_color <span class="s2">"Access Kibana at: http://</span><span class="si">$(</span><span class="nb">hostname</span> <span class="nt">-I</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="si">)</span><span class="s2">:5601"</span> <span class="s2">"</span><span class="nv">$BLUE</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 스크립트 실행</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASH_SOURCE</span><span class="p">[0]</span><span class="k">}</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">"</span><span class="k">${</span><span class="nv">0</span><span class="k">}</span><span class="s2">"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span>main <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<h3 id="️-wazuh-고급-설정-및-규칙">🛡️ Wazuh 고급 설정 및 규칙</h3>
+
+<h4 id="커스텀-보안-룰-작성">커스텀 보안 룰 작성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /var/ossec/etc/rules/local_rules.xml</span>
+<span class="c"># Wazuh 커스텀 보안 룰</span>
+
+&lt;group <span class="nv">name</span><span class="o">=</span><span class="s2">"local,syslog,"</span><span class="o">&gt;</span>
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 커스텀 SSH 공격 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100001"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;5720&lt;/if_sid&gt;
+    &lt;match&gt;^Failed|^error: PAM: Authentication failure&lt;/match&gt;
+    &lt;description&gt;SSH authentication failure.&lt;/description&gt;
+    &lt;group&gt;authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100002"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"12"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;100001&lt;/if_sid&gt;
+    &lt;same_source_ip /&gt;
+    &lt;description&gt;SSH brute force attack detected <span class="o">(</span>multiple authentication failures<span class="o">)</span>.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1110&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;authentication_failures,pci_dss_10.2.4,pci_dss_10.2.5,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 웹 애플리케이션 공격 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100010"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"6"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;31100&lt;/if_sid&gt;
+    &lt;url&gt;admin|wp-admin|phpmyadmin|cpanel&lt;/url&gt;
+    &lt;description&gt;Attempt to access sensitive web directories.&lt;/description&gt;
+    &lt;group&gt;web,accesslog,attack,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100011"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"8"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;31100&lt;/if_sid&gt;
+    &lt;url&gt;<span class="se">\.</span>php<span class="se">\?</span>|<span class="se">\.</span>asp<span class="se">\?</span>|<span class="se">\.</span>jsp<span class="se">\?</span>&lt;/url&gt;
+    &lt;description&gt;Potential web application vulnerability scan.&lt;/description&gt;
+    &lt;group&gt;web,accesslog,attack,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100012"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;31100&lt;/if_sid&gt;
+    &lt;url&gt;union.<span class="k">*select</span>|concat<span class="se">\(</span>|exec<span class="se">\(</span>|system<span class="se">\(</span>&lt;/url&gt;
+    &lt;description&gt;SQL injection attempt detected.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1190&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;web,accesslog,attack,sql_injection,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 파일 시스템 모니터링 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100020"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"7"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;550&lt;/if_sid&gt;
+    &lt;field <span class="nv">name</span><span class="o">=</span><span class="s2">"file"</span><span class="o">&gt;</span>/etc/passwd|/etc/shadow|/etc/group&lt;/field&gt;
+    &lt;description&gt;Critical system file modified.&lt;/description&gt;
+    &lt;group&gt;syscheck,pci_dss_11.5,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100021"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"12"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;554&lt;/if_sid&gt;
+    &lt;field <span class="nv">name</span><span class="o">=</span><span class="s2">"file"</span><span class="o">&gt;</span>/bin/|/sbin/|/usr/bin/&lt;/field&gt;
+    &lt;description&gt;System binary file modified or deleted - possible rootkit.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1014&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;syscheck,rootkit,pci_dss_11.5,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 네트워크 공격 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100030"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"8"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;4386&lt;/if_sid&gt;
+    &lt;regex&gt;DPT<span class="o">=(</span>22|23|21|25|53|80|110|143|443|993|995|3389<span class="o">)</span>&lt;/regex&gt;
+    &lt;description&gt;Port scan detected on critical services.&lt;/description&gt;
+    &lt;group&gt;recon,pci_dss_11.4,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100031"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;100030&lt;/if_sid&gt;
+    &lt;same_source_ip /&gt;
+    &lt;description&gt;Multiple port scan attempts from same source.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1046&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;recon,pci_dss_11.4,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 악성코드 및 의심스러운 프로세스 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100040"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"12"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;nc <span class="nt">-l</span>|ncat <span class="nt">-l</span>|/dev/tcp|/dev/udp&lt;/match&gt;
+    &lt;description&gt;Potential reverse shell or backdoor detected.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1059&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;attack,malware,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100041"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;wget.<span class="k">*</span><span class="se">\.</span><span class="o">(</span>sh|py|pl<span class="o">)</span>|curl.<span class="k">*</span><span class="se">\.</span><span class="o">(</span>sh|py|pl<span class="o">)</span>&lt;/match&gt;
+    &lt;description&gt;Suspicious script download detected.&lt;/description&gt;
+    &lt;group&gt;attack,malware,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 권한 상승 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100050"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"8"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;5401&lt;/if_sid&gt;
+    &lt;user&gt;root&lt;/user&gt;
+    &lt;description&gt;Successful <span class="nb">sudo </span>to root.&lt;/description&gt;
+    &lt;group&gt;privilege_escalation,pci_dss_10.2.2,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100051"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"12"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;5402&lt;/if_sid&gt;
+    &lt;same_user /&gt;
+    &lt;description&gt;Multiple failed <span class="nb">sudo </span>attempts by same user.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1548&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;privilege_escalation,pci_dss_10.2.2,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 데이터 유출 감지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100060"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;31100&lt;/if_sid&gt;
+    &lt;status&gt;200&lt;/status&gt;
+    &lt;size&gt;1048576&lt;/size&gt;
+    &lt;description&gt;Large file download detected - potential data exfiltration.&lt;/description&gt;
+    &lt;group&gt;web,data_exfiltration,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100061"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"8"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;scp.<span class="k">*</span><span class="nt">-r</span>|rsync.<span class="k">*</span><span class="nt">-r</span>|tar.<span class="k">*</span><span class="nt">-c</span>&lt;/match&gt;
+    &lt;description&gt;Bulk data transfer <span class="nb">command </span>detected.&lt;/description&gt;
+    &lt;group&gt;data_exfiltration,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 컨테이너 보안 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100070"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;docker.<span class="k">*</span><span class="nt">--privileged</span>|docker.<span class="k">*</span><span class="nt">--cap-add</span>&lt;/match&gt;
+    &lt;description&gt;Privileged container execution detected.&lt;/description&gt;
+    &lt;group&gt;docker,container_security,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100071"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"8"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;kubectl.<span class="k">*</span>create|kubectl.<span class="k">*</span>apply&lt;/match&gt;
+    &lt;description&gt;Kubernetes resource creation detected.&lt;/description&gt;
+    &lt;group&gt;kubernetes,container_security,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 로그 변조 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100080"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"12"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;rm.<span class="k">*</span>log|truncate.<span class="k">*</span>log|&gt;.<span class="k">*</span>log&lt;/match&gt;
+    &lt;description&gt;Log file manipulation detected.&lt;/description&gt;
+    &lt;mitre&gt;
+      &lt;<span class="nb">id</span><span class="o">&gt;</span>T1070.002&lt;/id&gt;
+    &lt;/mitre&gt;
+    &lt;group&gt;log_tampering,attack,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 암호화폐 채굴 탐지 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100090"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"10"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;530&lt;/if_sid&gt;
+    &lt;match&gt;xmrig|cpuminer|minerd|ccminer&lt;/match&gt;
+    &lt;description&gt;Cryptocurrency mining activity detected.&lt;/description&gt;
+    &lt;group&gt;malware,cryptomining,&lt;/group&gt;
+  &lt;/rule&gt;
+
+  &lt;<span class="o">!</span><span class="nt">--</span> 컴플라이언스 관련 이벤트 <span class="nt">--</span><span class="o">&gt;</span>
+  &lt;rule <span class="nb">id</span><span class="o">=</span><span class="s2">"100100"</span> <span class="nv">level</span><span class="o">=</span><span class="s2">"5"</span><span class="o">&gt;</span>
+    &lt;if_sid&gt;5501&lt;/if_sid&gt;
+    &lt;user&gt;audit&lt;/user&gt;
+    &lt;description&gt;Audit log access detected.&lt;/description&gt;
+    &lt;group&gt;audit,compliance,pci_dss_10.2.3,&lt;/group&gt;
+  &lt;/rule&gt;
+
+&lt;/group&gt;
+</code></pre></div></div>
+
+<h4 id="고급-디코더-설정">고급 디코더 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /var/ossec/etc/decoders/local_decoder.xml</span>
+<span class="c"># Wazuh 커스텀 디코더</span>
+
+&lt;decoder <span class="nv">name</span><span class="o">=</span><span class="s2">"custom-ssh"</span><span class="o">&gt;</span>
+  &lt;parent&gt;sshd&lt;/parent&gt;
+  &lt;regex&gt;Failed password <span class="k">for</span> <span class="o">(</span><span class="se">\S</span>+<span class="o">)</span> from <span class="o">(</span><span class="se">\d</span>+.<span class="se">\d</span>+.<span class="se">\d</span>+.<span class="se">\d</span>+<span class="o">)</span> port <span class="o">(</span><span class="se">\d</span>+<span class="o">)</span>&lt;/regex&gt;
+  &lt;order&gt;user,srcip,srcport&lt;/order&gt;
+&lt;/decoder&gt;
+
+&lt;decoder <span class="nv">name</span><span class="o">=</span><span class="s2">"custom-apache-error"</span><span class="o">&gt;</span>
+  &lt;parent&gt;apache-errorlog&lt;/parent&gt;
+  &lt;regex&gt;<span class="se">\[</span><span class="o">(</span><span class="se">\w</span>+ <span class="se">\w</span>+ <span class="se">\d</span>+ <span class="se">\d</span>+:<span class="se">\d</span>+:<span class="se">\d</span>+ <span class="se">\d</span>+<span class="o">)</span><span class="se">\]</span> <span class="se">\[</span><span class="o">(</span><span class="se">\w</span>+<span class="o">)</span><span class="se">\]</span> <span class="o">(</span><span class="se">\S</span>+<span class="o">)</span>: <span class="o">(</span>.+<span class="o">)</span>, referer: <span class="o">(</span><span class="se">\S</span>+<span class="o">)</span>&lt;/regex&gt;
+  &lt;order&gt;timestamp,level,client,message,referer&lt;/order&gt;
+&lt;/decoder&gt;
+
+&lt;decoder <span class="nv">name</span><span class="o">=</span><span class="s2">"custom-mysql"</span><span class="o">&gt;</span>
+  &lt;parent&gt;mysql_log&lt;/parent&gt;
+  &lt;regex&gt;<span class="o">(</span><span class="se">\d</span>+<span class="o">)</span> Connect<span class="se">\s</span>+Access denied <span class="k">for </span>user <span class="s1">'(\S+)'</span>@<span class="s1">'(\S+)'</span>&lt;/regex&gt;
+  &lt;order&gt;id,user,srcip&lt;/order&gt;
+&lt;/decoder&gt;
+
+&lt;decoder <span class="nv">name</span><span class="o">=</span><span class="s2">"custom-docker"</span><span class="o">&gt;</span>
+  &lt;parent&gt;json&lt;/parent&gt;
+  &lt;regex&gt;<span class="s2">"container_name"</span>:<span class="s2">"([^"</span><span class="o">]</span>+<span class="o">)</span><span class="s2">"&lt;/regex&gt;
+  &lt;order&gt;container_name&lt;/order&gt;
+&lt;/decoder&gt;
+
+&lt;decoder name="</span>custom-kubernetes<span class="s2">"&gt;
+  &lt;parent&gt;json&lt;/parent&gt;
+  &lt;regex&gt;"</span>verb<span class="s2">":"</span><span class="o">(</span><span class="se">\S</span>+<span class="o">)</span><span class="s2">","</span>user<span class="s2">":{"</span>username<span class="s2">":"</span><span class="o">([</span>^<span class="s2">"]+)"</span><span class="o">}</span>&lt;/regex&gt;
+  &lt;order&gt;verb,username&lt;/order&gt;
+&lt;/decoder&gt;
+</code></pre></div></div>
+
+<h3 id="-wazuh-자동화-및-대응">📊 Wazuh 자동화 및 대응</h3>
+
+<h4 id="자동-대응-스크립트">자동 대응 스크립트</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /var/ossec/active-response/bin/custom-response.sh</span>
+<span class="c"># Wazuh 자동 대응 스크립트</span>
+
+<span class="c"># 입력 파라미터 읽기</span>
+<span class="nv">LOCAL</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$0</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">'/'</span> <span class="nt">-f4</span><span class="sb">`</span>
+<span class="nv">PWD</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="nb">read </span>INPUT_JSON
+
+<span class="c"># JSON 파싱 함수</span>
+get_json_value<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$INPUT_JSON</span><span class="s2">"</span> | python3 <span class="nt">-c</span> <span class="s2">"
+import sys, json
+data = json.load(sys.stdin)
+print(data.get('</span><span class="nv">$1</span><span class="s2">', ''))
+"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">""</span>
+<span class="o">}</span>
+
+<span class="c"># 로그 함수</span>
+log_message<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - </span><span class="nv">$1</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/ossec/logs/active-responses.log
+<span class="o">}</span>
+
+<span class="c"># 액션 및 매개변수 추출</span>
+<span class="nv">ACTION</span><span class="o">=</span><span class="si">$(</span>get_json_value <span class="s2">"command"</span><span class="si">)</span>
+<span class="nv">SRCIP</span><span class="o">=</span><span class="si">$(</span>get_json_value <span class="s2">"parameters.alert.data.srcip"</span><span class="si">)</span>
+<span class="nv">RULE_ID</span><span class="o">=</span><span class="si">$(</span>get_json_value <span class="s2">"parameters.alert.rule.id"</span><span class="si">)</span>
+<span class="nv">USERNAME</span><span class="o">=</span><span class="si">$(</span>get_json_value <span class="s2">"parameters.alert.data.user"</span><span class="si">)</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="si">$(</span>get_json_value <span class="s2">"parameters.alert.syscheck.path"</span><span class="si">)</span>
+
+log_message <span class="s2">"Active response triggered: Action=</span><span class="nv">$ACTION</span><span class="s2">, Rule=</span><span class="nv">$RULE_ID</span><span class="s2">, SrcIP=</span><span class="nv">$SRCIP</span><span class="s2">"</span>
+
+<span class="k">case</span> <span class="nv">$ACTION</span> <span class="k">in</span>
+    <span class="s2">"ban-ip"</span><span class="p">)</span>
+        <span class="c"># IP 차단</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SRCIP</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="c"># iptables 차단</span>
+            iptables <span class="nt">-I</span> INPUT <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$SRCIP</span><span class="s2">"</span> <span class="nt">-j</span> DROP
+            
+            <span class="c"># Fail2Ban 차단 (Fail2Ban이 설치된 경우)</span>
+            <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> fail2ban-client <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+                </span>fail2ban-client <span class="nb">set </span>sshd banip <span class="s2">"</span><span class="nv">$SRCIP</span><span class="s2">"</span>
+            <span class="k">fi
+            
+            </span>log_message <span class="s2">"IP </span><span class="nv">$SRCIP</span><span class="s2"> banned successfully"</span>
+            
+            <span class="c"># 알림 발송</span>
+            /usr/local/bin/send-alert.sh <span class="s2">"IP Banned"</span> <span class="s2">"IP </span><span class="nv">$SRCIP</span><span class="s2"> has been banned due to rule </span><span class="nv">$RULE_ID</span><span class="s2">"</span>
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"disable-user"</span><span class="p">)</span>
+        <span class="c"># 사용자 계정 비활성화</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$USERNAME</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span>usermod <span class="nt">-L</span> <span class="s2">"</span><span class="nv">$USERNAME</span><span class="s2">"</span>
+            log_message <span class="s2">"User </span><span class="nv">$USERNAME</span><span class="s2"> disabled due to suspicious activity"</span>
+            
+            <span class="c"># 활성 세션 종료</span>
+            pkill <span class="nt">-u</span> <span class="s2">"</span><span class="nv">$USERNAME</span><span class="s2">"</span>
+            
+            <span class="c"># 알림 발송</span>
+            /usr/local/bin/send-alert.sh <span class="s2">"User Disabled"</span> <span class="s2">"User </span><span class="nv">$USERNAME</span><span class="s2"> has been disabled due to rule </span><span class="nv">$RULE_ID</span><span class="s2">"</span>
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"quarantine-file"</span><span class="p">)</span>
+        <span class="c"># 파일 격리</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$FILENAME</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$FILENAME</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nv">QUARANTINE_DIR</span><span class="o">=</span><span class="s2">"/var/ossec/quarantine/</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span>
+            <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$QUARANTINE_DIR</span><span class="s2">"</span>
+            
+            <span class="c"># 파일 이동</span>
+            <span class="nb">mv</span> <span class="s2">"</span><span class="nv">$FILENAME</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$QUARANTINE_DIR</span><span class="s2">/"</span>
+            log_message <span class="s2">"File </span><span class="nv">$FILENAME</span><span class="s2"> quarantined to </span><span class="nv">$QUARANTINE_DIR</span><span class="s2">"</span>
+            
+            <span class="c"># 알림 발송</span>
+            /usr/local/bin/send-alert.sh <span class="s2">"File Quarantined"</span> <span class="s2">"File </span><span class="nv">$FILENAME</span><span class="s2"> has been quarantined due to rule </span><span class="nv">$RULE_ID</span><span class="s2">"</span>
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"restart-service"</span><span class="p">)</span>
+        <span class="c"># 서비스 재시작</span>
+        <span class="nv">SERVICE</span><span class="o">=</span><span class="si">$(</span>get_json_value <span class="s2">"parameters.service"</span><span class="si">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SERVICE</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span>systemctl restart <span class="s2">"</span><span class="nv">$SERVICE</span><span class="s2">"</span>
+            log_message <span class="s2">"Service </span><span class="nv">$SERVICE</span><span class="s2"> restarted due to rule </span><span class="nv">$RULE_ID</span><span class="s2">"</span>
+            
+            <span class="c"># 알림 발송</span>
+            /usr/local/bin/send-alert.sh <span class="s2">"Service Restarted"</span> <span class="s2">"Service </span><span class="nv">$SERVICE</span><span class="s2"> has been restarted due to rule </span><span class="nv">$RULE_ID</span><span class="s2">"</span>
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"collect-evidence"</span><span class="p">)</span>
+        <span class="c"># 증거 수집</span>
+        <span class="nv">EVIDENCE_DIR</span><span class="o">=</span><span class="s2">"/var/ossec/evidence/</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="s2">-rule</span><span class="nv">$RULE_ID</span><span class="s2">"</span>
+        <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">"</span>
+        
+        <span class="c"># 시스템 정보 수집</span>
+        ps aux <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/processes.txt"</span>
+        netstat <span class="nt">-tlnp</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/network.txt"</span>
+        ss <span class="nt">-tlnp</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/sockets.txt"</span>
+        last <span class="nt">-n</span> 50 <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/logins.txt"</span>
+        
+        <span class="c"># 로그 파일 복사</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SRCIP</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">grep</span> <span class="s2">"</span><span class="nv">$SRCIP</span><span class="s2">"</span> /var/log/auth.log <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/auth-logs.txt"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+            grep</span> <span class="s2">"</span><span class="nv">$SRCIP</span><span class="s2">"</span> /var/log/apache2/access.log <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/web-logs.txt"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+        </span><span class="k">fi</span>
+        
+        <span class="c"># 메모리 덤프 (선택사항)</span>
+        <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> memdump <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+            </span>memdump <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$EVIDENCE_DIR</span><span class="s2">/memory.dump"</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">true
+        </span><span class="k">fi
+        
+        </span>log_message <span class="s2">"Evidence collected in </span><span class="nv">$EVIDENCE_DIR</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        log_message <span class="s2">"Unknown action: </span><span class="nv">$ACTION</span><span class="s2">"</span>
+        <span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="c"># 성공 상태 반환</span>
+<span class="nb">exit </span>0
+</code></pre></div></div>
+
+<h4 id="알림-시스템-구축">알림 시스템 구축</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/send-alert.sh</span>
+<span class="c"># 다중 채널 알림 시스템</span>
+
+<span class="nv">SUBJECT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span>
+<span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+<span class="nv">SEVERITY</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">3</span><span class="k">:-</span><span class="nv">medium</span><span class="k">}</span><span class="s2">"</span>
+
+<span class="c"># 설정 파일 로드</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> /etc/wazuh/alert-config.conf <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">source</span> /etc/wazuh/alert-config.conf
+<span class="k">fi</span>
+
+<span class="c"># 기본 설정</span>
+<span class="nv">EMAIL_TO</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">EMAIL_TO</span><span class="k">:-</span><span class="nv">admin</span><span class="p">@example.com</span><span class="k">}</span><span class="s2">"</span>
+<span class="nv">SLACK_WEBHOOK</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">SLACK_WEBHOOK</span><span class="k">:-}</span><span class="s2">"</span>
+<span class="nv">DISCORD_WEBHOOK</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">DISCORD_WEBHOOK</span><span class="k">:-}</span><span class="s2">"</span>
+<span class="nv">SMS_API_KEY</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">SMS_API_KEY</span><span class="k">:-}</span><span class="s2">"</span>
+<span class="nv">SMS_TO</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">SMS_TO</span><span class="k">:-}</span><span class="s2">"</span>
+
+<span class="c"># 로그 함수</span>
+log_alert<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - [</span><span class="nv">$SEVERITY</span><span class="s2">] </span><span class="nv">$SUBJECT</span><span class="s2">: </span><span class="nv">$MESSAGE</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> /var/log/wazuh-alerts.log
+<span class="o">}</span>
+
+<span class="c"># 이메일 발송</span>
+send_email<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> mail <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$MESSAGE</span><span class="s2">"</span> | mail <span class="nt">-s</span> <span class="s2">"Wazuh Alert: </span><span class="nv">$SUBJECT</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$EMAIL_TO</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"Email sent to </span><span class="nv">$EMAIL_TO</span><span class="s2">"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># Slack 알림</span>
+send_slack<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="c"># 심각도에 따른 색상</span>
+        <span class="k">case</span> <span class="nv">$SEVERITY</span> <span class="k">in</span>
+            <span class="s2">"high"</span><span class="p">|</span><span class="s2">"critical"</span><span class="p">)</span>
+                <span class="nv">COLOR</span><span class="o">=</span><span class="s2">"danger"</span>
+                <span class="nv">EMOJI</span><span class="o">=</span><span class="s2">"🚨"</span>
+                <span class="p">;;</span>
+            <span class="s2">"medium"</span><span class="p">)</span>
+                <span class="nv">COLOR</span><span class="o">=</span><span class="s2">"warning"</span>
+                <span class="nv">EMOJI</span><span class="o">=</span><span class="s2">"⚠️"</span>
+                <span class="p">;;</span>
+            <span class="k">*</span><span class="p">)</span>
+                <span class="nv">COLOR</span><span class="o">=</span><span class="s2">"good"</span>
+                <span class="nv">EMOJI</span><span class="o">=</span><span class="s2">"ℹ️"</span>
+                <span class="p">;;</span>
+        <span class="k">esac</span>
+        
+        <span class="nv">PAYLOAD</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
+{
+    "text": "</span><span class="nv">$EMOJI</span><span class="sh"> Wazuh Security Alert",
+    "attachments": [
+        {
+            "color": "</span><span class="nv">$COLOR</span><span class="sh">",
+            "fields": [
+                {
+                    "title": "Alert",
+                    "value": "</span><span class="nv">$SUBJECT</span><span class="sh">",
+                    "short": true
+                },
+                {
+                    "title": "Severity",
+                    "value": "</span><span class="nv">$SEVERITY</span><span class="sh">",
+                    "short": true
+                },
+                {
+                    "title": "Details",
+                    "value": "</span><span class="nv">$MESSAGE</span><span class="sh">",
+                    "short": false
+                },
+                {
+                    "title": "Timestamp",
+                    "value": "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">",
+                    "short": true
+                },
+                {
+                    "title": "Host",
+                    "value": "</span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">",
+                    "short": true
+                }
+            ]
+        }
+    ]
+}
+</span><span class="no">EOF
+</span>        <span class="si">)</span>
+        
+        curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+             <span class="nt">--data</span> <span class="s2">"</span><span class="nv">$PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
+             <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">"</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1
+        
+        <span class="nb">echo</span> <span class="s2">"Slack notification sent"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># Discord 알림</span>
+send_discord<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$DISCORD_WEBHOOK</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nv">PAYLOAD</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> <span class="o">&lt;&lt;</span><span class="no">EOF</span><span class="sh">
+{
+    "username": "Wazuh Security Bot",
+    "embeds": [
+        {
+            "title": "🛡️ Security Alert: </span><span class="nv">$SUBJECT</span><span class="sh">",
+            "description": "</span><span class="nv">$MESSAGE</span><span class="sh">",
+            "color": 15158332,
+            "fields": [
+                {
+                    "name": "Severity",
+                    "value": "</span><span class="nv">$SEVERITY</span><span class="sh">",
+                    "inline": true
+                },
+                {
+                    "name": "Host",
+                    "value": "</span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">",
+                    "inline": true
+                },
+                {
+                    "name": "Timestamp",
+                    "value": "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">",
+                    "inline": false
+                }
+            ]
+        }
+    ]
+}
+</span><span class="no">EOF
+</span>        <span class="si">)</span>
+        
+        curl <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+             <span class="nt">-X</span> POST <span class="se">\</span>
+             <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
+             <span class="s2">"</span><span class="nv">$DISCORD_WEBHOOK</span><span class="s2">"</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1
+        
+        <span class="nb">echo</span> <span class="s2">"Discord notification sent"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># SMS 발송 (Twilio API 예제)</span>
+send_sms<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SMS_API_KEY</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SMS_TO</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$SEVERITY</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"critical"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nv">SMS_MESSAGE</span><span class="o">=</span><span class="s2">"Wazuh CRITICAL Alert: </span><span class="nv">$SUBJECT</span><span class="s2"> on </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2">"</span>
+        
+        curl <span class="nt">-X</span> POST https://api.twilio.com/2010-04-01/Accounts/<span class="nv">$TWILIO_SID</span>/Messages.json <span class="se">\</span>
+             <span class="nt">--data-urlencode</span> <span class="s2">"To=</span><span class="nv">$SMS_TO</span><span class="s2">"</span> <span class="se">\</span>
+             <span class="nt">--data-urlencode</span> <span class="s2">"From=</span><span class="nv">$TWILIO_FROM</span><span class="s2">"</span> <span class="se">\</span>
+             <span class="nt">--data-urlencode</span> <span class="s2">"Body=</span><span class="nv">$SMS_MESSAGE</span><span class="s2">"</span> <span class="se">\</span>
+             <span class="nt">-u</span> <span class="s2">"</span><span class="nv">$TWILIO_SID</span><span class="s2">:</span><span class="nv">$SMS_API_KEY</span><span class="s2">"</span> <span class="o">&gt;</span>/dev/null 2&gt;&amp;1
+        
+        <span class="nb">echo</span> <span class="s2">"SMS notification sent"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+main<span class="o">()</span> <span class="o">{</span>
+    log_alert
+    
+    <span class="c"># 심각도에 따른 알림 채널 선택</span>
+    <span class="k">case</span> <span class="nv">$SEVERITY</span> <span class="k">in</span>
+        <span class="s2">"critical"</span><span class="p">)</span>
+            send_email
+            send_slack
+            send_discord
+            send_sms
+            <span class="p">;;</span>
+        <span class="s2">"high"</span><span class="p">)</span>
+            send_email
+            send_slack
+            send_discord
+            <span class="p">;;</span>
+        <span class="s2">"medium"</span><span class="p">)</span>
+            send_slack
+            <span class="p">;;</span>
+        <span class="s2">"low"</span><span class="p">)</span>
+            log_alert  <span class="c"># 로그만 기록</span>
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+<span class="o">}</span>
+
+main
+</code></pre></div></div>
+
+<h2 id="docker-컨테이너-보안--docker-container-security">Docker 컨테이너 보안 | Docker Container Security</h2>
+
+<h3 id="-docker-보안-강화">🐳 Docker 보안 강화</h3>
+
+<h4 id="포괄적인-docker-보안-설정">포괄적인 Docker 보안 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/docker-security-hardening.sh</span>
+<span class="c"># Docker 보안 강화 스크립트</span>
+
+<span class="nb">set</span> <span class="nt">-e</span>
+
+print_status<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - </span><span class="nv">$1</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># Docker 데몬 보안 설정</span>
+configure_docker_daemon<span class="o">()</span> <span class="o">{</span>
+    print_status <span class="s2">"Configuring Docker daemon security..."</span>
+    
+    <span class="c"># Docker 데몬 설정 파일 생성</span>
+    <span class="nb">mkdir</span> <span class="nt">-p</span> /etc/docker
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/docker/daemon.json <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+{
+    "icc": false,
+    "userns-remap": "default",
+    "live-restore": true,
+    "userland-proxy": false,
+    "no-new-privileges": true,
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-size": "10m",
+        "max-file": "3"
+    },
+    "storage-driver": "overlay2",
+    "storage-opts": [
+        "overlay2.override_kernel_check=true"
+    ],
+    "default-ulimits": {
+        "nofile": {
+            "Hard": 64000,
+            "Name": "nofile",
+            "Soft": 64000
+        }
+    },
+    "disable-legacy-registry": true,
+    "experimental": false,
+    "metrics-addr": "127.0.0.1:9323",
+    "insecure-registries": []
+}
+</span><span class="no">EOF
+    
+</span>    <span class="c"># Docker 서비스 재시작</span>
+    systemctl restart docker
+    print_status <span class="s2">"Docker daemon configured successfully"</span>
+<span class="o">}</span>
+
+<span class="c"># Docker 컨테이너 기본 보안 프로파일</span>
+create_security_profiles<span class="o">()</span> <span class="o">{</span>
+    print_status <span class="s2">"Creating security profiles..."</span>
+    
+    <span class="c"># AppArmor 프로파일 생성</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> aa-status <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">cat</span> <span class="o">&gt;</span> /etc/apparmor.d/docker-default-secure <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#include &lt;tunables/global&gt;
+
+profile docker-default-secure flags=(attach_disconnected,mediate_deleted) {
+  #include &lt;abstractions/base&gt;
+  
+  # 네트워크 접근 제한
+  network inet tcp,
+  network inet udp,
+  network inet6 tcp,
+  network inet6 udp,
+  network netlink raw,
+  
+  # 파일 시스템 접근 제한
+  deny /etc/passwd r,
+  deny /etc/shadow r,
+  deny /etc/group r,
+  deny /etc/gshadow r,
+  deny /proc/sys/** w,
+  deny /sys/** w,
+  
+  # 특권 상승 방지
+  deny capability sys_admin,
+  deny capability sys_module,
+  deny capability sys_rawio,
+  deny capability sys_pacct,
+  deny capability sys_nice,
+  deny capability sys_resource,
+  deny capability sys_time,
+  deny capability sys_tty_config,
+  deny capability mknod,
+  deny capability audit_write,
+  deny capability audit_control,
+  deny capability mac_override,
+  deny capability mac_admin,
+  deny capability net_admin,
+  deny capability syslog,
+  deny capability wake_alarm,
+  deny capability block_suspend,
+  
+  # 허용된 capability들
+  capability chown,
+  capability dac_override,
+  capability fowner,
+  capability fsetid,
+  capability kill,
+  capability setgid,
+  capability setuid,
+  capability setpcap,
+  capability linux_immutable,
+  capability net_bind_service,
+  capability net_broadcast,
+  capability net_raw,
+  capability ipc_lock,
+  capability ipc_owner,
+  capability sys_chroot,
+  capability sys_ptrace,
+  capability lease,
+  capability audit_read,
+}
+</span><span class="no">EOF
+        
+</span>        apparmor_parser <span class="nt">-r</span> /etc/apparmor.d/docker-default-secure
+    <span class="k">fi</span>
+    
+    <span class="c"># Seccomp 프로파일 생성</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/docker/seccomp-profile.json <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+{
+    "defaultAction": "SCMP_ACT_ERRNO",
+    "archMap": [
+        {
+            "architecture": "SCMP_ARCH_X86_64",
+            "subArchitectures": [
+                "SCMP_ARCH_X86",
+                "SCMP_ARCH_X32"
+            ]
+        }
+    ],
+    "syscalls": [
+        {
+            "names": [
+                "accept",
+                "accept4", 
+                "access",
+                "adjtimex",
+                "alarm",
+                "bind",
+                "brk",
+                "chdir",
+                "chmod",
+                "chown",
+                "chroot",
+                "clock_getres",
+                "clock_gettime",
+                "clone",
+                "close",
+                "connect",
+                "dup",
+                "dup2",
+                "dup3",
+                "epoll_create",
+                "epoll_create1",
+                "epoll_ctl",
+                "epoll_wait",
+                "eventfd",
+                "eventfd2",
+                "execve",
+                "exit",
+                "exit_group",
+                "fcntl",
+                "fstat",
+                "futex",
+                "getcwd",
+                "getdents",
+                "getdents64",
+                "getegid",
+                "geteuid",
+                "getgid",
+                "getgroups",
+                "getpeername",
+                "getpgrp",
+                "getpid",
+                "getppid",
+                "getrlimit",
+                "getsid",
+                "getsockname",
+                "getsockopt",
+                "gettid",
+                "gettimeofday",
+                "getuid",
+                "listen",
+                "lseek",
+                "lstat",
+                "madvise",
+                "mmap",
+                "mprotect",
+                "munmap",
+                "nanosleep",
+                "open",
+                "openat",
+                "pause",
+                "pipe",
+                "pipe2",
+                "poll",
+                "ppoll",
+                "prctl",
+                "read",
+                "recv",
+                "recvfrom",
+                "recvmsg",
+                "rt_sigaction",
+                "rt_sigprocmask",
+                "rt_sigreturn",
+                "sched_getaffinity",
+                "sched_yield",
+                "select",
+                "send",
+                "sendmsg",
+                "sendto",
+                "setgid",
+                "setgroups",
+                "setrlimit",
+                "setsid",
+                "setsockopt",
+                "setuid",
+                "shutdown",
+                "sigaltstack",
+                "socket",
+                "socketpair",
+                "stat",
+                "statfs",
+                "sysinfo",
+                "time",
+                "uname",
+                "unlink",
+                "unlinkat",
+                "wait4",
+                "waitpid",
+                "write"
+            ],
+            "action": "SCMP_ACT_ALLOW"
+        }
+    ]
+}
+</span><span class="no">EOF
+    
+</span>    print_status <span class="s2">"Security profiles created successfully"</span>
+<span class="o">}</span>
+
+<span class="c"># Docker 이미지 보안 스캐너 설치</span>
+install_image_scanner<span class="o">()</span> <span class="o">{</span>
+    print_status <span class="s2">"Installing Docker image security scanner..."</span>
+    
+    <span class="c"># Trivy 설치</span>
+    <span class="k">if</span> <span class="o">!</span> <span class="nb">command</span> <span class="nt">-v</span> trivy <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        case</span> <span class="si">$(</span><span class="nb">uname</span> <span class="nt">-m</span><span class="si">)</span> <span class="k">in
+            </span>x86_64<span class="p">)</span>
+                <span class="nv">ARCH</span><span class="o">=</span><span class="s2">"64bit"</span>
+                <span class="p">;;</span>
+            aarch64<span class="p">)</span>
+                <span class="nv">ARCH</span><span class="o">=</span><span class="s2">"ARM64"</span>
+                <span class="p">;;</span>
+            <span class="k">*</span><span class="p">)</span>
+                print_status <span class="s2">"Unsupported architecture for Trivy"</span>
+                <span class="k">return </span>1
+                <span class="p">;;</span>
+        <span class="k">esac</span>
+        
+        <span class="nv">VERSION</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="s2">"https://api.github.com/repos/aquasecurity/trivy/releases/latest"</span> | <span class="nb">grep</span> <span class="s1">'"tag_name":'</span> | <span class="nb">sed</span> <span class="nt">-E</span> <span class="s1">'s/.*"([^"]+)".*/\1/'</span><span class="si">)</span>
+        wget <span class="nt">-q</span> <span class="s2">"https://github.com/aquasecurity/trivy/releases/download/</span><span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span><span class="s2">/trivy_</span><span class="k">${</span><span class="nv">VERSION</span><span class="p">#v</span><span class="k">}</span><span class="s2">_Linux-</span><span class="k">${</span><span class="nv">ARCH</span><span class="k">}</span><span class="s2">.tar.gz"</span>
+        <span class="nb">tar</span> <span class="nt">-xzf</span> <span class="s2">"trivy_</span><span class="k">${</span><span class="nv">VERSION</span><span class="p">#v</span><span class="k">}</span><span class="s2">_Linux-</span><span class="k">${</span><span class="nv">ARCH</span><span class="k">}</span><span class="s2">.tar.gz"</span>
+        <span class="nb">mv </span>trivy /usr/local/bin/
+        <span class="nb">rm</span> <span class="nt">-f</span> <span class="s2">"trivy_</span><span class="k">${</span><span class="nv">VERSION</span><span class="p">#v</span><span class="k">}</span><span class="s2">_Linux-</span><span class="k">${</span><span class="nv">ARCH</span><span class="k">}</span><span class="s2">.tar.gz"</span>
+    <span class="k">fi
+    
+    </span>print_status <span class="s2">"Trivy installed successfully"</span>
+<span class="o">}</span>
+
+<span class="c"># Docker 컴포즈 보안 템플릿</span>
+create_secure_compose_template<span class="o">()</span> <span class="o">{</span>
+    print_status <span class="s2">"Creating secure Docker Compose template..."</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/share/docker-compose-secure-template.yml <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+version: '3.8'
+
+# 보안 강화된 Docker Compose 템플릿
+services:
+  app:
+    image: your-app:latest
+    
+    # 보안 설정
+    read_only: true                    # 루트 파일시스템 읽기 전용
+    cap_drop:                         # 모든 capabilities 제거
+      - ALL
+    cap_add:                          # 필요한 capabilities만 추가
+      - NET_BIND_SERVICE
+    
+    # 리소스 제한
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpu_count: 1
+    pids_limit: 100
+    
+    # 네트워크 보안
+    networks:
+      - app-network
+    ports:
+      - "8080:8080"
+    
+    # 환경 변수 (secrets 사용 권장)
+    environment:
+      - NODE_ENV=production
+    
+    # 볼륨 마운트 (최소한으로)
+    volumes:
+      - app-data:/app/data
+      - /tmp:/tmp:rw,noexec,nosuid,nodev
+    
+    # 보안 옵션
+    security_opt:
+      - no-new-privileges:true
+      - apparmor:docker-default-secure
+      - seccomp:/etc/docker/seccomp-profile.json
+    
+    # 재시작 정책
+    restart: unless-stopped
+    
+    # 헬스체크
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    # 로그 설정
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # 데이터베이스 서비스 예제
+  database:
+    image: postgres:13-alpine
+    
+    # 보안 설정
+    read_only: true
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID
+      - SETGID
+      - DAC_OVERRIDE
+    
+    # 리소스 제한
+    mem_limit: 1g
+    memswap_limit: 1g
+    
+    # 환경 변수
+    environment:
+      POSTGRES_DB_FILE: /run/secrets/postgres_db
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    
+    # Secrets 사용
+    secrets:
+      - postgres_db
+      - postgres_user
+      - postgres_password
+    
+    # 볼륨 설정
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - /tmp:/tmp:rw,noexec,nosuid,nodev
+    
+    # 네트워크
+    networks:
+      - db-network
+    
+    # 보안 옵션
+    security_opt:
+      - no-new-privileges:true
+    
+    # 헬스체크
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+# 네트워크 정의
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+  db-network:
+    driver: bridge
+    internal: true                    # 외부 접근 차단
+
+# 볼륨 정의
+volumes:
+  app-data:
+    driver: local
+  postgres-data:
+    driver: local
+
+# Secrets 정의
+secrets:
+  postgres_db:
+    file: ./secrets/postgres_db.txt
+  postgres_user:
+    file: ./secrets/postgres_user.txt
+  postgres_password:
+    file: ./secrets/postgres_password.txt
+</span><span class="no">EOF
+    
+</span>    print_status <span class="s2">"Secure Docker Compose template created"</span>
+<span class="o">}</span>
+
+<span class="c"># Docker 보안 스캔 스크립트</span>
+create_security_scanner<span class="o">()</span> <span class="o">{</span>
+    print_status <span class="s2">"Creating Docker security scanner..."</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/docker-security-scan.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+# Docker 보안 스캔 스크립트
+
+IMAGE=</span><span class="nv">$1</span><span class="sh">
+REPORT_DIR="/var/log/docker-security-scans"
+TIMESTAMP=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span><span class="sh">
+
+if [ -z "</span><span class="nv">$IMAGE</span><span class="sh">" ]; then
+    echo "Usage: </span><span class="nv">$0</span><span class="sh"> &lt;image-name&gt;"
+    exit 1
+fi
+
+mkdir -p "</span><span class="nv">$REPORT_DIR</span><span class="sh">"
+
+echo "Starting security scan for image: </span><span class="nv">$IMAGE</span><span class="sh">"
+
+# Trivy 취약점 스캔
+echo "Running Trivy vulnerability scan..."
+trivy image --format json --output "</span><span class="nv">$REPORT_DIR</span><span class="sh">/trivy-</span><span class="nv">$TIMESTAMP</span><span class="sh">.json" "</span><span class="nv">$IMAGE</span><span class="sh">"
+trivy image --format table "</span><span class="nv">$IMAGE</span><span class="sh">" | tee "</span><span class="nv">$REPORT_DIR</span><span class="sh">/trivy-</span><span class="nv">$TIMESTAMP</span><span class="sh">.txt"
+
+# Docker Bench 보안 스캔 (설치된 경우)
+if command -v docker-bench-security &gt;/dev/null 2&gt;&amp;1; then
+    echo "Running Docker Bench security check..."
+    docker-bench-security &gt; "</span><span class="nv">$REPORT_DIR</span><span class="sh">/docker-bench-</span><span class="nv">$TIMESTAMP</span><span class="sh">.txt"
+fi
+
+# 이미지 히스토리 분석
+echo "Analyzing image history..."
+docker history --no-trunc "</span><span class="nv">$IMAGE</span><span class="sh">" &gt; "</span><span class="nv">$REPORT_DIR</span><span class="sh">/history-</span><span class="nv">$TIMESTAMP</span><span class="sh">.txt"
+
+# 이미지 구성 확인
+echo "Checking image configuration..."
+docker inspect "</span><span class="nv">$IMAGE</span><span class="sh">" &gt; "</span><span class="nv">$REPORT_DIR</span><span class="sh">/inspect-</span><span class="nv">$TIMESTAMP</span><span class="sh">.json"
+
+# 보안 권고사항 체크
+echo "Checking security best practices..."
+{
+    echo "=== Security Check Results ==="
+    echo "Image: </span><span class="nv">$IMAGE</span><span class="sh">"
+    echo "Scan Date: </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">"
+    echo ""
+    
+    # 루트 사용자 체크
+    if docker inspect "</span><span class="nv">$IMAGE</span><span class="sh">" | grep -q '"User": ""'; then
+        echo "❌ FAIL: Image runs as root user"
+    else
+        echo "✅ PASS: Image does not run as root"
+    fi
+    
+    # 불필요한 패키지 체크
+    echo ""
+    echo "=== Package Analysis ==="
+    docker run --rm "</span><span class="nv">$IMAGE</span><span class="sh">" sh -c 'which wget curl nc netcat' 2&gt;/dev/null | while read tool; do
+        if [ -n "</span><span class="nv">$tool</span><span class="sh">" ]; then
+            echo "⚠️  WARNING: Found potentially dangerous tool: </span><span class="nv">$tool</span><span class="sh">"
+        fi
+    done
+    
+} &gt; "</span><span class="nv">$REPORT_DIR</span><span class="sh">/security-check-</span><span class="nv">$TIMESTAMP</span><span class="sh">.txt"
+
+echo "Security scan completed. Reports saved in: </span><span class="nv">$REPORT_DIR</span><span class="sh">"
+</span><span class="no">EOF
+    
+</span>    <span class="nb">chmod</span> +x /usr/local/bin/docker-security-scan.sh
+    print_status <span class="s2">"Docker security scanner created"</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+main<span class="o">()</span> <span class="o">{</span>
+    print_status <span class="s2">"Starting Docker security hardening..."</span>
+    
+    configure_docker_daemon
+    create_security_profiles
+    install_image_scanner
+    create_secure_compose_template
+    create_security_scanner
+    
+    print_status <span class="s2">"Docker security hardening completed successfully!"</span>
+    
+    <span class="nb">echo</span> <span class="s2">""</span>
+    <span class="nb">echo</span> <span class="s2">"Next steps:"</span>
+    <span class="nb">echo</span> <span class="s2">"1. Review Docker daemon configuration in /etc/docker/daemon.json"</span>
+    <span class="nb">echo</span> <span class="s2">"2. Use secure Docker Compose template: /usr/local/share/docker-compose-secure-template.yml"</span>
+    <span class="nb">echo</span> <span class="s2">"3. Scan images with: /usr/local/bin/docker-security-scan.sh &lt;image-name&gt;"</span>
+    <span class="nb">echo</span> <span class="s2">"4. Apply security profiles to containers"</span>
+<span class="o">}</span>
+
+main <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>Kubernetes 보안과 컴플라이언스</strong>를 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>Kubernetes 클러스터 보안 강화</li>
+  <li>Pod Security Standards 및 정책</li>
+  <li>Network Policy와 Service Mesh 보안</li>
+  <li>컴플라이언스 자동화 및 감사</li>
+</ul>
+
+<p>Wazuh SIEM과 Docker 보안으로 엔터프라이즈급 보안 인프라를 완성하셨나요? 🔍🐳🛡️</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2025/04/12/linux-security-guide-part4.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">리눅스 보안 완전 가이드 4편 - 침입 탐지와 실시간 모니터링 | Linux Secu...</span>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

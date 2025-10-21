@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>Nginx 운영 가이드 Part 3 - 백업/복구, 업그레이드, 장애 대응</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">Nginx 운영 가이드 Part 3 - 백업/복구, 업그레이드, 장애 대응</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2024-06-12T00:00:00+00:00">Jun 12, 2024</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Infrastructure</li><li>Nginx</li><li>Operations</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <h1 id="nginx-운영-가이드-part-3---백업복구-업그레이드-장애-대응">Nginx 운영 가이드 Part 3 - 백업/복구, 업그레이드, 장애 대응</h1>
+
+<p>실제 프로덕션 환경에서 Nginx를 안정적으로 운영하기 위한 핵심 운영 기술들을 다룹니다. 백업 및 복구 전략부터 무중단 업그레이드, 장애 상황 대응까지 운영자가 마주할 수 있는 모든 상황에 대한 실무 가이드를 제공합니다.</p>
+
+<!--more-->
+
+<h2 id="목차">목차</h2>
+<ol>
+  <li><a href="#백업-및-복구-전략">백업 및 복구 전략</a></li>
+  <li><a href="#무중단-업그레이드">무중단 업그레이드</a></li>
+  <li><a href="#장애-대응-절차">장애 대응 절차</a></li>
+  <li><a href="#성능-튜닝">성능 튜닝</a></li>
+  <li><a href="#고가용성-구성">고가용성 구성</a></li>
+  <li><a href="#자동화-및-최적화">자동화 및 최적화</a></li>
+</ol>
+
+<h2 id="백업-및-복구-전략">백업 및 복구 전략</h2>
+
+<h3 id="백업-대상-및-정책">백업 대상 및 정책</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-backup.sh</span>
+
+<span class="c"># 백업 설정</span>
+<span class="nv">BACKUP_ROOT</span><span class="o">=</span><span class="s2">"/backup/nginx"</span>
+<span class="nv">TIMESTAMP</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span>
+<span class="nv">RETENTION_DAYS</span><span class="o">=</span>30
+<span class="nv">COMPRESSION_LEVEL</span><span class="o">=</span>6
+
+<span class="c"># 백업 대상 디렉토리</span>
+<span class="nv">CONFIG_DIRS</span><span class="o">=(</span>
+    <span class="s2">"/etc/nginx"</span>
+    <span class="s2">"/etc/ssl/nginx"</span>
+    <span class="s2">"/var/www"</span>
+<span class="o">)</span>
+
+<span class="nv">LOG_DIRS</span><span class="o">=(</span>
+    <span class="s2">"/var/log/nginx"</span>
+<span class="o">)</span>
+
+<span class="c"># 백업 함수들</span>
+create_backup_structure<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">backup_date</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="s2">"</span><span class="nv">$BACKUP_ROOT</span><span class="s2">/</span><span class="nv">$backup_date</span><span class="s2">"</span>
+    
+    <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span>/<span class="o">{</span>config,logs,data<span class="o">}</span>
+    <span class="nb">echo</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span>
+<span class="o">}</span>
+
+backup_configurations<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">echo</span> <span class="s2">"Backing up Nginx configurations..."</span>
+    
+    <span class="c"># 설정 파일 백업</span>
+    <span class="k">for </span><span class="nb">dir </span><span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">CONFIG_DIRS</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">local dirname</span><span class="o">=</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span><span class="si">)</span>
+            <span class="nb">tar</span> <span class="nt">-czf</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/config/</span><span class="k">${</span><span class="nv">dirname</span><span class="k">}</span><span class="s2">_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.tar.gz"</span> <span class="se">\</span>
+                <span class="nt">-C</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span>
+            
+            <span class="c"># 백업 검증</span>
+            <span class="k">if </span><span class="nb">tar</span> <span class="nt">-tzf</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/config/</span><span class="k">${</span><span class="nv">dirname</span><span class="k">}</span><span class="s2">_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.tar.gz"</span> <span class="o">&gt;</span> /dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"✓ Configuration backup successful: </span><span class="nv">$dirname</span><span class="s2">"</span>
+            <span class="k">else
+                </span><span class="nb">echo</span> <span class="s2">"✗ Configuration backup failed: </span><span class="nv">$dirname</span><span class="s2">"</span>
+                <span class="k">return </span>1
+            <span class="k">fi
+        fi
+    done</span>
+<span class="o">}</span>
+
+backup_logs<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">echo</span> <span class="s2">"Backing up Nginx logs..."</span>
+    
+    <span class="c"># 로그 파일 백업 (압축률을 높이기 위해 별도 처리)</span>
+    <span class="k">for </span><span class="nb">dir </span><span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">LOG_DIRS</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">local dirname</span><span class="o">=</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span><span class="si">)</span>
+            
+            <span class="c"># 현재 로그 파일들 (실시간 사용 중)</span>
+            find <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span> <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-type</span> f | <span class="k">while </span><span class="nb">read </span>logfile<span class="p">;</span> <span class="k">do
+                </span><span class="nb">local </span><span class="nv">filename</span><span class="o">=</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$logfile</span><span class="s2">"</span><span class="si">)</span>
+                <span class="nb">gzip</span> <span class="nt">-c</span> <span class="s2">"</span><span class="nv">$logfile</span><span class="s2">"</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/logs/</span><span class="k">${</span><span class="nv">filename</span><span class="k">}</span><span class="s2">_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.gz"</span>
+            <span class="k">done</span>
+            
+            <span class="c"># 압축된 오래된 로그들</span>
+            find <span class="s2">"</span><span class="nv">$dir</span><span class="s2">"</span> <span class="nt">-name</span> <span class="s2">"*.log.gz"</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">cp</span> <span class="o">{}</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/logs/"</span> <span class="se">\;</span>
+            
+            <span class="nb">echo</span> <span class="s2">"✓ Log backup completed: </span><span class="nv">$dirname</span><span class="s2">"</span>
+        <span class="k">fi
+    done</span>
+<span class="o">}</span>
+
+backup_ssl_certificates<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">echo</span> <span class="s2">"Backing up SSL certificates..."</span>
+    
+    <span class="c"># Let's Encrypt 인증서</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/etc/letsencrypt"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">tar</span> <span class="nt">-czf</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/config/letsencrypt_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.tar.gz"</span> <span class="se">\</span>
+            <span class="nt">-C</span> /etc letsencrypt/
+        <span class="nb">echo</span> <span class="s2">"✓ Let's Encrypt certificates backed up"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 커스텀 SSL 인증서</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"/etc/ssl/private"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">tar</span> <span class="nt">-czf</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/config/ssl_private_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.tar.gz"</span> <span class="se">\</span>
+            <span class="nt">-C</span> /etc/ssl private/ <span class="nt">--warning</span><span class="o">=</span>no-file-changed
+        <span class="nb">chmod </span>600 <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/config/ssl_private_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.tar.gz"</span>
+        <span class="nb">echo</span> <span class="s2">"✓ Private SSL certificates backed up"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+create_manifest<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">manifest_file</span><span class="o">=</span><span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/backup_manifest_</span><span class="k">${</span><span class="nv">TIMESTAMP</span><span class="k">}</span><span class="s2">.txt"</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$manifest_file</span><span class="s2">"</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+Nginx Backup Manifest
+=====================
+Backup Date: </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">
+Hostname: </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">
+Nginx Version: </span><span class="si">$(</span>nginx <span class="nt">-v</span> 2&gt;&amp;1<span class="si">)</span><span class="sh">
+OS Version: </span><span class="si">$(</span>lsb_release <span class="nt">-d</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">cat</span> /etc/os-release | <span class="nb">grep </span>PRETTY_NAME<span class="si">)</span><span class="sh">
+
+Backup Contents:
+</span><span class="no">EOF
+    
+</span>    <span class="c"># 백업 파일 목록 및 체크섬</span>
+    find <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.tar.gz"</span> <span class="nt">-o</span> <span class="nt">-name</span> <span class="s2">"*.gz"</span> | <span class="k">while </span><span class="nb">read </span>file<span class="p">;</span> <span class="k">do
+        </span><span class="nb">local </span><span class="nv">size</span><span class="o">=</span><span class="si">$(</span><span class="nb">du</span> <span class="nt">-h</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> | <span class="nb">cut</span> <span class="nt">-f1</span><span class="si">)</span>
+        <span class="nb">local </span><span class="nv">checksum</span><span class="o">=</span><span class="si">$(</span><span class="nb">md5sum</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">' '</span> <span class="nt">-f1</span><span class="si">)</span>
+        <span class="nb">echo</span> <span class="s2">"File: </span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span><span class="si">)</span><span class="s2"> | Size: </span><span class="nv">$size</span><span class="s2"> | MD5: </span><span class="nv">$checksum</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$manifest_file</span><span class="s2">"</span>
+    <span class="k">done
+    
+    </span><span class="nb">echo</span> <span class="s2">"✓ Backup manifest created"</span>
+<span class="o">}</span>
+
+cleanup_old_backups<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Cleaning up old backups (retention: </span><span class="k">${</span><span class="nv">RETENTION_DAYS</span><span class="k">}</span><span class="s2"> days)..."</span>
+    
+    find <span class="s2">"</span><span class="nv">$BACKUP_ROOT</span><span class="s2">"</span> <span class="nt">-type</span> d <span class="nt">-name</span> <span class="s2">"????????"</span> <span class="nt">-mtime</span> +<span class="nv">$RETENTION_DAYS</span> | <span class="k">while </span><span class="nb">read </span>old_backup<span class="p">;</span> <span class="k">do
+        </span><span class="nb">echo</span> <span class="s2">"Removing old backup: </span><span class="nv">$old_backup</span><span class="s2">"</span>
+        <span class="nb">rm</span> <span class="nt">-rf</span> <span class="s2">"</span><span class="nv">$old_backup</span><span class="s2">"</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 백업 실행</span>
+perform_backup<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Starting Nginx Backup Process ==="</span>
+    
+    <span class="c"># 백업 디렉토리 생성</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="si">$(</span>create_backup_structure<span class="si">)</span>
+    
+    <span class="c"># 설정 테스트 (백업 전 확인)</span>
+    <span class="k">if</span> <span class="o">!</span> nginx <span class="nt">-t</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Warning: Current Nginx configuration has errors"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 백업 실행</span>
+    backup_configurations <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span>
+    backup_logs <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span>
+    backup_ssl_certificates <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span>
+    
+    <span class="c"># 메타데이터 생성</span>
+    create_manifest <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span>
+    
+    <span class="c"># 정리</span>
+    cleanup_old_backups
+    
+    <span class="nb">echo</span> <span class="s2">"=== Backup Process Completed ==="</span>
+    <span class="nb">echo</span> <span class="s2">"Backup location: </span><span class="nv">$backup_dir</span><span class="s2">"</span>
+    
+    <span class="c"># 백업 결과 알림</span>
+    <span class="nb">local </span><span class="nv">backup_size</span><span class="o">=</span><span class="si">$(</span><span class="nb">du</span> <span class="nt">-sh</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span> | <span class="nb">cut</span> <span class="nt">-f1</span><span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Total backup size: </span><span class="nv">$backup_size</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 백업 실행</span>
+perform_backup
+</code></pre></div></div>
+
+<h3 id="복구-스크립트">복구 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-restore.sh</span>
+
+<span class="nv">BACKUP_ROOT</span><span class="o">=</span><span class="s2">"/backup/nginx"</span>
+<span class="nv">RESTORE_LOG</span><span class="o">=</span><span class="s2">"/var/log/nginx/restore.log"</span>
+
+list_available_backups<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Available backups:"</span>
+    <span class="nb">ls</span> <span class="nt">-la</span> <span class="s2">"</span><span class="nv">$BACKUP_ROOT</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="s2">"^d"</span> | <span class="nb">awk</span> <span class="s1">'{print $9}'</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"^[0-9]{8}$"</span> | <span class="nb">sort</span> <span class="nt">-r</span>
+<span class="o">}</span>
+
+restore_from_backup<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">backup_date</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">backup_dir</span><span class="o">=</span><span class="s2">"</span><span class="nv">$BACKUP_ROOT</span><span class="s2">/</span><span class="nv">$backup_date</span><span class="s2">"</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Error: Backup directory not found: </span><span class="nv">$backup_dir</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi
+    
+    </span><span class="nb">echo</span> <span class="s2">"Starting restore from backup: </span><span class="nv">$backup_date</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$RESTORE_LOG</span><span class="s2">"</span>
+    
+    <span class="c"># 현재 설정 백업</span>
+    <span class="nb">local </span><span class="nv">current_backup</span><span class="o">=</span><span class="s2">"/tmp/nginx_current_</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span><span class="s2">"</span>
+    <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$current_backup</span><span class="s2">"</span>
+    <span class="nb">cp</span> <span class="nt">-r</span> /etc/nginx <span class="s2">"</span><span class="nv">$current_backup</span><span class="s2">/"</span>
+    <span class="nb">echo</span> <span class="s2">"Current configuration backed up to: </span><span class="nv">$current_backup</span><span class="s2">"</span>
+    
+    <span class="c"># Nginx 중지</span>
+    <span class="nb">echo</span> <span class="s2">"Stopping Nginx service..."</span>
+    systemctl stop nginx
+    
+    <span class="c"># 설정 파일 복구</span>
+    <span class="nb">echo</span> <span class="s2">"Restoring configuration files..."</span>
+    <span class="nb">cd</span> <span class="s2">"</span><span class="nv">$backup_dir</span><span class="s2">/config"</span>
+    
+    <span class="k">for </span>backup_file <span class="k">in </span>nginx_<span class="k">*</span>.tar.gz<span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$backup_file</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Extracting: </span><span class="nv">$backup_file</span><span class="s2">"</span>
+            <span class="nb">tar</span> <span class="nt">-xzf</span> <span class="s2">"</span><span class="nv">$backup_file</span><span class="s2">"</span> <span class="nt">-C</span> /etc/
+        <span class="k">fi
+    done</span>
+    
+    <span class="c"># SSL 인증서 복구</span>
+    <span class="k">for </span>ssl_backup <span class="k">in </span>letsencrypt_<span class="k">*</span>.tar.gz ssl_private_<span class="k">*</span>.tar.gz<span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$ssl_backup</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Restoring SSL certificates: </span><span class="nv">$ssl_backup</span><span class="s2">"</span>
+            <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$ssl_backup</span><span class="s2">"</span> <span class="o">==</span> <span class="k">*</span><span class="s2">"private"</span><span class="k">*</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+                </span><span class="nb">tar</span> <span class="nt">-xzf</span> <span class="s2">"</span><span class="nv">$ssl_backup</span><span class="s2">"</span> <span class="nt">-C</span> /etc/ssl/
+            <span class="k">else
+                </span><span class="nb">tar</span> <span class="nt">-xzf</span> <span class="s2">"</span><span class="nv">$ssl_backup</span><span class="s2">"</span> <span class="nt">-C</span> /etc/
+            <span class="k">fi
+        fi
+    done</span>
+    
+    <span class="c"># 설정 테스트</span>
+    <span class="nb">echo</span> <span class="s2">"Testing restored configuration..."</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Configuration test passed"</span>
+        
+        <span class="c"># Nginx 시작</span>
+        systemctl start nginx
+        
+        <span class="k">if </span>systemctl is-active nginx <span class="o">&gt;</span>/dev/null<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"✓ Nginx service started successfully"</span>
+            <span class="nb">echo</span> <span class="s2">"Restore completed successfully"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$RESTORE_LOG</span><span class="s2">"</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"✗ Failed to start Nginx service"</span>
+            <span class="nb">echo</span> <span class="s2">"Restoring previous configuration..."</span>
+            <span class="nb">cp</span> <span class="nt">-r</span> <span class="s2">"</span><span class="nv">$current_backup</span><span class="s2">/nginx"</span> /etc/
+            systemctl start nginx
+            <span class="k">return </span>1
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Configuration test failed"</span>
+        <span class="nb">echo</span> <span class="s2">"Restoring previous configuration..."</span>
+        <span class="nb">cp</span> <span class="nt">-r</span> <span class="s2">"</span><span class="nv">$current_backup</span><span class="s2">/nginx"</span> /etc/
+        systemctl start nginx
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"list"</span><span class="p">)</span>
+        list_available_backups
+        <span class="p">;;</span>
+    <span class="s2">"restore"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> restore &lt;backup_date&gt;"</span>
+            <span class="nb">echo</span> <span class="s2">"Available backups:"</span>
+            list_available_backups
+            <span class="nb">exit </span>1
+        <span class="k">fi
+        </span>restore_from_backup <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {list|restore &lt;backup_date&gt;}"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="무중단-업그레이드">무중단 업그레이드</h2>
+
+<h3 id="binary-업그레이드-프로세스">Binary 업그레이드 프로세스</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-upgrade.sh</span>
+
+<span class="nv">NGINX_VERSION_TARGET</span><span class="o">=</span><span class="s2">"1.24.0"</span>
+<span class="nv">NGINX_USER</span><span class="o">=</span><span class="s2">"nginx"</span>
+<span class="nv">NGINX_GROUP</span><span class="o">=</span><span class="s2">"nginx"</span>
+<span class="nv">BUILD_DIR</span><span class="o">=</span><span class="s2">"/tmp/nginx-build"</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backup/nginx-upgrade"</span>
+
+<span class="c"># 현재 설정 확인</span>
+check_current_setup<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Current Nginx Setup ==="</span>
+    <span class="nb">echo</span> <span class="s2">"Version: </span><span class="si">$(</span>nginx <span class="nt">-V</span> 2&gt;&amp;1 | <span class="nb">head</span> <span class="nt">-n1</span><span class="si">)</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"Configuration test:"</span>
+    nginx <span class="nt">-t</span>
+    <span class="nb">echo</span> <span class="s2">"Process info:"</span>
+    ps aux | <span class="nb">grep </span>nginx | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep
+    echo</span> <span class="s2">"Compiled modules:"</span>
+    nginx <span class="nt">-V</span> 2&gt;&amp;1 | <span class="nb">tr</span> <span class="s1">' '</span> <span class="s1">'\n'</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">'^--'</span>
+<span class="o">}</span>
+
+<span class="c"># 의존성 확인</span>
+check_dependencies<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Checking build dependencies..."</span>
+    
+    <span class="nb">local </span><span class="nv">required_packages</span><span class="o">=(</span><span class="s2">"build-essential"</span> <span class="s2">"libpcre3-dev"</span> <span class="s2">"libssl-dev"</span> <span class="s2">"zlib1g-dev"</span><span class="o">)</span>
+    
+    <span class="k">for </span>package <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">required_packages</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">!</span> dpkg <span class="nt">-l</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"^ii.*</span><span class="nv">$package</span><span class="s2">"</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Installing missing dependency: </span><span class="nv">$package</span><span class="s2">"</span>
+            apt-get update <span class="o">&amp;&amp;</span> apt-get <span class="nb">install</span> <span class="nt">-y</span> <span class="s2">"</span><span class="nv">$package</span><span class="s2">"</span>
+        <span class="k">fi
+    done</span>
+<span class="o">}</span>
+
+<span class="c"># 새 버전 컴파일</span>
+compile_new_version<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Compiling Nginx </span><span class="nv">$NGINX_VERSION_TARGET</span><span class="s2">..."</span>
+    
+    <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$BUILD_DIR</span><span class="s2">"</span>
+    <span class="nb">cd</span> <span class="s2">"</span><span class="nv">$BUILD_DIR</span><span class="s2">"</span>
+    
+    <span class="c"># 소스 다운로드</span>
+    wget <span class="s2">"http://nginx.org/download/nginx-</span><span class="k">${</span><span class="nv">NGINX_VERSION_TARGET</span><span class="k">}</span><span class="s2">.tar.gz"</span>
+    <span class="nb">tar</span> <span class="nt">-xzf</span> <span class="s2">"nginx-</span><span class="k">${</span><span class="nv">NGINX_VERSION_TARGET</span><span class="k">}</span><span class="s2">.tar.gz"</span>
+    <span class="nb">cd</span> <span class="s2">"nginx-</span><span class="k">${</span><span class="nv">NGINX_VERSION_TARGET</span><span class="k">}</span><span class="s2">"</span>
+    
+    <span class="c"># 현재 컴파일 옵션 가져오기</span>
+    <span class="nb">local </span><span class="nv">current_config</span><span class="o">=</span><span class="si">$(</span>nginx <span class="nt">-V</span> 2&gt;&amp;1 | <span class="nb">grep</span> <span class="s2">"configure arguments:"</span> | <span class="nb">cut</span> <span class="nt">-d</span>: <span class="nt">-f2-</span><span class="si">)</span>
+    
+    <span class="c"># 컴파일</span>
+    <span class="nb">echo</span> <span class="s2">"Using configuration: </span><span class="nv">$current_config</span><span class="s2">"</span>
+    ./configure <span class="nv">$current_config</span>
+    
+    make <span class="nt">-j</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Compilation successful"</span>
+        <span class="k">return </span>0
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Compilation failed"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 무중단 업그레이드 실행</span>
+perform_hot_upgrade<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Starting hot upgrade process..."</span>
+    
+    <span class="c"># 기존 바이너리 백업</span>
+    <span class="nb">cp</span> <span class="si">$(</span>which nginx<span class="si">)</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/nginx.old.</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span><span class="s2">"</span>
+    
+    <span class="c"># 새 바이너리 설치</span>
+    <span class="nb">local </span><span class="nv">new_binary</span><span class="o">=</span><span class="s2">"</span><span class="nv">$BUILD_DIR</span><span class="s2">/nginx-</span><span class="k">${</span><span class="nv">NGINX_VERSION_TARGET</span><span class="k">}</span><span class="s2">/objs/nginx"</span>
+    <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$new_binary</span><span class="s2">"</span> <span class="si">$(</span>which nginx<span class="si">)</span>
+    
+    <span class="c"># 마스터 프로세스에 USR2 시그널 전송</span>
+    <span class="nb">local </span><span class="nv">old_pid</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> /var/run/nginx.pid<span class="si">)</span>
+    <span class="nb">echo</span> <span class="s2">"Sending USR2 signal to old master process (PID: </span><span class="nv">$old_pid</span><span class="s2">)"</span>
+    <span class="nb">kill</span> <span class="nt">-USR2</span> <span class="nv">$old_pid</span>
+    
+    <span class="c"># 새 마스터 프로세스 확인</span>
+    <span class="nb">sleep </span>2
+    <span class="nb">local </span><span class="nv">new_pid_file</span><span class="o">=</span><span class="s2">"/var/run/nginx.pid.oldbin"</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$new_pid_file</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ New master process started"</span>
+        
+        <span class="c"># 새 프로세스 확인</span>
+        <span class="nb">local </span><span class="nv">new_pid</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> /var/run/nginx.pid<span class="si">)</span>
+        <span class="nb">echo</span> <span class="s2">"New master PID: </span><span class="nv">$new_pid</span><span class="s2">"</span>
+        
+        <span class="c"># 기존 워커 프로세스 종료</span>
+        <span class="nb">echo</span> <span class="s2">"Shutting down old worker processes..."</span>
+        <span class="nb">kill</span> <span class="nt">-WINCH</span> <span class="nv">$old_pid</span>
+        
+        <span class="c"># 잠시 대기 후 상태 확인</span>
+        <span class="nb">sleep </span>5
+        
+        <span class="c"># 새 프로세스가 정상 작동하는지 확인</span>
+        <span class="k">if </span>curl <span class="nt">-s</span> http://localhost/nginx_status <span class="o">&gt;</span> /dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"✓ New processes are working correctly"</span>
+            
+            <span class="c"># 기존 마스터 프로세스 종료</span>
+            <span class="nb">echo</span> <span class="s2">"Terminating old master process..."</span>
+            <span class="nb">kill</span> <span class="nt">-QUIT</span> <span class="nv">$old_pid</span>
+            
+            <span class="nb">echo</span> <span class="s2">"✓ Hot upgrade completed successfully"</span>
+            
+            <span class="c"># 새 버전 확인</span>
+            <span class="nb">echo</span> <span class="s2">"New version: </span><span class="si">$(</span>nginx <span class="nt">-V</span> 2&gt;&amp;1 | <span class="nb">head</span> <span class="nt">-n1</span><span class="si">)</span><span class="s2">"</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"✗ New processes not responding correctly"</span>
+            <span class="nb">echo</span> <span class="s2">"Rolling back..."</span>
+            <span class="nb">kill</span> <span class="nt">-HUP</span> <span class="nv">$old_pid</span>  <span class="c"># 기존 워커들 재시작</span>
+            <span class="nb">kill</span> <span class="nt">-TERM</span> <span class="nv">$new_pid</span> <span class="c"># 새 마스터 종료</span>
+            <span class="k">return </span>1
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"✗ New master process failed to start"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 업그레이드 검증</span>
+verify_upgrade<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Verifying upgrade..."</span>
+    
+    <span class="c"># 버전 확인</span>
+    <span class="nb">local </span><span class="nv">current_version</span><span class="o">=</span><span class="si">$(</span>nginx <span class="nt">-v</span> 2&gt;&amp;1 | <span class="nb">cut</span> <span class="nt">-d</span>/ <span class="nt">-f2</span><span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$current_version</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"</span><span class="nv">$NGINX_VERSION_TARGET</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Version upgrade verified: </span><span class="nv">$current_version</span><span class="s2">"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Version mismatch: expected </span><span class="nv">$NGINX_VERSION_TARGET</span><span class="s2">, got </span><span class="nv">$current_version</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+    
+    <span class="c"># 설정 테스트</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Configuration test passed"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Configuration test failed"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+    
+    <span class="c"># 서비스 상태 확인</span>
+    <span class="k">if </span>systemctl is-active nginx <span class="o">&gt;</span>/dev/null<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Nginx service is active"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Nginx service is not active"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+    
+    <span class="c"># HTTP 응답 확인</span>
+    <span class="nb">local </span><span class="nv">http_status</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="nt">-o</span> /dev/null <span class="nt">-w</span> <span class="s2">"%{http_code}"</span> http://localhost/<span class="si">)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$http_status</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"200"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$http_status</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"301"</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$http_status</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"302"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ HTTP response check passed (status: </span><span class="nv">$http_status</span><span class="s2">)"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ HTTP response check failed (status: </span><span class="nv">$http_status</span><span class="s2">)"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 롤백 함수</span>
+rollback_upgrade<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Performing rollback..."</span>
+    
+    <span class="nb">local </span><span class="nv">backup_binary</span><span class="o">=</span><span class="si">$(</span><span class="nb">ls</span> <span class="nt">-t</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>/nginx.old.<span class="k">*</span> | <span class="nb">head</span> <span class="nt">-n1</span><span class="si">)</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$backup_binary</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>systemctl stop nginx
+        <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$backup_binary</span><span class="s2">"</span> <span class="si">$(</span>which nginx<span class="si">)</span>
+        systemctl start nginx
+        
+        <span class="k">if </span>systemctl is-active nginx <span class="o">&gt;</span>/dev/null<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"✓ Rollback completed successfully"</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"✗ Rollback failed"</span>
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"✗ No backup binary found for rollback"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+main<span class="o">()</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+        <span class="s2">"check"</span><span class="p">)</span>
+            check_current_setup
+            <span class="p">;;</span>
+        <span class="s2">"prepare"</span><span class="p">)</span>
+            check_dependencies
+            compile_new_version
+            <span class="p">;;</span>
+        <span class="s2">"upgrade"</span><span class="p">)</span>
+            <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>
+            check_current_setup
+            check_dependencies
+            compile_new_version <span class="o">&amp;&amp;</span> perform_hot_upgrade <span class="o">&amp;&amp;</span> verify_upgrade
+            <span class="p">;;</span>
+        <span class="s2">"verify"</span><span class="p">)</span>
+            verify_upgrade
+            <span class="p">;;</span>
+        <span class="s2">"rollback"</span><span class="p">)</span>
+            rollback_upgrade
+            <span class="p">;;</span>
+        <span class="k">*</span><span class="p">)</span>
+            <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {check|prepare|upgrade|verify|rollback}"</span>
+            <span class="nb">echo</span> <span class="s2">"  check    - Show current setup"</span>
+            <span class="nb">echo</span> <span class="s2">"  prepare  - Prepare new version (compile)"</span>
+            <span class="nb">echo</span> <span class="s2">"  upgrade  - Perform hot upgrade"</span>
+            <span class="nb">echo</span> <span class="s2">"  verify   - Verify upgrade success"</span>
+            <span class="nb">echo</span> <span class="s2">"  rollback - Rollback to previous version"</span>
+            <span class="nb">exit </span>1
+            <span class="p">;;</span>
+    <span class="k">esac</span>
+<span class="o">}</span>
+
+main <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h2 id="장애-대응-절차">장애 대응 절차</h2>
+
+<h3 id="자동-장애-감지-및-복구">자동 장애 감지 및 복구</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-health-monitor.sh</span>
+
+<span class="nv">HEALTH_CHECK_URL</span><span class="o">=</span><span class="s2">"http://localhost/nginx_status"</span>
+<span class="nv">ALERT_EMAIL</span><span class="o">=</span><span class="s2">"admin@example.com"</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/var/log/nginx/health-monitor.log"</span>
+<span class="nv">MAX_FAILURES</span><span class="o">=</span>3
+<span class="nv">FAILURE_COUNT</span><span class="o">=</span>0
+<span class="nv">CHECK_INTERVAL</span><span class="o">=</span>30
+
+<span class="c"># 건강 상태 체크 함수들</span>
+check_nginx_process<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if </span>pgrep nginx <span class="o">&gt;</span> /dev/null<span class="p">;</span> <span class="k">then
+        return </span>0
+    <span class="k">else
+        return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+check_nginx_response<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">response</span><span class="o">=</span><span class="si">$(</span>curl <span class="nt">-s</span> <span class="nt">-o</span> /dev/null <span class="nt">-w</span> <span class="s2">"%{http_code}"</span> <span class="nt">--connect-timeout</span> 10 <span class="s2">"</span><span class="nv">$HEALTH_CHECK_URL</span><span class="s2">"</span> 2&gt;/dev/null<span class="si">)</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$response</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"200"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        return </span>0
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"HTTP response error: </span><span class="nv">$response</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+check_configuration<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span> 2&gt;/dev/null<span class="p">;</span> <span class="k">then
+        return </span>0
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"Configuration test failed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        nginx <span class="nt">-t</span> 2&gt;&amp;1 | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+check_disk_space<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">usage</span><span class="o">=</span><span class="si">$(</span><span class="nb">df</span> /var/log/nginx | <span class="nb">tail</span> <span class="nt">-1</span> | <span class="nb">awk</span> <span class="s1">'{print $5}'</span> | <span class="nb">sed</span> <span class="s1">'s/%//'</span><span class="si">)</span>
+    
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$usage</span><span class="s2">"</span> <span class="nt">-gt</span> 90 <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Disk space critical: </span><span class="k">${</span><span class="nv">usage</span><span class="k">}</span><span class="s2">% used"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi
+    return </span>0
+<span class="o">}</span>
+
+check_memory_usage<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">nginx_memory</span><span class="o">=</span><span class="si">$(</span>ps <span class="nt">-C</span> nginx <span class="nt">-o</span> %mem <span class="nt">--no-headers</span> | <span class="nb">awk</span> <span class="s1">'{sum += $1} END {print sum}'</span><span class="si">)</span>
+    
+    <span class="k">if</span> <span class="o">((</span> <span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$nginx_memory</span><span class="s2"> &gt; 80"</span> | bc <span class="nt">-l</span><span class="si">)</span> <span class="o">))</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Memory usage high: </span><span class="k">${</span><span class="nv">nginx_memory</span><span class="k">}</span><span class="s2">%"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi
+    return </span>0
+<span class="o">}</span>
+
+<span class="c"># 자동 복구 함수들</span>
+attempt_nginx_restart<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Attempting to restart Nginx..."</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+    
+    systemctl restart nginx
+    <span class="nb">sleep </span>5
+    
+    <span class="k">if </span>check_nginx_response<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Nginx restart successful"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="k">return </span>0
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Nginx restart failed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="k">return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+attempt_config_reload<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Attempting configuration reload..."</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+    
+    <span class="k">if </span>check_configuration<span class="p">;</span> <span class="k">then
+        </span>systemctl reload nginx
+        <span class="nb">sleep </span>2
+        
+        <span class="k">if </span>check_nginx_response<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"✓ Configuration reload successful"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+            <span class="k">return </span>0
+        <span class="k">fi
+    fi
+    
+    </span><span class="nb">echo</span> <span class="s2">"✗ Configuration reload failed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+    <span class="k">return </span>1
+<span class="o">}</span>
+
+cleanup_logs<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Cleaning up old log files..."</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+    
+    <span class="c"># 30일 이상된 로그 파일 삭제</span>
+    find /var/log/nginx <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-mtime</span> +30 <span class="nt">-delete</span>
+    
+    <span class="c"># 압축된 로그 파일 중 90일 이상된 것 삭제</span>
+    find /var/log/nginx <span class="nt">-name</span> <span class="s2">"*.gz"</span> <span class="nt">-mtime</span> +90 <span class="nt">-delete</span>
+    
+    <span class="nb">echo</span> <span class="s2">"✓ Log cleanup completed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 알림 발송</span>
+send_alert<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">alert_type</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nb">local </span><span class="nv">message</span><span class="o">=</span><span class="nv">$2</span>
+    <span class="nb">local </span><span class="nv">timestamp</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span>
+    
+    <span class="c"># 로그 기록</span>
+    <span class="nb">echo</span> <span class="s2">"[</span><span class="nv">$timestamp</span><span class="s2">] ALERT: </span><span class="nv">$alert_type</span><span class="s2"> - </span><span class="nv">$message</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+    
+    <span class="c"># 이메일 알림</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> mail <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Nginx Health Monitor Alert
+
+Time: </span><span class="nv">$timestamp</span><span class="s2">
+Type: </span><span class="nv">$alert_type</span><span class="s2">
+Message: </span><span class="nv">$message</span><span class="s2">
+
+Server: </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2">
+"</span> | mail <span class="nt">-s</span> <span class="s2">"Nginx Alert: </span><span class="nv">$alert_type</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$ALERT_EMAIL</span><span class="s2">"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># Slack 알림 (웹훅 URL이 설정된 경우)</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK_URL</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span>curl <span class="nt">-X</span> POST <span class="nt">-H</span> <span class="s1">'Content-type: application/json'</span> <span class="se">\</span>
+            <span class="nt">--data</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">text</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">🚨 Nginx Alert: </span><span class="nv">$alert_type</span><span class="se">\\</span><span class="s2">n</span><span class="nv">$message</span><span class="se">\"</span><span class="s2">}"</span> <span class="se">\</span>
+            <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK_URL</span><span class="s2">"</span> 2&gt;/dev/null
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 건강 체크 루프</span>
+main_health_check<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">all_checks_passed</span><span class="o">=</span><span class="nb">true</span>
+    
+    <span class="c"># 프로세스 체크</span>
+    <span class="k">if</span> <span class="o">!</span> check_nginx_process<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Nginx process not running"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        <span class="nv">all_checks_passed</span><span class="o">=</span><span class="nb">false
+    </span><span class="k">fi</span>
+    
+    <span class="c"># HTTP 응답 체크</span>
+    <span class="k">if</span> <span class="o">!</span> check_nginx_response<span class="p">;</span> <span class="k">then
+        </span><span class="nv">all_checks_passed</span><span class="o">=</span><span class="nb">false
+    </span><span class="k">fi</span>
+    
+    <span class="c"># 설정 체크</span>
+    <span class="k">if</span> <span class="o">!</span> check_configuration<span class="p">;</span> <span class="k">then
+        </span><span class="nv">all_checks_passed</span><span class="o">=</span><span class="nb">false
+    </span><span class="k">fi</span>
+    
+    <span class="c"># 디스크 공간 체크</span>
+    <span class="k">if</span> <span class="o">!</span> check_disk_space<span class="p">;</span> <span class="k">then
+        </span>cleanup_logs
+        <span class="nv">all_checks_passed</span><span class="o">=</span><span class="nb">false
+    </span><span class="k">fi</span>
+    
+    <span class="c"># 메모리 사용량 체크</span>
+    <span class="k">if</span> <span class="o">!</span> check_memory_usage<span class="p">;</span> <span class="k">then
+        </span><span class="nv">all_checks_passed</span><span class="o">=</span><span class="nb">false
+    </span><span class="k">fi
+    
+    if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$all_checks_passed</span><span class="s2">"</span> <span class="o">=</span> <span class="nb">true</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        if</span> <span class="o">[</span> <span class="nv">$FAILURE_COUNT</span> <span class="nt">-gt</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Health check recovered"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+            send_alert <span class="s2">"RECOVERY"</span> <span class="s2">"All health checks are now passing"</span>
+        <span class="k">fi
+        </span><span class="nv">FAILURE_COUNT</span><span class="o">=</span>0
+        <span class="k">return </span>0
+    <span class="k">else</span>
+        <span class="o">((</span>FAILURE_COUNT++<span class="o">))</span>
+        <span class="nb">echo</span> <span class="s2">"Health check failed (failure count: </span><span class="nv">$FAILURE_COUNT</span><span class="s2">)"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+        
+        <span class="c"># 자동 복구 시도</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$FAILURE_COUNT</span> <span class="nt">-le</span> <span class="nv">$MAX_FAILURES</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Attempting automatic recovery..."</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+            
+            <span class="c"># 설정 리로드 시도</span>
+            <span class="k">if </span>attempt_config_reload<span class="p">;</span> <span class="k">then
+                </span><span class="nv">FAILURE_COUNT</span><span class="o">=</span>0
+                <span class="k">return </span>0
+            <span class="k">fi</span>
+            
+            <span class="c"># Nginx 재시작 시도</span>
+            <span class="k">if </span>attempt_nginx_restart<span class="p">;</span> <span class="k">then
+                </span><span class="nv">FAILURE_COUNT</span><span class="o">=</span>0
+                <span class="k">return </span>0
+            <span class="k">fi
+        fi</span>
+        
+        <span class="c"># 최대 실패 횟수 도달 시 알림</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$FAILURE_COUNT</span> <span class="nt">-ge</span> <span class="nv">$MAX_FAILURES</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span>send_alert <span class="s2">"CRITICAL"</span> <span class="s2">"Nginx health check failed </span><span class="nv">$FAILURE_COUNT</span><span class="s2"> times. Manual intervention required."</span>
+        <span class="k">fi
+        
+        return </span>1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 데몬 모드로 실행</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"daemon"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"Starting Nginx health monitor daemon..."</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+    
+    <span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do
+        </span>main_health_check
+        <span class="nb">sleep</span> <span class="nv">$CHECK_INTERVAL</span>
+    <span class="k">done
+else</span>
+    <span class="c"># 단일 실행 모드</span>
+    main_health_check
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<h3 id="장애-상황별-대응-가이드">장애 상황별 대응 가이드</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-troubleshoot.sh</span>
+
+<span class="c"># 일반적인 문제 진단 및 해결</span>
+diagnose_connection_issues<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Connection Issues Diagnosis ==="</span>
+    
+    <span class="c"># 포트 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Checking port bindings..."</span>
+    netstat <span class="nt">-tlpn</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">':80|:443'</span>
+    
+    <span class="c"># 방화벽 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Checking firewall rules..."</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> ufw <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>ufw status
+    <span class="k">elif </span><span class="nb">command</span> <span class="nt">-v</span> firewall-cmd <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>firewall-cmd <span class="nt">--list-ports</span>
+        firewall-cmd <span class="nt">--list-services</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 프로세스 상태 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Checking Nginx processes..."</span>
+    ps aux | <span class="nb">grep </span>nginx
+    
+    <span class="c"># 로그에서 에러 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Recent error log entries..."</span>
+    <span class="nb">tail</span> <span class="nt">-20</span> /var/log/nginx/error.log
+<span class="o">}</span>
+
+diagnose_performance_issues<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Performance Issues Diagnosis ==="</span>
+    
+    <span class="c"># 리소스 사용량</span>
+    <span class="nb">echo</span> <span class="s2">"System resource usage:"</span>
+    top <span class="nt">-bn1</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"Cpu|Mem|nginx"</span>
+    
+    <span class="c"># 연결 통계</span>
+    <span class="nb">echo</span> <span class="s2">"Connection statistics:"</span>
+    <span class="k">if </span>curl <span class="nt">-s</span> http://localhost/nginx_status <span class="o">&gt;</span> /dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>curl <span class="nt">-s</span> http://localhost/nginx_status
+    <span class="k">fi</span>
+    
+    <span class="c"># 네트워크 연결 수</span>
+    <span class="nb">echo</span> <span class="s2">"Network connections:"</span>
+    ss <span class="nt">-tuln</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s1">':80|:443'</span> | <span class="nb">wc</span> <span class="nt">-l</span>
+    
+    <span class="c"># 디스크 I/O</span>
+    <span class="nb">echo</span> <span class="s2">"Disk I/O statistics:"</span>
+    iostat <span class="nt">-x</span> 1 3 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"iostat not available"</span>
+<span class="o">}</span>
+
+diagnose_ssl_issues<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== SSL Issues Diagnosis ==="</span>
+    
+    <span class="c"># 인증서 유효성 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Checking SSL certificates..."</span>
+    
+    <span class="k">for </span>domain <span class="k">in</span> <span class="si">$(</span>nginx <span class="nt">-T</span> 2&gt;/dev/null | <span class="nb">grep</span> <span class="s2">"server_name"</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">";"</span> | <span class="nb">sort</span> <span class="nt">-u</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$domain</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"_"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$domain</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"Checking certificate for: </span><span class="nv">$domain</span><span class="s2">"</span>
+            
+            <span class="c"># 로컬 인증서 정보</span>
+            <span class="nb">echo</span> | openssl s_client <span class="nt">-connect</span> <span class="s2">"</span><span class="nv">$domain</span><span class="s2">:443"</span> <span class="nt">-servername</span> <span class="s2">"</span><span class="nv">$domain</span><span class="s2">"</span> 2&gt;/dev/null | <span class="se">\</span>
+            openssl x509 <span class="nt">-noout</span> <span class="nt">-dates</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Cannot connect to </span><span class="nv">$domain</span><span class="s2">"</span>
+            
+            <span class="c"># 만료일 확인</span>
+            <span class="nb">local </span><span class="nv">cert_file</span><span class="o">=</span><span class="si">$(</span>nginx <span class="nt">-T</span> 2&gt;/dev/null | <span class="nb">grep</span> <span class="nt">-A</span> 5 <span class="s2">"server_name.*</span><span class="nv">$domain</span><span class="s2">"</span> | <span class="se">\</span>
+                             <span class="nb">grep</span> <span class="s2">"ssl_certificate "</span> | <span class="nb">head</span> <span class="nt">-1</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | <span class="nb">sed</span> <span class="s1">'s/;//'</span><span class="si">)</span>
+            
+            <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$cert_file</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"Certificate file: </span><span class="nv">$cert_file</span><span class="s2">"</span>
+                openssl x509 <span class="nt">-in</span> <span class="s2">"</span><span class="nv">$cert_file</span><span class="s2">"</span> <span class="nt">-noout</span> <span class="nt">-dates</span>
+            <span class="k">fi
+        fi
+    done</span>
+<span class="o">}</span>
+
+fix_common_issues<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Attempting Common Fixes ==="</span>
+    
+    <span class="c"># 권한 문제 해결</span>
+    <span class="nb">echo</span> <span class="s2">"Fixing file permissions..."</span>
+    <span class="nb">chown</span> <span class="nt">-R</span> www-data:www-data /var/www/
+    <span class="nb">chmod</span> <span class="nt">-R</span> 755 /var/www/
+    
+    <span class="c"># 로그 디렉토리 권한</span>
+    <span class="nb">chown</span> <span class="nt">-R</span> www-data:adm /var/log/nginx/
+    <span class="nb">chmod</span> <span class="nt">-R</span> 755 /var/log/nginx/
+    
+    <span class="c"># PID 파일 문제 해결</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="o">!</span> <span class="nt">-f</span> /var/run/nginx.pid <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Recreating PID file..."</span>
+        <span class="nb">rm</span> <span class="nt">-f</span> /var/run/nginx.pid
+        systemctl restart nginx
+    <span class="k">fi</span>
+    
+    <span class="c"># 설정 구문 오류 수정 시도</span>
+    <span class="nb">echo</span> <span class="s2">"Checking configuration syntax..."</span>
+    <span class="k">if</span> <span class="o">!</span> nginx <span class="nt">-t</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Configuration has errors. Please fix manually."</span>
+        nginx <span class="nt">-t</span> 2&gt;&amp;1
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+generate_diagnostic_report<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">report_file</span><span class="o">=</span><span class="s2">"/tmp/nginx_diagnostic_</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span><span class="s2">.txt"</span>
+    
+    <span class="nb">echo</span> <span class="s2">"Generating diagnostic report: </span><span class="nv">$report_file</span><span class="s2">"</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$report_file</span><span class="s2">"</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+Nginx Diagnostic Report
+=====================
+Generated: </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">
+Hostname: </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">
+Nginx Version: </span><span class="si">$(</span>nginx <span class="nt">-v</span> 2&gt;&amp;1<span class="si">)</span><span class="sh">
+
+=== System Information ===
+</span><span class="si">$(</span><span class="nb">uname</span> <span class="nt">-a</span><span class="si">)</span><span class="sh">
+</span><span class="si">$(</span>lsb_release <span class="nt">-a</span> 2&gt;/dev/null <span class="o">||</span> <span class="nb">cat</span> /etc/os-release<span class="si">)</span><span class="sh">
+
+=== Nginx Status ===
+Service Status: </span><span class="si">$(</span>systemctl is-active nginx<span class="si">)</span><span class="sh">
+Process Count: </span><span class="si">$(</span>pgrep nginx | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span><span class="sh">
+
+=== Configuration Test ===
+</span><span class="si">$(</span>nginx <span class="nt">-t</span> 2&gt;&amp;1<span class="si">)</span><span class="sh">
+
+=== Process Information ===
+</span><span class="si">$(</span>ps aux | <span class="nb">grep </span>nginx | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nb">grep</span><span class="si">)</span><span class="sh">
+
+=== Network Status ===
+</span><span class="si">$(</span>netstat <span class="nt">-tlpn</span> | <span class="nb">grep </span>nginx<span class="si">)</span><span class="sh">
+
+=== Recent Error Logs ===
+</span><span class="si">$(</span><span class="nb">tail</span> <span class="nt">-50</span> /var/log/nginx/error.log<span class="si">)</span><span class="sh">
+
+=== Resource Usage ===
+</span><span class="si">$(</span>free <span class="nt">-h</span><span class="si">)</span><span class="sh">
+</span><span class="si">$(</span><span class="nb">df</span> <span class="nt">-h</span><span class="si">)</span><span class="sh">
+
+=== Configuration Summary ===
+</span><span class="si">$(</span>nginx <span class="nt">-T</span> 2&gt;/dev/null | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"(server_name|listen|root|proxy_pass)"</span> | <span class="nb">head</span> <span class="nt">-20</span><span class="si">)</span><span class="sh">
+</span><span class="no">EOF
+
+</span>    <span class="nb">echo</span> <span class="s2">"Report generated: </span><span class="nv">$report_file</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"You can send this report to support team for analysis"</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 메뉴</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"connection"</span><span class="p">)</span>
+        diagnose_connection_issues
+        <span class="p">;;</span>
+    <span class="s2">"performance"</span><span class="p">)</span>
+        diagnose_performance_issues
+        <span class="p">;;</span>
+    <span class="s2">"ssl"</span><span class="p">)</span>
+        diagnose_ssl_issues
+        <span class="p">;;</span>
+    <span class="s2">"fix"</span><span class="p">)</span>
+        fix_common_issues
+        <span class="p">;;</span>
+    <span class="s2">"report"</span><span class="p">)</span>
+        generate_diagnostic_report
+        <span class="p">;;</span>
+    <span class="s2">"all"</span><span class="p">)</span>
+        diagnose_connection_issues
+        <span class="nb">echo</span> <span class="s2">""</span>
+        diagnose_performance_issues
+        <span class="nb">echo</span> <span class="s2">""</span>
+        diagnose_ssl_issues
+        <span class="nb">echo</span> <span class="s2">""</span>
+        generate_diagnostic_report
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Nginx Troubleshooting Tool"</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {connection|performance|ssl|fix|report|all}"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"  connection   - Diagnose connection issues"</span>
+        <span class="nb">echo</span> <span class="s2">"  performance  - Diagnose performance issues"</span>
+        <span class="nb">echo</span> <span class="s2">"  ssl         - Diagnose SSL/TLS issues"</span>
+        <span class="nb">echo</span> <span class="s2">"  fix         - Attempt common fixes"</span>
+        <span class="nb">echo</span> <span class="s2">"  report      - Generate diagnostic report"</span>
+        <span class="nb">echo</span> <span class="s2">"  all         - Run all diagnostics"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="성능-튜닝">성능 튜닝</h2>
+
+<h3 id="시스템-레벨-최적화">시스템 레벨 최적화</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-performance-tuning.sh</span>
+
+<span class="c"># 시스템 한계값 최적화</span>
+optimize_system_limits<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Optimizing system limits for Nginx..."</span>
+    
+    <span class="c"># /etc/security/limits.conf 설정</span>
+    <span class="nb">cat</span> <span class="o">&gt;&gt;</span> /etc/security/limits.conf <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+# Nginx optimization
+nginx soft nofile 65536
+nginx hard nofile 65536
+nginx soft nproc 32768
+nginx hard nproc 32768
+www-data soft nofile 65536
+www-data hard nofile 65536
+</span><span class="no">EOF
+
+</span>    <span class="c"># systemd 서비스 한계값</span>
+    <span class="nb">mkdir</span> <span class="nt">-p</span> /etc/systemd/system/nginx.service.d
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/systemd/system/nginx.service.d/limits.conf <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+[Service]
+LimitNOFILE=65536
+LimitNPROC=32768
+</span><span class="no">EOF
+
+</span>    systemctl daemon-reload
+    
+    <span class="nb">echo</span> <span class="s2">"✓ System limits optimized"</span>
+<span class="o">}</span>
+
+<span class="c"># 커널 파라미터 튜닝</span>
+optimize_kernel_parameters<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Optimizing kernel parameters..."</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;&gt;</span> /etc/sysctl.conf <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+# Nginx performance tuning
+net.core.somaxconn = 65535
+net.core.netdev_max_backlog = 5000
+net.ipv4.tcp_max_syn_backlog = 65535
+net.ipv4.tcp_syncookies = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 30
+net.ipv4.tcp_keepalive_time = 1800
+net.ipv4.tcp_keepalive_probes = 7
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.ip_local_port_range = 1024 65535
+vm.swappiness = 10
+</span><span class="no">EOF
+
+</span>    sysctl <span class="nt">-p</span>
+    <span class="nb">echo</span> <span class="s2">"✓ Kernel parameters optimized"</span>
+<span class="o">}</span>
+
+<span class="c"># Nginx 설정 최적화</span>
+generate_optimized_config<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Generating optimized Nginx configuration..."</span>
+    
+    <span class="nb">local </span><span class="nv">cpu_cores</span><span class="o">=</span><span class="si">$(</span><span class="nb">nproc</span><span class="si">)</span>
+    <span class="nb">local </span><span class="nv">total_memory</span><span class="o">=</span><span class="si">$(</span>free <span class="nt">-m</span> | <span class="nb">awk</span> <span class="s1">'NR==2{print $2}'</span><span class="si">)</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/nginx/conf.d/performance.conf <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+# Performance optimized configuration
+# Generated on </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">
+
+# Worker process optimization
+worker_processes </span><span class="nv">$cpu_cores</span><span class="sh">;
+worker_cpu_affinity auto;
+worker_rlimit_nofile 65535;
+
+# Event processing optimization
+events {
+    worker_connections 8192;
+    use epoll;
+    multi_accept on;
+    accept_mutex off;
+}
+
+# HTTP optimization
+http {
+    # Basic optimization
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    
+    # Timeout optimization
+    keepalive_timeout 65;
+    keepalive_requests 1000;
+    client_header_timeout 60;
+    client_body_timeout 60;
+    send_timeout 60;
+    
+    # Buffer optimization
+    client_body_buffer_size 128k;
+    client_header_buffer_size 4k;
+    large_client_header_buffers 4 8k;
+    client_max_body_size 50m;
+    
+    # Hash table optimization
+    server_names_hash_bucket_size 128;
+    server_names_hash_max_size 2048;
+    types_hash_max_size 2048;
+    
+    # Gzip optimization
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_comp_level 6;
+    gzip_types
+        text/plain
+        text/css
+        text/xml
+        text/javascript
+        application/javascript
+        application/xml+rss
+        application/json;
+    
+    # Rate limiting zones
+    limit_req_zone </span><span class="se">\$</span><span class="sh">binary_remote_addr zone=api:10m rate=10r/s;
+    limit_req_zone </span><span class="se">\$</span><span class="sh">binary_remote_addr zone=login:10m rate=1r/s;
+    
+    # Connection limiting
+    limit_conn_zone </span><span class="se">\$</span><span class="sh">binary_remote_addr zone=perip:10m;
+    limit_conn_zone </span><span class="se">\$</span><span class="sh">server_name zone=perserver:10m;
+}
+</span><span class="no">EOF
+
+</span>    <span class="nb">echo</span> <span class="s2">"✓ Optimized configuration generated"</span>
+<span class="o">}</span>
+
+<span class="c"># 프록시 최적화</span>
+optimize_proxy_settings<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Optimizing proxy settings..."</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/nginx/conf.d/proxy_optimization.conf <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+# Proxy optimization
+proxy_buffering on;
+proxy_buffer_size 128k;
+proxy_buffers 4 256k;
+proxy_busy_buffers_size 256k;
+proxy_temp_file_write_size 256k;
+proxy_max_temp_file_size 1024m;
+
+# Proxy timeouts
+proxy_connect_timeout 30s;
+proxy_send_timeout 30s;
+proxy_read_timeout 30s;
+
+# Proxy headers
+proxy_set_header Host </span><span class="nv">$host</span><span class="sh">;
+proxy_set_header X-Real-IP </span><span class="nv">$remote_addr</span><span class="sh">;
+proxy_set_header X-Forwarded-For </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="sh">;
+proxy_set_header X-Forwarded-Proto </span><span class="nv">$scheme</span><span class="sh">;
+
+# Connection reuse
+proxy_http_version 1.1;
+proxy_set_header Connection "";
+
+# Cache optimization
+proxy_cache_path /var/cache/nginx/proxy 
+                 levels=1:2 
+                 keys_zone=proxy_cache:10m 
+                 max_size=1g 
+                 inactive=60m 
+                 use_temp_path=off;
+
+proxy_cache_key "</span><span class="nv">$scheme$request_method$host$request_uri$is_args$args</span><span class="sh">";
+proxy_cache_valid 200 302 10m;
+proxy_cache_valid 301 1h;
+proxy_cache_valid any 1m;
+</span><span class="no">EOF
+
+</span>    <span class="nb">mkdir</span> <span class="nt">-p</span> /var/cache/nginx/proxy
+    <span class="nb">chown</span> <span class="nt">-R</span> www-data:www-data /var/cache/nginx
+    
+    <span class="nb">echo</span> <span class="s2">"✓ Proxy settings optimized"</span>
+<span class="o">}</span>
+
+<span class="c"># 성능 테스트</span>
+run_performance_test<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Running performance tests..."</span>
+    
+    <span class="c"># 기본 응답 시간 테스트</span>
+    <span class="nb">echo</span> <span class="s2">"Basic response time test:"</span>
+    <span class="k">for </span>i <span class="k">in</span> <span class="o">{</span>1..10<span class="o">}</span><span class="p">;</span> <span class="k">do
+        </span>curl <span class="nt">-s</span> <span class="nt">-o</span> /dev/null <span class="nt">-w</span> <span class="s2">"Request </span><span class="nv">$i</span><span class="s2">: %{time_total}s</span><span class="se">\n</span><span class="s2">"</span> http://localhost/
+    <span class="k">done</span>
+    
+    <span class="c"># 동시 연결 테스트 (ab가 설치된 경우)</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> ab <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Concurrent connection test:"</span>
+        ab <span class="nt">-n</span> 1000 <span class="nt">-c</span> 10 http://localhost/ | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"Requests per second|Time per request"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># wrk 테스트 (wrk가 설치된 경우)</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> wrk <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Load test with wrk:"</span>
+        wrk <span class="nt">-t4</span> <span class="nt">-c100</span> <span class="nt">-d30s</span> http://localhost/
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"system"</span><span class="p">)</span>
+        optimize_system_limits
+        optimize_kernel_parameters
+        <span class="p">;;</span>
+    <span class="s2">"nginx"</span><span class="p">)</span>
+        generate_optimized_config
+        optimize_proxy_settings
+        nginx <span class="nt">-t</span> <span class="o">&amp;&amp;</span> systemctl reload nginx
+        <span class="p">;;</span>
+    <span class="s2">"test"</span><span class="p">)</span>
+        run_performance_test
+        <span class="p">;;</span>
+    <span class="s2">"all"</span><span class="p">)</span>
+        optimize_system_limits
+        optimize_kernel_parameters
+        generate_optimized_config
+        optimize_proxy_settings
+        nginx <span class="nt">-t</span> <span class="o">&amp;&amp;</span> systemctl reload nginx
+        <span class="nb">echo</span> <span class="s2">"Optimization completed. Reboot recommended for kernel changes."</span>
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Nginx Performance Tuning Tool"</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {system|nginx|test|all}"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"  system - Optimize system limits and kernel parameters"</span>
+        <span class="nb">echo</span> <span class="s2">"  nginx  - Generate optimized Nginx configuration"</span>
+        <span class="nb">echo</span> <span class="s2">"  test   - Run performance tests"</span>
+        <span class="nb">echo</span> <span class="s2">"  all    - Apply all optimizations"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="고가용성-구성">고가용성 구성</h2>
+
+<h3 id="keepalived를-이용한-ha-구성">Keepalived를 이용한 HA 구성</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/setup-nginx-ha.sh</span>
+
+<span class="c"># HA 구성 설정</span>
+setup_keepalived<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Setting up Keepalived for Nginx HA..."</span>
+    
+    <span class="c"># Keepalived 설치</span>
+    apt-get update <span class="o">&amp;&amp;</span> apt-get <span class="nb">install</span> <span class="nt">-y</span> keepalived
+    
+    <span class="c"># VIP와 우선순위 설정</span>
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"Enter Virtual IP address: "</span> VIRTUAL_IP
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"Enter interface name (e.g., eth0): "</span> INTERFACE
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"Enter priority (100 for master, 90 for backup): "</span> PRIORITY
+    
+    <span class="c"># Keepalived 설정 파일 생성</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/keepalived/keepalived.conf <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+global_defs {
+    router_id LVS_</span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">
+    vrrp_skip_check_adv_addr
+    vrrp_strict
+    vrrp_garp_interval 0
+    vrrp_gna_interval 0
+}
+
+vrrp_script chk_nginx {
+    script "/usr/local/bin/check_nginx.sh"
+    interval 2
+    weight -2
+    fall 3
+    rise 2
+}
+
+vrrp_instance VI_1 {
+    state </span><span class="si">$(</span><span class="o">[</span> <span class="nv">$PRIORITY</span> <span class="nt">-eq</span> 100 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"MASTER"</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"BACKUP"</span><span class="si">)</span><span class="sh">
+    interface </span><span class="nv">$INTERFACE</span><span class="sh">
+    virtual_router_id 51
+    priority </span><span class="nv">$PRIORITY</span><span class="sh">
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass nginx_ha_pass
+    }
+    virtual_ipaddress {
+        </span><span class="nv">$VIRTUAL_IP</span><span class="sh">
+    }
+    track_script {
+        chk_nginx
+    }
+    notify_master "/usr/local/bin/nginx_master.sh"
+    notify_backup "/usr/local/bin/nginx_backup.sh"
+    notify_fault "/usr/local/bin/nginx_fault.sh"
+}
+</span><span class="no">EOF
+
+</span>    <span class="c"># Nginx 상태 체크 스크립트</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/check_nginx.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+curl -f http://localhost/nginx_status &gt;/dev/null 2&gt;&amp;1
+exit </span><span class="nv">$?</span><span class="sh">
+</span><span class="no">EOF
+
+</span>    <span class="c"># Master 상태 스크립트</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/nginx_master.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: Becoming MASTER" &gt;&gt; /var/log/keepalived-nginx.log
+# 마스터로 전환 시 수행할 작업
+systemctl restart nginx
+</span><span class="no">EOF
+
+</span>    <span class="c"># Backup 상태 스크립트</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/nginx_backup.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: Becoming BACKUP" &gt;&gt; /var/log/keepalived-nginx.log
+# 백업으로 전환 시 수행할 작업
+</span><span class="no">EOF
+
+</span>    <span class="c"># Fault 상태 스크립트</span>
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/nginx_fault.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: FAULT detected" &gt;&gt; /var/log/keepalived-nginx.log
+# 장애 발생 시 알림
+mail -s "Nginx HA FAULT on </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">" admin@example.com &lt; /dev/null
+</span><span class="no">EOF
+
+</span>    <span class="c"># 스크립트 실행 권한 부여</span>
+    <span class="nb">chmod</span> +x /usr/local/bin/check_nginx.sh
+    <span class="nb">chmod</span> +x /usr/local/bin/nginx_master.sh
+    <span class="nb">chmod</span> +x /usr/local/bin/nginx_backup.sh
+    <span class="nb">chmod</span> +x /usr/local/bin/nginx_fault.sh
+    
+    <span class="c"># Keepalived 시작</span>
+    systemctl <span class="nb">enable </span>keepalived
+    systemctl start keepalived
+    
+    <span class="nb">echo</span> <span class="s2">"✓ Keepalived setup completed"</span>
+    <span class="nb">echo</span> <span class="s2">"Virtual IP: </span><span class="nv">$VIRTUAL_IP</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"Priority: </span><span class="nv">$PRIORITY</span><span class="s2">"</span>
+<span class="o">}</span>
+
+<span class="c"># 로드 밸런서 풀 구성</span>
+setup_upstream_pool<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Setting up upstream server pool..."</span>
+    
+    <span class="nb">read</span> <span class="nt">-p</span> <span class="s2">"Enter backend servers (comma-separated, e.g., 192.168.1.10:8080,192.168.1.11:8080): "</span> BACKEND_SERVERS
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /etc/nginx/conf.d/upstream.conf <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+upstream backend_pool {
+    least_conn;
+    
+    # Backend servers
+</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$BACKEND_SERVERS</span><span class="s2">"</span> | <span class="nb">tr</span> <span class="s1">','</span> <span class="s1">'\n'</span> | <span class="k">while </span><span class="nb">read </span>server<span class="p">;</span> <span class="k">do
+    </span><span class="nb">echo</span> <span class="s2">"    server </span><span class="nv">$server</span><span class="s2"> max_fails=3 fail_timeout=30s;"</span>
+<span class="k">done</span><span class="si">)</span><span class="sh">
+    
+    # Health check (nginx-plus feature)
+    # health_check;
+    
+    # Session persistence
+    # ip_hash;
+    
+    # Keepalive connections
+    keepalive 32;
+    keepalive_requests 100;
+    keepalive_timeout 60s;
+}
+
+server {
+    listen 80;
+    server_name _;
+    
+    location / {
+        proxy_pass http://backend_pool;
+        
+        # Health check endpoint
+        proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
+        proxy_next_upstream_tries 3;
+        proxy_next_upstream_timeout 30s;
+        
+        # Headers
+        proxy_set_header Host </span><span class="se">\$</span><span class="sh">host;
+        proxy_set_header X-Real-IP </span><span class="se">\$</span><span class="sh">remote_addr;
+        proxy_set_header X-Forwarded-For </span><span class="se">\$</span><span class="sh">proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto </span><span class="se">\$</span><span class="sh">scheme;
+        
+        # Connection reuse
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+    }
+    
+    # Status page for health checking
+    location /nginx_status {
+        stub_status on;
+        allow 127.0.0.1;
+        allow 192.168.0.0/16;
+        deny all;
+        access_log off;
+    }
+}
+</span><span class="no">EOF
+
+</span>    nginx <span class="nt">-t</span> <span class="o">&amp;&amp;</span> systemctl reload nginx
+    <span class="nb">echo</span> <span class="s2">"✓ Upstream pool configured"</span>
+<span class="o">}</span>
+
+<span class="c"># 상태 모니터링</span>
+setup_monitoring<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"Setting up HA monitoring..."</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> /usr/local/bin/ha_monitor.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+
+LOG_FILE="/var/log/nginx-ha-monitor.log"
+
+check_vip() {
+    local vip=</span><span class="si">$(</span>ip addr show | <span class="nb">grep</span> <span class="s2">"inet.*scope global secondary"</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">'/'</span> <span class="nt">-f1</span><span class="si">)</span><span class="sh">
+    if [ -n "</span><span class="nv">$vip</span><span class="sh">" ]; then
+        echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: VIP active - </span><span class="nv">$vip</span><span class="sh">" &gt;&gt; </span><span class="nv">$LOG_FILE</span><span class="sh">
+        return 0
+    else
+        echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: VIP not active" &gt;&gt; </span><span class="nv">$LOG_FILE</span><span class="sh">
+        return 1
+    fi
+}
+
+check_keepalived() {
+    if systemctl is-active keepalived &gt;/dev/null; then
+        return 0
+    else
+        echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: Keepalived service down" &gt;&gt; </span><span class="nv">$LOG_FILE</span><span class="sh">
+        systemctl start keepalived
+        return 1
+    fi
+}
+
+check_backend_health() {
+    echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: Checking backend health" &gt;&gt; </span><span class="nv">$LOG_FILE</span><span class="sh">
+    
+    # Parse upstream configuration
+    nginx -T 2&gt;/dev/null | grep "server.*:" | while read line; do
+        local server=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$line</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | <span class="nb">sed</span> <span class="s1">'s/;//'</span><span class="si">)</span><span class="sh">
+        local host=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$server</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">':'</span> <span class="nt">-f1</span><span class="si">)</span><span class="sh">
+        local port=</span><span class="si">$(</span><span class="nb">echo</span> <span class="nv">$server</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">':'</span> <span class="nt">-f2</span><span class="si">)</span><span class="sh">
+        
+        if nc -z </span><span class="nv">$host</span><span class="sh"> </span><span class="nv">$port</span><span class="sh">; then
+            echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: Backend </span><span class="nv">$server</span><span class="sh"> - OK" &gt;&gt; </span><span class="nv">$LOG_FILE</span><span class="sh">
+        else
+            echo "</span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">: Backend </span><span class="nv">$server</span><span class="sh"> - FAILED" &gt;&gt; </span><span class="nv">$LOG_FILE</span><span class="sh">
+        fi
+    done
+}
+
+# Main monitoring loop
+check_keepalived
+check_vip
+check_backend_health
+</span><span class="no">EOF
+
+</span>    <span class="nb">chmod</span> +x /usr/local/bin/ha_monitor.sh
+    
+    <span class="c"># Cron 작업 추가</span>
+    <span class="nb">echo</span> <span class="s2">"*/1 * * * * root /usr/local/bin/ha_monitor.sh"</span> <span class="o">&gt;&gt;</span> /etc/crontab
+    
+    <span class="nb">echo</span> <span class="s2">"✓ HA monitoring setup completed"</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"keepalived"</span><span class="p">)</span>
+        setup_keepalived
+        <span class="p">;;</span>
+    <span class="s2">"upstream"</span><span class="p">)</span>
+        setup_upstream_pool
+        <span class="p">;;</span>
+    <span class="s2">"monitoring"</span><span class="p">)</span>
+        setup_monitoring
+        <span class="p">;;</span>
+    <span class="s2">"all"</span><span class="p">)</span>
+        setup_keepalived
+        setup_upstream_pool
+        setup_monitoring
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Nginx High Availability Setup"</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {keepalived|upstream|monitoring|all}"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"  keepalived  - Setup Keepalived for VIP management"</span>
+        <span class="nb">echo</span> <span class="s2">"  upstream    - Configure upstream server pool"</span>
+        <span class="nb">echo</span> <span class="s2">"  monitoring  - Setup HA monitoring"</span>
+        <span class="nb">echo</span> <span class="s2">"  all         - Setup complete HA solution"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="자동화-및-최적화">자동화 및 최적화</h2>
+
+<h3 id="종합-운영-자동화-스크립트">종합 운영 자동화 스크립트</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/nginx-ops-automation.sh</span>
+
+<span class="nv">SCRIPT_DIR</span><span class="o">=</span><span class="s2">"/usr/local/bin"</span>
+<span class="nv">CONFIG_DIR</span><span class="o">=</span><span class="s2">"/etc/nginx"</span>
+<span class="nv">LOG_DIR</span><span class="o">=</span><span class="s2">"/var/log/nginx"</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/backup/nginx"</span>
+
+<span class="c"># 일일 운영 작업</span>
+daily_operations<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Daily Nginx Operations </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2"> ==="</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/operations.log"</span>
+    
+    <span class="c"># 1. 백업 실행</span>
+    <span class="nb">echo</span> <span class="s2">"Performing daily backup..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-backup.sh
+    
+    <span class="c"># 2. 로그 분석</span>
+    <span class="nb">echo</span> <span class="s2">"Analyzing logs..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-log-analyzer.sh all <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/daily-analysis.log"</span>
+    
+    <span class="c"># 3. 성능 메트릭 수집</span>
+    <span class="nb">echo</span> <span class="s2">"Collecting performance metrics..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-metrics.sh <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/daily-metrics.log"</span>
+    
+    <span class="c"># 4. 건강 상태 체크</span>
+    <span class="nb">echo</span> <span class="s2">"Running health checks..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-health-monitor.sh <span class="o">&gt;&gt;</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/health-check.log"</span>
+    
+    <span class="c"># 5. 설정 검증</span>
+    <span class="nb">echo</span> <span class="s2">"Validating configuration..."</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Configuration valid"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Configuration has errors"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/operations.log"</span>
+        nginx <span class="nt">-t</span> 2&gt;&amp;1 | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/operations.log"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 6. 디스크 공간 정리</span>
+    <span class="nb">echo</span> <span class="s2">"Cleaning up disk space..."</span>
+    find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-mtime</span> +30 <span class="nt">-delete</span>
+    find <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-mtime</span> +90 <span class="nt">-delete</span>
+    
+    <span class="c"># 7. 보고서 생성</span>
+    generate_daily_report
+    
+    <span class="nb">echo</span> <span class="s2">"Daily operations completed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/operations.log"</span>
+<span class="o">}</span>
+
+generate_daily_report<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">report_file</span><span class="o">=</span><span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/daily-report-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">.txt"</span>
+    
+    <span class="nb">cat</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="nv">$report_file</span><span class="s2">"</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh">
+Nginx Daily Operations Report
+===========================
+Date: </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh">
+Server: </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="sh">
+
+=== System Status ===
+Nginx Version: </span><span class="si">$(</span>nginx <span class="nt">-v</span> 2&gt;&amp;1<span class="si">)</span><span class="sh">
+Service Status: </span><span class="si">$(</span>systemctl is-active nginx<span class="si">)</span><span class="sh">
+Uptime: </span><span class="si">$(</span><span class="nb">uptime</span><span class="si">)</span><span class="sh">
+Load Average: </span><span class="si">$(</span><span class="nb">cat</span> /proc/loadavg<span class="si">)</span><span class="sh">
+
+=== Traffic Statistics ===
+</span><span class="si">$(</span><span class="nb">tail</span> <span class="nt">-10000</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/access.log"</span> | <span class="nb">awk</span> <span class="s1">'{
+    total++
+    if ($9 ~ /^2/) success++
+    else if ($9 ~ /^4/) client_error++
+    else if ($9 ~ /^5/) server_error++
+}
+END {
+    print "Total Requests: " total
+    print "Success Rate: " (success/total*100) "%"
+    print "Client Errors: " client_error " (" (client_error/total*100) "%)"
+    print "Server Errors: " server_error " (" (server_error/total*100) "%)"
+}'</span><span class="si">)</span><span class="sh">
+
+=== Performance Metrics ===
+</span><span class="si">$(</span>curl <span class="nt">-s</span> http://localhost/nginx_status 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Status page not available"</span><span class="si">)</span><span class="sh">
+
+=== Recent Errors ===
+</span><span class="si">$(</span><span class="nb">tail</span> <span class="nt">-10</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/error.log"</span><span class="si">)</span><span class="sh">
+
+=== Disk Usage ===
+</span><span class="si">$(</span><span class="nb">df</span> <span class="nt">-h</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"/</span><span class="nv">$|</span><span class="s2">/var"</span><span class="si">)</span><span class="sh">
+
+=== Memory Usage ===
+</span><span class="si">$(</span>free <span class="nt">-h</span><span class="si">)</span><span class="sh">
+</span><span class="no">EOF
+
+</span>    <span class="nb">echo</span> <span class="s2">"Daily report generated: </span><span class="nv">$report_file</span><span class="s2">"</span>
+    
+    <span class="c"># 이메일로 보고서 전송</span>
+    <span class="k">if </span><span class="nb">command</span> <span class="nt">-v</span> mail <span class="o">&gt;</span>/dev/null 2&gt;&amp;1<span class="p">;</span> <span class="k">then
+        </span>mail <span class="nt">-s</span> <span class="s2">"Nginx Daily Report - </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2">"</span> admin@example.com &lt; <span class="s2">"</span><span class="nv">$report_file</span><span class="s2">"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 주간 운영 작업</span>
+weekly_operations<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Weekly Nginx Operations </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2"> ==="</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/operations.log"</span>
+    
+    <span class="c"># 1. 전체 시스템 백업</span>
+    <span class="nb">echo</span> <span class="s2">"Performing full system backup..."</span>
+    <span class="nb">tar</span> <span class="nt">-czf</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/weekly/full-backup-</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">.tar.gz"</span> <span class="se">\</span>
+        <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> /var/www 2&gt;/dev/null
+    
+    <span class="c"># 2. 보안 업데이트 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Checking for security updates..."</span>
+    apt list <span class="nt">--upgradable</span> 2&gt;/dev/null | <span class="nb">grep </span>nginx <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"No nginx updates available"</span>
+    
+    <span class="c"># 3. SSL 인증서 만료 확인</span>
+    <span class="nb">echo</span> <span class="s2">"Checking SSL certificate expiration..."</span>
+    find /etc/letsencrypt/live <span class="nt">-name</span> <span class="s2">"cert.pem"</span> <span class="nt">-exec</span> openssl x509 <span class="nt">-in</span> <span class="o">{}</span> <span class="nt">-noout</span> <span class="nt">-dates</span> <span class="se">\;</span> 2&gt;/dev/null
+    
+    <span class="c"># 4. 성능 최적화 검토</span>
+    <span class="nb">echo</span> <span class="s2">"Performance optimization review..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-performance-tuning.sh <span class="nb">test</span>
+    
+    <span class="c"># 5. 로그 아카이브</span>
+    <span class="nb">echo</span> <span class="s2">"Archiving old logs..."</span>
+    find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-mtime</span> +7 <span class="nt">-exec</span> <span class="nb">gzip</span> <span class="o">{}</span> <span class="se">\;</span>
+    
+    <span class="nb">echo</span> <span class="s2">"Weekly operations completed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/operations.log"</span>
+<span class="o">}</span>
+
+<span class="c"># 응급 상황 대응</span>
+emergency_response<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">"=== Emergency Response Activated </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2"> ==="</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/emergency.log"</span>
+    
+    <span class="c"># 1. 현재 상태 스냅샷</span>
+    <span class="nb">echo</span> <span class="s2">"Taking system snapshot..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-troubleshoot.sh report
+    
+    <span class="c"># 2. 자동 복구 시도</span>
+    <span class="nb">echo</span> <span class="s2">"Attempting automatic recovery..."</span>
+    <span class="nv">$SCRIPT_DIR</span>/nginx-health-monitor.sh
+    
+    <span class="c"># 3. 긴급 알림 발송</span>
+    <span class="nb">echo</span> <span class="s2">"Sending emergency alerts..."</span>
+    <span class="nb">echo</span> <span class="s2">"Emergency response activated on </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2"> at </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="s2">"</span> | <span class="se">\</span>
+    mail <span class="nt">-s</span> <span class="s2">"EMERGENCY: Nginx Issue on </span><span class="si">$(</span><span class="nb">hostname</span><span class="si">)</span><span class="s2">"</span> admin@example.com
+    
+    <span class="c"># 4. 백업 설정으로 전환</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/last_known_good/nginx.conf"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"Reverting to last known good configuration..."</span>
+        <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/last_known_good/nginx.conf"</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span>
+        nginx <span class="nt">-t</span> <span class="o">&amp;&amp;</span> systemctl reload nginx
+    <span class="k">fi
+    
+    </span><span class="nb">echo</span> <span class="s2">"Emergency response completed"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">/emergency.log"</span>
+<span class="o">}</span>
+
+<span class="c"># 설정 변경 시 자동 검증</span>
+validate_and_deploy<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span><span class="nv">config_file</span><span class="o">=</span><span class="nv">$1</span>
+    
+    <span class="nb">echo</span> <span class="s2">"Validating and deploying configuration changes..."</span>
+    
+    <span class="c"># 백업 생성</span>
+    <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/last_known_good/nginx.conf.</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span><span class="s2">"</span>
+    
+    <span class="c"># 새 설정 적용</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$config_file</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">cp</span> <span class="s2">"</span><span class="nv">$config_file</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span>
+    <span class="k">fi</span>
+    
+    <span class="c"># 검증</span>
+    <span class="k">if </span>nginx <span class="nt">-t</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"✓ Configuration validation passed"</span>
+        
+        <span class="c"># 리로드</span>
+        systemctl reload nginx
+        
+        <span class="k">if </span>systemctl is-active nginx <span class="o">&gt;</span>/dev/null<span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"✓ Configuration deployed successfully"</span>
+            
+            <span class="c"># 최신 정상 설정으로 업데이트</span>
+            <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/last_known_good/nginx.conf"</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"✗ Service failed to reload, reverting..."</span>
+            <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/last_known_good/nginx.conf"</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span>
+            systemctl reload nginx
+        <span class="k">fi
+    else
+        </span><span class="nb">echo</span> <span class="s2">"✗ Configuration validation failed, reverting..."</span>
+        <span class="nb">cp</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/last_known_good/nginx.conf"</span> <span class="s2">"</span><span class="nv">$CONFIG_DIR</span><span class="s2">/nginx.conf"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># 메인 실행</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+    <span class="s2">"daily"</span><span class="p">)</span>
+        daily_operations
+        <span class="p">;;</span>
+    <span class="s2">"weekly"</span><span class="p">)</span>
+        weekly_operations
+        <span class="p">;;</span>
+    <span class="s2">"emergency"</span><span class="p">)</span>
+        emergency_response
+        <span class="p">;;</span>
+    <span class="s2">"deploy"</span><span class="p">)</span>
+        validate_and_deploy <span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span>
+        <span class="p">;;</span>
+    <span class="s2">"status"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== Current Nginx Status ==="</span>
+        systemctl status nginx
+        <span class="nb">echo</span> <span class="s2">""</span>
+        nginx <span class="nt">-t</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        curl <span class="nt">-s</span> http://localhost/nginx_status <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Status page not available"</span>
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Nginx Operations Automation"</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {daily|weekly|emergency|deploy &lt;config_file&gt;|status}"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"  daily     - Run daily maintenance operations"</span>
+        <span class="nb">echo</span> <span class="s2">"  weekly    - Run weekly maintenance operations"</span>
+        <span class="nb">echo</span> <span class="s2">"  emergency - Run emergency response procedures"</span>
+        <span class="nb">echo</span> <span class="s2">"  deploy    - Deploy and validate new configuration"</span>
+        <span class="nb">echo</span> <span class="s2">"  status    - Show current nginx status"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="다음-단계">다음 단계</h2>
+
+<p>이제 운영 가이드가 완료되었습니다. 다음 포스트에서는 보안 가이드를 시작하겠습니다:</p>
+
+<ul>
+  <li>기본 보안 설정 및 헤더 보안</li>
+  <li>접근 제어 및 인증 시스템</li>
+  <li>DDoS 방어 및 Rate Limiting</li>
+  <li>SSL/TLS 보안 강화</li>
+</ul>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.nginx.com/nginx/admin-guide/high-availability/">Nginx Admin Guide - High Availability</a></li>
+  <li><a href="https://keepalived.readthedocs.io/">Keepalived Documentation</a></li>
+  <li><a href="https://www.nginx.com/blog/tuning-nginx/">Nginx Performance Tuning</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2024/06/11/nginx-operations-guide-part2.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">Nginx 운영 가이드 Part 2 - 성능 모니터링, 메트릭 수집, 상태 확인</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2024/07/15/networking-guide-part1.html" rel="next">
+          <span class="nav-title">네트워킹 완전 가이드 1편 - OSI 7계층과 TCP/IP 모델 | Complete ...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>

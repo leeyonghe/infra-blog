@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/infra-blog/assets/css/style.css">
+<link rel="stylesheet" href="/infra-blog/assets/css/post-detail.css">
+<style>
+/* Post Detail Page Styling */
+.post-container article {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin: 30px auto;
+  max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 8px;
+  }
+}
+
+.post-container article .post-header {
+  border-bottom: 2px solid #f5f5f5;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-header .post-title {
+    font-size: 1.8em;
+  }
+}
+
+.post-container article .post-header .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.post-container article .post-header .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post-container article .post-header .post-meta .post-date i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper i {
+  margin-right: 8px;
+  color: #888;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container article .post-header .post-meta .post-categories-wrapper .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: #333;
+}
+
+.post-container article .post-content p {
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content h1,
+.post-container article .post-content h2,
+.post-container article .post-content h3,
+.post-container article .post-content h4,
+.post-container article .post-content h5,
+.post-container article .post-content h6 {
+  color: #2c3e50;
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.post-container article .post-content h3 {
+  font-size: 1.5em;
+  color: #34495e;
+}
+
+.post-container article .post-content code {
+  background: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #e74c3c;
+}
+
+.post-container article .post-content pre {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.post-container article .post-content pre code {
+  background: none;
+  color: #333;
+  padding: 0;
+}
+
+.post-container article .post-content blockquote {
+  border-left: 4px solid #3498db;
+  background: #f8f9fa;
+  padding: 15px 20px;
+  margin: 1.5em 0;
+  font-style: italic;
+  color: #555;
+}
+
+.post-container article .post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-container article .post-content ul,
+.post-container article .post-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.post-container article .post-content ul li,
+.post-container article .post-content ol li {
+  margin-bottom: 0.5em;
+}
+
+.post-container article .post-content a {
+  color: #3498db;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.post-container article .post-content a:hover {
+  border-bottom-color: #3498db;
+}
+
+.post-container article .post-footer {
+  border-top: 2px solid #f5f5f5;
+  padding-top: 25px;
+  margin-top: 40px;
+}
+
+.post-container article .post-footer .post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .post-container article .post-footer .post-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.post-container article .post-footer .post-navigation .nav-previous,
+.post-container article .post-footer .post-navigation .nav-next {
+  flex: 1;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a,
+.post-container article .post-footer .post-navigation .nav-next a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a:hover,
+.post-container article .post-footer .post-navigation .nav-next a:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+  transform: translateY(-2px);
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a i,
+.post-container article .post-footer .post-navigation .nav-next a i {
+  color: #3498db;
+  margin: 0 8px;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a .nav-title,
+.post-container article .post-footer .post-navigation .nav-next a .nav-title {
+  font-weight: 500;
+}
+
+.post-container article .post-footer .post-navigation .nav-previous a {
+  justify-content: flex-start;
+}
+
+.post-container article .post-footer .post-navigation .nav-next a {
+  justify-content: flex-end;
+  text-align: right;
+}
+</style>
+<title>리눅스 보안 완전 가이드 3편 - SELinux/AppArmor와 시스템 하드닝 | Linux Security Guide Part 3 - SELinux/AppArmor & System Hardening</title>
+
+<script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/infra-blog/">
+        
+        <img src="/infra-blog/assets/portfolio.png" alt="Infrastructure Engineer" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/infra-blog/">Infrastructure Engineer</a>
+      </h2>
+      </div><p class="tagline">DevOps & Cloud Infrastructure Specialist</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <style>
+/* Post Detail Page Styling - Direct Inline */
+.post-container article {
+  background: #fff !important;
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 40px !important;
+  margin: 30px auto !important;
+  max-width: 800px !important;
+}
+
+.post-container article .post-header .post-title {
+  font-size: 2.2em !important;
+  font-weight: 700 !important;
+  color: #2c3e50 !important;
+  line-height: 1.3 !important;
+}
+
+.post-container article .post-header {
+  border-bottom: none !important;
+  padding-bottom: 25px !important;
+  margin-bottom: 30px !important;
+}
+
+.post-container article .post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+
+.post-container article .post-content h2 {
+  font-size: 1.8em !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  color: #2c3e50 !important;
+}
+
+.post-container article .post-header .post-meta .post-categories li {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+  font-size: 0.8em !important;
+  list-style: none !important;
+  display: inline-block !important;
+  margin-right: 8px !important;
+}
+
+.post-container article .post-footer {
+  border-top: none !important;
+  padding-top: 25px !important;
+  margin-top: 40px !important;
+}
+
+/* 모든 border와 box-shadow 강제 제거 */
+.post-container article *,
+.post-container article *::before,
+.post-container article *::after {
+  border: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 코드 블록과 pre 태그도 border, box-shadow 제거 */
+.post-container article pre,
+.post-container article code,
+.post-container article .highlight,
+.post-container article .highlighter-rouge {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+</style><div class="post-container">
+  <article>
+    <header class="post-header">
+    <h1 class="post-title">리눅스 보안 완전 가이드 3편 - SELinux/AppArmor와 시스템 하드닝 | Linux Security Guide Part 3 - SELinux/AppArmor &amp; System Hardening</h1>
+    <div class="post-meta">
+      <div class="post-date">
+        <i class="icon-calendar"></i>
+        <time datetime="2025-02-19T00:00:00+00:00">Feb 19, 2025</time>
+      </div><div class="post-categories-wrapper">
+        <i class="icon-tag"></i>
+        <ul class="post-categories"><li>Security</li><li>Linux</li></ul>
+      </div></div>
+  </header>
+
+  <div class="post-content">
+    <p>리눅스 시스템의 핵심 보안 레이어인 SELinux/AppArmor와 시스템 하드닝 기법을 완전히 마스터해보겠습니다. 강제 접근 제어부터 커널 보안 매개변수까지 최고 수준의 시스템 보안을 구축하는 방법을 다룹니다.</p>
+
+<h2 id="selinux-완전-마스터--selinux-complete-mastery">SELinux 완전 마스터 | SELinux Complete Mastery</h2>
+
+<h3 id="-selinux-기초부터-고급까지">🔐 SELinux 기초부터 고급까지</h3>
+
+<h4 id="selinux-개념-및-초기-설정">SELinux 개념 및 초기 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># SELinux 상태 및 정보 확인</span>
+sestatus                    <span class="c"># 전체 상태 확인</span>
+getenforce                  <span class="c"># 현재 모드 확인</span>
+seinfo                      <span class="c"># 정책 통계</span>
+semanage <span class="nt">-l</span>                 <span class="c"># 관리 가능한 객체 목록</span>
+
+<span class="c"># SELinux 모드 설정</span>
+<span class="c"># /etc/selinux/config</span>
+<span class="nv">SELINUX</span><span class="o">=</span>enforcing           <span class="c"># enforcing, permissive, disabled</span>
+<span class="nv">SELINUXTYPE</span><span class="o">=</span>targeted        <span class="c"># targeted, minimum, mls</span>
+
+<span class="c"># 임시 모드 변경 (재부팅 시 원복)</span>
+setenforce 1                <span class="c"># enforcing 모드</span>
+setenforce 0                <span class="c"># permissive 모드</span>
+
+<span class="c"># SELinux 라벨링 시스템 이해</span>
+<span class="c"># 모든 객체는 security context를 가짐: user:role:type:level</span>
+<span class="nb">ls</span> <span class="nt">-Z</span> /var/www/html/        <span class="c"># 파일 컨텍스트 확인</span>
+ps auxZ                     <span class="c"># 프로세스 컨텍스트 확인</span>
+<span class="nb">id</span> <span class="nt">-Z</span>                       <span class="c"># 현재 사용자 컨텍스트</span>
+
+<span class="c"># 컨텍스트 구성 요소</span>
+<span class="c"># user: SELinux 사용자 (unconfined_u, system_u, user_u 등)</span>
+<span class="c"># role: 역할 (unconfined_r, system_r, object_r 등)  </span>
+<span class="c"># type: 타입/도메인 (httpd_t, httpd_exec_t, user_home_t 등)</span>
+<span class="c"># level: MLS/MCS 레벨 (s0, s0:c0,c1 등)</span>
+</code></pre></div></div>
+
+<h4 id="파일-컨텍스트-관리">파일 컨텍스트 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 파일 컨텍스트 확인 및 복원</span>
+<span class="nb">ls</span> <span class="nt">-lZ</span> /var/www/html/
+restorecon <span class="nt">-Rv</span> /var/www/html/      <span class="c"># 기본 컨텍스트로 복원</span>
+restorecon <span class="nt">-RvF</span> /var/www/html/     <span class="c"># 강제 복원</span>
+
+<span class="c"># 파일 컨텍스트 수동 설정</span>
+<span class="nb">chcon</span> <span class="nt">-t</span> httpd_exec_t /usr/local/apache2/bin/httpd
+<span class="nb">chcon</span> <span class="nt">-u</span> system_u /var/www/html/index.html
+<span class="nb">chcon</span> <span class="nt">--reference</span><span class="o">=</span>/var/www/html/index.html /var/www/html/newfile.html
+
+<span class="c"># 영구적인 컨텍스트 설정 (정책에 추가)</span>
+semanage fcontext <span class="nt">-a</span> <span class="nt">-t</span> httpd_exec_t <span class="s2">"/usr/local/apache2/bin/httpd"</span>
+semanage fcontext <span class="nt">-a</span> <span class="nt">-t</span> httpd_config_t <span class="s2">"/etc/myapp/.*</span><span class="se">\.</span><span class="s2">conf"</span>
+semanage fcontext <span class="nt">-a</span> <span class="nt">-t</span> user_home_t <span class="s2">"/home/[^/]+/mydata(/.*)?"</span>
+
+<span class="c"># 컨텍스트 정책 확인</span>
+semanage fcontext <span class="nt">-l</span> | <span class="nb">grep </span>httpd
+matchpathcon /var/www/html/index.html    <span class="c"># 예상 컨텍스트 확인</span>
+
+<span class="c"># 컨텍스트 변경 내역 추적</span>
+ausearch <span class="nt">-m</span> AVC <span class="nt">-ts</span> today              <span class="c"># AVC 거부 로그</span>
+sealert <span class="nt">-a</span> /var/log/audit/audit.log    <span class="c"># 정책 제안</span>
+
+<span class="c"># 고급 컨텍스트 관리 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/selinux-context-manager.sh</span>
+
+<span class="nv">ACTION</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">TARGET</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">CONTEXT</span><span class="o">=</span><span class="nv">$3</span>
+
+<span class="k">case</span> <span class="nv">$ACTION</span> <span class="k">in</span>
+    <span class="s2">"scan"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== SELinux Context Scan ==="</span>
+        find <span class="s2">"</span><span class="nv">$TARGET</span><span class="s2">"</span> <span class="nt">-print0</span> | xargs <span class="nt">-0</span> <span class="nb">ls</span> <span class="nt">-lZ</span> | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="s1">'{print $4, $9}'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-nr</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"restore"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Restoring contexts for </span><span class="nv">$TARGET</span><span class="s2">..."</span>
+        restorecon <span class="nt">-RvF</span> <span class="s2">"</span><span class="nv">$TARGET</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"set-bulk"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Setting bulk context </span><span class="nv">$CONTEXT</span><span class="s2"> for </span><span class="nv">$TARGET</span><span class="s2">..."</span>
+        find <span class="s2">"</span><span class="nv">$TARGET</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">chcon</span> <span class="nt">-t</span> <span class="s2">"</span><span class="nv">$CONTEXT</span><span class="s2">"</span> <span class="o">{}</span> <span class="se">\;</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"analyze"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== Context Analysis for </span><span class="nv">$TARGET</span><span class="s2"> ==="</span>
+        <span class="c"># 비정상적인 컨텍스트 찾기</span>
+        find <span class="s2">"</span><span class="nv">$TARGET</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">ls</span> <span class="nt">-lZ</span> <span class="o">{}</span> <span class="se">\;</span> | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"system_u:object_r"</span> | <span class="se">\</span>
+        <span class="nb">awk</span> <span class="s1">'{print "Unusual context:", $4, $9}'</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {scan|restore|set-bulk|analyze} &lt;path&gt; [context]"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h4 id="selinux-불린-값-관리">SELinux 불린 값 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 불린 값 확인</span>
+getsebool <span class="nt">-a</span>                          <span class="c"># 모든 불린 값</span>
+getsebool <span class="nt">-a</span> | <span class="nb">grep </span>httpd            <span class="c"># httpd 관련 불린</span>
+getsebool httpd_can_network_connect   <span class="c"># 특정 불린</span>
+
+<span class="c"># 불린 값 설정</span>
+setsebool httpd_can_network_connect on           <span class="c"># 임시 설정</span>
+setsebool <span class="nt">-P</span> httpd_can_network_connect on        <span class="c"># 영구 설정</span>
+
+<span class="c"># 주요 웹 서버 불린 값들</span>
+setsebool <span class="nt">-P</span> httpd_can_network_connect on        <span class="c"># 네트워크 연결 허용</span>
+setsebool <span class="nt">-P</span> httpd_can_sendmail on               <span class="c"># 메일 발송 허용</span>
+setsebool <span class="nt">-P</span> httpd_enable_cgi on                 <span class="c"># CGI 실행 허용</span>
+setsebool <span class="nt">-P</span> httpd_read_user_content on          <span class="c"># 사용자 콘텐츠 읽기</span>
+setsebool <span class="nt">-P</span> httpd_enable_homedirs on            <span class="c"># 홈 디렉토리 접근</span>
+setsebool <span class="nt">-P</span> httpd_execmem on                    <span class="c"># 메모리 실행 허용</span>
+setsebool <span class="nt">-P</span> httpd_use_nfs on                    <span class="c"># NFS 사용 허용</span>
+
+<span class="c"># 데이터베이스 관련 불린</span>
+setsebool <span class="nt">-P</span> allow_user_mysql_connect on         <span class="c"># MySQL 연결 허용</span>
+setsebool <span class="nt">-P</span> mysql_connect_any on                <span class="c"># MySQL 임의 연결</span>
+
+<span class="c"># SSH 관련 불린</span>
+setsebool <span class="nt">-P</span> ssh_chroot_rw_homedirs on           <span class="c"># chroot에서 홈디렉토리 쓰기</span>
+
+<span class="c"># 불린 값 모니터링 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/selinux-bool-monitor.sh</span>
+
+<span class="c"># 현재 불린 설정 백업</span>
+getsebool <span class="nt">-a</span> <span class="o">&gt;</span> /var/log/selinux-bools-<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>.log
+
+<span class="c"># 변경된 불린 값 감지</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> /var/log/selinux-bools-last.log <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">echo</span> <span class="s2">"=== Boolean Changes Detected ==="</span>
+    diff /var/log/selinux-bools-last.log /var/log/selinux-bools-<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>.log
+<span class="k">fi
+
+</span><span class="nb">cp</span> /var/log/selinux-bools-<span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span>.log /var/log/selinux-bools-last.log
+
+<span class="c"># 보안에 민감한 불린 값들 체크</span>
+<span class="nv">CRITICAL_BOOLS</span><span class="o">=(</span>
+    <span class="s2">"httpd_execmem"</span>
+    <span class="s2">"httpd_enable_cgi"</span>
+    <span class="s2">"allow_execheap"</span>
+    <span class="s2">"allow_execstack"</span>
+    <span class="s2">"selinuxuser_execstack"</span>
+<span class="o">)</span>
+
+<span class="nb">echo</span> <span class="s2">"=== Critical Boolean Status ==="</span>
+<span class="k">for </span>bool <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">CRITICAL_BOOLS</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    </span><span class="nv">status</span><span class="o">=</span><span class="si">$(</span>getsebool <span class="s2">"</span><span class="nv">$bool</span><span class="s2">"</span> 2&gt;/dev/null<span class="si">)</span>
+    <span class="k">if </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$status</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">" on"</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">echo</span> <span class="s2">"WARNING: </span><span class="nv">$bool</span><span class="s2"> is enabled"</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"OK: </span><span class="nv">$bool</span><span class="s2"> is disabled"</span>
+    <span class="k">fi
+done</span>
+</code></pre></div></div>
+
+<h4 id="포트-라벨-관리">포트 라벨 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 포트 라벨 확인</span>
+semanage port <span class="nt">-l</span>                    <span class="c"># 모든 포트 라벨</span>
+semanage port <span class="nt">-l</span> | <span class="nb">grep </span>http        <span class="c"># HTTP 관련 포트</span>
+ss <span class="nt">-tlnZ</span>                           <span class="c"># 네트워크 서비스와 컨텍스트</span>
+
+<span class="c"># 새로운 포트에 라벨 할당</span>
+semanage port <span class="nt">-a</span> <span class="nt">-t</span> http_port_t <span class="nt">-p</span> tcp 8080      <span class="c"># HTTP 포트 추가</span>
+semanage port <span class="nt">-a</span> <span class="nt">-t</span> ssh_port_t <span class="nt">-p</span> tcp 2222       <span class="c"># SSH 포트 추가</span>
+semanage port <span class="nt">-a</span> <span class="nt">-t</span> mysqld_port_t <span class="nt">-p</span> tcp 3307    <span class="c"># MySQL 포트 추가</span>
+
+<span class="c"># 포트 라벨 수정</span>
+semanage port <span class="nt">-m</span> <span class="nt">-t</span> http_port_t <span class="nt">-p</span> tcp 8080
+
+<span class="c"># 포트 라벨 제거</span>
+semanage port <span class="nt">-d</span> <span class="nt">-t</span> http_port_t <span class="nt">-p</span> tcp 8080
+
+<span class="c"># 커스텀 포트 타입 생성 (고급)</span>
+<span class="c"># myapp.te 파일 생성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> myapp.te <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+policy_module(myapp, 1.0)
+
+type myapp_port_t;
+corenet_port(myapp_port_t)
+
+allow httpd_t myapp_port_t:tcp_socket name_bind;
+</span><span class="no">EOF
+
+</span><span class="c"># 정책 컴파일 및 설치</span>
+make <span class="nt">-f</span> /usr/share/selinux/devel/Makefile myapp.pp
+semodule <span class="nt">-i</span> myapp.pp
+semanage port <span class="nt">-a</span> <span class="nt">-t</span> myapp_port_t <span class="nt">-p</span> tcp 9999
+</code></pre></div></div>
+
+<h3 id="️-selinux-커스텀-정책-작성">🛡️ SELinux 커스텀 정책 작성</h3>
+
+<h4 id="정책-모듈-개발">정책 모듈 개발</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 정책 개발 환경 준비</span>
+yum <span class="nb">install </span>selinux-policy-devel    <span class="c"># CentOS/RHEL</span>
+apt-get <span class="nb">install </span>selinux-policy-dev  <span class="c"># Ubuntu/Debian</span>
+
+<span class="c"># AVC 거부 분석 및 정책 생성</span>
+<span class="c"># 1. 서비스 실행하여 AVC 거부 로그 수집</span>
+systemctl start myapp
+<span class="nb">tail</span> <span class="nt">-f</span> /var/log/audit/audit.log | <span class="nb">grep </span>AVC
+
+<span class="c"># 2. audit2allow로 정책 제안 생성</span>
+<span class="nb">grep </span>myapp /var/log/audit/audit.log | audit2allow <span class="nt">-m</span> myapp_policy
+<span class="nb">grep </span>myapp /var/log/audit/audit.log | audit2allow <span class="nt">-M</span> myapp_policy
+
+<span class="c"># 3. 수동으로 정책 모듈 작성</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> myapp_custom.te <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+policy_module(myapp_custom, 1.0)
+
+########################################
+#
+# Declarations
+#
+
+type myapp_t;
+type myapp_exec_t;
+init_daemon_domain(myapp_t, myapp_exec_t)
+
+type myapp_config_t;
+files_config_file(myapp_config_t)
+
+type myapp_var_lib_t;
+files_type(myapp_var_lib_t)
+
+type myapp_log_t;
+logging_log_file(myapp_log_t)
+
+type myapp_port_t;
+corenet_port(myapp_port_t)
+
+########################################
+#
+# myapp local policy
+#
+
+# 기본 도메인 권한
+allow myapp_t self:process { fork signal_perms };
+allow myapp_t self:fifo_file rw_fifo_file_perms;
+allow myapp_t self:unix_stream_socket create_stream_socket_perms;
+
+# 네트워크 권한
+allow myapp_t self:tcp_socket create_stream_socket_perms;
+allow myapp_t myapp_port_t:tcp_socket name_bind;
+corenet_tcp_sendrecv_generic_if(myapp_t)
+corenet_tcp_sendrecv_generic_node(myapp_t)
+
+# 파일 시스템 권한
+allow myapp_t myapp_config_t:file read_file_perms;
+allow myapp_t myapp_var_lib_t:dir create_dir_perms;
+allow myapp_t myapp_var_lib_t:file create_file_perms;
+allow myapp_t myapp_log_t:file create_file_perms;
+
+# 시스템 서비스 상호작용
+can_exec(myapp_t, myapp_exec_t)
+files_read_etc_files(myapp_t)
+libs_use_ld_so(myapp_t)
+libs_use_shared_libs(myapp_t)
+
+# 로깅
+logging_send_syslog_msg(myapp_t)
+</span><span class="no">EOF
+
+</span><span class="c"># 4. 파일 컨텍스트 정의</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> myapp_custom.fc <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+/usr/local/bin/myapp        --      gen_context(system_u:object_r:myapp_exec_t,s0)
+/etc/myapp(/.*)?                    gen_context(system_u:object_r:myapp_config_t,s0)
+/var/lib/myapp(/.*)?                gen_context(system_u:object_r:myapp_var_lib_t,s0)
+/var/log/myapp(/.*)?                gen_context(system_u:object_r:myapp_log_t,s0)
+</span><span class="no">EOF
+
+</span><span class="c"># 5. 인터페이스 파일 (다른 모듈에서 사용할 인터페이스)</span>
+<span class="nb">cat</span> <span class="o">&gt;</span> myapp_custom.if <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+## &lt;summary&gt;MyApp custom policy&lt;/summary&gt;
+
+########################################
+## &lt;summary&gt;
+##  Execute myapp in the myapp domain.
+## &lt;/summary&gt;
+## &lt;param name="domain"&gt;
+##  &lt;summary&gt;
+##  Domain allowed to transition.
+##  &lt;/summary&gt;
+## &lt;/param&gt;
+#
+interface(`myapp_domtrans',`
+    gen_require(`
+        type myapp_t, myapp_exec_t;
+    ')
+
+    corecmd_search_bin(</span><span class="nv">$1</span><span class="sh">)
+    domtrans_pattern(</span><span class="nv">$1</span><span class="sh">, myapp_exec_t, myapp_t)
+')
+
+########################################
+## &lt;summary&gt;
+##  Read myapp configuration files.
+## &lt;/summary&gt;
+## &lt;param name="domain"&gt;
+##  &lt;summary&gt;
+##  Domain allowed access.
+##  &lt;/summary&gt;
+## &lt;/param&gt;
+#
+interface(`myapp_read_config',`
+    gen_require(`
+        type myapp_config_t;
+    ')
+
+    files_search_etc(</span><span class="nv">$1</span><span class="sh">)
+    read_files_pattern(</span><span class="nv">$1</span><span class="sh">, myapp_config_t, myapp_config_t)
+')
+</span><span class="no">EOF
+
+</span><span class="c"># 6. 정책 컴파일 및 설치</span>
+make <span class="nt">-f</span> /usr/share/selinux/devel/Makefile myapp_custom.pp
+semodule <span class="nt">-i</span> myapp_custom.pp
+
+<span class="c"># 7. 파일 컨텍스트 적용</span>
+semanage fcontext <span class="nt">-a</span> <span class="nt">-f</span> <span class="s2">""</span> <span class="nt">-t</span> myapp_exec_t <span class="s2">"/usr/local/bin/myapp"</span>
+semanage fcontext <span class="nt">-a</span> <span class="nt">-f</span> <span class="s2">""</span> <span class="nt">-t</span> myapp_config_t <span class="s2">"/etc/myapp(/.*)?"</span>
+restorecon <span class="nt">-Rv</span> /usr/local/bin/myapp /etc/myapp
+
+<span class="c"># 8. 포트 라벨 설정</span>
+semanage port <span class="nt">-a</span> <span class="nt">-t</span> myapp_port_t <span class="nt">-p</span> tcp 9090
+</code></pre></div></div>
+
+<h4 id="정책-디버깅-및-최적화">정책 디버깅 및 최적화</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/selinux-debug.sh</span>
+<span class="c"># SELinux 정책 디버깅 도구</span>
+
+<span class="nv">MODE</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">MODULE</span><span class="o">=</span><span class="nv">$2</span>
+
+<span class="k">case</span> <span class="nv">$MODE</span> <span class="k">in</span>
+    <span class="s2">"avc-analysis"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== AVC Denial Analysis ==="</span>
+        ausearch <span class="nt">-m</span> AVC <span class="nt">-ts</span> today | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$MODULE</span><span class="s2">"</span> | <span class="se">\</span>
+        <span class="k">while </span><span class="nb">read </span>line<span class="p">;</span> <span class="k">do
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$line</span><span class="s2">"</span> | audit2allow <span class="nt">-R</span>
+            <span class="nb">echo</span> <span class="s2">"---"</span>
+        <span class="k">done</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"permissive-test"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Setting </span><span class="nv">$MODULE</span><span class="s2"> to permissive mode for testing..."</span>
+        semanage permissive <span class="nt">-a</span> <span class="k">${</span><span class="nv">MODULE</span><span class="k">}</span>_t
+        <span class="nb">echo</span> <span class="s2">"Test your application, then check denials:"</span>
+        <span class="nb">echo</span> <span class="s2">"ausearch -m AVC -ts now"</span>
+        <span class="nb">echo</span> <span class="s2">"When done, remove permissive mode:"</span>
+        <span class="nb">echo</span> <span class="s2">"semanage permissive -d </span><span class="k">${</span><span class="nv">MODULE</span><span class="k">}</span><span class="s2">_t"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"policy-stats"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== Policy Statistics ==="</span>
+        seinfo <span class="nt">-t</span> | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$MODULE</span><span class="s2">"</span>
+        seinfo <span class="nt">-r</span> | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$MODULE</span><span class="s2">"</span>
+        seinfo <span class="nt">-u</span> | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$MODULE</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"generate-policy"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Generating policy for </span><span class="nv">$MODULE</span><span class="s2">..."</span>
+        ausearch <span class="nt">-m</span> AVC <span class="nt">-ts</span> today | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$MODULE</span><span class="s2">"</span> | <span class="se">\</span>
+        audit2allow <span class="nt">-M</span> <span class="k">${</span><span class="nv">MODULE</span><span class="k">}</span>_additional
+        
+        <span class="nb">echo</span> <span class="s2">"Generated policy module: </span><span class="k">${</span><span class="nv">MODULE</span><span class="k">}</span><span class="s2">_additional.pp"</span>
+        <span class="nb">echo</span> <span class="s2">"Install with: semodule -i </span><span class="k">${</span><span class="nv">MODULE</span><span class="k">}</span><span class="s2">_additional.pp"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"module-deps"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== Module Dependencies for </span><span class="nv">$MODULE</span><span class="s2"> ==="</span>
+        semodule <span class="nt">-l</span> | <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$MODULE</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {avc-analysis|permissive-test|policy-stats|generate-policy|module-deps} &lt;module&gt;"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Examples:"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> avc-analysis httpd"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> permissive-test myapp"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> generate-policy myapp"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="apparmor-완전-마스터--apparmor-complete-mastery">AppArmor 완전 마스터 | AppArmor Complete Mastery</h2>
+
+<h3 id="️-apparmor-프로파일-작성-및-관리">🛡️ AppArmor 프로파일 작성 및 관리</h3>
+
+<h4 id="apparmor-기본-관리">AppArmor 기본 관리</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># AppArmor 상태 확인</span>
+aa-status                   <span class="c"># 전체 상태</span>
+aa-enabled                  <span class="c"># 활성화 여부</span>
+aa-unconfined               <span class="c"># 제한되지 않은 프로세스</span>
+
+<span class="c"># 프로파일 모드 관리</span>
+aa-enforce /etc/apparmor.d/usr.bin.firefox     <span class="c"># enforce 모드</span>
+aa-complain /etc/apparmor.d/usr.bin.firefox    <span class="c"># complain 모드  </span>
+aa-disable /etc/apparmor.d/usr.bin.firefox     <span class="c"># 비활성화</span>
+
+<span class="c"># 프로파일 재로드</span>
+apparmor_parser <span class="nt">-r</span> /etc/apparmor.d/usr.bin.firefox
+apparmor_parser <span class="nt">-R</span> /etc/apparmor.d/            <span class="c"># 모든 프로파일 재로드</span>
+
+<span class="c"># 프로파일 상태 확인</span>
+aa-status | <span class="nb">grep </span>firefox
+</code></pre></div></div>
+
+<h4 id="고급-apparmor-프로파일-작성">고급 AppArmor 프로파일 작성</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 웹 애플리케이션용 커스텀 프로파일</span>
+<span class="c"># /etc/apparmor.d/usr.local.bin.webapp</span>
+<span class="c">#include &lt;tunables/global&gt;</span>
+
+profile /usr/local/bin/webapp <span class="nv">flags</span><span class="o">=(</span>attach_disconnected,mediate_deleted<span class="o">)</span> <span class="o">{</span>
+  <span class="c">#include &lt;abstractions/base&gt;</span>
+  <span class="c">#include &lt;abstractions/nameservice&gt;</span>
+  <span class="c">#include &lt;abstractions/openssl&gt;</span>
+  <span class="c">#include &lt;abstractions/ssl_certs&gt;</span>
+  
+  <span class="c"># 실행 권한</span>
+  /usr/local/bin/webapp mr,
+  
+  <span class="c"># 라이브러리 접근</span>
+  /lib<span class="o">{</span>,32,64<span class="o">}</span>/<span class="k">**</span> mr,
+  /usr/lib<span class="o">{</span>,32,64<span class="o">}</span>/<span class="k">**</span> mr,
+  /usr/local/lib/<span class="k">**</span> mr,
+  
+  <span class="c"># 설정 파일 (읽기 전용)</span>
+  /etc/webapp/ r,
+  /etc/webapp/<span class="k">**</span> r,
+  owner /etc/webapp/webapp.conf r,
+  
+  <span class="c"># 사용자별 설정 및 데이터</span>
+  owner @<span class="o">{</span>HOME<span class="o">}</span>/.webapp/ rw,
+  owner @<span class="o">{</span>HOME<span class="o">}</span>/.webapp/<span class="k">**</span> rw,
+  owner @<span class="o">{</span>HOME<span class="o">}</span>/.webapp/cache/<span class="k">**</span> rwk,
+  
+  <span class="c"># 애플리케이션 데이터 디렉토리</span>
+  /var/lib/webapp/ r,
+  /var/lib/webapp/<span class="k">**</span> rw,
+  /var/cache/webapp/ r,
+  /var/cache/webapp/<span class="k">**</span> rw,
+  
+  <span class="c"># 로그 파일</span>
+  /var/log/webapp/ r,
+  /var/log/webapp/<span class="k">*</span>.log w,
+  /var/log/webapp/<span class="k">*</span>.log.[0-9] w,
+  
+  <span class="c"># 네트워크 접근</span>
+  network inet stream,
+  network inet6 stream,
+  network inet dgram,
+  network inet6 dgram,
+  network netlink raw,
+  
+  <span class="c"># 프로세스 제어</span>
+  capability setuid,
+  capability setgid,
+  capability dac_override,
+  capability net_bind_service,
+  
+  <span class="c"># 임시 파일</span>
+  /tmp/ r,
+  /tmp/webapp.<span class="k">**</span> rw,
+  owner /tmp/webapp-@<span class="o">{</span>pid<span class="o">}</span>-<span class="k">*</span> rw,
+  /var/tmp/ r,
+  /var/tmp/webapp.<span class="k">**</span> rw,
+  
+  <span class="c"># 시스템 정보 접근</span>
+  /proc/sys/kernel/random/uuid r,
+  /proc/loadavg r,
+  /proc/meminfo r,
+  /sys/devices/system/cpu/ r,
+  /sys/devices/system/cpu/cpu[0-9]<span class="k">*</span>/cpufreq/scaling_cur_freq r,
+  
+  <span class="c"># 거부할 접근들 (명시적 거부)</span>
+  deny /etc/passwd r,
+  deny /etc/shadow r,
+  deny /etc/gshadow r,
+  deny owner /home/<span class="k">*</span>/.ssh/<span class="k">**</span> rw,
+  deny /proc/[0-9]<span class="k">*</span>/maps r,
+  deny /proc/[0-9]<span class="k">*</span>/mem r,
+  deny /proc/kmem r,
+  deny /proc/kcore r,
+  deny /boot/<span class="k">**</span> r,
+  
+  <span class="c"># 하위 프로세스 실행</span>
+  /bin/dash ix,
+  /bin/bash ix,
+  /usr/bin/python3 ix,
+  /usr/bin/python3.[0-9] ix,
+  /usr/local/bin/webapp-helper Cx -&gt; helper,
+  
+  <span class="c"># 조건부 실행 규칙</span>
+  profile helper <span class="o">{</span>
+    <span class="c">#include &lt;abstractions/base&gt;</span>
+    
+    /usr/local/bin/webapp-helper mr,
+    /var/lib/webapp/helper-data/<span class="k">**</span> r,
+    /tmp/helper-<span class="k">**</span> rw,
+    
+    <span class="c"># 부모로부터 상속받은 파일 디스크립터만 사용</span>
+    deny network,
+    deny capability,
+  <span class="o">}</span>
+  
+  <span class="c"># 신호 처리</span>
+  signal <span class="o">(</span>send<span class="o">)</span> <span class="nb">set</span><span class="o">=(</span>term,kill,usr1,usr2<span class="o">)</span> <span class="nv">peer</span><span class="o">=</span>/usr/local/bin/webapp,
+  signal <span class="o">(</span>receive<span class="o">)</span> <span class="nb">set</span><span class="o">=(</span>term,kill,usr1,usr2<span class="o">)</span>,
+  
+  <span class="c"># DBus 접근 (필요시)</span>
+  dbus <span class="o">(</span>send<span class="o">)</span>
+       <span class="nv">bus</span><span class="o">=</span>session
+       <span class="nv">path</span><span class="o">=</span>/org/freedesktop/Notifications
+       <span class="nv">interface</span><span class="o">=</span>org.freedesktop.Notifications
+       <span class="nv">member</span><span class="o">=</span>Notify
+       <span class="nv">peer</span><span class="o">=(</span><span class="nv">name</span><span class="o">=</span>org.freedesktop.Notifications<span class="o">)</span>,
+<span class="o">}</span>
+
+<span class="c"># 데이터베이스 서버용 프로파일</span>
+<span class="c"># /etc/apparmor.d/usr.sbin.mysqld-custom</span>
+<span class="c">#include &lt;tunables/global&gt;</span>
+
+profile /usr/sbin/mysqld-custom <span class="nv">flags</span><span class="o">=(</span>attach_disconnected,mediate_deleted<span class="o">)</span> <span class="o">{</span>
+  <span class="c">#include &lt;abstractions/base&gt;</span>
+  <span class="c">#include &lt;abstractions/mysql&gt;</span>
+  <span class="c">#include &lt;abstractions/nameservice&gt;</span>
+  <span class="c">#include &lt;abstractions/user-tmp&gt;</span>
+  
+  capability dac_override,
+  capability setgid,
+  capability setuid,
+  capability sys_resource,
+  capability net_bind_service,
+  
+  <span class="c"># MySQL 바이너리</span>
+  /usr/sbin/mysqld mr,
+  /usr/sbin/mysqld-debug mr,
+  
+  <span class="c"># 설정 파일</span>
+  /etc/mysql/ r,
+  /etc/mysql/<span class="k">**</span> r,
+  /etc/my.cnf r,
+  /etc/my.cnf.d/ r,
+  /etc/my.cnf.d/<span class="k">*</span>.cnf r,
+  
+  <span class="c"># 데이터 디렉토리</span>
+  /var/lib/mysql/ r,
+  /var/lib/mysql/<span class="k">**</span> rwk,
+  /var/lib/mysql-files/ r,
+  /var/lib/mysql-files/<span class="k">**</span> rw,
+  
+  <span class="c"># 로그 파일</span>
+  /var/log/mysql/ r,
+  /var/log/mysql/<span class="k">*</span>.log rw,
+  /var/log/mysql.log rw,
+  /var/log/mysql/error.log rw,
+  
+  <span class="c"># 소켓 파일</span>
+  /var/run/mysqld/ rw,
+  /var/run/mysqld/mysqld.sock rw,
+  /tmp/mysql.sock rw,
+  
+  <span class="c"># 네트워크</span>
+  network tcp,
+  
+  <span class="c"># 프로세스 간 통신</span>
+  /proc/<span class="k">*</span>/status r,
+  /proc/sys/vm/overcommit_memory r,
+  
+  <span class="c"># 임시 파일</span>
+  /tmp/ r,
+  /tmp/mysql-<span class="k">**</span> rw,
+  /var/tmp/ r,
+  /var/tmp/mysql-<span class="k">**</span> rw,
+  
+  <span class="c"># 보안 제한</span>
+  deny capability sys_ptrace,
+  deny @<span class="o">{</span>PROC<span class="o">}</span>/sys/kernel/core_pattern w,
+  deny /etc/passwd r,
+  deny /etc/shadow r,
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="apparmor-프로파일-자동-생성-및-튜닝">AppArmor 프로파일 자동 생성 및 튜닝</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/apparmor-manager.sh</span>
+<span class="c"># AppArmor 프로파일 관리 도구</span>
+
+<span class="nv">ACTION</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">BINARY</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">PROFILE_NAME</span><span class="o">=</span><span class="k">${</span><span class="nv">3</span><span class="k">:-</span><span class="si">$(</span><span class="nb">basename</span> <span class="nv">$BINARY</span><span class="si">)</span><span class="k">}</span>
+
+<span class="k">case</span> <span class="nv">$ACTION</span> <span class="k">in</span>
+    <span class="s2">"generate"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Generating AppArmor profile for </span><span class="nv">$BINARY</span><span class="s2">..."</span>
+        
+        <span class="c"># 1. 기본 프로파일 생성</span>
+        aa-genprof <span class="s2">"</span><span class="nv">$BINARY</span><span class="s2">"</span>
+        
+        <span class="nb">echo</span> <span class="s2">"Profile generation completed."</span>
+        <span class="nb">echo</span> <span class="s2">"Test your application and run: </span><span class="nv">$0</span><span class="s2"> tune </span><span class="nv">$BINARY</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"tune"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Tuning AppArmor profile for </span><span class="nv">$BINARY</span><span class="s2">..."</span>
+        
+        <span class="c"># 로그프로파일링 실행</span>
+        aa-logprof
+        
+        <span class="nb">echo</span> <span class="s2">"Profile tuning completed."</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"analyze"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"=== AppArmor Profile Analysis for </span><span class="nv">$PROFILE_NAME</span><span class="s2"> ==="</span>
+        
+        <span class="c"># 프로파일 구문 검사</span>
+        apparmor_parser <span class="nt">-p</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> 2&gt;&amp;1 | <span class="se">\</span>
+        <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"(ERROR|WARNING)"</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"✓ Syntax OK"</span>
+        
+        <span class="c"># 프로파일 통계</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Profile statistics:"</span>
+        <span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"^[[:space:]]*/"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"File rules"</span>
+        <span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"capability"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Capabilities"</span>
+        <span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"network"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Network rules"</span>
+        <span class="nb">grep</span> <span class="nt">-c</span> <span class="s2">"deny"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"Deny rules"</span>
+        
+        <span class="c"># 보안 검사</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Security analysis:"</span>
+        <span class="k">if </span><span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"capability sys_admin"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"⚠️  WARNING: sys_admin capability found"</span>
+        <span class="k">fi
+        
+        if </span><span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"/etc/shadow"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"⚠️  WARNING: Shadow file access found"</span>  
+        <span class="k">fi
+        
+        if </span><span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"network raw"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"⚠️  WARNING: Raw network access found"</span>
+        <span class="k">fi</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"template"</span><span class="p">)</span>
+        <span class="nv">TEMPLATE_TYPE</span><span class="o">=</span><span class="nv">$3</span>
+        <span class="nb">echo</span> <span class="s2">"Creating AppArmor profile template for </span><span class="nv">$BINARY</span><span class="s2"> (</span><span class="nv">$TEMPLATE_TYPE</span><span class="s2">)..."</span>
+        
+        <span class="k">case</span> <span class="nv">$TEMPLATE_TYPE</span> <span class="k">in</span>
+            <span class="s2">"webapp"</span><span class="p">)</span>
+                <span class="nb">cat</span> <span class="o">&gt;</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#include &lt;tunables/global&gt;
+
+profile BINARY_PATH {
+  #include &lt;abstractions/base&gt;
+  #include &lt;abstractions/nameservice&gt;
+  
+  # Binary execution
+  BINARY_PATH mr,
+  
+  # Libraries
+  /lib{,32,64}/** mr,
+  /usr/lib{,32,64}/** mr,
+  
+  # Configuration
+  /etc/APP_NAME/ r,
+  /etc/APP_NAME/** r,
+  
+  # Data directories
+  /var/lib/APP_NAME/** rw,
+  /var/log/APP_NAME/** w,
+  
+  # Network
+  network inet stream,
+  
+  # Capabilities
+  capability setuid,
+  capability setgid,
+  
+  # Temporary files
+  /tmp/APP_NAME.** rw,
+}
+</span><span class="no">EOF
+</span>                <span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s|BINARY_PATH|</span><span class="nv">$BINARY</span><span class="s2">|g"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span>
+                <span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s|APP_NAME|</span><span class="si">$(</span><span class="nb">basename</span> <span class="nv">$BINARY</span><span class="si">)</span><span class="s2">|g"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span>
+                <span class="p">;;</span>
+                
+            <span class="s2">"service"</span><span class="p">)</span>
+                <span class="nb">cat</span> <span class="o">&gt;</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#include &lt;tunables/global&gt;
+
+profile BINARY_PATH flags=(attach_disconnected) {
+  #include &lt;abstractions/base&gt;
+  #include &lt;abstractions/nameservice&gt;
+  
+  # Service binary
+  BINARY_PATH mr,
+  
+  # System libraries
+  /lib{,32,64}/** mr,
+  /usr/lib{,32,64}/** mr,
+  
+  # Service configuration
+  /etc/APP_NAME/ r,
+  /etc/APP_NAME/** r,
+  
+  # Runtime directories
+  /var/run/APP_NAME/ rw,
+  /var/run/APP_NAME/** rw,
+  
+  # Log files
+  /var/log/APP_NAME/ r,
+  /var/log/APP_NAME/*.log w,
+  
+  # PID file
+  /var/run/APP_NAME.pid w,
+  
+  # Network access
+  network inet stream,
+  network inet dgram,
+  
+  # System capabilities
+  capability setuid,
+  capability setgid,
+  capability net_bind_service,
+  
+  # Signal handling
+  signal (receive) set=(term,kill,usr1),
+}
+</span><span class="no">EOF
+</span>                <span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s|BINARY_PATH|</span><span class="nv">$BINARY</span><span class="s2">|g"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span>
+                <span class="nb">sed</span> <span class="nt">-i</span> <span class="s2">"s|APP_NAME|</span><span class="si">$(</span><span class="nb">basename</span> <span class="nv">$BINARY</span><span class="si">)</span><span class="s2">|g"</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span>
+                <span class="p">;;</span>
+        <span class="k">esac</span>
+        
+        <span class="nb">echo</span> <span class="s2">"Template created: /etc/apparmor.d/</span><span class="nv">$PROFILE_NAME</span><span class="s2">"</span>
+        <span class="nb">echo</span> <span class="s2">"Edit the template and then load it with:"</span>
+        <span class="nb">echo</span> <span class="s2">"apparmor_parser -r /etc/apparmor.d/</span><span class="nv">$PROFILE_NAME</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"test"</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Testing AppArmor profile for </span><span class="nv">$BINARY</span><span class="s2">..."</span>
+        
+        <span class="c"># complain 모드로 전환</span>
+        aa-complain /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span>
+        
+        <span class="nb">echo</span> <span class="s2">"Profile set to complain mode."</span>
+        <span class="nb">echo</span> <span class="s2">"Run your application tests, then check logs:"</span>
+        <span class="nb">echo</span> <span class="s2">"journalctl -f | grep apparmor"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"When testing is complete, switch to enforce mode:"</span>
+        <span class="nb">echo</span> <span class="s2">"aa-enforce /etc/apparmor.d/</span><span class="nv">$PROFILE_NAME</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="s2">"backup"</span><span class="p">)</span>
+        <span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/etc/apparmor.d/backups/</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d<span class="si">)</span><span class="s2">"</span>
+        <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>
+        <span class="nb">cp</span> /etc/apparmor.d/<span class="nv">$PROFILE_NAME</span> <span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/"</span>
+        <span class="nb">echo</span> <span class="s2">"Profile backed up to: </span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="nv">$PROFILE_NAME</span><span class="s2">"</span>
+        <span class="p">;;</span>
+        
+    <span class="k">*</span><span class="p">)</span>
+        <span class="nb">echo</span> <span class="s2">"Usage: </span><span class="nv">$0</span><span class="s2"> {generate|tune|analyze|template|test|backup} &lt;binary&gt; [profile-name]"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Template types for 'template' action:"</span>
+        <span class="nb">echo</span> <span class="s2">"  webapp  - Web application template"</span>
+        <span class="nb">echo</span> <span class="s2">"  service - System service template"</span>
+        <span class="nb">echo</span> <span class="s2">""</span>
+        <span class="nb">echo</span> <span class="s2">"Examples:"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> generate /usr/local/bin/myapp"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> template /usr/local/bin/myapp webapp"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> analyze myapp"</span>
+        <span class="nb">echo</span> <span class="s2">"  </span><span class="nv">$0</span><span class="s2"> test myapp"</span>
+        <span class="nb">exit </span>1
+        <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div></div>
+
+<h2 id="시스템-하드닝--system-hardening">시스템 하드닝 | System Hardening</h2>
+
+<h3 id="-커널-보안-매개변수-최적화">🔧 커널 보안 매개변수 최적화</h3>
+
+<h4 id="고급-sysctl-보안-설정">고급 sysctl 보안 설정</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># /etc/sysctl.d/99-security-hardening.conf</span>
+<span class="c"># 종합적인 시스템 보안 강화 설정</span>
+
+<span class="c"># ==================== 네트워크 보안 ====================</span>
+<span class="c"># IPv4 네트워크 보안</span>
+net.ipv4.ip_forward <span class="o">=</span> 0                          <span class="c"># IP 포워딩 비활성화</span>
+net.ipv4.conf.all.send_redirects <span class="o">=</span> 0             <span class="c"># ICMP 리디렉트 전송 차단</span>
+net.ipv4.conf.default.send_redirects <span class="o">=</span> 0
+net.ipv4.conf.all.accept_redirects <span class="o">=</span> 0           <span class="c"># ICMP 리디렉트 수신 차단</span>
+net.ipv4.conf.default.accept_redirects <span class="o">=</span> 0
+net.ipv4.conf.all.secure_redirects <span class="o">=</span> 0           <span class="c"># 보안 리디렉트도 차단</span>
+net.ipv4.conf.default.secure_redirects <span class="o">=</span> 0
+net.ipv4.conf.all.accept_source_route <span class="o">=</span> 0        <span class="c"># 소스 라우팅 차단</span>
+net.ipv4.conf.default.accept_source_route <span class="o">=</span> 0
+net.ipv4.conf.all.rp_filter <span class="o">=</span> 1                 <span class="c"># 역방향 경로 필터링</span>
+net.ipv4.conf.default.rp_filter <span class="o">=</span> 1
+net.ipv4.conf.all.log_martians <span class="o">=</span> 1              <span class="c"># 비정상 패킷 로깅</span>
+net.ipv4.conf.default.log_martians <span class="o">=</span> 1
+
+<span class="c"># SYN Flood 공격 방지</span>
+net.ipv4.tcp_syncookies <span class="o">=</span> 1
+net.ipv4.tcp_max_syn_backlog <span class="o">=</span> 2048
+net.ipv4.tcp_synack_retries <span class="o">=</span> 2
+net.ipv4.tcp_syn_retries <span class="o">=</span> 5
+net.ipv4.tcp_fin_timeout <span class="o">=</span> 15
+net.ipv4.tcp_keepalive_time <span class="o">=</span> 300
+net.ipv4.tcp_keepalive_probes <span class="o">=</span> 5
+net.ipv4.tcp_keepalive_intvl <span class="o">=</span> 15
+
+<span class="c"># ICMP 보안</span>
+net.ipv4.icmp_echo_ignore_broadcasts <span class="o">=</span> 1         <span class="c"># 브로드캐스트 ping 무시</span>
+net.ipv4.icmp_ignore_bogus_error_responses <span class="o">=</span> 1   <span class="c"># 잘못된 ICMP 에러 무시</span>
+net.ipv4.icmp_echo_ignore_all <span class="o">=</span> 0                <span class="c"># 일반 ping은 허용 (필요시 1로 변경)</span>
+net.ipv4.icmp_ratelimit <span class="o">=</span> 100                    <span class="c"># ICMP 속도 제한</span>
+
+<span class="c"># IPv6 보안 (IPv6 사용하지 않는 경우)</span>
+net.ipv6.conf.all.disable_ipv6 <span class="o">=</span> 1
+net.ipv6.conf.default.disable_ipv6 <span class="o">=</span> 1
+net.ipv6.conf.lo.disable_ipv6 <span class="o">=</span> 1
+
+<span class="c"># IPv6 사용하는 경우의 보안 설정</span>
+<span class="c"># net.ipv6.conf.all.accept_ra = 0                # 라우터 광고 차단</span>
+<span class="c"># net.ipv6.conf.default.accept_ra = 0</span>
+<span class="c"># net.ipv6.conf.all.accept_redirects = 0         # IPv6 리디렉트 차단</span>
+<span class="c"># net.ipv6.conf.default.accept_redirects = 0</span>
+<span class="c"># net.ipv6.conf.all.accept_source_route = 0      # IPv6 소스 라우팅 차단</span>
+<span class="c"># net.ipv6.conf.default.accept_source_route = 0</span>
+
+<span class="c"># ==================== 메모리 보안 ====================</span>
+<span class="c"># ASLR (Address Space Layout Randomization)</span>
+kernel.randomize_va_space <span class="o">=</span> 2                    <span class="c"># 전체 주소 공간 무작위화</span>
+
+<span class="c"># 메모리 보호</span>
+vm.mmap_min_addr <span class="o">=</span> 65536                        <span class="c"># mmap 최소 주소 (NULL 포인터 역참조 방지)</span>
+kernel.exec-shield <span class="o">=</span> 1                          <span class="c"># 실행 쉴드 활성화 (가능한 경우)</span>
+kernel.dmesg_restrict <span class="o">=</span> 1                       <span class="c"># dmesg 제한 (일반 사용자 차단)</span>
+kernel.kptr_restrict <span class="o">=</span> 2                        <span class="c"># 커널 포인터 정보 제한</span>
+
+<span class="c"># 메모리 할당 보안</span>
+vm.overcommit_memory <span class="o">=</span> 2                        <span class="c"># 메모리 오버커밋 제한</span>
+vm.overcommit_ratio <span class="o">=</span> 80                        <span class="c"># 오버커밋 비율 80%</span>
+
+<span class="c"># ==================== 프로세스 보안 ====================</span>
+<span class="c"># 코어 덤프 보안</span>
+fs.suid_dumpable <span class="o">=</span> 0                            <span class="c"># SUID 프로그램 코어 덤프 금지</span>
+kernel.core_uses_pid <span class="o">=</span> 1                        <span class="c"># 코어 파일에 PID 포함</span>
+kernel.core_pattern <span class="o">=</span> |/bin/false               <span class="c"># 코어 덤프 완전 비활성화</span>
+
+<span class="c"># 프로세스 제한</span>
+kernel.pid_max <span class="o">=</span> 65536                          <span class="c"># 최대 프로세스 ID</span>
+kernel.threads-max <span class="o">=</span> 65536                      <span class="c"># 최대 스레드 수</span>
+
+<span class="c"># 시스템 호출 보안</span>
+kernel.yama.ptrace_scope <span class="o">=</span> 1                    <span class="c"># ptrace 제한 (디버깅 방지)</span>
+kernel.unprivileged_bpf_disabled <span class="o">=</span> 1            <span class="c"># 비특권 BPF 비활성화</span>
+net.core.bpf_jit_harden <span class="o">=</span> 2                     <span class="c"># BPF JIT 강화</span>
+
+<span class="c"># ==================== 파일 시스템 보안 ====================</span>
+<span class="c"># 파일 시스템 보안</span>
+fs.protected_hardlinks <span class="o">=</span> 1                      <span class="c"># 하드링크 보호</span>
+fs.protected_symlinks <span class="o">=</span> 1                       <span class="c"># 심볼릭링크 보호</span>
+fs.protected_fifos <span class="o">=</span> 2                          <span class="c"># FIFO 보호</span>
+fs.protected_regular <span class="o">=</span> 2                        <span class="c"># 일반 파일 보호</span>
+
+<span class="c"># 파일 디스크립터 제한</span>
+fs.file-max <span class="o">=</span> 2097152                          <span class="c"># 시스템 전체 최대 파일 디스크립터</span>
+fs.nr_open <span class="o">=</span> 1048576                           <span class="c"># 프로세스당 최대 파일 디스크립터</span>
+
+<span class="c"># ==================== 시스템 제어 ====================</span>
+<span class="c"># 시스템 키 조합 비활성화</span>
+kernel.sysrq <span class="o">=</span> 0                               <span class="c"># SysRq 키 비활성화</span>
+kernel.ctrl-alt-del <span class="o">=</span> 0                        <span class="c"># Ctrl+Alt+Del 비활성화</span>
+
+<span class="c"># 커널 모듈 보안</span>
+kernel.modules_disabled <span class="o">=</span> 1                     <span class="c"># 런타임 커널 모듈 로딩 비활성화 (신중히 사용)</span>
+kernel.kexec_load_disabled <span class="o">=</span> 1                 <span class="c"># kexec 비활성화</span>
+
+<span class="c"># ==================== 네트워크 성능 및 보안 ====================</span>
+<span class="c"># 네트워크 버퍼 크기</span>
+net.core.rmem_default <span class="o">=</span> 262144
+net.core.rmem_max <span class="o">=</span> 16777216
+net.core.wmem_default <span class="o">=</span> 262144  
+net.core.wmem_max <span class="o">=</span> 16777216
+
+<span class="c"># TCP 윈도우 스케일링</span>
+net.ipv4.tcp_window_scaling <span class="o">=</span> 1
+net.ipv4.tcp_rmem <span class="o">=</span> 4096 87380 16777216
+net.ipv4.tcp_wmem <span class="o">=</span> 4096 65536 16777216
+
+<span class="c"># 네트워크 큐 설정</span>
+net.core.netdev_max_backlog <span class="o">=</span> 5000
+
+<span class="c"># ==================== 로깅 및 감사 ====================</span>
+<span class="c"># 커널 로깅</span>
+kernel.printk <span class="o">=</span> 3 4 1 3                        <span class="c"># 로깅 레벨 조정</span>
+
+<span class="c"># 설정 적용 및 확인 스크립트</span>
+<span class="c">#!/bin/bash</span>
+<span class="c"># /usr/local/bin/apply-sysctl-security.sh</span>
+
+<span class="nb">echo</span> <span class="s2">"Applying sysctl security settings..."</span>
+
+<span class="c"># 현재 설정 백업</span>
+sysctl <span class="nt">-a</span> <span class="o">&gt;</span> /etc/sysctl.backup.<span class="si">$(</span><span class="nb">date</span> +%Y%m%d-%H%M%S<span class="si">)</span>
+
+<span class="c"># 새 설정 적용</span>
+sysctl <span class="nt">-p</span> /etc/sysctl.d/99-security-hardening.conf
+
+<span class="c"># 적용 결과 확인</span>
+<span class="nb">echo</span> <span class="s2">"=== Security Sysctl Settings Applied ==="</span>
+<span class="nb">echo</span> <span class="s2">"Network security:"</span>
+sysctl net.ipv4.ip_forward net.ipv4.conf.all.accept_redirects net.ipv4.tcp_syncookies
+
+<span class="nb">echo</span> <span class="s2">"Memory security:"</span>
+sysctl kernel.randomize_va_space vm.mmap_min_addr kernel.dmesg_restrict
+
+<span class="nb">echo</span> <span class="s2">"Process security:"</span>
+sysctl fs.suid_dumpable kernel.yama.ptrace_scope kernel.unprivileged_bpf_disabled
+
+<span class="nb">echo</span> <span class="s2">"File system security:"</span>
+sysctl fs.protected_hardlinks fs.protected_symlinks
+
+<span class="nb">echo</span> <span class="s2">"System control:"</span>
+sysctl kernel.sysrq kernel.ctrl-alt-del
+
+<span class="nb">echo</span> <span class="s2">""</span>
+<span class="nb">echo</span> <span class="s2">"Settings applied successfully!"</span>
+<span class="nb">echo</span> <span class="s2">"Reboot recommended to ensure all settings take effect."</span>
+</code></pre></div></div>
+
+<h2 id="다음-편-예고">다음 편 예고</h2>
+
+<p>다음 포스트에서는 <strong>침입 탐지 시스템과 실시간 모니터링</strong>을 상세히 다룰 예정입니다:</p>
+<ul>
+  <li>AIDE 파일 무결성 모니터링</li>
+  <li>Fail2Ban 고급 설정 및 커스터마이징</li>
+  <li>Wazuh SIEM 구축 및 운영</li>
+  <li>실시간 위협 탐지 및 대응</li>
+</ul>
+
+<p>SELinux/AppArmor와 시스템 하드닝을 완벽하게 마스터하셨나요? 🛡️🔒</p>
+
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation"><div class="nav-previous">
+        <a href="/infra-blog/blog/2025/01/18/networking-guide-part4.html" rel="prev">
+          <i class="icon-left-arrow"></i>
+          <span class="nav-title">네트워킹 완전 가이드 4편 - 무선 네트워킹과 최신 기술 | Complete Netw...</span>
+        </a>
+      </div><div class="nav-next">
+        <a href="/infra-blog/blog/2025/03/07/networking-guide-part5.html" rel="next">
+          <span class="nav-title">네트워킹 완전 가이드 5편 - 네트워크 보안과 트러블슈팅 | Complete Netw...</span>
+          <i class="icon-right-arrow"></i>
+        </a>
+      </div></div>
+  </footer>
+  </article></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/leeyonghe" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://www.linkedin.com/in/lee-yong-hee-18912454/" target="_blank">
+          <li>
+            <i class="icon-linkedin-squared"></i>
+          </li>
+        </a><!----></ul><p class="about-footer condensed">&copy;
+        2025</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/infra-blog/assets/js/darkmode.js"></script>
+  
+  <script src="/infra-blog/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/infra-blog/assets/js/search.js"></script>
+  
+</body>
+
+</html>
